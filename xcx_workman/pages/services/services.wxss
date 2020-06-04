@@ -36,7 +36,7 @@ page {
 }
 
 .sort-text {
-  font-size: 28upx;
+  font-size: 28rpx;
   font-weight: 400;
   color: rgba(51, 51, 51, 1);
   margin-left: 10rpx;
@@ -44,7 +44,7 @@ page {
 }
 
 .fenzu-img {
-  width: 40rpx;
+  width: 30rpx;
   height: 40rpx;
   margin-top: 5rpx;
 }

@@ -1,0 +1,70 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/services/services",
+    "pages/mine/mine",
+    "pages/myInfo/myInfo",
+    "pages/showwork/showwork",
+    "pages/goodsDetails/goodsDetails",
+    "pages/goodsList/goodsList",
+    "pages/myEmploy/myEmploy",
+    "pages/myMessage/myMessage",
+    "pages/addEditGoods/addEditGoods",
+    "pages/myRecommend/myRecommend",
+    "pages/activity/activity",
+    "pages/myGoods/myGoods",
+    "pages/businessDetails/businessDetails",
+    "pages/workerDetails/workerDetails",
+    "pages/applyBusiness/applyBusiness",
+    "pages/submitNeeds/submitNeeds",
+    "pages/needsDetails/needsDetails",
+    "pages/need/need",
+    "pages/outurl/outurl"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "干活佬",
+    "navigationBarTextStyle": "black",
+    "backgroundTextStyle": "dark"
+  },
+  "tabBar": {
+    "color": "#6e6d6b",
+    "selectedColor": "#E61A0F",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "pages/image/index.png",
+        "selectedIconPath": "pages/image/indexhong.png"
+      },
+      {
+        "pagePath": "pages/need/need",
+        "text": "需求",
+        "iconPath": "pages/image/need.png",
+        "selectedIconPath": "pages/image/needhong.png"
+      },
+      {
+        "pagePath": "pages/services/services",
+        "text": "服务",
+        "iconPath": "pages/image/service.png",
+        "selectedIconPath": "pages/image/servicehong.png"
+      },
+      {
+        "pagePath": "pages/showwork/showwork",
+        "text": "晒晒",
+        "iconPath": "pages/image/show.png",
+        "selectedIconPath": "pages/image/showhong.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "pages/image/mine.png",
+        "selectedIconPath": "pages/image/minehong.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,154 @@
+<!--pages/need/need.wxml-->
+<view class="container">
+  <view class="hengxian"></view>
+  <view class="top zongxiang">
+    <view class="top-title hengxiang">
+      <view class="top-title-left hengxiang">
+        <view class="top-title-left-name">上海杨浦区</view>
+        <view class="top-title-left-enter">
+          <image src="../image/xiala.png" class="xiala-img"></image>
+        </view>
+      </view>
+      <view class="top-title-sort hengxiang">
+        <view class="sort-fenzu">
+          <image class="fenzu-img" src="../image/fenzu.png"></image>
+        </view>
+        <view class="sort-text">
+          按分类
+        </view>
+        <view class="sort-xiamian">
+          <image src="../image/xiamian.png" class="xiamian-img"></image>
+        </view>
+      </view>
+    </view>
+    <view class="hengxiang top-search">
+      <view class="top-title-right hengxiang">
+        <view class="top-title-right-img">
+          <image src="../image/search.png" class="search-img"></image>
+        </view>
+        <view class="top-title-right-shuru">
+          <input type="text" placeholder="输入搜索内容" class="shurukuang"></input>
+        </view>
+        <view class="top-title-right-sousuo">
+          <view class="sousuo-button">搜索</view>
+        </view>
+      </view>
+      <view class="top-search-fabu">
+        <image src="../image/ruzhu.png" class="fabu-img"></image>
+      </view>
+    </view>
+
+
+  </view>
+  <view class="content zongxiang">
+    <!-- 找工人，找商家梯形切换样式 -->
+    <!-- <view class="content-title hengxiang" wx:if="{{chooseworker==0}}">
+      <view class="content-title-left">找工人</view>
+      <view class="content-title-right" bindtap="changeType">
+        <text class="shangjia">找商家</text>
+      </view>
+    </view>
+    <view class="content-title hengxiang" wx:if="{{chooseworker==1}}">
+      <view class="content-title-left1" bindtap="changeType">找工人</view>
+      <view class="content-title-right1">
+        <text class="shangjia1">找商家</text>
+      </view>
+    </view> -->
+    <view class="content-qiehuan">
+      <!-- 找工人 -->
+      <view class="content-qiehuan-left" wx:if="{{chooseworker==1}}">
+        <view>
+          <image src="../image/zhaogongren.png" class="zhaogongren-img" ></image>
+        </view>
+        <view class="gongren-xuanqu" bindtap="changeType"></view>
+      </view>
+      <!-- 找商家 -->
+      <view class="content-qiehuan-right" wx:if="{{chooseworker==0}}">
+        <view>
+          <image src="../image/zhaoshangjia.png" class="zhaogongren-img"  ></image>
+        </view>
+        <view class="shangjia-xuanqu" bindtap="changeType"></view>
+      </view>
+    </view>
+    <!-- 找工人 -->
+    <view class="content-list zongxiang" wx:for="{{workerlist}}" wx:key="key" data-id="{{item.id}}" wx:if="{{chooseworker==1}}">
+      <view class="content-list-item hengxiang" bindtap="workerDetails">
+        <view class="list-item-left">
+          <image src="../image/top.png" class="worker-img"></image>
+        </view>
+        <view class="list-item-right zongxiang">
+          <view class="right-name">
+            {{item.wxNc}}
+            <text class="right-text-age">{{item.dateBirth}}岁</text>
+          </view>
+          <view class="right-content hengxiang">
+
+            <view class="right-content-item hengxiang">
+              <view class="">
+                <image src="../image/dengji.png" class="dengji-img"></image>
+              </view>
+              <view>{{item.shopName}}</view>
+            </view>
+            <view class="right-content-item hengxiang">
+              <view class="">
+                <image src="../image/shiming.png" class="dengji-img"></image>
+              </view>
+              <view>实名认证</view>
+            </view>
+            <view class="right-content-item hengxiang">
+              <view class="">
+                <image src="../image/jingyan.png" class="dengji-img"></image>
+              </view>
+              <view>{{item.employ}}年经验</view>
+            </view>
+          </view>
+          <view class="right-sort zongxiang">
+            <view class="right-sort-item hengxiang">
+              <view class="dot"></view>
+              <view>{{item.oneClassName}} </view>
+            </view>
+            <view class="right-sort-item hengxiang">
+              <view class="dot"></view>
+              <view>{{item.twoClassName}}</view>
+            </view>
+          </view>
+          <view class="right-bottom hengxiang">
+            <view class="right-bottom-left hengxiang">
+              <view class="hengxiang">
+                <view>
+                  <image src="../image/fuwudingwei.png" class="dingwei-img"></image>
+                </view>
+                <view>{{item.oneAreaName}} | {{item.twoAreaName}}</view>
+              </view>
+            </view>
+            <view class="right-bottom-right">
+              <view class="guyong-button">雇佣TA</view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+    </view>
+    <!-- 找商家 -->
+
+    <view class="content-business zongxiang" wx:for="{{businesslist}}" wx:key="key" data-id="{{item.id}}" wx:if="{{chooseworker==0}}">
+      <view class="content-business-list zongxiang" bindtap="businessDetails">
+        <view class="content-business-img">
+          <image src="{{item.picIurl}}" class="business-img"></image>
+        </view>
+        <view class="content-business-bottom hengxiang">
+          <view class="business-bottom-left">{{item.shopName}}</view>
+          <view class="business-bottom-right">
+            <view class="enter-button">进店看看</view>
+          </view>
+        </view>
+
+      </view>
+
+    </view>
+  </view>
+
+  <view class="bottom">
+    <image src="../image/backtop.png" class="backtop-img"></image>
+  </view>
+</view>

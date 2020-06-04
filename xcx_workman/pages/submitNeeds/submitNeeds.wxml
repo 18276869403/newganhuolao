@@ -1,0 +1,159 @@
+<!--pages/submitNeeds/submitNeeds.wxml-->
+<view class="container">
+  <view class="hengxian"></view>
+  <view class="top hengxiang">
+    <view wx:for="{{needsTypeList}}" wx:key="key" bindtap="changeType" data-id="{{item.id}}" class="xuanzhong">
+      <view wx:if="{{needsTypeid==item.id}}" class="top-item-checked">
+        <text class="bian"> {{item.name}}</text>
+      </view>
+      <view wx:if="{{needsTypeid!=item.id}}" class="top-item-normal">
+        <text class="">{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="content zongxiang">
+
+    <view class="content-item hengxiang" bindtap="showModal6">
+      <view class="content-title">需求分类</view>
+      <view class="content-text" wx:if="{{yijiname==''}}">请选择需求分类</view>
+      <view class='content-text1' wx:if="{{yijiname!=''}}">{{yijiname}} - {{erjiname}}</view>
+    </view>
+
+    <view class="content-item hengxiang">
+      <view class="content-title">需求标题</view>
+      <input type="text" placeholder="请输入需求标题" class="shurukuang" placeholder-class="placeholder" value='{{needsname}}' name="needsname" bindinput='needsnameinput'></input>
+    </view>
+
+    <view class="content-item hengxiang">
+      <view class="content-title">初价</view>
+      <input type="text" placeholder="请输入初价" class="shurukuang" placeholder-class="placeholder" value='{{youhuijia}}' name="youhuijia" bindinput='youhuijiainput'></input>
+    </view>
+
+    <view class="content-item-textarea">
+      <textarea class="textarea" placeholder="输入需求详情说明" placeholder-class="placeholder1" maxlength='-1' value='{{needscontent}}' name="needscontent" bindinput='needscontentinput' wx:if="{{!showModalStatus6&&!show&&!showModalStatus1&&!showModalStatus}}"></textarea>
+    </view>
+    <view class="content-item hengxiang" bindtap="showModal">
+      <view class="content-title">所在区域</view>
+      <view class="content-text" wx:if="{{cityname==''}}">请选择所在区域</view>
+      <view class='content-text2' wx:if="{{cityname!=''}}" >{{cityname}} - {{areaname}}</view>
+      <view class="enter">
+        <image src="{{viewUrl}}static/image/enter.png" class="enter-img"></image>
+      </view>
+    </view>
+
+    <!-- <view class="content-item">
+      <input type="text" placeholder="请输入详细工作地址" class="shurukuang" placeholder-class="placeholder" value='{{workaddress}}' name="workaddress" bindinput='workaddressinput'></input>
+    </view> -->
+
+    <view class="content-item hengxiang">
+      <view class="content-title">联系人</view>
+      <input type="text" placeholder="请输入联系人" class="shurukuang" placeholder-class="placeholder" value='{{linkman}}' name="linkman" bindinput='linkmaninput'></input>
+    </view>
+
+    <view class="content-item hengxiang">
+      <view class="content-title">联系电话</view>
+      <input type="number" placeholder="请输入联系电话" class="shurukuang" placeholder-class="placeholder" value='{{phone}}' name="phone" bindinput='phoneinput'></input>
+    </view>
+  </view>
+
+
+
+  <view class="showImg">
+    <view class="showImg-item" wx:if="{{tupianlist.length>0}}" wx:for="{{tupianlist}}">
+      <image src="{{imgUrl+item}}" class="show-img"></image>
+      <image src="{{viewUrl}}static/image/shanchu.png" class="delete-img" bindtap="shanchutup" data-img="{{item}}"></image>
+    </view>
+  </view>
+  <view class="fabu" bindtap="upimg" data-number="0" data-type="1">
+    <image src="{{viewUrl}}static/image/shangchuan.png" class="fabu-item" wx:if="{{picIurl==''}}"></image>
+    <image src="{{picIurl}}" class="show-img" wx:if="{{picIurl!=''}}"></image>
+  </view>
+  <view class='content-icon hengxiang'>
+    <icon type="{{select}}" size="22" data-index="{{index}}" data-select="{{select}}" bindtap="change" />
+
+    <view class='icon-leftText' bindtap='showModal1'>提交前请仔细阅读</view>
+    <view class='icon-righText' bindtap='showModal1'> 《干活佬使用协议》 </view>
+  </view>
+  <view class="bottom hengxiang">
+
+    <!-- <view class="bottom-left">
+      <text style="font-size:14px;">¥</text> 0 元
+    </view> -->
+    <view class="bottom-right" bindtap="lijifabu">立即发布</view>
+  </view>
+</view>
+
+<!-- 遮罩层显示 需求分类 -->
+<view>
+  <view class="commodity_screen6" wx:if="{{showModalStatus6}}" bindtap='hideModal6'></view>
+  <view animation="{{animationData1}}" class="commodity_attr_box6" wx:if="{{showModalStatus6}}">
+    <view class='alert hengxiang'>
+      <!-- <view class='alert-left zongxiang'>
+        <view class='alert-item'></view>
+      </view> -->
+      <view class='s-left'>
+        <scroll-view class='left-navbar' scroll-y="true">
+          <view class='normal-title'>一级分类</view>
+          <view wx:for="{{oneclass}}" class="nav_left_items {{firstId == item.id? 'active' : 'normal'}}" wx:key="key" bindtap="left" data-index="{{index}}" data-name=" {{item.className}}" data-id='{{item.id}}' >
+            <!-- <view class='scroll-name'> -->
+            {{item.className}}
+            <!-- </view> -->
+          </view>
+        </scroll-view>
+      </view>
+
+      <view class='s-right'>
+        <scroll-view class='left-navbar1' scroll-y="true">
+          <view class='normal-title'>二级分类</view>
+          <view wx:for="{{twoclass}}" class="nav_left_items {{secondId == item.id? 'active' : 'normal'}}" wx:key="key" bindtap="right" data-index="{{index}}" data-name=" {{item.className}}" data-id='{{item.id}}'>
+            <!-- <view class='scroll-name'> -->
+            {{item.className}}
+            <!-- </view> -->
+          </view>
+        </scroll-view>
+
+      </view>
+
+    </view>
+  </view>
+</view>
+
+<!-- 遮罩层显示 工作区域 -->
+<view>
+  <view class="commodity_screen" wx:if="{{showModalStatus}}" bindtap='hideModal'></view>
+  <view animation="{{animationData1}}" class="commodity_attr_box6" wx:if="{{showModalStatus}}">
+    <view class='alert hengxiang'>
+      <view class='s-left'>
+        <scroll-view class='left-navbar' scroll-y="true">
+          <!-- <view class='normal-title'>一级分类</view> -->
+          <view wx:for="{{city}}" class="nav_left_items {{cityId == item.id? 'active' : 'normal'}}" wx:key="key" bindtap="cityleft" data-index="{{index}}" data-name=" {{item.areaName}}" data-id='{{item.id}}'>
+            {{item.areaName}}
+          </view>
+        </scroll-view>
+      </view>
+
+      <view class='s-right'>
+        <scroll-view class='left-navbar1' scroll-y="true">
+          <!-- <view class='normal-title'>二级分类</view> -->
+          <view wx:for="{{area}}" class="nav_left_items {{areaId == item.id? 'active' : 'normal'}}" wx:key="key" bindtap="arearight" data-index="{{index}}" data-name=" {{item.areaName}}" data-id='{{item.id}}'>
+            {{item.areaName}}
+          </view>
+        </scroll-view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 注册协议 -->
+<view class="commodity_screen1" wx:if="{{showModalStatus1}}"></view>
+<view animation="{{animationData1}}" class="commodity_attr_box1" wx:if="{{showModalStatus1}}">
+  <view class='tanchuang zongxiang'>
+    <view class='tankuang-top'>免责协议</view>
+
+    <scroll-view scroll-y style="height: 275px;" class='tankuang-content'>
+      <view>{{mianzhe}}</view>
+    </scroll-view>
+    <view class='close-button' bindtap='hideModal1'>关闭</view>
+  </view>
+</view>
+<canvas canvas-id="firstCanvas" style="width: {{cw}}px; height: {{ch}}px;position:fixed;left:100%;"></canvas>

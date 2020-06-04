@@ -1,0 +1,3 @@
+<!--pages/activity/activity.wxml-->
+<canvas canvas-id="shareCanvas" style="width:{{codew}}px;height:{{codeh}}px"></canvas>
+

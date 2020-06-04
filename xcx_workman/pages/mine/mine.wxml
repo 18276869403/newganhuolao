@@ -1,0 +1,173 @@
+<!--pages/mine/mine.wxml-->
+<view class="container">
+
+  <!-- 上方详情块  普通用户-->
+  <view class="content zongxiang" wx:if="{{userType==0}}">
+    <image src="{{viewUrl}}static/image/minebg.png" class="minebg-img"></image>
+    <view class="content-list zongxiang">
+      <!-- 用户为浏览者 -->
+      <view class="content-list-item zongxiang">
+        <view class="userinfo-avatar">
+          <open-data type="userAvatarUrl"></open-data>
+        </view>
+        <view class="userinfo-nickname">
+          <open-data type="userNickName" lang="zh_CN" wx:if="{{chushihua=='0'}}"></open-data>
+          <view wx:if="{{chushihua=='1'}}" bindtap="showModal1">请点击登陆</view>
+        </view>
+        <view class="content-apply" wx:if="{{wxState==2}}" bindtap="applyBusiness">申请成为商家或者工人</view>
+        <view class="content-apply" wx:if="{{wxState!=2}}">身份：{{wxState==0?'商人':'工人'}}</view>
+      </view>
+    </view>
+  </view>
+  <!-- 上方详情块  工人,商家-->
+  <view class="content zongxiang" wx:if="{{userType==1}}">
+    <image src="{{viewUrl}}static/image/minebg.png" class="minebg-img"></image>
+    <view class="content-top hengxiang">
+      <view class="content-top-left zongxiang">
+        <view class="hengxiang top-left-details">
+          <view class="top-left-name" style="font-weight:350;">{{wxUser.name}}</view>
+        </view>
+        <view class="top-left-type hengxiang">
+          <view class="hengxiang top-left-sort">
+            <view>
+              <image src="{{viewUrl}}static/image/gongjiang.png" class="sort-img"></image>
+            </view>
+            <view style="width:110rpx;">{{wxUser.starClass}}</view>
+          </view>
+          <view class="hengxiang top-left-sort">
+            <view>
+              <image src="{{viewUrl}}static/image/shimingrenzheng.png" class="sort-img"></image>
+            </view>
+            <view>实名认证</view>
+          </view>
+        </view>
+        <view class="top-left-type hengxiang">
+          <view class="dot"></view>
+          <view class="top-left-type-text">{{wxUser.oneClassName}}</view>
+        </view>
+         <view class="top-left-type hengxiang">
+          <view class="dot"></view>
+          <view class="top-left-type-text">{{wxUser.twoClassName}}</view>
+        </view>
+      </view>
+      <view class="content-top-right">
+          <open-data type="userAvatarUrl" class="userinfo-avatar"></open-data>
+      </view>
+    </view>
+    <view class="content-list-worker zongxiang">
+      <view class="content-list-item-worker hengxiang">
+        <view class="content-worker-left hengxiang">
+          <view>
+            <image src="{{viewUrl}}static/image/tuijianruzhu.png" class="worker-img"></image>
+          </view>
+          <view>推荐入驻</view>
+          <view class="ziti">{{wxUser.userPoint}}</view>
+        </view>
+        <view class="content-worker-right hengxiang">
+          <view>
+            <image src="{{viewUrl}}static/image/jifen.png" class="worker-img"></image>
+          </view>
+          <view>推荐入驻</view>
+          <view class="ziti">{{wxUser.backup2}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 中部白色块 -->
+  <view class="content-item1 zongxiang">
+    <view class="content-item-img hengxiang">
+      <view class="content-item-img-block">
+        <image src="{{viewUrl}}static/image/wodeguyong.png" class="logo-img" bindtap="myEmploy"></image>
+      </view>
+      <view class="content-item-img-block">
+        <image src="{{viewUrl}}static/image/wodexuqiu.png" class="logo-img" bindtap="myNeeds"></image>
+      </view>
+      <view class="content-item-img-block">
+        <image src="{{viewUrl}}static/image/wodeshaishai.png" class="logo-img" bindtap="showwork"></image>
+      </view>
+      <view class="content-item-img-block">
+        <image src="{{viewUrl}}static/image/wodeliuyan.png" class="logo-img" bindtap="myMessage"></image>
+      </view>
+    </view>
+    <view class="content-item-text hengxiang">
+      <view class="content-item-text-block" bindtap="myEmploy">我的雇佣</view>
+      <view class="content-item-text-block" bindtap="myNeeds">我的需求</view>
+      <view class="content-item-text-block">我的晒晒</view>
+      <view class="content-item-text-block" bindtap="myMessage" data-Lyid="{{wxUser}}">我的留言</view>
+    </view>
+  </view>
+  <!-- 底部列表块 -->
+  <view class="bottom zongxiang">
+    <view class="bottom-list hengxiang" bindtap="myInfo">
+      <view class="bottom-list-left">
+        <image src="{{viewUrl}}static/image/wodeziliao.png" class="ziliao-img"></image>
+      </view>
+      <view class="bottom-list-content">
+        我的资料
+      </view>
+      <view class="bottom-list-right">
+        <image src="{{viewUrl}}static/image/enter.png" class="enter-img"></image>
+      </view>
+    </view>
+    <view class="bottom-list hengxiang" bindtap="myGoods" data-spid="{{wxUser}}">
+      <view class="bottom-list-left">
+        <image src="{{viewUrl}}static/image/wodeshangpin.png" class="ziliao-img"></image>
+      </view>
+      <view class="bottom-list-content">
+        我的商品
+      </view>
+      <view class="bottom-list-right">
+        <image src="{{viewUrl}}static/image/enter.png" class="enter-img"></image>
+      </view>
+    </view>
+    <view class="bottom-list hengxiang" bindtap="myRecommend" data-spid="{{wxUser}}">
+      <view class="bottom-list-left">
+        <image src="{{viewUrl}}static/image/wodetuijian.png" class="ziliao-img"></image>
+      </view>
+      <view class="bottom-list-content">
+        我的推荐
+      </view>
+      <view class="bottom-list-right">
+        <image src="{{viewUrl}}static/image/enter.png" class="enter-img"></image>
+      </view>
+    </view>
+    <view class="bottom-list hengxiang" bindtap="">
+      <view class="bottom-list-left">
+        <image src="{{viewUrl}}static/image/guanzhu.png" class="ziliao-img"></image>
+      </view>
+      <view class="bottom-list-content">
+        关注公众号
+      </view>
+      <view class="bottom-list-right">
+        <image src="{{viewUrl}}static/image/enter.png" class="enter-img"></image>
+      </view>
+    </view>
+    <view class="bottom-list hengxiang" bindtap="phonecall" data-phone="{{wxUser.phone}}">
+      <view class="bottom-list-left">
+        <image src="{{viewUrl}}static/image/lianxiwomen.png" class="ziliao-img"></image>
+      </view>
+      <view class="bottom-list-content">
+        联系我们
+      </view>
+      <view class="bottom-list-right">
+        <image src="{{viewUrl}}static/image/enter.png" class="enter-img"></image>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 遮罩层显示 （授权） -->
+<view>
+  <view class="commodity_screen1" wx:if="{{showModalStatus1}}"></view>
+  <view animation="{{animationData1}}" class="commodity_attr_box1" wx:if="{{showModalStatus1}}">
+    <view class='content-alert zongxiang'>
+      <view class='alert-title'>微信授权登录</view>
+      <view class='alert-content'>获取昵称、头像等公开信息</view>
+      <view class='alert-button'>
+        <button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" class='tijiao'>发起授权</button>
+        <!-- <view bindgetuserinfo="bindGetUserInfo"></view> -->
+        <view bindtap='hideModal1'>取消</view>
+      </view>
+      <!-- <button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" class='tijiao'></button> -->
+    </view>
+  </view>
+</view>

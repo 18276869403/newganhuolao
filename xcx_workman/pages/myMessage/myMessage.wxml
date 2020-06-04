@@ -1,0 +1,89 @@
+<!--pages/myMessage/myMessage.wxml-->
+<view class="container">
+  <view class="hengxian"></view>
+  <view class="top hengxiang">
+    <view wx:for="{{needsTypeList}}" wx:key="key" bindtap="changeType" data-id="{{item.id}}" class="xuanzhong">
+      <view wx:if="{{needsTypeid==item.id}}" class="top-item-checked">
+        <text class="bian"> {{item.name}}</text>
+      </view>
+      <view wx:if="{{needsTypeid!=item.id}}" class="top-item-normal">
+        <text class="">{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+  <!-- 我的留言列表 -->
+  <view class="content zongxiang">
+    <view class="content-list zongxiang" wx:for="{{messageList}}" wx:key="{{item.id}}" wx:if="{{needsTypeid==1}}">
+    <!-- <view class="content-list zongxiang" wx:for="{{formymessageList}}" wx:key="{{item.id}}" wx:if="{{needsTypeid==2}}"> -->
+      <view class="content-list-top hengxiang">
+        <view class="list-top-img">
+          <image src="{{viewUrl}}static/image/top.png" class="avator-img"></image>
+        </view>
+        <view class="list-top-text zongxiang">
+          <view>{{item.name}}</view>
+          <view class="date">{{item.messageDate}}</view>
+        </view>
+        <view class="list-top-delete">
+          <image src="{{viewUrl}}static/image/delete.png" class="delete-img" bindtap="deletemyLY" data-lyid="{{item.id}}"></image>
+        </view>
+      </view>
+      <view class="content-list-content zongxiang">
+        <view class="list-content-item hengxiang">
+          <view class="dot"></view>
+          <view class="item-type">{{item.oneClassName}}| {{item.twoClassName}}</view>
+        </view>
+        <!-- <view class="list-content-item hengxiang">
+          <view class="dot"></view>
+          <view class="item-type">{{item.sort2}}| {{item.sort22}} | {{item.sort222}}</view>
+        </view> -->
+      </view>
+      <view class="content-list-bottom hengxiang">
+        <view class="content-list-bottom-left hengxiang">
+          <view class="left-dingwei">
+            <image src="{{viewUrl}}static/image/dingwei.png" class="dingwei-img"></image>
+          </view>
+          <view class="left-text">{{item.oneAreaName}} | {{item.twoAreaName}}</view>
+        </view>
+        <view class="content-list-bottom-right">
+          <view class="look-button">查看留言</view>
+        </view>
+      </view>
+    </view>
+    <view class="content-list zongxiang" wx:for="{{formymessageList}}" wx:key="{{item.id}}" wx:if="{{needsTypeid==2}}">
+      <view class="content-list-top hengxiang">
+        <view class="list-top-img">
+          <image src="{{viewUrl}}static/image/top.png" class="avator-img"></image>
+        </view>
+        <view class="list-top-text zongxiang">
+          <view>{{item.name}}</view>
+          <view class="date">{{item.messageDate}}</view>
+        </view>
+        <view class="list-top-delete">
+          <image src="{{viewUrl}}static/image/delete.png" class="delete-img" bindtap="deletemyLY" data-lyid="{{item.id}}"></image>
+        </view>
+      </view>
+      <view class="content-list-content zongxiang">
+        <view class="list-content-item hengxiang">
+          <view class="dot"></view>
+          <view class="item-type">{{item.oneClassName}}| {{item.twoClassName}}</view>
+        </view>
+        <!-- <view class="list-content-item hengxiang">
+          <view class="dot"></view>
+          <view class="item-type">{{item.sort2}}| {{item.sort22}} | {{item.sort222}}</view>
+        </view> -->
+      </view>
+      <view class="content-list-bottom hengxiang">
+        <view class="content-list-bottom-left hengxiang">
+          <view class="left-dingwei">
+            <image src="{{viewUrl}}static/image/dingwei.png" class="dingwei-img"></image>
+          </view>
+          <view class="left-text">{{item.oneAreaName}} | {{item.twoAreaName}}</view>
+        </view>
+        <view class="content-list-bottom-right">
+          <view class="look-button">查看留言</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+</view>

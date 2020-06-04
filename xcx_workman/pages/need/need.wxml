@@ -62,7 +62,7 @@
                   <view class="content-list-type" style="background:#339966" wx:if="{{item.needType==0}}">普通</view>
                 </view>
                 <view class="content-list-title">
-                  <!-- <image src="{{viewUrl}}static/image/shang.png" class="gong-img" wx:if="{{item.wxState==0}}"></image>
+                  <!-- <image src="{{viewUrl}}static/image/shang.png" class="gong-img" wx:if="{{item.wxState==0}}"> </image>
                 <image src="{{viewUrl}}static/image/gong.png" class="gong-img" wx:if="{{item.wxState==1}}"></image> -->
                   {{item.needPrice}}
                 </view>

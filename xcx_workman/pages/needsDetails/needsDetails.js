@@ -56,6 +56,7 @@ Page({
   onLoad: function (options) {
     var xqxqlist = JSON.parse(options.obj1)
     this.id = xqxqlist.id
+    xqxqlist.publishMan = utils.formatName(xqxqlist.publishMan)
     this.setData({
       xqxqlist: xqxqlist,
       wxUserid: app.globalData.wxid

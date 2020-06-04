@@ -102,8 +102,8 @@
               <view class="content-list zongxiang">
                 <view class="content-list-item hengxiang">
                   <view class="content-list-leixing">
-                    <view class="content-list-type" wx:if="{{item.needType==0}}">加急</view>
-                    <view class="content-list-type" style="background:#339966" wx:if="{{item.needType==1}}">普通</view>
+                    <view class="content-list-type" wx:if="{{item.needType==1}}">加急</view>
+                    <view class="content-list-type" style="background:#339966" wx:if="{{item.needType==0}}">普通</view>
                   </view>
                   <view class="content-list-title">
                     {{item.needPrice}}

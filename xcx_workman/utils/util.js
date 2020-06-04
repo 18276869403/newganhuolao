@@ -46,21 +46,12 @@ const SubName = function(str){
 }
 
 const FormatName = function (str) {
-  if (str.length>2)
+  var temp = ""
+  if (str.length>1)
   {
-    var temp = "";
-    for (var i=0; i<str.length; i++)
-    {
-      if (i==0)
-      {
-        temp = temp + str.substring(i,i+1);
-      }
-      else
-      {
-        temp = temp + "*";
-      }
-    }
-    return temp;
+    return temp = str.substring(0,1) + '**';
+  }else{
+    return temp 
   }
 }
 

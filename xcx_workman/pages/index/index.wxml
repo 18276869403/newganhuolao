@@ -90,7 +90,6 @@
         <view class="need-title-left">最新需求</view>
         <view class="need-title-right" bindtap="need">更多 > </view>
       </view>
-      <scroll-view class="xuqiu-list" scroll-y="true">
         <view class="list zongxiang" wx:for="{{xuqiulist}}" wx:for-index="index" wx:key="index">
           <view class="need-list hengxiang" bindtap="needsDetails" data-vall="{{item}}">
             <view class="need-list-left" wx:if="{{item.backup1[0] !=null}}">
@@ -156,7 +155,6 @@
             </view>
           </view>
         </view>
-      </scroll-view>
     </view>
     <!-- 推荐工人 -->
     <view class="content-worker1">

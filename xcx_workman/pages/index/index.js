@@ -62,7 +62,7 @@ Page({
     })
     this.firstbanner() //banner
     this.pointList() //通知
-    this.xqneedlist({pageNo:1,pageSize:10}) //需求
+    this.xqneedlist({pageNo:1,pageSize:3}) //需求
     this.grneedlist() //工人
     this.sjneedlist()  //商家
     this.spneedlist() //商品

@@ -40,7 +40,8 @@ Page({
     yijiid:'',
     yijiname:'',
     erjiid:'',
-    erjiname:''
+    erjiname:'',
+    mid:''
   },
    // 搜索框
    shurukuang:function(e){
@@ -79,13 +80,19 @@ Page({
   // 获取需求
   // 下拉刷新
   onPullDownRefresh: function () {
+    app.globalData.xuqiuid = 1
     this.onLoad()
     setTimeout(() => {
       wx.stopPullDownRefresh()
     }, 1000);
   },
   onLoad: function() {
-    this.xqneedlist({pageNo:1,pageSize:10})
+    if(app.globalData.xuqiuid == 0){
+      this.data.mid=app.globalData.wxid
+    }else{
+      this.data.mid=''
+    }
+    this.xqneedlist({pageNo:1,pageSize:10,wxUserId:this.data.mid})
     this.oneClass()
     this.twoClass()
   },

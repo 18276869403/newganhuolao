@@ -598,6 +598,7 @@
   border-radius: 8rpx;
   font-size: 14px;
   color: #999;
+  margin-left: 10rpx;
 }
 
 .fabu-img {

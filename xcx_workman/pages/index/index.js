@@ -22,7 +22,11 @@ Page({
     xuqiulist:[],
     grlist:[],
     sjlist:[],
-    tupian:[]
+    tupian:[],
+    userInfo:{
+      avatarUrl:'',
+      nickName:''
+    }
   },
   // 搜索框
   shurukuang:function(e){
@@ -43,21 +47,34 @@ Page({
   },
   onLoad: function() {
     var that = this
-    wx.login({
-      success: function(res) {
-        qingqiu.get("getKeyInfo", {
-          code: res.code
-        }, function(re) {
-          app.globalData.wxid = re.result.wxUser.id
-          if (re.result.wxUser.picUrl != null && re.result.wxUser.picUrl.length > 0) {
-            app.globalData.sqgl = 1
+    wx.getUserInfo({
+      success:function(res){
+        console.log(res);
+        var avatarUrl = 'userInfo.avatarUrl';
+        var nickName = 'userInfo.nickName';
+        that.setData({
+          [avatarUrl]: res.userInfo.avatarUrl,
+          [nickName]:res.userInfo.nickName,
+        })
+        wx.login({
+          success: function(res) {
+            qingqiu.get("getKeyInfo", {
+              code: res.code,
+              wxNc:that.data.userInfo.nickName,
+              picUrl:that.data.userInfo.avatarUrl
+            }, function(re) {
+              app.globalData.wxid = re.result.wxUser.id
+              if (re.result.wxUser.picUrl != null && re.result.wxUser.picUrl.length > 0) {
+                app.globalData.sqgl = 1
+              }
+              app.globalData.openid = re.result.openId
+              app.globalData.wxState = re.result.wxUser.wxState
+              that.setData({
+                openid:re.result.openId
+              })
+            }, "POST")
           }
-          app.globalData.openid = re.result.openId
-          app.globalData.wxState = re.result.wxUser.wxState
-          that.setData({
-            openid:re.result.openId
-          })
-        }, "POST")
+        })
       }
     })
     this.firstbanner() //banner

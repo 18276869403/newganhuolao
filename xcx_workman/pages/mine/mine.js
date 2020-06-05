@@ -277,9 +277,9 @@ Page({
   },
   // 跳转到我的需求页面
   myNeeds: function() {
-    var mid=JSON.stringify(app.globalData.wxid)
+    getApp().globalData.xuqiuid = 0
     wx.reLaunch({ 
-     url: '../need/need?obj='+mid,
+     url: '../need/need',
     })
   },
   // 跳转到我的晒活页面

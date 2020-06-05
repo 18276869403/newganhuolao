@@ -333,7 +333,7 @@ page {
 
 .list-bottom-item1 {
   margin: auto;
-  width: 55%;
+  width: 45%;
 }
 
 .list-bottom-item2 {

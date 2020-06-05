@@ -110,7 +110,7 @@ page {
   white-space: nowrap;
   padding-right: 3%;
 }
- 
+  
 .content-title-gongzhong {
   width: 20%;
   text-align: left;

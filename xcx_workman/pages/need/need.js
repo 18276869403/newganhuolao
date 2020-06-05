@@ -281,7 +281,7 @@ Page({
     this.animation = animation
     animation.opacity(0).rotateX(-100).step();
     this.setData({
-      animationData: animation.export(),
+      animationData: animation.export(), 
       showModalStatus: true
     })
     setTimeout(function () {

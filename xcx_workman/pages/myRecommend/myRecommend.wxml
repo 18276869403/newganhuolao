@@ -12,7 +12,7 @@
         <view class="content-ruzhu">
           <image src="{{viewUrl}}static/image/ruzhushangjia.png" class="ruzhu-img" wx:if="{{item.wxState==0}}"></image>
           <image src="{{viewUrl}}static/image/ruzhugongren.png" class="ruzhu-img" wx:if="{{item.wxState==1}}"></image>
-        </view>
+        </view> 
       </view>
       <view class="content-list-right ">
         +{{item.backup2}}

@@ -10,7 +10,7 @@
         <text class="">{{item.name}}</text>
       </view>
     </view>
-  </view>
+  </view> 
   <!-- 我的留言列表 -->
   <view class="content zongxiang">
     <view class="content-list zongxiang" wx:for="{{messageList}}" wx:key="{{item.id}}">

@@ -74,7 +74,7 @@
                   <view class="content-status-text" wx:if="{{item.needState==0}}">进行中</view>
                   <view class="content-status-text" wx:if="{{item.needState==1}}">已完成</view>
                 </view>
-              </view>
+              </view> 
               <view class="content-neirong">
                 {{item.needTitle}}
               </view>

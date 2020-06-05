@@ -92,7 +92,7 @@
       <view class='content-text1' wx:if="{{yijiname!=''}}" style="color:#999999;">{{tempClass}}</view>
       <view class="enter">
         <image src="{{viewUrl}}static/image/enter.png" class="enter-img"></image>
-      </view>
+      </view> 
     </view>
     <view class="content-item hengxiang">
       <view class="content-title">真实姓名</view>

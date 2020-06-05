@@ -86,7 +86,7 @@
               <view>
                 <image src="{{viewUrl}}static/image/liulan.png" class="liulan-img"></image>
               </view>
-              <view>{{item.giveGood}}</view>
+              <view>{{item.giveGood}}</view> 
             </view>
             <view class="hengxiang">
               <view>

@@ -38,7 +38,7 @@ Page({
           wxUser:re.result
         })
       }else{
-        wx.showToast({
+        wx.showToast({ 
           title: re.message,
           icon:'none',
           duration:2000

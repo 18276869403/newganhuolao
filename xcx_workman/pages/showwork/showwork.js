@@ -44,16 +44,19 @@ Page({
     sousuonr:''
   },
   onPullDownRefresh: function () {
+    app.globalData.showid = 1
     this.onLoad()
     setTimeout(() => {
       wx.stopPullDownRefresh()
     }, 1000);
   },
   onLoad: function (options) {
-    if(options.id!=null||options.id!=""||options.id!=undefined){
+    if(app.globalData.showid == 0){
+      this.getShowList()
+    }else{
+      this.SelectshowList()
     }
-    this.SelectshowList()
-  },
+  }, 
   getShowList(){
     var that = this
     var data = {
@@ -62,6 +65,11 @@ Page({
     qingqiu.get("casePage",data,function(re){
       console.log(re)
       if(re.success==true){
+        that.data.showList=re.result.records
+        for(var i= 0 ; i < that.data.showList.length; i++){
+          that.data.showList[i].picOne = api.viewUrl+re.result.records[i].picOne.split(',')[0]
+          that.data.imgList[i] = that.data.showList[i].picOne
+        } 
         that.setData({
           showList:re.result.records
         })

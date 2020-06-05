@@ -37,10 +37,10 @@
         </view>
       </view>
       <view class="top-search-fabu">
-        <image src="{{viewUrl}}static/image/ruzhu.png" class="fabu-img"></image>
+        <image src="{{viewUrl}}static/image/ruzhu.png" class="fabu-img" ></image>
       </view>
     </view>
-
+ 
 
   </view>
   <view class="content zongxiang">

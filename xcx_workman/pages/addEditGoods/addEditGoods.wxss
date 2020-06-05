@@ -1,5 +1,5 @@
 /* pages/addEditGoods/addEditGoods.wxss */
-
+ 
 .content {
   width: 100%;
 }

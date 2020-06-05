@@ -55,7 +55,7 @@ Page({
       var picIurltwo1=""
       var picDetail1=""
       var picDetailtwo1=""
-    }
+    }  
     console.log(spxglist)
     this.setData({
       spxglist:spxglist,

@@ -154,7 +154,7 @@ Page({
       }else{
         wx.showToast({
           title: res.message,
-          icon:'none',
+          icon:'none', 
           duration:3000
         })
         setTimeout(function(){

@@ -151,7 +151,7 @@ Page({
         wx.showToast({
           title: '修改成功',
           icon:'success',
-          duration:2000
+          duration:2000 
         })
         setTimeout(function(){
           wx.navigateTo({

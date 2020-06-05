@@ -39,7 +39,7 @@
       <view class="top-search-fabu">
         <image src="{{viewUrl}}static/image/kaidian.png" bindtap="kaidian" class="fabu-img"></image>
       </view>
-    </view>
+    </view> 
   </view>
   <view class="content-show">
     <view class="show-item zongxiang" wx:for="{{goodslist}}" wx:key="key" data-id="{{item.id}}">

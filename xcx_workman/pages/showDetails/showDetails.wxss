@@ -14,7 +14,7 @@ page{
   margin-bottom: 20rpx;
   width: 100%;
   margin: auto;
-}
+} 
 
 .slide-image {
   /* width: 100%; */

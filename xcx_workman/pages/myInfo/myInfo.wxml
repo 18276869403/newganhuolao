@@ -14,7 +14,7 @@
         <view class='list-left'>性别：</view>
         <view class='list-right'>
           {{itemList[wxUser.sex]}}
-        </view>
+        </view> 
       </view>
     </view>
     <view class='content-list'>

@@ -20,7 +20,7 @@
       <view class="hengxiang content-list-type">
         <view>
           <image src="{{viewUrl}}static/image/jiancailei.png" class="leixing-img"></image>
-        </view>
+        </view> 
         <view>
           {{xqxqlist.oneClassName}} | {{xqxqlist.twoClassName}}
         </view>

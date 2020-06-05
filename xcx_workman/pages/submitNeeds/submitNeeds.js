@@ -956,7 +956,6 @@ Page({
     that.setData({
       num: that.data.num 
      });
-    this.onLoad()
   },
   //显示弹窗样式
   showModal: function (e) {
@@ -966,7 +965,7 @@ Page({
     var animation = wx.createAnimation({
       duration: 300,
       timingFunction: "linear",
-      delay: 0
+      delay: 0 
     })
     this.animation = animation
     animation.opacity(0).rotateX(-100).step();

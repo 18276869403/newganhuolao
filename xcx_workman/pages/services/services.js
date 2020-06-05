@@ -94,7 +94,7 @@ Page({
     } else {
       that.setData({
         chooseworker: 0
-      })
+      }) 
       that.data.fenleilx=2
       that.sjneedlist({pages:1,size:10,wxState:that.data.chooseworker})
     }

@@ -4,7 +4,7 @@ const app = getApp()
 
 const qingqiu = require('../../utils/request.js')
 const api = require('../../utils/config.js')
-
+ 
 Page({
   data: {
     viewUrl:api.viewUrl,

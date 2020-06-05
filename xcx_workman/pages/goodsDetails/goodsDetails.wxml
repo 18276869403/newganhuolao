@@ -3,7 +3,7 @@
   <view class="top zongxiang">
     <view class="top-img">
       <image src="{{splist.goodPic1}}" class="img" bindtap="tupian" data-src="{{splist.goodPic1}}"></image>
-    </view>
+    </view> 
     <view class="top-title">
       {{splist.goodName}}
     </view>

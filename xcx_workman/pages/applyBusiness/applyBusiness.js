@@ -619,7 +619,7 @@ Page({
         picPerson1: that.data.picPerson3,
         picPerson2: that.data.picPerson4,
         wxState: 1
-      }
+      } 
     } else {
       if (that.data.phone.length != 11) {
         wx.showToast({

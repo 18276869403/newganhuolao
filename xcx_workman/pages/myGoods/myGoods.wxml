@@ -19,4 +19,4 @@
   <view class="goods-bottom" bindtap="addEditGoods" data-addspid="{{item}}">
   <image src="{{viewUrl}}static/image/addgoods.png" class="add-img"></image>
   </view>
-</view>
+</view> 

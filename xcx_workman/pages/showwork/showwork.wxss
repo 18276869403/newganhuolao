@@ -358,7 +358,7 @@ page {
 .tanchuang-close {
   width: 100%;
   text-align: center;
-}
+} 
 
 .close-img {
   width: 80rpx;

@@ -10,7 +10,7 @@ Page({
     viewUrl:api.viewUrl,
     imgUrl: '',
     bannerImg:[],
-    pinglunList:[],
+    pinglunList:[], 
     // bannerImg: [{
     //     id: 1,
     //     bannerimg: '../image/top.png'

@@ -4,7 +4,7 @@
 const qingqiu = require('../../utils/request.js')
 var api = require('../../utils/config.js')
 Page({
-
+ 
   /**
    * 页面的初始数据
    */

@@ -2,7 +2,7 @@
 const qingqiu = require('../../utils/request.js')
 const api = require('../../utils/config.js')
 Page({
-
+ 
   /**
    * 页面的初始数据
    */
@@ -10,7 +10,7 @@ Page({
     viewUrl:api.viewUrl,
     goodsList: [{
         id: 1,
-        img: '../image/top.png',
+        img: '../image/top.png', 
         name: '室内F-10木门（含五金件五',
         price: '299'
       },

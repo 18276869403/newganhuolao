@@ -84,7 +84,7 @@
       </view>
       <view class="content-item-img-block">
         <image src="{{viewUrl}}static/image/wodexuqiu.png" class="logo-img" bindtap="myNeeds"></image>
-      </view>
+      </view> 
       <view class="content-item-img-block">
         <image src="{{viewUrl}}static/image/wodeshaishai.png" class="logo-img" bindtap="showwork"></image>
       </view>

@@ -28,7 +28,7 @@
         <view class="hengxiang top-content-bottom-item1">
           <view>
             <image src="{{viewUrl}}static/image/shijian.png" class="time-img"></image>
-          </view>
+          </view> 
           <view class="top-time">
             {{caseMsgList.addTime}}
           </view>

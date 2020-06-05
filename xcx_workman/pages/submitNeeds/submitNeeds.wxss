@@ -9,7 +9,7 @@
   width: 50%;
   text-align: center;
 }
-
+ 
 .bian {
   border-bottom: 6rpx solid #e02323;
   padding-bottom: 13rpx;

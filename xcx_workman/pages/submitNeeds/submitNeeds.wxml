@@ -9,7 +9,7 @@
       <view wx:if="{{needsTypeid!=item.id}}" class="top-item-normal">
         <text class="">{{item.name}}</text>
       </view>
-    </view>
+    </view> 
   </view>
   <view class="content zongxiang">
 

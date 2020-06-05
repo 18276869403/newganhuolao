@@ -65,7 +65,7 @@ Page({
     console.log(xqxqlist)
     this.SelectjiedanList()
     // this.SelecttupianList()
-  },
+  }, 
   // 接单人员
   SelectjiedanList() {
     var that = this

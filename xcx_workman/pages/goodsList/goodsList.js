@@ -21,7 +21,7 @@ Page({
     //     img: '../image/chuang.png',
     //     storename: ' 马克波罗瓷砖专卖店'
     //   },
-    //   {
+    //   { 
     //     id: 3,
     //     name: '室内F-10木门（含五室内F-10木门（含五',
     //     price: '12',

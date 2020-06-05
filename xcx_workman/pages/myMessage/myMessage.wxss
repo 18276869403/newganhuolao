@@ -10,7 +10,7 @@ page {
   height: 98rpx;
   line-height: 98rpx;
   background: #fff;
-}
+} 
 
 .xuanzhong {
   width: 50%;

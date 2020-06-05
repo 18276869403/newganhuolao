@@ -63,7 +63,7 @@ page {
   /* margin-top: 50rpx; */
   color: #fff;
   font-size: 14px;
-}
+} 
 
 .content-item {
   background: #fff;

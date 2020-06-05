@@ -278,7 +278,7 @@ Page({
   // 跳转到我的需求页面
   myNeeds: function() {
     var mid=JSON.stringify(app.globalData.wxid)
-    wx.reLaunch({
+    wx.reLaunch({ 
      url: '../need/need?obj='+mid,
     })
   },

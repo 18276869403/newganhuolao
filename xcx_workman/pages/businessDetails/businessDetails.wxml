@@ -3,7 +3,7 @@
   <view class="hengxian"></view>
   <view class="content zongxiang">
     <!-- 商家照片 -->
-    <view class="businessStore">
+    <view class="businessStore"> 
       <image src="{{goodsList.picIurl}}" class="businessStore-img" bindtap="tupian" data-src="{{goodsList.picIurl}}"></image>
     </view>
     <!-- 商家详情 -->

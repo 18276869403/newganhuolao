@@ -106,7 +106,7 @@
                     <view class="content-list-type" style="background:#339966" wx:if="{{item.needType==0}}">普通</view>
                   </view>
                   <view class="content-list-title">
-                    ￥{{item.needPrice}}元/天
+                    ￥ {{item.needPrice}} 元/天 
                   </view>
                   <view class="hengxiang content-status">
                     <view class="content-status-img">

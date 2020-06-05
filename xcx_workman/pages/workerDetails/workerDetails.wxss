@@ -14,7 +14,7 @@ page {
   width: 100%;
   background: #fff;
 }
-
+ 
 .content-list-item {
   width: 94%;
   margin-left: 3%;

@@ -246,7 +246,7 @@ page {
   height: 168rpx;
   border-radius: 8rpx;
 }
-
+ 
 .content-list {
   margin: auto;
   width: 100%;

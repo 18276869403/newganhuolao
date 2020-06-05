@@ -4,7 +4,7 @@ page {
   background: #f5f6f9;
   padding-bottom: 170rpx;
 }
-
+ 
 .goods-list {
   width: 94%;
   margin-left: 3%;

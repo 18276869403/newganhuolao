@@ -7,7 +7,7 @@ page {
   width: 100%;
   margin-top: 10rpx;
 }
-
+ 
 .content-list {
   width: 750rpx;
   height: 75rpx;

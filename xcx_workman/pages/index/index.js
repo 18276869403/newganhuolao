@@ -59,7 +59,7 @@ Page({
             openid:re.result.openId
           })
         }, "POST")
-      }
+      } 
     })
     this.firstbanner() //banner
     this.pointList() //通知

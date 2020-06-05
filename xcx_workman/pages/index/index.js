@@ -22,11 +22,7 @@ Page({
     xuqiulist:[],
     grlist:[],
     sjlist:[],
-    tupian:[],
-    userInfo:{
-      avatarUrl:'',
-      nickName:''
-    }
+    tupian:[]
   },
   // 搜索框
   shurukuang:function(e){
@@ -45,70 +41,23 @@ Page({
     }
     this.xqneedlist(obj)
   },
-  chushishouquan() {
-    var that = this
-    wx.getSetting({
-      success(res) {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-          wx.getUserInfo({
-            lang: 'zh_CN',
-            success(res) {
-              // debugger
-              const userInfo = res.userInfo
-              var data = {
-                id: app.globalData.wxid,
-                openId: app.globalData.openid,
-                picUrl: userInfo.avatarUrl,
-                sex: userInfo.gender,
-                wxNc: userInfo.nickName
-              }
-              // qingqiu.get("getKeyInfo", data, function(re) {}, 'post')
-              // that.setData({
-              //   chushihua: '0'
-              // },'post')
-            }
-          })
-        } else {
-          that.setData({
-            chushihua: '1'
-          })
-          // that.showModal1()
-        }
-      }
-    })
-  },
   onLoad: function() {
     var that = this
-    this.chushishouquan()
-    wx.getUserInfo({
-      success:function(res){
-        console.log(res);
-        var avatarUrl = 'userInfo.avatarUrl';
-        var nickName = 'userInfo.nickName';
-        that.setData({
-          [avatarUrl]: res.userInfo.avatarUrl,
-          [nickName]:res.userInfo.nickName,
-        })
-        wx.login({
-          success: function(res) {
-            qingqiu.get("getKeyInfo", {
-              code: res.code,
-              wxNc:that.data.userInfo.nickName,
-              picUrl:that.data.userInfo.avatarUrl
-            }, function(re) {
-              app.globalData.wxid = re.result.wxUser.id
-              if (re.result.wxUser.picUrl != null && re.result.wxUser.picUrl.length > 0) {
-                app.globalData.sqgl = 1
-              }
-              app.globalData.openid = re.result.openId
-              app.globalData.wxState = re.result.wxUser.wxState
-              that.setData({
-                openid:re.result.openId
-              })
-            }, "POST")
+    wx.login({
+      success: function(res) {
+        qingqiu.get("getKeyInfo", {
+          code: res.code
+        }, function(re) {
+          app.globalData.wxid = re.result.wxUser.id
+          if (re.result.wxUser.picUrl != null && re.result.wxUser.picUrl.length > 0) {
+            app.globalData.sqgl = 1
           }
-        })
+          app.globalData.openid = re.result.openId
+          app.globalData.wxState = re.result.wxUser.wxState
+          that.setData({
+            openid:re.result.openId
+          })
+        }, "POST")
       }
     })
     this.firstbanner() //banner

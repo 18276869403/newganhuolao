@@ -108,6 +108,7 @@ page {
   overflow: hidden;
   text-overflow:ellipsis;
   white-space: nowrap;
+  padding-right: 3%;
 }
  
 .content-title-gongzhong {

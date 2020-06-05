@@ -22,7 +22,7 @@ Page({
     select: 'circle',
     hasMask: false,
     hasMask1:false,
-    pirIurl1:'',
+    picIurl1:'',
     picZz1:'',
     picPerson3:'',
     picPerson4:'',
@@ -250,6 +250,7 @@ Page({
 
   // 获取信息
   getshuju() {
+    debugger
     var data = {
       id: app.globalData.wxid,
     }
@@ -285,6 +286,7 @@ Page({
           temp = str[0] + str1[0]
         }
         that.setData({
+          needsTypeid:1,
           tempClass: temp,
           yijiname:temp,
           [typeid]:index[0],
@@ -339,6 +341,7 @@ Page({
         }
         var data = re.result.dateBirth.split(' ')
         that.setData({
+          needsTypeid:2,
           tempClass: temp,
           yijiname:temp,
           [typeid]:index[0],
@@ -364,7 +367,7 @@ Page({
           picZz: api.viewUrl + re.result.picZz,
           picPerson1: api.viewUrl + re.result.picPerson1,
           picPerson2: api.viewUrl + re.result.picPerson2,
-          pirIurl1:re.result.picIurl,
+          picIurl1:re.result.picIurl,
           picPerson3:re.result.picPerson1,
           picPerson4:re.result.picPerson2,
           wxState: re.result.wxState,
@@ -612,7 +615,7 @@ Page({
         shopAddress: that.data.workeraddress,
         phone: that.data.workerphone,
         content: that.data.workerskill,
-        picIurl: that.data.pirIurl1,
+        picIurl: that.data.picIurl1,
         picPerson1: that.data.picPerson3,
         picPerson2: that.data.picPerson4,
         wxState: 1
@@ -626,8 +629,7 @@ Page({
         })
         return
       }
-      var s = qingqiu.yanzheng(that.data.areaId + ",请选择商铺区域|" + that.data.fenleitype1.yjid + ",请现在业务分类|" + that.data.needsname + ",请输入商品名称|" + that.data.linkman + ",请输入联系人|" + that.data.phone + ",请输入联系电话|" + that.data.workaddress + ",请输入商铺详细地址|" + that.data.needscontent + ",请输入商铺介绍|" + that.data.picIurl + ",请上传门头照")
-      // + that.data.picZz + ",请上传营业执照"
+      var s = qingqiu.yanzheng(that.data.areaId + ",请选择商铺区域|" + that.data.fenleitype1.yjid + ",请现在业务分类|" + that.data.needsname + ",请输入商品名称|" + that.data.linkman + ",请输入联系人|" + that.data.phone + ",请输入联系电话|" + that.data.workaddress + ",请输入商铺详细地址|" + that.data.needscontent + ",请输入商铺介绍|" + that.data.picIurl1 + ",请上传门头照|" + that.data.picZz + ",请上传营业执照")
       if (s != 0) {
         wx.showToast({
           title: s,
@@ -647,10 +649,9 @@ Page({
         phone: that.data.phone,
         shopAddress: that.data.workaddress,
         content: that.data.needscontent,
-        picIurl: that.data.picIurl,
-        picZz: that.data.picZz,
+        picIurl: that.data.picIurl1,
+        picZz: that.data.picZz1,
         wxState: 0,
-        dateBirth: '0'
       }
     }
     if(that.data.type == 1 || that.data.type == 0){
@@ -687,6 +688,7 @@ Page({
       },'put')
     }else{
       qingqiu.get("wxUserAdd", data, function(re) {
+        console.log(re)
         if (re.success == true) {
           wx.showToast({
             title: '入驻成功',
@@ -799,7 +801,7 @@ Page({
                       if (type == '1') {
                         that.setData({
                           picIurl: sj,
-                          pirIurl1:jj.message
+                          picIurl1:jj.message
                         })
                       } else if (type == '2') {
                         that.setData({
@@ -815,6 +817,11 @@ Page({
                         that.setData({
                           picPerson2: sj,
                           picPerson4:jj.message
+                        })
+                      }else if (type == '5'){
+                        that.setData({
+                          picIurl: sj,
+                          picIurl1:jj.message
                         })
                       }
                     }
@@ -846,7 +853,7 @@ Page({
         //     if (type == '1') {
         //       that.setData({
         //         picIurl: sj,
-        //         pirIurl1:jj.message
+        //         picIurl1:jj.message
         //       })
         //     } else if (type == '2') {
         //       that.setData({

@@ -45,8 +45,42 @@ Page({
     }
     this.xqneedlist(obj)
   },
+  chushishouquan() {
+    var that = this
+    wx.getSetting({
+      success(res) {
+        if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+          wx.getUserInfo({
+            lang: 'zh_CN',
+            success(res) {
+              // debugger
+              const userInfo = res.userInfo
+              var data = {
+                id: app.globalData.wxid,
+                openId: app.globalData.openid,
+                picUrl: userInfo.avatarUrl,
+                sex: userInfo.gender,
+                wxNc: userInfo.nickName
+              }
+              // qingqiu.get("getKeyInfo", data, function(re) {}, 'post')
+              // that.setData({
+              //   chushihua: '0'
+              // },'post')
+            }
+          })
+        } else {
+          that.setData({
+            chushihua: '1'
+          })
+          // that.showModal1()
+        }
+      }
+    })
+  },
   onLoad: function() {
     var that = this
+    this.chushishouquan()
     wx.getUserInfo({
       success:function(res){
         console.log(res);

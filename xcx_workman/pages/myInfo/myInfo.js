@@ -22,18 +22,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var obj = JSON.parse(options.id)
-    this.getUserInfo(obj)
+    this.getUserInfo(options.id)  
   },
-
-  // 加载个人信息
-  getUserInfo:function(){
+  getUserInfo:function(id){
     var that = this
-    var data = 
+    var data = {
+      id:id
+    }
     qingqiu.get("queryWxUser",data,function(re){
+      console.log(re)
       if(re.success == true){
-        wxUser.name = wxUser.name != ""? wxUser.name:'请输入姓名'
-        wxUser.phone = wxUser.phone !=  ""?wxUser.phone:'请输入手机号'
+        re.result.name = re.result.name == "" ? '请输入姓名':re.result.name
+        re.result.phone = re.result.phone == "" ? '请输入手机号':re.result.phone
         that.setData({
           wxUser:re.result
         })
@@ -46,7 +46,6 @@ Page({
       }
     })
   },
-
   // 保存
   UpdateUserInfo:function(){
     var that = this

@@ -284,7 +284,7 @@ Page({
   // 跳转到我的晒活页面
   showwork: function() {
     wx.switchTab({
-      url: '../showwork/showwork',
+      url: '../showwork/showwork?id=' + app.globalData.wxid,
     })
   },
   // 跳转到我留言页面

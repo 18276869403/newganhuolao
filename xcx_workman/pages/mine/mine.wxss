@@ -59,8 +59,8 @@ page {
   border-radius: 8rpx;
   text-align: center;
   line-height: 56rpx;
-  margin: auto;
-  margin-top: 50rpx;
+  /* margin: auto; */
+  /* margin-top: 50rpx; */
   color: #fff;
   font-size: 14px;
 }

@@ -44,7 +44,6 @@
             <view>{{wxUser.backup4}}</view>
           </view>
         </view>
-        <!-- <view class="content-apply" wx:if="{{wxUser.wxState==2}}" bindtap="applyBusiness">申请成为商家或者工人</view> -->
         <view class="top-left-type hengxiang" wx:if="{{wxUser.wxState===1||wxUser.wxState===0}}">
           <view class="dot"></view>
           <view class="top-left-type-text">{{wxUser.oneClassName}}</view>

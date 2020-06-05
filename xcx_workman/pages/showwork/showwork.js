@@ -49,8 +49,31 @@ Page({
       wx.stopPullDownRefresh()
     }, 1000);
   },
-  onLoad: function () {
+  onLoad: function (options) {
+    if(options.id!=null||options.id!=""||options.id!=undefined){
+    }
     this.SelectshowList()
+  },
+  getShowList(){
+    var that = this
+    var data = {
+      wxUserId:app.globalData.wxid
+    }
+    qingqiu.get("casePage",data,function(re){
+      console.log(re)
+      if(re.success==true){
+        that.setData({
+          showList:re.result.records
+        })
+      }else{
+        wx.showToast({
+          title: re.message,
+          icon:'none',
+          duration:2000
+        })
+      }
+      
+    })
   },
   // 获取晒晒
   SelectshowList() {

@@ -34,7 +34,8 @@ Page({
     picDetail:'',
     picDetail1:'',
     picDetailtwo:'',
-    picDetailtwo1:''
+    picDetailtwo1:'',
+    wxuserid:''
   },
 
   /**
@@ -61,7 +62,8 @@ Page({
       picIurl1:picIurl1,
       picIurltwo1:picIurltwo1,
       picDetail1:picDetail1,
-      picDetailtwo1:picDetailtwo1
+      picDetailtwo1:picDetailtwo1,
+      wxuserid:app.globalData.wxid
     })
   },
   // 修改商品
@@ -100,7 +102,7 @@ Page({
     that.imglunbo=that.data.picIurl1+','+that.data.picIurltwo1
     that.imgDetail=that.data.picDetail1+','+that.data.picDetailtwo1
     var data={
-      userId : that.spid,
+      userId : app.globalData.wxid,
       goodName : that.data.goodsname,
       oldPrice :that.data.originalPrice,
       newPrice:that.data.salesPrice,
@@ -110,16 +112,26 @@ Page({
     }
     console.log(data)
     qingqiu.get("addUserGood", data, function(re) {
+      debugger
     if (re.success == true) {
       wx.showToast({
         title: '添加成功！',
         icon:'success',
         duration:2000
       })
-          wx.navigateTo({
-            url: '../myGoods/myGoods?obj='+data.userId,
-          })
-    } 
+      wx.navigateTo({
+        url: '../myGoods/myGoods?obj='+data.userId,
+     })
+    } else{
+      wx.showToast({
+        title: re.message,
+        icon:'none',
+        duration:2000
+      })
+      wx.navigateTo({
+        url: '../myGoods/myGoods?obj='+data.userId,
+     })
+    }
   },'post')
   },
   //获取输入的商品名字

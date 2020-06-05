@@ -139,6 +139,7 @@ Page({
     for(let obj of that.data.tupianlists){
       that.data.picIurl1+=obj+','
     }
+    that.data.picIurl1=that.data.picIurl1.substring(0,that.data.picIurl1.length-1)
     var data={
       wxUserId : that.data.wxuserid,
       backup3:0,

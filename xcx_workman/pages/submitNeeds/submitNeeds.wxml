@@ -13,7 +13,7 @@
   </view>
   <view class="content zongxiang">
 
-    <view class="content-item hengxiang" bindtap="showModal6">
+    <view class="content-item hengxiang" bindtap="showModallist">
       <view class="content-title">需求分类</view>
       <view class="content-text" wx:if="{{yijiname==''}}">请选择需求分类</view>
       <view class='content-text1' wx:if="{{yijiname!=''}}">{{yijiname}} - {{erjiname}}</view>
@@ -25,8 +25,8 @@
     </view>
 
     <view class="content-item hengxiang">
-      <view class="content-title">初价</view>
-      <input type="text" placeholder="请输入初价" class="shurukuang" placeholder-class="placeholder" value='{{youhuijia}}' name="youhuijia" bindinput='youhuijiainput'></input>
+      <view class="content-title">出价</view>
+      <input type="text" placeholder="请输入出价" class="shurukuang" placeholder-class="placeholder" value='{{youhuijia}}' name="youhuijia" bindinput='youhuijiainput'></input>
     </view>
 
     <view class="content-item-textarea">
@@ -83,41 +83,6 @@
   </view>
 </view>
 
-<!-- 遮罩层显示 需求分类 -->
-<view>
-  <view class="commodity_screen6" wx:if="{{showModalStatus6}}" bindtap='hideModal6'></view>
-  <view animation="{{animationData1}}" class="commodity_attr_box6" wx:if="{{showModalStatus6}}">
-    <view class='alert hengxiang'>
-      <!-- <view class='alert-left zongxiang'>
-        <view class='alert-item'></view>
-      </view> -->
-      <view class='s-left'>
-        <scroll-view class='left-navbar' scroll-y="true">
-          <view class='normal-title'>一级分类</view>
-          <view wx:for="{{oneclass}}" class="nav_left_items {{firstId == item.id? 'active' : 'normal'}}" wx:key="key" bindtap="left" data-index="{{index}}" data-name=" {{item.className}}" data-id='{{item.id}}' >
-            <!-- <view class='scroll-name'> -->
-            {{item.className}}
-            <!-- </view> -->
-          </view>
-        </scroll-view>
-      </view>
-
-      <view class='s-right'>
-        <scroll-view class='left-navbar1' scroll-y="true">
-          <view class='normal-title'>二级分类</view>
-          <view wx:for="{{twoclass}}" class="nav_left_items {{secondId == item.id? 'active' : 'normal'}}" wx:key="key" bindtap="right" data-index="{{index}}" data-name=" {{item.className}}" data-id='{{item.id}}'>
-            <!-- <view class='scroll-name'> -->
-            {{item.className}}
-            <!-- </view> -->
-          </view>
-        </scroll-view>
-
-      </view>
-
-    </view>
-  </view>
-</view>
-
 <!-- 遮罩层显示 工作区域 -->
 <view>
   <view class="commodity_screen" wx:if="{{showModalStatus}}" bindtap='hideModal'></view>
@@ -154,6 +119,33 @@
       <view>{{mianzhe}}</view>
     </scroll-view>
     <view class='close-button' bindtap='hideModal1'>关闭</view>
+  </view>
+</view>
+<!-- 遮罩 -->
+<view class="commodity_screen2" wx:if="{{showModalStatuslist}}"></view>
+<view animation="{{animationData2}}" class="commodity_attr_box2" wx:if="{{showModalStatuslist}}">
+  <view class="tanchuang2 zongxiang">
+    <view class="tankuang-top2 hengxiang">
+      <view class="tankuang-top2-left" bindtap="hideModallist" data-return="false"><view class="cleclass">取消</view></view>
+      <view class="tankuang-top2-content">选择业务类型</view>
+      <view class="tankuang-top2-right" bindtap="hideModallist" data-return="ture"><view class="btnclass">确认</view>
+      </view>
+    </view>
+    <scroll-view scroll-y style="height:310px;" class="tankuang-content2 zongxiang">
+      <view class="content2-list zongxiang" wx:for="{{gongzhong}}" wx:key="key" wx:for-index="keys" wx:for-item="itemaa">
+        <view class="conten-list-one" style="color:red;font-size: 28rpx;">
+          一级分类： {{itemaa.oneclass}}
+        </view>
+        <view class="content-list-two zongxiang" wx:for="{{itemaa.twoclasslist}}" wx:key="key" wx:for-index="keys" wx:for-item="item">
+          <view class="list-two-item hengxiang" bindtap="changetwoclass" data-id="{{item.id}}" data-yjid="{{itemaa.id}}" data-yijiname="{{itemaa.oneclass}}" data-erjiname="{{item.className}}">
+            <view class="list-two-item-left">{{item.className}}</view>
+            <view class="list-two-item-right" wx:if="{{flerjiid==item.id}}">
+              <image src="{{viewUrl}}static/image/duihao.png" class="duihao-img"></image>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
   </view>
 </view>
 <canvas canvas-id="firstCanvas" style="width: {{cw}}px; height: {{ch}}px;position:fixed;left:100%;"></canvas>

@@ -78,7 +78,7 @@ Page({
         if (re.result != null) {
           that.goodslist=re.result.records
           for(let obj of re.result.records){
-            obj.goodPic1 = api.viewUrl + obj.goodPic1
+            obj.goodPic1 = api.viewUrl + obj.goodPic1.split(',')[0]
           }
           that.setData({
             goodslist:that.goodslist

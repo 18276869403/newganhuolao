@@ -3,6 +3,7 @@ const app = getApp()
 //调用接口js
 const qingqiu = require('../../utils/request.js')
 const api = require('../../utils/config.js')
+const util = require('../../utils/util.js')
 Page({
 
   /**
@@ -42,6 +43,7 @@ Page({
     navRightItems: [],
     city: [],
     tupianlist: [],
+    tupianlists:[],
     area: [],
     mianzhe: '欢迎您使用干活佬的服务！本平台仅提供同城信息共享，发布桥梁，信息发布、接单均不收取用户任何费用。\
       为使用干活佬的服务，您应当阅读并遵守《干活佬使用协议》。本协议是用户与干活佬之间的法律协议，是用户注册干活佬平台账号和/或使用干活佬服务时使用的通用\条款。请您务必审慎阅读、充分理解各条款内容，特别是免除或者限制责任的条款、管辖与法律适用条款。限制、免责条款可能以黑体加粗或加下划线的形式提示您重\点注意。您不应当以干活佬未对本协议以合理方式提醒用户注意或未根据用户要求尽到说明义务为理由而声称或要求法院或其它任何第三方确认相关条款非法或无效。\除非您已阅读并接受本协议所有条款，否则您无权使用干活佬提供的服务。您使用干活佬的服务即视为您已阅读并同意上述协议的约束。\
@@ -133,18 +135,6 @@ Page({
       picIurl1:'',
     picIurl:'',
     picimg:'',
-    picimg1:'',
-    picimg2:'',
-    picimg3:'',
-    picimg4:'',
-    picimg5:'',
-    picimgs1:'',
-    picimgs2:'',
-    picimgs3:'',
-    picimgs4:'',
-    picimgs5:'',
-    picimg6:'',
-    picimgs6:'',
     num:1,
     yijiname1:''
   },
@@ -218,40 +208,25 @@ Page({
     // 发布需求
     lijifabu(){
       var that =this
-      if(that.data.picimgs5==""){
-        if(that.data.picimgs4==""){
-          if(that.data.picimgs3==""){
-            if(that.data.picimgs2==""){
-              if(that.data.picimgs1==""){
-                wx.showToast({
-                  title: '请上传图片！',
-                  icon:'none',
-                  duration:2000
-                })
-                return
-              }else{
-                var tupians = that.data.picimgs1
-              }
-            }else{
-              var tupians = that.data.picimgs1+','+that.data.picimgs2
-            }
-          }else{
-            var tupians = that.data.picimgs1+','+that.data.picimgs2+','+
-            that.data.picimgs3
-          }
-        }else{
-          var tupians = that.data.picimgs1+','+that.data.picimgs2+','+
-          that.data.picimgs3+','+that.data.picimgs4
-        }
-      }else{
-        var tupians = that.data.picimgs1+','+that.data.picimgs2+','+
-        that.data.picimgs3+','+that.data.picimgs4+','+that.data.picimgs5
+      for(let obj of that.data.tupianlists){
+        that.data.picIurl1 += obj+","
       }
+      console.log(that.data.picIurl1)
+      debugger
       that.data.picIurl1=tupians
       var s = qingqiu.yanzheng(that.data.firstId + ",请选择需求分类|" + that.data.flerjiid + ",请选择分类需求|" + that.data.cityId + ",请选择所在区域|" + that.data.areaId + ",请选择所在区域|" + that.data.picIurl1 + ",请上传图片|" + that.data.phone + ",请输入联系电话|" + that.data.linkman + ",请输入联系人|" + that.data.youhuijia + ",请输入出价|" + that.data.needscontent + ",请输入需求内容")
       if (s != 0) {
         wx.showToast({
           title: s,
+          icon:'none',
+          duration:2000
+        })
+        return
+      }
+      var shuzi =util.numberReg(that.data.phone)
+      if (shuzi != 0) {
+        wx.showToast({
+          title: shuzi,
           icon:'none',
           duration:2000
         })
@@ -952,37 +927,12 @@ Page({
                       var r = res.data
                       var jj = JSON.parse(r);
                       var sj = api.viewUrl + jj.message
-                      if (type == '1') {
-                        that.setData({
-                          picimg1: sj,
-                          picimgs1:jj.message
-                        })
-                      } else if (type == '2') {
-                        that.setData({
-                          picimg2: sj,
-                          picimgs2:jj.message
-                        })
-                      } else if (type == '3') {
-                        that.setData({
-                          picimg3: sj,
-                          picimgs3:jj.message
-                        })
-                      } else if (type == '4') {
-                        that.setData({
-                          picimg4: sj,
-                          picimgs4:jj.message
-                        })
-                      } else if (type == '5') {
-                        that.setData({
-                          picimg5: sj,
-                          picimgs5:jj.message
-                        })
-                      } else if (type == '6') {
-                        that.setData({
-                          picimg6: sj,
-                          picimgs6:jj.message
-                        })
-                      }
+                      that.data.tupianlists.push(jj.message)
+                      that.setData({
+                        tupianlists:that.data.tupianlists,
+                        picimg1: sj,
+                        picimgs1:jj.message
+                      })
                     }
                  })
                },
@@ -994,6 +944,21 @@ Page({
         })
       }
     })
+  },
+  // 删除图片
+  shanchu: function(e){
+    var that=this
+    var tplj=e.currentTarget.dataset.tplj
+    that.data.tupianlists.splice(tplj,1)
+    console.log(that.data.tupianlists)
+    that.setData({
+      tupianlists:that.data.tupianlists
+    })
+    that.data.num -=1;
+    that.setData({
+      num: that.data.num 
+     });
+    this.onLoad()
   },
   //显示弹窗样式
   showModal: function (e) {

@@ -12,52 +12,12 @@
       </view>
     </view>
     <view class="showImg">
-      <view class="showImg-item" wx:if="{{tupianlist.length>0}}" wx:for="{{tupianlist}}">
-        <image src="{{imgUrl+item}}" class="show-img"></image>
-        <image src="{{viewUrl}}static/image/shanchu.png" class="delete-img" bindtap="shanchutup" data-img="{{item}}"></image>
-      </view>
+    <view class="showImg-item" wx:for="{{tupianlists}}" wx:for-index="index" wx:key="{{item.id}}">
+      <image src="{{viewUrl}}{{item}}" class="show-img"></image>
+      <image src="{{viewUrl}}static/image/shanchu.png" class="delete-img" bindtap="shanchu" data-tplj="{{index}}"></image>
     </view>
-    <!-- 第一张 -->
-    <view class="fabu" wx:if="{{picimg1!=''}}">
-      <view class="fabu-item zongxiang" data-number="0" data-type="1">
-        <view>
-          <image src="{{picimg1}}" class="show-img"></image>
-        </view>
-      </view>
-      <view class="fabu-item1 zongxiang" data-number="0" data-type="2"  wx:if="{{picimg2!=''}}">
-        <view>
-          <image src="{{picimg2}}" class="show-img"></image>
-        </view>
-      </view>
-    </view>
-    <!-- 第二张 -->
-    <!-- 第三张 -->
-    <view class="fabu" wx:if="{{picimg3!=''}}">
-      <view class="fabu-item zongxiang" data-number="0" data-type="3">
-        <view>
-          <image src="{{picimg3}}" class="show-img"></image>
-        </view>
-      </view>
-      <view class="fabu-item1 zongxiang" data-number="0" data-type="4"  wx:if="{{picimg4!=''}}">
-        <view>
-          <image src="{{picimg4}}" class="show-img"></image>
-        </view>
-      </view>
-    </view>
-    <!-- 第四张 -->
-    <!-- 第五张 -->
-    <view class="fabu" wx:if="{{picimg5!=''}}">
-      <view class="fabu-item zongxiang" data-number="0" data-type="5">
-        <view>
-          <image src="{{picimg5}}" class="show-img"></image>
-        </view>
-      </view>
-       <view class="fabu-item1 zongxiang" data-number="0" data-type="6" wx:if="{{picimg6!=''}}">
-        <view>
-          <image src="{{picimg6}}" class="show-img"></image>
-        </view>
-      </view>
-    </view>
+  </view>
+    
     <!-- 上传 -->
      <view class="fabu" wx-if="{{num<7}}">
       <view class="fabu-item zongxiang" bindtap='upimg' data-number="0" data-type="{{num}}">

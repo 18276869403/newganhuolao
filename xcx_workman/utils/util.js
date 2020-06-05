@@ -9,6 +9,7 @@ const formatTime = date => {
   return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
 
+// 生成年月日
 const formatDate = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -22,6 +23,7 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+// 通过时间判断距离当前时间多少年
 const Ages = function(str){
     str = str.split(' ')[0]
     var r = str.match(/^(\d{1,4})(-|\/)(\d{1,2})\2(\d{1,2})$/);    
@@ -35,6 +37,7 @@ const Ages = function(str){
     return("输入的日期格式错误！");  
 }
 
+// 长度限制
 const SubName = function(str){
   var temp = "";
   if(str.length>2){
@@ -45,6 +48,7 @@ const SubName = function(str){
   return temp;
 }
 
+// 隐藏姓名
 const FormatName = function (str) {
   var temp = ""
   if (str.length>1)
@@ -55,6 +59,7 @@ const FormatName = function (str) {
   }
 }
 
+// 手机号隐藏
 const FormatPhone = function (str) {
     var temp = "";
     for (var i=0; i<str.length; i++)
@@ -71,11 +76,61 @@ const FormatPhone = function (str) {
     return temp;
 }
 
+// 数字验证(不带小数点)
+const numberReg = function(str){
+  var patten = /^\d+(\.\d+)?$/;
+  if (!patten.test(str)){
+    return "请您输入数字"
+  }else{
+    return 0
+  }
+}
+
+// 数字验证(带小数点)
+const floatReg = function(str){
+  var patten = /^[+-]?(0|([1-9]\d*))(\.\d+)?$/g;
+  if(!patten.test(str)){
+    return "请输入数字";
+  }else{
+    return 0;
+  }
+}
+
+// 带错误信息数字验证 (带小数点)
+const floatReglist = function(str){
+  var patten = /^[+-]?(0|([1-9]\d*))(\.\d+)?$/g;
+  var strlist = str.split('|')
+  for(let obj of strlist){
+    var list = obj.split(',')
+    if(!patten.test(list[0])){
+      return list[1]
+    }
+  }
+  return 0
+}
+
+// 带错误信息数字验证 (带小数点)
+const numberReglist = function(str){
+  var patten = /^[+-]?(0|([1-9]\d*))(\.\d+)?$/g;
+  var strlist = str.split('|')
+  for(let obj of strlist){
+    var list = obj.split(',')
+    if(!patten.test(list[0])){
+      return list[1]
+    }
+  }
+  return 0
+}
+
 module.exports = {
   formatTime: formatTime,
   formatDate:formatDate,
   ages:Ages,
   formatName:FormatName,
   subName:SubName,
-  formatPhone:FormatPhone
+  formatPhone:FormatPhone,
+  floatReg:floatReg,
+  numberReg:numberReg,
+  floatReglist:floatReglist,
+  numberReglist:numberReglist
 }

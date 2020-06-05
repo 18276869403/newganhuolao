@@ -276,15 +276,17 @@ Page({
     }
   },
   // 跳转到我的需求页面
-  myNeeds: function() {
-    wx.switchTab({
-      url: '../need/need',
+  myNeeds: function() {
+    var mid=JSON.stringify(app.globalData.wxid)
+    wx.reLaunch({
+     url: '../need/need?obj='+mid,
     })
   },
   // 跳转到我的晒活页面
   showwork: function() {
-    wx.switchTab({
-      url: '../showwork/showwork?id=' + app.globalData.wxid,
+    getApp().globalData.showid = 0
+    wx.reLaunch({
+      url: '../showwork/showwork',
     })
   },
   // 跳转到我留言页面

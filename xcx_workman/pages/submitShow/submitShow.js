@@ -68,7 +68,7 @@ Page({
       wxuserid: app.globalData.wxid
     })
     this.QueryoneArea()
-    // this.QuerytwoArea()
+    this.QuerytwoArea()
   },
   // 一级区域
   QueryoneArea(){
@@ -391,6 +391,5 @@ shanchu: function(e){
   that.setData({
     num: that.data.num 
    });
-  this.onLoad()
 },
 })

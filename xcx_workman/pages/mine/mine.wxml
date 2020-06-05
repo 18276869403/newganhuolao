@@ -25,7 +25,10 @@
     <view class="content-top hengxiang">
       <view class="content-top-left zongxiang">
         <view class="hengxiang top-left-details">
-          <view class="top-left-name" style="font-weight:350;">{{Name}}</view>
+          <view class="top-left-name" style="font-weight:350;" wx:if="{{Name!=''}}">{{Name}}</view>
+          <view class="top-left-name" style="font-weight:350;" wx:if="{{Name==''}}">
+            <open-data type="userNickName" lang="zh_CN" wx:if="{{chushihua=='0'}}"></open-data>
+          </view>
         </view>
         <view class="top-left-type hengxiang">
           <view class="hengxiang top-left-sort">
@@ -38,14 +41,15 @@
             <view>
               <image src="{{viewUrl}}static/image/shimingrenzheng.png" class="sort-img"></image>
             </view>
-            <view>实名认证</view>
+            <view>{{wxUser.backup4}}</view>
           </view>
         </view>
-        <view class="top-left-type hengxiang">
+        <!-- <view class="content-apply" wx:if="{{wxUser.wxState==2}}" bindtap="applyBusiness">申请成为商家或者工人</view> -->
+        <view class="top-left-type hengxiang" wx:if="{{wxUser.wxState===1||wxUser.wxState===0}}">
           <view class="dot"></view>
           <view class="top-left-type-text">{{wxUser.oneClassName}}</view>
         </view>
-         <view class="top-left-type hengxiang">
+         <view class="top-left-type hengxiang" wx:if="{{wxUser.wxState==1||wxUser.wxState==0}}">
           <view class="dot"></view>
           <view class="top-left-type-text">{{wxUser.twoClassName}}</view>
         </view>

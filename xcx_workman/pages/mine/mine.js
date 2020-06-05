@@ -19,8 +19,7 @@ Page({
     chushihua: '1',
     wxState: 2,
     openid:'',
-    wxUser:[],
-    Name:''
+    wxUser:[]
   },
 
   /**
@@ -49,47 +48,23 @@ Page({
     qingqiu.get("queryWxUser",data,function(re){
       if(re.success){
         if(re.result != null){
-          if(re.result.wxState === 0){
-            that.setData({
-              Name:re.result.shopName
-            })
-          }else if(re.result.wxState === 1){
-            that.setData({
-              Name:re.result.name
-            })
-          }else{
-            if(re.result.name == "" || re.result.name == null){
-              that.setData({
-                Name:re.result.wxNc
-              })
-            }else{
-              that.setData({
-                Name:re.result.name
-              })
-            }
-          }
           console.log(re.result)
-          if(re.result.starClass == 0 || re.result.starClass == "null"){
-            re.result.starClass = "暂未评定"
-          }else if(re.result.starClass == 1){
-            re.result.starClass = "一级工匠"
-          }else if(re.result.starClass == 2){
-            re.result.starClass = "二级工匠"
-          }else if(re.result.starClass == 3){
-            re.result.starClass = "三级工匠"
-          }else if(re.result.starClass == 4){
-            re.result.starClass = "四级工匠"
-          }if(re.result.starClass == 5){
-            re.result.starClass = "五级工匠"
-          }
-          if(re.result.backup4){
-            re.result.backup4 = "未实名认证"
-          }
-          re.result.picIurl = that.data.viewUrl + re.result.picIurl
-          if(re.result.oneClassName!=""&&re.result.twoClassName){
+            if(re.result.starClass == 0){
+              re.result.starClass = "暂未评定"
+            }else if(re.result.starClass == 1){
+              re.result.starClass = "一级工匠"
+            }else if(re.result.starClass == 2){
+              re.result.starClass = "二级工匠"
+            }else if(re.result.starClass == 3){
+              re.result.starClass = "三级工匠"
+            }else if(re.result.starClass == 4){
+              re.result.starClass = "四级工匠"
+            }if(re.result.starClass == 5){
+              re.result.starClass = "五级工匠"
+            }
+            re.result.picIurl = that.data.viewUrl + re.result.picIurl
             re.result.oneClassName = re.result.oneClassName.replace(/,/, " | ")
             re.result.twoClassName = re.result.twoClassName.replace(/,/, " | ")
-          }
           that.setData({
             wxUser:re.result
           })
@@ -110,7 +85,6 @@ Page({
   },
 
   onUser: function() {
-    debugger
     var that = this
     wx.login({
       success: function(res) {
@@ -149,10 +123,11 @@ Page({
                 sex: userInfo.gender,
                 wxNc: userInfo.nickName
               }
-              // qingqiu.get("getKeyInfo", data, function(re) {}, 'post')
-              // that.setData({
-              //   chushihua: '0'
-              // },'post')
+              qingqiu.get("add", data, function(re) {}, 'post')
+              console.log(res.userInfo)
+              that.setData({
+                chushihua: '0'
+              })
             }
           })
         } else {
@@ -262,7 +237,7 @@ Page({
   myInfo: function () {
     if (this.data.wxUser.wxState == 2){
       wx.navigateTo({
-        url: '../myInfo/myInfo?id=' + app.globalData.wxid,
+        url: '../myInfo/myInfo?obj=' + obj,
       })
     }else if(this.data.wxUser.wxState == 1){
       wx.navigateTo({

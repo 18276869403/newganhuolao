@@ -1,4 +1,5 @@
 // pages/myGoods/myGoods.js
+const app = getApp()
 const qingqiu = require('../../utils/request.js')
 const api = require('../../utils/config.js')
 Page({
@@ -55,14 +56,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.spmyid = JSON.parse(options.obj)
     this.mygoodsList()
   },
   // 我的商品
   mygoodsList() {
     var that = this
     var data={
-      userId:that.spmyid
+      userId:app.globalData.wxid
   }
   qingqiu.get("tjsp", data, function(re) {
     console.log(re)
@@ -87,7 +87,7 @@ Page({
   // 添加商品
   addEditGoods:function(e){
     wx.navigateTo({
-      url: '../addEditGoods/addEditGoods?obj='+ this.spmyid, 
+      url: '../addEditGoods/addEditGoods?obj='+ app.globalData.wxid, 
     })
   },
   // 编辑商品

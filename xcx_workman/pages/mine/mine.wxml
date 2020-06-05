@@ -25,7 +25,7 @@
     <view class="content-top hengxiang">
       <view class="content-top-left zongxiang">
         <view class="hengxiang top-left-details">
-          <view class="top-left-name" style="font-weight:350;">{{wxUser.name}}</view>
+          <view class="top-left-name" style="font-weight:350;">{{Name}}</view>
         </view>
         <view class="top-left-type hengxiang">
           <view class="hengxiang top-left-sort">

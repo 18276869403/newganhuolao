@@ -153,9 +153,14 @@ Page({
         },1000)
       }else{
         wx.showToast({
-          title: '雇佣失败',
+          title: res.message,
           icon:'none',
           duration:3000
+        })
+        setTimeout(function(){
+          wx.navigateTo({
+            url: '../myInfo/myInfo?id=' + app.globalData.wxid,
+          })
         })
       }
     },'post')

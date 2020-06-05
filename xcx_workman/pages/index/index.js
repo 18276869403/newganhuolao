@@ -34,7 +34,7 @@ Page({
   btnsearch:function(){
     var obj = {
       pageNo:1,
-      pageSize:10
+      pageSize:3
     }
     if(this.data.sousuotext != "" || this.data.firstId != "undefined" || this.data.firstId != null){
       obj.needTitle = this.data.sousuotext

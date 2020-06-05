@@ -22,11 +22,29 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var obj = JSON.parse(options.obj)
-    this.setData({
-      wxUser:obj
+    var obj = JSON.parse(options.id)
+    this.getUserInfo(obj)
+  },
+
+  // 加载个人信息
+  getUserInfo:function(){
+    var that = this
+    var data = 
+    qingqiu.get("queryWxUser",data,function(re){
+      if(re.success == true){
+        wxUser.name = wxUser.name != ""? wxUser.name:'请输入姓名'
+        wxUser.phone = wxUser.phone !=  ""?wxUser.phone:'请输入手机号'
+        that.setData({
+          wxUser:re.result
+        })
+      }else{
+        wx.showToast({
+          title: re.message,
+          icon:'none',
+          duration:2000
+        })
+      }
     })
-    console.log(this.data.wxUser)
   },
 
   // 保存

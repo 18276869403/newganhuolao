@@ -112,7 +112,6 @@ Page({
     }
     console.log(data)
     qingqiu.get("addUserGood", data, function(re) {
-      debugger
     if (re.success == true) {
       wx.showToast({
         title: '添加成功！',
@@ -267,5 +266,45 @@ Page({
       }
     })
   },
-  
+  // 删除图片
+  shanchu1: function(e){
+    var that=this
+    var tplj=e.currentTarget.dataset.tplj
+    if(that.data.picIurl1=tplj){
+      that.data.picIurl1=''
+    }
+    that.setData({
+      picIurl1:that.data.picIurl1
+    })
+  },
+  shanchu2: function(e){
+    var that=this
+    var tplj=e.currentTarget.dataset.tplj
+    if(that.data.picIurltwo1=tplj){
+      that.data.picIurltwo1=''
+    }
+    that.setData({
+      picIurltwo1:that.data.picIurltwo1
+    })
+  },
+  shanchu3: function(e){
+    var that=this
+    var tplj=e.currentTarget.dataset.tplj
+    if(that.data.picDetail1=tplj){
+      that.data.picDetail1=''
+    }
+    that.setData({
+      picDetail1:that.data.picDetail1
+    })
+  },
+  shanchu4: function(e){
+    var that=this
+    var tplj=e.currentTarget.dataset.tplj
+    if(that.data.picDetailtwo1=tplj){
+      that.data.picDetailtwo1=''
+    }
+    that.setData({
+      picDetailtwo1:that.data.picDetailtwo1
+    })
+  },
 })

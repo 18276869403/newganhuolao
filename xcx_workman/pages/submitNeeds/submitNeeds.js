@@ -130,7 +130,23 @@ Page({
       city:'',
       area:'',
       curIndex:'',
-      yijiname1:''
+      picIurl1:'',
+    picIurl:'',
+    picimg:'',
+    picimg1:'',
+    picimg2:'',
+    picimg3:'',
+    picimg4:'',
+    picimg5:'',
+    picimgs1:'',
+    picimgs2:'',
+    picimgs3:'',
+    picimgs4:'',
+    picimgs5:'',
+    picimg6:'',
+    picimgs6:'',
+    num:1,
+    yijiname1:''
   },
 
   /**
@@ -143,8 +159,8 @@ Page({
           id:options.id,
           wxuserid: app.globalData.wxid
         })
-        this.oneClass()
-        this.twoClass()
+        // this.oneClass()
+        // this.twoClass()
         this.QueryoneArea()
         // this.QuerytwoArea()
         this.needSignPage()
@@ -153,8 +169,8 @@ Page({
           type:0,
           wxuserid: app.globalData.wxid
         })
-        this.oneClass()
-        this.twoClass()
+        // this.oneClass()
+        // this.twoClass()
         this.QueryoneArea()
         // this.QuerytwoArea()
       }
@@ -202,14 +218,53 @@ Page({
     // 发布需求
     lijifabu(){
       var that =this
-      if(that.data.firstId==""||that.data.secondId==""||that.data.cityId==""||that.data.areaId==""||that.data.picIurl1==""||that.data.phone==""||that.data.linkman==""||that.data.youhuijia==""||that.data.needscontent==""){
+      if(that.data.picimgs5==""){
+        if(that.data.picimgs4==""){
+          if(that.data.picimgs3==""){
+            if(that.data.picimgs2==""){
+              if(that.data.picimgs1==""){
+                wx.showToast({
+                  title: '请上传图片！',
+                  icon:'none',
+                  duration:2000
+                })
+                return
+              }else{
+                var tupians = that.data.picimgs1
+              }
+            }else{
+              var tupians = that.data.picimgs1+','+that.data.picimgs2
+            }
+          }else{
+            var tupians = that.data.picimgs1+','+that.data.picimgs2+','+
+            that.data.picimgs3
+          }
+        }else{
+          var tupians = that.data.picimgs1+','+that.data.picimgs2+','+
+          that.data.picimgs3+','+that.data.picimgs4
+        }
+      }else{
+        var tupians = that.data.picimgs1+','+that.data.picimgs2+','+
+        that.data.picimgs3+','+that.data.picimgs4+','+that.data.picimgs5
+      }
+      that.data.picIurl1=tupians
+      var s = qingqiu.yanzheng(that.data.firstId + ",请选择需求分类|" + that.data.flerjiid + ",请选择分类需求|" + that.data.cityId + ",请选择所在区域|" + that.data.areaId + ",请选择所在区域|" + that.data.picIurl1 + ",请上传图片|" + that.data.phone + ",请输入联系电话|" + that.data.linkman + ",请输入联系人|" + that.data.youhuijia + ",请输入出价|" + that.data.needscontent + ",请输入需求内容")
+      if (s != 0) {
         wx.showToast({
-          title: '有选项未填写！',
+          title: s,
           icon:'none',
           duration:2000
         })
         return
       }
+      // if(that.data.firstId==""||that.data.secondId==""||that.data.cityId==""||that.data.areaId==""||that.data.picIurl1==""||that.data.phone==""||that.data.linkman==""||that.data.youhuijia==""||that.data.needscontent==""){
+      //   wx.showToast({
+      //     title: '有选项未填写！',
+      //     icon:'none',
+      //     duration:2000
+      //   })
+      //   return
+      // }
       if(that.data.select=="circle")
       {
         wx.showToast({
@@ -232,7 +287,7 @@ Page({
           backup1:that.data.picIurl1,
           needState:that.data.needstate,
           oneClassId:that.data.firstId,
-          twoClassId:that.data.secondId,
+          twoClassId:that.data.flerjiid,
           oneAreaId:that.data.cityId,
           twoAreaId:that.data.areaId
         }
@@ -268,7 +323,7 @@ Page({
           backup1:that.data.picIurl1,
           needState:0,
           oneClassId:that.data.firstId,
-          twoClassId:that.data.secondId,
+          twoClassId:that.data.flerjiid,
           oneAreaId:that.data.cityId,
           twoAreaId:that.data.areaId
         }
@@ -437,7 +492,7 @@ Page({
         areaId: yneed.twoAreaId,
         firstId: yneed.oneClassId,
         secondId: yneed.twoClassId,
-        needsTypeid: yneed.needType,
+        //needsTypeid: yneed.needType,
         yijiname: yneed.oclassName,
         erjiname: yneed.tclassName,
         linkman: yneed.publishMan,
@@ -613,7 +668,7 @@ Page({
     animation.translateY(300).step()
     this.setData({
       animationData: animation.export(),
-      hasMask: false
+      hasMask: false3
     })
     setTimeout(function () {
       animation.translateY(0).step()
@@ -879,6 +934,10 @@ Page({
                    [uploadpic]: res.tempFilePath
                  });
                  uploadFile = res.tempFilePath;
+                 that.data.num +=1;
+                 that.setData({
+                  num: that.data.num 
+                 });
                  wx.uploadFile({
                    url: api.uploadurl2 + "/" + targetWidth + "/" + targetHeight, //仅为示例，非真实的接口地址
                    filePath: uploadFile,
@@ -893,10 +952,37 @@ Page({
                       var r = res.data
                       var jj = JSON.parse(r);
                       var sj = api.viewUrl + jj.message
-                      that.setData({
-                        picIurl: sj,
-                        picIurl1:jj.message
-                      })
+                      if (type == '1') {
+                        that.setData({
+                          picimg1: sj,
+                          picimgs1:jj.message
+                        })
+                      } else if (type == '2') {
+                        that.setData({
+                          picimg2: sj,
+                          picimgs2:jj.message
+                        })
+                      } else if (type == '3') {
+                        that.setData({
+                          picimg3: sj,
+                          picimgs3:jj.message
+                        })
+                      } else if (type == '4') {
+                        that.setData({
+                          picimg4: sj,
+                          picimgs4:jj.message
+                        })
+                      } else if (type == '5') {
+                        that.setData({
+                          picimg5: sj,
+                          picimgs5:jj.message
+                        })
+                      } else if (type == '6') {
+                        that.setData({
+                          picimg6: sj,
+                          picimgs6:jj.message
+                        })
+                      }
                     }
                  })
                },
@@ -1106,7 +1192,7 @@ Page({
       [typestate1]:false,
       fenClass1:'',
       fenClass2:'',
-      needsTypeid: id,
+      // needsTypeid: id,
       litype: litype,
       yijiname: '',
       secondId: 0,

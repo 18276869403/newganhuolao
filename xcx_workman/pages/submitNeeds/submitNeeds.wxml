@@ -59,14 +59,33 @@
 
 
   <view class="showImg">
-    <view class="showImg-item" wx:if="{{tupianlist.length>0}}" wx:for="{{tupianlist}}">
-      <image src="{{imgUrl+item}}" class="show-img"></image>
-      <image src="{{viewUrl}}static/image/shanchu.png" class="delete-img" bindtap="shanchutup" data-img="{{item}}"></image>
+    <view class="showImg-item" wx:if="{{picimg1!=''}}">
+      <image src="{{picimg1}}" class="show-img"></image>
+      <image src="{{viewUrl}}static/image/shanchu.png" class="delete-img"></image>
+    </view>
+    <view class="showImg-item" wx:if="{{picimg2!=''}}">
+      <image src="{{picimg2}}" class="show-img"></image>
+      <image src="{{viewUrl}}static/image/shanchu.png" class="delete-img"></image>
+    </view>
+    <view class="showImg-item" wx:if="{{picimg3!=''}}">
+      <image src="{{picimg3}}" class="show-img"></image>
+      <image src="{{viewUrl}}static/image/shanchu.png" class="delete-img"></image>
+    </view>
+    <view class="showImg-item" wx:if="{{picimg4!=''}}">
+      <image src="{{picimg4}}" class="show-img"></image>
+      <image src="{{viewUrl}}static/image/shanchu.png" class="delete-img"></image>
+    </view>
+    <view class="showImg-item" wx:if="{{picimg5!=''}}">
+      <image src="{{picimg5}}" class="show-img"></image>
+      <image src="{{viewUrl}}static/image/shanchu.png" class="delete-img"></image>
+    </view>
+    <view class="showImg-item" wx:if="{{picimg6!=''}}">
+      <image src="{{picimg6}}" class="show-img"></image>
+      <image src="{{viewUrl}}static/image/shanchu.png" class="delete-img"></image>
     </view>
   </view>
-  <view class="fabu" bindtap="upimg" data-number="0" data-type="1">
-    <image src="{{viewUrl}}static/image/shangchuan.png" class="fabu-item" wx:if="{{picIurl==''}}"></image>
-    <image src="{{picIurl}}" class="show-img" wx:if="{{picIurl!=''}}"></image>
+  <view class="fabu" bindtap="upimg" data-number="0" data-type="{{num}}" wx-if="{{num<7}}">
+    <image src="{{viewUrl}}static/image/shangchuan.png" class="fabu-item"></image>
   </view>
   <view class='content-icon hengxiang'>
     <icon type="{{select}}" size="22" data-index="{{index}}" data-select="{{select}}" bindtap="change" />

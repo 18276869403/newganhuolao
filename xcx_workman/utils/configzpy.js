@@ -1,6 +1,6 @@
 var api = require('./config.js')
 //const baseUrl = "http://192.168.1.242:8081/work-boot/"
-const baseUrl = "http://192.168.1.234:8081/work-boot/"
+const baseUrl = "http://192.168.1.251:8081/work-boot/"
 // 需求列表
 // const xqurl = baseUrl + "work/yneed/list"
 // 大厅最新需求
@@ -41,6 +41,10 @@ const insertYneed = baseUrl + "pc/user/insertYneed"
 const oneClassList = baseUrl + "pc/hall/oneClassList"
 // 二级分类
 const twoClassList = baseUrl + "pc/hall/twoClassList"
+//晒晒发布评论
+const insertCaseMessage = baseUrl + "pc/user/insertCaseMessage"
+//晒晒评论详情
+const caseMessageVoList = baseUrl + "pc/user/caseMessageVoList"
 
 module.exports = {
   twoClassList:twoClassList,
@@ -50,6 +54,8 @@ module.exports = {
   queryTwoArea:queryTwoArea,
   CasePage:CasePage,
   //xqurl:xqurl,
+  caseMessageVoList:caseMessageVoList,
+  insertCaseMessage:insertCaseMessage,
   zuixinxq:zuixinxq,
   needSignPage:needSignPage,
   delYneedAndNeedSign:delYneedAndNeedSign,

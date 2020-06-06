@@ -210,10 +210,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    if(options.type == 0 || options.type ==1){
-      this.setData({
-        type:options.type
-      })
+    var type = app.globalData.wxState
+    console.log(type)
+    this.setData({
+      type:type
+    })
+    if(type == 0 || type ==1){
       this.getshuju()
     }
     this.setData({
@@ -250,7 +252,6 @@ Page({
 
   // 获取信息
   getshuju() {
-    debugger
     var data = {
       id: app.globalData.wxid,
     }
@@ -574,7 +575,6 @@ Page({
   tijiaoshenqing: function() {
     var that = this
     var data = {}
-    debugger
     if (that.data.select != 'success') {
       wx.showToast({
         title: '未勾选注册协议',

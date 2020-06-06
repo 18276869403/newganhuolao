@@ -83,6 +83,40 @@ Page({
   onLoad: function() {
     this.grneedlist({pages:1,size:10,wxState:this.data.chooseworker})
   },
+  // 我要入驻
+  ruzhu:function(){
+    var type = this.data.chooseworker
+    if(type == 1){
+      if(app.globalData.wxState == 0){
+        wx.showToast({
+          title: '您已入驻商家,同一微信不能入驻两种类型',
+          icon:'none',
+          duration:2000
+        })
+        return
+      }else{
+        wx.navigateTo({
+          url: '../applyBusiness/applyBusiness?typeid=1',
+        })
+      }
+    }else if(type == 0){
+      if(app.globalData.wxState == 1){
+        wx.showToast({
+          title: '您已入驻工人,同一微信不能入驻两种类型',
+        })
+        return
+      }else{
+        wx.navigateTo({
+          url: '../applyBusiness/applyBusiness?typeid=2',
+        })
+      }
+    }else{
+      type = type == 0 ? 2:1
+      wx.navigateTo({
+        url: '../applyBusiness/applyBusiness?typeid='+type,
+      })
+    }
+  },
   changeType: function(e) {
     var that = this
     if (that.data.chooseworker == 0) {

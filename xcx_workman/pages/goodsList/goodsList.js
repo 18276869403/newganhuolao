@@ -68,28 +68,8 @@ Page({
   },
   // 我要开店
   kaidian:function(){
-    var data = {
-      id:app.globalData.wxid
-    }
-    qingqiu.get("queryWxUser",data,function(res){
-      console.log(res)
-      if(res.success == true){
-        if(res.result.wxState==0){
-          wx.navigateTo({
-            url: '../applyBusiness/applyBusiness?typeid='+ "2" + '&type=' + res.result.wxState,
-          })
-        }else{
-          wx.navigateTo({  
-            url: '../applyBusiness/applyBusiness?typeid='+ "2" + '&type=2',
-          })
-        }
-      }else{
-        wx.showToast({
-          title: res.message,
-          icon:'none',
-          duration:2000
-        })
-      }
+    wx.navigateTo({
+      url: '../applyBusiness/applyBusiness?typeid='+ "2",
     })
   },
   // 获取商品

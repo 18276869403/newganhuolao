@@ -48,7 +48,6 @@ Page({
         qingqiu.get("getKeyInfo", {
           code: res.code
         }, function(re) {
-          console.log(re)
           app.globalData.wxid = re.result.wxUser.id
           if (re.result.wxUser.picUrl != null && re.result.wxUser.picUrl.length > 0) {
             app.globalData.sqgl = 1
@@ -223,9 +222,37 @@ Page({
   // 跳转到工人入驻页面
   applyBusiness: function(e) {
     var obj = e.currentTarget.dataset.typeid
-    wx.navigateTo({
-      url: '../applyBusiness/applyBusiness?typeid=' + obj + "&type=" + 2,
-    })
+    if(obj == 1){
+      if(app.globalData.wxState == 0){
+        wx.showToast({
+          title: '您已入驻商家,同一微信不能入驻两种类型',
+          icon:'none',
+          duration:2000
+        })
+        return
+      }else{
+        wx.navigateTo({
+          url: '../applyBusiness/applyBusiness?typeid=' + obj
+        })
+      }
+    }else if(obj == 2){
+      if(app.globalData.wxState == 1){
+        wx.showToast({
+          title: '您已入驻工人,同一微信不能入驻两种类型',
+          icon:'none',
+          duration:2000
+        })
+        return
+      }else{
+        wx.navigateTo({
+          url: '../applyBusiness/applyBusiness?typeid=' + obj
+        })
+      }
+    }else{
+      wx.navigateTo({
+        url: '../applyBusiness/applyBusiness?typeid=' + obj
+      })
+    }
   },
   // 跳转到推荐有礼页面
   activity: function() {

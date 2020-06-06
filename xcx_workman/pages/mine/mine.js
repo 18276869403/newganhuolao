@@ -267,11 +267,11 @@ Page({
       })
     }else if(this.data.wxUser.wxState == 1){
       wx.navigateTo({
-        url: '../applyBusiness/applyBusiness?typeid='+ "1" + '&type=' + this.data.wxUser.wxState,
+        url: '../applyBusiness/applyBusiness?typeid=1',
       })
     }else{
       wx.navigateTo({  
-        url: '../applyBusiness/applyBusiness?typeid='+ "2" + '&type=' + this.data.wxUser.wxState,
+        url: '../applyBusiness/applyBusiness?typeid=2',
       })
     }
   },

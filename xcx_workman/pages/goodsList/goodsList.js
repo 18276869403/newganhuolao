@@ -60,7 +60,8 @@ Page({
     //     status: '进行中'
     //   }
     // ],
-    goodslist:[]
+    goodslist:[],
+    where:''
   },
 
   onLoad: function() {
@@ -72,13 +73,23 @@ Page({
       url: '../applyBusiness/applyBusiness?typeid='+ "2",
     })
   },
-  // 获取商品
-  selectsp(){
-    var that=this
-    var data={
-      pages: 1,
-      size: 10
+  // 获取搜索内容
+  getText:function(e){
+    this.setData({
+      where:e.detail.value
+    })
+  },
+  // 搜索商品
+  getGoods:function(){
+    if(this.data.where==""){
+      this.selectsp({pages:1,size:10})
+    }else{
+      this.selectsp({pages:1,size:10,goodName:this.data.where})
     }
+  },
+  // 获取商品
+  selectsp(data){
+    var that = this
     qingqiu.get("tjsp", data, function(re) {
       if (re.success == true) {
         if (re.result != null) {

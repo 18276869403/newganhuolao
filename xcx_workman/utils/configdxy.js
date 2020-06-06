@@ -1,5 +1,5 @@
 var api = require('./config.js')
-const baseUrl = "http://192.168.1.234:8081/work-boot/" 
+const baseUrl = "http://111.231.51.198:91/work-boot/" 
 
 // 2.0需要工人，商家分类表：可选2个分类-编辑
 const WxUserAdd = baseUrl + "/pc/hall/wxUserAdd"
@@ -17,7 +17,7 @@ const WxUserPage = baseUrl + "pc/hall/wxUserPage"
 const OneClassList = baseUrl + "pc/hall/oneClassList"
 // 入驻功能二级分类
 const TwoClassList = baseUrl + "pc/hall/twoClassList"
-// 晒晒
+// 查询晒晒
 const CasePage = baseUrl + "pc/hall/casePage"
 // 加载个人信息
 const QueryWxUser = baseUrl + "pc/user/queryWxUser"
@@ -39,6 +39,8 @@ const YneedBy = baseUrl + "/pc/hall/yneedBy"
 const UserWorkBy = baseUrl + "/pc/user/userWorkBy"
 // 修改雇佣
 const UserWorkUpdateById = baseUrl + "/pc/user/userWorkUpdateById"
+// 晒晒浏览+1
+const UpdateWxCase = baseUrl + "/pc/user/updateWxCase"
 
 module.exports = {
   wxUserAdd: WxUserAdd,
@@ -59,5 +61,6 @@ module.exports = {
   insertNeedSign:InsertNeedSign,
   yneedBy:YneedBy,
   userWorkBy:UserWorkBy,
-  userWorkUpdateById:UserWorkUpdateById
+  userWorkUpdateById:UserWorkUpdateById,
+  updateWxCase:UpdateWxCase
 };

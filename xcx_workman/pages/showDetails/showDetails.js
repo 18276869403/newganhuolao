@@ -64,7 +64,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.ssid= options.obj
+    this.setData({ssid:options.obj})
     this.ssxqbyid()
     this.pinglun()
   },
@@ -72,9 +72,10 @@ Page({
    ssxqbyid(){
     var that =this
     var data={
-      id : that.ssid
+      id : that.data.ssid
     }
     qingqiu.get("pcQueryWxCaseById", data, function(re) {
+      console.log(re)
     if (re.success == true) {
       if (re.result != null) {
         that.caseMsgList = re.result
@@ -89,7 +90,11 @@ Page({
           imgList :that.imgList
         })
       } else {
-        qingqiu.tk('未查询到任何数据')
+        wx.showToast({
+          title: re.message,
+          icon:'none',
+          duration:2000
+        })
       }
     } 
   })
@@ -98,7 +103,7 @@ Page({
   pinglun(){
     var that =this
     var data={
-      wxCaseId : that.ssid,
+      wxCaseId : that.data.ssid,
       pages: 1,
       size: 10
     }
@@ -125,10 +130,10 @@ Page({
   // 晒晒点击事件
   imgYu:function(event){
     var that =this
-    var src = event.currentTarget.dataset.src;
+    var src = api.viewUrl+event.currentTarget.dataset.src;
     wx.previewImage({
-      current: api.viewUrl+src,
-      urls: that.imgList
+      current: src,
+      urls: [src]
     })
   },
   onShow: function() {
@@ -142,8 +147,8 @@ Page({
   },
   //跳转到添加评论页面
   comment: function() {
-    wx.redirectTo({
-      url: '../comment/comment?id=' + this.caseMsgList.id,
+    wx.navigateTo({
+      url: '../comment/comment?id=' + this.data.caseMsgList.id,
     })
   },
   lianxita: function(e) {

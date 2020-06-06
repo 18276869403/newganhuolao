@@ -175,6 +175,9 @@ Page({
   // 跳转到晒晒详情页面
    showDetails: function(e) {
     var ssid =e.currentTarget.dataset.ssid;
+    qingqiu.get("updateWxCase",{id:ssid},function(re){
+      console.log(re)
+    },'put')
     wx.navigateTo({
       url: '../showDetails/showDetails?obj='+ssid,
     })

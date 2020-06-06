@@ -150,7 +150,7 @@
   </view>
 
   <view class="bottom">
-    <image src="{{viewUrl}}static/image/backtop.png" class="backtop-img"></image>
+    <image src="{{viewUrl}}static/image/backtop.png" bindtap="goTop" class="backtop-img"></image>
   </view>
 </view>
 <view class="commodity_screen2" wx:if="{{showModalStatus2}}"></view>

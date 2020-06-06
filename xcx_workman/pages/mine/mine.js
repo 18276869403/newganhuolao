@@ -298,9 +298,8 @@ Page({
   },
   // 跳转到我的商品页面
   myGoods: function (e) {
-    var spid = JSON.stringify(this.data.wxUser.id)
     wx.navigateTo({
-      url: '../myGoods/myGoods?obj='+spid,
+      url: '../myGoods/myGoods',
     })
   },
   // 跳转到我的推荐页面

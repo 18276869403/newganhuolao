@@ -81,7 +81,6 @@ Page({
       goodPic1:that.imglunbo!=","?that.imglunbo:that.data.spxglist.goodPic1[0]+','+that.data.spxglist.goodPic1[1],
       goodPic2:that.imgDetail!=","?that.imglunbo:that.data.spxglist.goodPic2[0]+','+that.data.spxglist.goodPic2[1],
     }
-    console.log(data)
     qingqiu.get("editUserGood", data, function(re) {
     if (re.success == true) {
       wx.showToast({
@@ -110,7 +109,6 @@ Page({
       goodPic1:that.imglunbo,
       goodPic2:that.imgDetail
     }
-    console.log(data)
     qingqiu.get("addUserGood", data, function(re) {
     if (re.success == true) {
       wx.showToast({
@@ -118,18 +116,22 @@ Page({
         icon:'success',
         duration:2000
       })
-      wx.navigateTo({
-        url: '../myGoods/myGoods?obj='+data.userId,
-     })
+      setTimeout(function(){
+        wx.navigateTo({
+          url: '../myGoods/myGoods?obj='+data.userId,
+       })
+      })
     } else{
       wx.showToast({
-        title: re.message,
+        title: '商家身份审核中...',
         icon:'none',
         duration:2000
       })
-      wx.navigateTo({
-        url: '../myGoods/myGoods?obj='+data.userId,
-     })
+      setTimeout(function(){
+        wx.navigateTo({
+          url: '../myGoods/myGoods?obj='+data.userId,
+       })
+      },1000)
     }
   },'post')
   },

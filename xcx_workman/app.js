@@ -1,6 +1,6 @@
 //app.js
 const api = require('./utils/config.js')
-// var JMessage = require('http://106.15.198.210/jmessage-wxapplet-sdk-1.4.3.min.js')
+const jMessage = require('./utils/jmessage-wxapplet-sdk-1.4.3.min.js')
 App({
   onLaunch: function () {
     // 展示本地存储能力

@@ -42,7 +42,8 @@ Page({
     imgList:[],
     sousuotext:'',
     id:1,
-    sousuonr:''
+    sousuonr:'',
+    pages:1
   },
   onPullDownRefresh: function () {
     app.globalData.showid = 1
@@ -87,23 +88,43 @@ Page({
       
     })
   },
+  // 上拉功能
+  onReachBottom: function () {
+    if (this.data.isLastPage) {
+      wx.showToast({
+        title: '没有更多了！',
+        icon:'none',
+        duration:2000
+      })
+        return
+    }
+    this.setData({ pages: this.data.pages + 1 })
+    this.SelectshowList()
+  },
   // 获取晒晒 
   SelectshowList() {
     var that = this
     var data={
-      pages: 1,
+      pages: that.data.pages,
       size: 10,
+      isLastPage: false,
+      tips: '上拉加载更多',
       caseName:that.data.sousuonr
     }
     qingqiu.get("CasePage", data, function(re) {
-      console.log(re)
       if (re.success == true) {
         if (re.result != null) {
+          if(re.result.records==''){
+            that.data.isLastPage=true
+            return
+          }
           that.showList=re.result.records
           for(var i= 0 ; i < that.showList.length; i++){
             that.showList[i].picOne = api.viewUrl+re.result.records[i].picOne.split(',')[0]
             that.data.imgList[i] = that.showList[i].picOne
+            that.data.showList.push(re.result.records[i])
           } 
+          console.log(that.data.showList)
           that.setData({
             showList:re.result.records
           })

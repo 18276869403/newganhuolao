@@ -2,7 +2,7 @@
 <view class="container">
 
   <!-- 上方详情块  普通用户-->
-  <view class="content zongxiang" wx:if="{{userType==0}}">
+  <view class="content zongxiang" wx:if="{{userType==2}}">
     <image src="{{viewUrl}}static/image/minebg.png" class="minebg-img"></image>
     <view class="content-list zongxiang">
       <!-- 用户为浏览者 -->
@@ -20,7 +20,7 @@
     </view>
   </view>
   <!-- 上方详情块  工人,商家-->
-  <view class="content zongxiang" wx:if="{{userType==1}}">
+  <view class="content zongxiang" wx:if="{{userType==1||userType==0}}">
     <image src="{{viewUrl}}static/image/minebg.png" class="minebg-img"></image>
     <view class="content-top hengxiang">
       <view class="content-top-left zongxiang">

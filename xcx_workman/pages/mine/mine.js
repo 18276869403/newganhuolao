@@ -14,7 +14,7 @@ Page({
   data: {
     // 0 普通用户，1工人，2商家
     viewUrl:api.viewUrl,
-    userType: 1,
+    userType: 0,
     star: 4,
     chushihua: '1',
     wxState: 2,
@@ -47,6 +47,7 @@ Page({
       id:app.globalData.wxid
     }
     qingqiu.get("queryWxUser",data,function(re){
+      console.log(re)
       if(re.success){
         if(re.result != null){
           if(re.result.name != ""&&re.result.name != null){
@@ -94,7 +95,8 @@ Page({
             re.result.twoClassName = ""
           }
           that.setData({
-            wxUser:re.result
+            wxUser:re.result,
+            userType:re.result.wxState
           })
         }
       }
@@ -102,6 +104,7 @@ Page({
   },
   onShow() {
     this.chushishouquan()
+    console.log(app.globalData.wxState)
     this.setData({
       wxState: app.globalData.wxState
     })
@@ -127,7 +130,8 @@ Page({
           app.globalData.wxState = re.result.wxUser.wxState
           that.getWxUser()
           that.setData({
-            openid:re.result.openId
+            openid:re.result.openId,
+            userType:re.result.wxState
           })
         }, "POST")
       }
@@ -139,22 +143,29 @@ Page({
       success(res) {
         if (res.authSetting['scope.userInfo']) {
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-          wx.getUserInfo({
-            lang: 'zh_CN',
-            success(res) {
-              // debugger
-              const userInfo = res.userInfo
-              var data = {
-                id: app.globalData.wxid,
-                openId: app.globalData.openid,
-                picUrl: userInfo.avatarUrl,
-                sex: userInfo.gender,
-                wxNc: userInfo.nickName
-              }
-              qingqiu.get("add", data, function(re) {}, 'post')
-              console.log(res.userInfo)
-              that.setData({
-                chushihua: '0'
+          wx.login({
+            success: function(res) {
+              var code = res.code
+              wx.getUserInfo({
+                lang: 'zh_CN',
+                success(res) {
+                  // debugger
+                  const userInfo = res.userInfo
+                  var data = {
+                    code: code,
+                    id: app.globalData.wxid,
+                    wxId: app.globalData.openid,
+                    picUrl: userInfo.avatarUrl,
+                    sex: userInfo.gender,
+                    wxNc: userInfo.nickName
+                  }
+                  console.log(data)
+                  qingqiu.get("getKeyInfo", data, function(re) {console.log(re)}, 'post')
+                  console.log(res.userInfo)
+                  that.setData({
+                    chushihua: '0'
+                  })
+                }
               })
             }
           })
@@ -176,27 +187,34 @@ Page({
         icon: 'none'
       })
     } else {
-      wx.getUserInfo({
-        lang: 'zh_CN',
-        success(res) {
-          // debugger
-          const userInfo = res.userInfo
-          var data = {
-            id: app.globalData.wxid,
-            openId: app.globalData.openid,
-            picUrl: userInfo.avatarUrl,
-            sex: userInfo.gender,
-            wxNc: userInfo.nickName
-          }
-          qingqiu.get("add", data, function(re) {
-            if (re.data.success == true) {
-              app.globalData.sqgl = 1
-              that.setData({
-                chushihua: '0',
-                showModalStatus1: false
-              })
+      wx.login({
+        success: function(res) {
+          var code = res.code
+          wx.getUserInfo({
+            lang: 'zh_CN',
+            success(res) {
+              // debugger
+              const userInfo = res.userInfo
+              var data = {
+                code:code,
+                id: app.globalData.wxid,
+                wxId: app.globalData.openid,
+                picUrl: userInfo.avatarUrl,
+                sex: userInfo.gender,
+                wxNc: userInfo.nickName
+              }
+              qingqiu.get("getKeyInfo", data, function(re) {
+                console.log(re)
+                if (re.success == true) {
+                  app.globalData.sqgl = 1
+                  that.setData({
+                    chushihua: '0',
+                    showModalStatus1: false
+                  })
+                }
+              }, 'post')
             }
-          }, 'post')
+          })
         }
       })
     }

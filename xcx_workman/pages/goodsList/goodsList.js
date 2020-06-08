@@ -63,7 +63,7 @@ Page({
     goodslist:[],
     where:'',
     isLastPage:false,
-    pages:1,
+    pageNo:1,
     size:10
   },
 
@@ -101,14 +101,14 @@ Page({
       })
         return
     }
-    this.setData({ pages: this.data.pages + 1 })
+    this.setData({ pageNo: this.data.pageNo + 1 })
     this.selectsp()
   },
   // 获取商品
   selectsp(data){
     var that = this
     var data={
-      pages:that.data.pages,
+      pageNo:that.data.pageNo,
       size:10,
       isLastPage: false,
       tips: '上拉加载更多',
@@ -133,7 +133,7 @@ Page({
           }
           console.log(that.data.goodslist)
           that.setData({
-            goodslist:that.goodslist
+            goodslist:that.data.goodslist
           })
         }else{
           wx.showToast({

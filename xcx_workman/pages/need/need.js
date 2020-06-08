@@ -44,6 +44,7 @@ Page({
     pageNo:1,
     pageSize:10,
     videos:[],
+    id:1,
     mid:''
   },
    // 搜索框
@@ -102,6 +103,7 @@ Page({
     this.oneClass()
     this.twoClass()
     this.QueryoneArea()
+    this.QuerytwoArea()
   },
   // 一级分类
   oneClass(){
@@ -671,7 +673,7 @@ Page({
   // 右侧单选点击
   arearight: function(e) {
     var that = this;
-    if(that.data.cityname1=='')
+    if(that.data.cityname1==undefined)
     {
       wx.showToast({
         title: '请先选择城市',

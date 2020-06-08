@@ -211,28 +211,28 @@ Page({
   // })
   // },
   // 右侧单选点击
-  right: function (e) {
-    var that = this;
-    var id = e.currentTarget.dataset.id
-    var name = e.currentTarget.dataset.name
-    that.setData({
-      secondId: id,
-      secondname: name,
-      yijiname: this.data.yijiname1,
-      showModalStatus: false,
-    })
-  },
-  // 全部
-  quanbu:function(){
-    var that = this
-    that.data.firstId=''
-    that.data.secondId=''
-    that.data.firstname=''
-    that.setData({
-      showModalStatus: false,
-      firstname:that.data.firstname
-    })
-  },
+  // right: function (e) {
+  //   var that = this;
+  //   var id = e.currentTarget.dataset.id
+  //   var name = e.currentTarget.dataset.name
+  //   that.setData({
+  //     secondId: id,
+  //     secondname: name,
+  //     yijiname: this.data.yijiname1,
+  //     showModalStatus: false,
+  //   })
+  // },
+  // // 全部
+  // quanbu:function(){
+  //   var that = this
+  //   that.data.firstId=''
+  //   that.data.secondId=''
+  //   that.data.firstname=''
+  //   that.setData({
+  //     showModalStatus: false,
+  //     firstname:that.data.firstname
+  //   })
+  // },
   // 跳转到商家详情页面
   businessDetails: function (e) {
     var obj = JSON.stringify(e.currentTarget.dataset.vals)
@@ -341,7 +341,7 @@ Page({
       animation.translateY(0).step()
       this.setData({
         animationData: animation.export(),
-        showModalStatus: false
+        showModalStatus2: false
       })
       var erjiId = ''
       var erjiName = ""
@@ -381,7 +381,9 @@ Page({
     animation.opacity(0).rotateX(-100).step();
     this.setData({
       animationData: animation.export(),
+      animationData2: animation.export(),
       showModalStatuslist: true,
+      showModalStatus2:true,
       showModalStatus6:true
     })
     setTimeout(function() {
@@ -430,6 +432,7 @@ Page({
       this.setData({
         animationData2: animation.export(),
         showModalStatuslist: false,
+        // showModalStatus2:false,
         showModalStatus6:false
       })
     }.bind(this), 200)
@@ -441,6 +444,9 @@ Page({
       type:that.data.fenleilx
     }
     qingqiu.get("oneClassList", data, function(re) {
+      that.setData({
+        gongzhong:''
+      })
       if (re.success == true) {
         if (re.result != null) {
           for(let i=0;i<re.result.length;i++){

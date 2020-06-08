@@ -44,8 +44,10 @@ Page({
     yijiid:'',
     yijiname:'',
     erjiid:'',
+    isLastPage:false,
     erjiname:'',
-    fenleilx:1
+    fenleilx:1,
+    pages:1
   },
   // 下拉刷新
   onPullDownRefresh: function () {
@@ -87,7 +89,7 @@ Page({
     })
     this.QueryoneArea()
     this.QuerytwoArea()
-    this.grneedlist({pages:1,size:10,wxState:this.data.chooseworker})
+    this.grneedlist()
   },
   // 我要入驻
   ruzhu:function(){
@@ -150,7 +152,7 @@ Page({
         chooseworker: 0
       }) 
       that.data.fenleilx=2
-      that.sjneedlist({pages:1,size:10,wxState:that.data.chooseworker})
+      that.sjneedlist()
     }
   },
   // 一级分类
@@ -246,12 +248,36 @@ Page({
       url: '../businessDetails/businessDetails?obj=' + obj,
     })
   },
+  // 上拉功能
+  onReachBottom: function () {
+    if (this.data.isLastPage) {
+      wx.showToast({
+        title: '没有更多了！',
+        icon:'none',
+        duration:2000
+      })
+        return
+    }
+    this.setData({ pages: this.data.pages + 1 })
+    this.grneedlist()
+  },
   // 推荐工人
-  grneedlist(data) {
+  grneedlist() {
     var that = this
+    var data={
+      pages:that.data.pages,
+      size:10,
+      isLastPage: false,
+      tips: '上拉加载更多',
+      wxState:that.data.chooseworker
+    }
     qingqiu.get("wxUserPage", data, function(re) {
       if (re.success == true) {
         if (re.result != null) {
+          if(re.result.records==''){
+            that.data.isLastPage=true
+            return
+          }
           for(let obj of re.result.records){
             if(obj.starClass == 0){
               obj.shopName = ""
@@ -270,9 +296,11 @@ Page({
             obj.picIurl = that.data.viewUrl + obj.picIurl
             obj.oneClassName = obj.oneClassName.replace(/,/, " | ")
             obj.twoClassName = obj.twoClassName.replace(/,/, " | ")
+            that.data.workerlist.push(obj)
           }
+          console.log(that.data.workerlist)
           that.setData({
-            workerlist:re.result.records,
+            workerlist:that.data.workerlist,
             workerlist1:re.result.records
           })
         } 
@@ -283,14 +311,27 @@ Page({
   // 推荐商家
   sjneedlist(data) {
     var that = this
+    var data={
+      pages:that.data.pages,
+      size:10,
+      isLastPage: false,
+      tips: '上拉加载更多',
+      wxState:that.data.chooseworker
+    }
     qingqiu.get("wxUserPage", data, function(re) {
       if (re.success == true) {
         if (re.result != null) {
+          if(re.result.records==''){
+            that.data.isLastPage=true
+            return
+          }
           for(let obj of re.result.records){
             obj.picIurl = that.data.viewUrl + obj.picIurl
             obj.oneClassName = obj.oneClassName.replace(/,/, "|")
             obj.twoClassName = obj.twoClassName.replace(/,/, "|")
+            that.data.businesslist.push(obj)
           }
+          console.log(that.data.businesslist)
           that.setData({
             businesslist:re.result.records,
             businesslist1:re.result.records

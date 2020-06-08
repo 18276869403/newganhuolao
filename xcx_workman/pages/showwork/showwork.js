@@ -43,7 +43,7 @@ Page({
     sousuotext:'',
     id:1,
     sousuonr:'',
-    pages:1
+    pageNo:1
   },
   onPullDownRefresh: function () {
     app.globalData.showid = 1
@@ -98,14 +98,14 @@ Page({
       })
         return
     }
-    this.setData({ pages: this.data.pages + 1 })
+    this.setData({ pageNo: this.data.pageNo + 1 })
     this.SelectshowList()
   },
   // 获取晒晒 
   SelectshowList() {
     var that = this
     var data={
-      pages: that.data.pages,
+      pageNo: that.data.pageNo,
       size: 10,
       isLastPage: false,
       tips: '上拉加载更多',
@@ -126,7 +126,7 @@ Page({
           } 
           console.log(that.data.showList)
           that.setData({
-            showList:re.result.records
+            showList:that.data.showList
           })
         } 
       } 

@@ -115,5 +115,14 @@ Page({
         })
       }
     })
-  }
+  },
+  // 跳转到商品详情页面
+  goodsDetails(e) {
+    var obj =e.currentTarget.dataset.vals;
+    var shopxq = JSON.stringify(obj);
+        //debugger
+    wx.navigateTo({
+      url: '../goodsDetails/goodsDetails?obj=' + shopxq,
+    })
+  },
 })

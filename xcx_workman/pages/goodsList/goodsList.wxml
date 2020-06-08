@@ -43,7 +43,7 @@
   </view>
   <view class="content-show">
     <view class="show-item zongxiang" wx:for="{{goodslist}}" wx:key="key" data-id="{{item.id}}">
-      <view class="goods">
+      <view class="goods" bindtap="goodsDetails" data-vals="{{item}}">
         <view class="show-item-top">
           <image src="{{item.goodPic1}}" class="show-img"></image>
         </view>

@@ -162,7 +162,7 @@ Page({
         // this.oneClass()
         // this.twoClass()
         this.QueryoneArea()
-        // this.QuerytwoArea()
+        this.QuerytwoArea()
       }
     },
     // 获取需求
@@ -778,6 +778,15 @@ Page({
   // 右侧单选点击
   arearight: function (e) {
     var that = this;
+    if(that.data.cityname1==undefined)
+    {
+      wx.showToast({
+        title: '请先选择城市',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
     var index = e.currentTarget.dataset.index;
     var id = e.currentTarget.dataset.id
     var name = e.currentTarget.dataset.name

@@ -61,7 +61,10 @@ Page({
     //   }
     // ],
     goodslist:[],
-    where:''
+    where:'',
+    isLastPage:false,
+    pages:1,
+    size:10
   },
 
   onLoad: function() {
@@ -81,22 +84,54 @@ Page({
   },
   // 搜索商品
   getGoods:function(){
-    if(this.data.where==""){
-      this.selectsp({pages:1,size:10})
-    }else{
-      this.selectsp({pages:1,size:10,goodName:this.data.where})
+    // if(this.data.where==""){
+    //   this.selectsp({pages:1,size:this.data.size})
+    // }else{
+    //   this.selectsp({pages:1,size:this.data.size,goodName:this.data.where})
+    // }
+    this.selectsp()
+  },
+  // 上拉功能
+  onReachBottom: function () {
+    if (this.data.isLastPage) {
+      wx.showToast({
+        title: '没有更多了！',
+        icon:'none',
+        duration:2000
+      })
+        return
     }
+    this.setData({ pages: this.data.pages + 1 })
+    this.selectsp()
   },
   // 获取商品
   selectsp(data){
     var that = this
+    var data={
+      pages:that.data.pages,
+      size:10,
+      isLastPage: false,
+      tips: '上拉加载更多',
+      goodName:that.data.where
+    }
     qingqiu.get("tjsp", data, function(re) {
       if (re.success == true) {
         if (re.result != null) {
+          if(re.result.records==''){
+            that.data.isLastPage=true
+            wx.showToast({
+              title: '没有更多了！',
+              icon:'none',
+              duration:2000
+            })
+            return
+          }
           that.goodslist=re.result.records
           for(let obj of re.result.records){
             obj.goodPic1 = api.viewUrl + obj.goodPic1.split(',')[0]
+            that.data.goodslist.push(obj)
           }
+          console.log(that.data.goodslist)
           that.setData({
             goodslist:that.goodslist
           })

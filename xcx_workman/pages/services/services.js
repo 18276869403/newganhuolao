@@ -47,7 +47,7 @@ Page({
     isLastPage:false,
     erjiname:'',
     fenleilx:1,
-    pages:1
+    pageNo:1
   },
   // 下拉刷新
   onPullDownRefresh: function () {
@@ -258,14 +258,21 @@ Page({
       })
         return
     }
-    this.setData({ pages: this.data.pages + 1 })
+    this.setData({ pageNo: this.data.pageNo + 1 })
     this.grneedlist()
+  },
+  //置顶
+  goTop(){
+    wx.pageScrollTo({
+      scrollTop: 0,
+      duration: 300
+    })
   },
   // 推荐工人
   grneedlist() {
     var that = this
     var data={
-      pages:that.data.pages,
+      pageNo:that.data.pageNo,
       size:10,
       isLastPage: false,
       tips: '上拉加载更多',
@@ -312,7 +319,7 @@ Page({
   sjneedlist(data) {
     var that = this
     var data={
-      pages:that.data.pages,
+      pageNo:that.data.pageNo,
       size:10,
       isLastPage: false,
       tips: '上拉加载更多',

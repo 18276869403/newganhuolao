@@ -208,11 +208,6 @@ Page({
         if (re.result != null) {
           if(re.result.records==''){
             that.data.isLastPage=true
-            wx.showToast({
-              title: '没有更多了！',
-              icon:'none',
-              duration:2000
-            })
             return
           }
           that.needsList = re.result.records

@@ -206,8 +206,7 @@ Page({
     qingqiu.get("zuixinxq", data, function(re) {
       if (re.success == true) {
         if (re.result != null) {
-          if(re.result.records=='')
-          {
+          if(re.result.records==''){
             that.data.isLastPage=true
             wx.showToast({
               title: '没有更多了！',

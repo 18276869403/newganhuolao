@@ -80,7 +80,7 @@
           <view class="show-item-top" bindtap="showDetails" data-ssid="{{item.id}}">
             <image src="{{item.picOne}}" class="show-img" mode="widthFix" wx:if="{{item.backup3=='0'}}">
             </image>
-            <video autoplay loop controls='{{false}}' show-play-btn='{{false}}' show-center-play-btn='{{false}}' src="{{item.picOne}}" class="show-img" mode="widthFix" wx:if="{{item.backup3=='1'}}" ></video>
+            <video autoplay loop muted controls='{{false}}' show-play-btn='{{false}}' show-center-play-btn='{{false}}' src="{{item.picOne}}" class="show-img" mode="widthFix" wx:if="{{item.backup3=='1'}}" ></video>
           </view>
           <view class="show-item-bottom hengxiang" bindtap="showDetails" data-ssid="{{item.id}}">
             <view class="hengxiang" >
@@ -106,7 +106,7 @@
         <view class="show" wx:if="{{index%2 != 0}}">
           <view class="show-item-top" bindtap="showDetails" data-ssid="{{item.id}}">
             <image src="{{item.picOne}}" class="show-img" mode="widthFix" wx:if="{{item.backup3=='0'}}"></image>
-            <video autoplay loop src="{{item.picOne}}" class="show-img" mode="widthFix" wx:if="{{item.backup3=='1'}}" controls='{{false}}' show-play-btn='{{false}}' show-center-play-btn='{{false}}' src="{{item.picOne}}"></video>
+            <video autoplay loop muted src="{{item.picOne}}" class="show-img" mode="widthFix" wx:if="{{item.backup3=='1'}}" controls='{{false}}' show-play-btn='{{false}}' show-center-play-btn='{{false}}' src="{{item.picOne}}"></video>
           </view>
           <view class="show-item-bottom hengxiang" bindtap="showDetails" data-ssid="{{item.id}}">
             <view class="hengxiang" >

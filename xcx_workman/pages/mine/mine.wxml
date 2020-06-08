@@ -7,15 +7,15 @@
     <view class="content-list zongxiang">
       <!-- 用户为浏览者 -->
       <view class="content-list-item zongxiang">
-        <view class="userinfo-avatar">
-          <open-data type="userAvatarUrl"></open-data>
-        </view>
         <view class="userinfo-nickname">
           <open-data type="userNickName" lang="zh_CN" wx:if="{{chushihua=='0'}}"></open-data>
           <view wx:if="{{chushihua=='1'}}" bindtap="showModal1">请点击登陆</view>
         </view>
-        <view class="content-apply" wx:if="{{wxState==2}}" bindtap="applyBusiness">申请成为商家或者工人</view>
-        <view class="content-apply" wx:if="{{wxState!=2}}">身份：{{wxState==0?'商人':'工人'}}</view>
+        <view class="userinfo-avatar">
+          <open-data type="userAvatarUrl"></open-data>
+        </view>
+        <!-- <view class="content-apply" wx:if="{{wxState==2}}" bindtap="applyBusiness">申请成为商家或者工人</view>
+        <view class="content-apply" wx:if="{{wxState!=2}}">身份：{{wxState==0?'商人':'工人'}}</view> -->
       </view>
     </view>
   </view>

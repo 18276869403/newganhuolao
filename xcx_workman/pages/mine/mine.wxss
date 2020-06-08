@@ -31,7 +31,7 @@ page {
   font-size: 14px;
   color: #333;
   position: absolute;
-  top: 90rpx;
+  top: 30rpx;
   margin-left: 30rpx;
   text-align: center;
 }
@@ -50,6 +50,7 @@ page {
 .userinfo-nickname {
   color: #333;
   font-size: 16px;
+  margin-top: 35rpx;
 }
 
 .content-apply {

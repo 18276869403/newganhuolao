@@ -202,11 +202,19 @@ Page({
    showDetails: function(e) {
     var ssid =e.currentTarget.dataset.ssid;
     qingqiu.get("updateWxCase",{id:ssid},function(re){
-      console.log(re)
+      if(re.success == true){
+        wx.navigateTo({
+          url: '../showDetails/showDetails?obj='+ssid,
+        })
+      }else{
+        wx.showToast({
+          title: re.message,
+          icon:'none',
+          duration:2000
+        })
+      }
     },'put')
-    wx.navigateTo({
-      url: '../showDetails/showDetails?obj='+ssid,
-    })
+    
   },
   // 发布晒晒页面
   submitShow: function() {

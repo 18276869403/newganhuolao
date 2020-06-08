@@ -22,7 +22,8 @@ Page({
     xuqiulist:[],
     grlist:[],
     sjlist:[],
-    tupian:[]
+    tupian:[],
+    id:1
   },
   // 搜索框
   shurukuang:function(e){
@@ -406,7 +407,6 @@ Page({
       },
   //地址 显示弹窗样式
   showModal: function(e) {
-    debugger
     this.setData({
       hasMask: true
     })
@@ -507,6 +507,15 @@ Page({
   // 右侧单选点击
   arearight: function(e) {
     var that = this;
+    if(that.data.cityname1==undefined)
+    {
+      wx.showToast({
+        title: '请先选择城市',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
     if(that.data.cityname1=='')
     {
       wx.showToast({

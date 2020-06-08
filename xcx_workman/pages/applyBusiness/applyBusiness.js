@@ -263,120 +263,135 @@ Page({
     var typeid1 = "fenleitype2.yjid"
     var typeerji1 = "fenleitype2.erjiid"
     var typestate1 = "fenleitype2.typestate"
-      if (re.result.wxState == 0) {
-        var str = []
-        var index = []
-        var index1 = []
-        if(re.result.oneClassName.indexOf(',') > -1){
-          str = re.result.oneClassName.split(',')
-          index = re.result.oneClassIds.split(',')
+    if (re.result.wxState == 0) {
+      var str = []
+      var str1 = []
+      var index = []
+      var index1 = []
+      var flag = false
+      var flag1 = false
+      if(re.result.oneClassName.indexOf(',') > -1&&re.result.oneClassIds.indexOf(',') > -1){
+        str = re.result.oneClassName.split(',')
+        index = re.result.oneClassIds.split(',')
+      }else{
+        if(re.result.oneClassIds.indexOf(',') < 0 && re.result.twoClassIds.indexOf(',') > -1){
+          index[0] = re.result.oneClassIds
+          index[1] = re.result.oneClassIds
+          str[0] = re.result.oneClassName
+          str[1] = re.result.oneClassName
         }else{
           str = re.result.oneClassName
+          index = re.result.oneClassIds
         }
-        var str1 = []
-        if(re.result.twoClassName.indexOf(',') > -1){
-          str1 = re.result.twoClassName.split(',')
-          index1 = re.result.twoClassIds.split(',')
-        }else{
-          str1 = re.result.twoClassName
-        }
-        var temp = ''
-        if(str.length > 0 && str1.length > 0){
-          temp = str[0] + str1[0] + str[1] + str1[1]
-        }else{
-          temp = str[0] + str1[0]
-        }
-        that.setData({
-          needsTypeid:1,
-          tempClass: temp,
-          yijiname:temp,
-          [typeid]:index[0],
-          [typeerji]:index[1],
-          [typestate]:true,
-          [typeid1]:index1[0],
-          [typeerji1]:index1[1],
-          [typestate1]:true,
-          oneClassName:index[0] + "," + index1[0],
-          twoClassName:index[1] + "," + index1[1],
-          workcityname: re.result.oneAreaName,
-          workareaname: re.result.twoAreaName,
-          typeyj: re.result.oneClassId,
-          secondId: re.result.twoClassId,
-          typeid: re.result.oneAreaId,
-          areaId: re.result.twoAreaId,
-          needsname: re.result.shopName,
-          linkman: re.result.name,
-          phone: re.result.phone,
-          workaddress: re.result.shopAddress,
-          needscontent: re.result.content,
-          picIurl: api.viewUrl +  re.result.picIurl,
-          picPerson1: api.viewUrl +  re.result.picPerson1,
-          picZz: api.viewUrl + re.result.picZz,
-          picPerson2: api.viewUrl +  re.result.picPerson,
-          wxState: re.result.wxState,
-          needsTypeid: 2,
-          select: 'success'
-        })
-      } else {
-        var str = []
-        var index = []
-        var index1 = []
-        if(re.result.oneClassName.indexOf(',') > -1){
-          str = re.result.oneClassName.split(',')
-          index = re.result.oneClassIds.split(',')
-        }else{
-          str = re.result.oneClassName
-        }
-        var str1 = []
-        if(re.result.twoClassName.indexOf(',') > -1){
-          str1 = re.result.twoClassName.split(',')
-          index1 = re.result.twoClassIds.split(',')
-        }else{
-          str1 = re.result.twoClassName
-        }
-        var temp = ''
-        if(str.length > 0 && str1.length > 0){
-          temp = str[0] + "|" + str1[0] +","+ str[1] + "|"+ str1[1]
-        }else{
-          temp = str[0] + "," + str1[0]
-        }
-        var data = re.result.dateBirth.split(' ')
-        that.setData({
-          needsTypeid:2,
-          tempClass: temp,
-          yijiname:temp,
-          [typeid]:index[0],
-          [typeerji]:index[1],
-          [typeid1]:index1[0],
-          [typeerji1]:index1[1],
-          oneClassName: index[0] + "," + index1[0],
-          twoClassName: index[1] + "," + index1[1],
-          workcityname: re.result.oneAreaName,
-          workareaname: re.result.twoAreaName,
-          typeyj: re.result.oneClassId,
-          secondId: re.result.twoClassId,
-          typeid: re.result.oneAreaId,
-          areaId: re.result.twoAreaId,
-          workername: re.result.name,
-          sex: re.result.sex,
-          date: data[0],
-          worktime: re.result.employ,
-          workerphone: re.result.phone,
-          workeraddress: re.result.shopAddress,
-          workerskill: re.result.content,
-          picIurl: api.viewUrl +  re.result.picIurl,
-          picZz: api.viewUrl + re.result.picZz,
-          picPerson1: api.viewUrl + re.result.picPerson1,
-          picPerson2: api.viewUrl + re.result.picPerson2,
-          picIurl1:re.result.picIurl,
-          picPerson3:re.result.picPerson1,
-          picPerson4:re.result.picPerson2,
-          wxState: re.result.wxState,
-          needsTypeid: 1,
-          select: 'success'
-        })
       }
-
+      if(re.result.twoClassName.indexOf(',') > -1){
+        str1 = re.result.twoClassName.split(',')
+        index1 = re.result.twoClassIds.split(',')
+      }else{
+        str1 = re.result.twoClassName
+        index1 = re.result.twoClassIds
+      }
+      var temp = ''
+      if(str.length > 0 && str1.length > 0){
+        temp = str[0] + "|" + str1[0] +","+ str[1] + "|"+ str1[1]
+        flag = true
+        flag1 = true
+      }else{
+        temp = str[0] + "," + str1[0]
+        flag = true
+      }
+      that.setData({
+        needsTypeid:1,
+        tempClass: temp,
+        yijiname:temp,
+        [typeid]:index[0],
+        [typeerji]:index1[0],
+        [typestate]:flag,
+        [typeid1]:index[1],
+        [typeerji1]:index1[1],
+        [typestate1]:flag1,
+        oneClassName:index[0] + "," + index1[0],
+        twoClassName:index[1] + "," + index1[1],
+        workcityname: re.result.oneAreaName,
+        workareaname: re.result.twoAreaName,
+        typeyj: re.result.oneClassId,
+        secondId: re.result.twoClassId,
+        typeid: re.result.oneAreaId,
+        areaId: re.result.twoAreaId,
+        needsname: re.result.shopName,
+        linkman: re.result.name,
+        phone: re.result.phone,
+        workaddress: re.result.shopAddress,
+        needscontent: re.result.content,
+        picIurl: api.viewUrl +  re.result.picIurl,
+        picIurl1:re.result.picIurl,
+        picPerson1: api.viewUrl +  re.result.picPerson1,
+        picZz: api.viewUrl + re.result.picZz,
+        picZz1: api.viewUrl + re.result.picZz,
+        picPerson2: api.viewUrl +  re.result.picPerson,
+        wxState: re.result.wxState,
+        needsTypeid: 2,
+        select: 'success'
+      })
+    } else {
+      var str = []
+      var index = []
+      var index1 = []
+      if(re.result.oneClassName.indexOf(',') > -1){
+        str = re.result.oneClassName.split(',')
+        index = re.result.oneClassIds.split(',')
+      }else{
+        str = re.result.oneClassName
+      }
+      var str1 = []
+      if(re.result.twoClassName.indexOf(',') > -1){
+        str1 = re.result.twoClassName.split(',')
+        index1 = re.result.twoClassIds.split(',')
+      }else{
+        str1 = re.result.twoClassName
+      }
+      var temp = ''
+      if(str.length > 0 && str1.length > 0){
+        temp = str[0] + "|" + str1[0] +","+ str[1] + "|"+ str1[1]
+      }else{
+        temp = str[0] + "," + str1[0]
+      }
+      var data = re.result.dateBirth.split(' ')
+      that.setData({
+        needsTypeid:2,
+        tempClass: temp,
+        yijiname:temp,
+        [typeid]:index[0],
+        [typeerji]:index[1],
+        [typeid1]:index1[0],
+        [typeerji1]:index1[1],
+        oneClassName: index[0] + "," + index1[0],
+        twoClassName: index[1] + "," + index1[1],
+        workcityname: re.result.oneAreaName,
+        workareaname: re.result.twoAreaName,
+        typeyj: re.result.oneClassId,
+        secondId: re.result.twoClassId,
+        typeid: re.result.oneAreaId,
+        areaId: re.result.twoAreaId,
+        workername: re.result.name,
+        sex: re.result.sex,
+        date: data[0],
+        worktime: re.result.employ,
+        workerphone: re.result.phone,
+        workeraddress: re.result.shopAddress,
+        workerskill: re.result.content,
+        picIurl: api.viewUrl +  re.result.picIurl,
+        picZz: api.viewUrl + re.result.picZz,
+        picPerson1: api.viewUrl + re.result.picPerson1,
+        picPerson2: api.viewUrl + re.result.picPerson2,
+        picIurl1:re.result.picIurl,
+        picPerson3:re.result.picPerson1,
+        picPerson4:re.result.picPerson2,
+        wxState: re.result.wxState,
+        needsTypeid: 1,
+        select: 'success'
+      })
+    }
       // data = {
       //   name: that.data.workername,
       //   sex: that.data.sex,
@@ -641,7 +656,7 @@ Page({
       data = {
         id: app.globalData.wxid,
         oneClassName: that.data.fenleitype1.yjid + "," + that.data.fenleitype2.yjid,
-        twoClassName: that.data.fenleitype2.erjiid + "," + that.data.fenleitype2.erjiid,
+        twoClassName: that.data.fenleitype1.erjiid + "," + that.data.fenleitype2.erjiid,
         oneAreaId: that.data.typeid,
         twoAreaId: that.data.areaId,
         shopName: that.data.needsname,

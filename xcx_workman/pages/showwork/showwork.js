@@ -63,12 +63,10 @@ Page({
       wxUserId:app.globalData.wxid
     }
     qingqiu.get("casePage",data,function(re){
-      console.log(re)
       if(re.success==true){
         that.data.showList=re.result.records
         for(var i= 0 ; i < that.data.showList.length; i++){
           that.data.showList[i].picOne = api.viewUrl+re.result.records[i].picOne.split(',')[0]
-          that.data.imgList[i] = that.data.showList[i].picOne
         } 
         that.setData({
           showList:re.result.records
@@ -83,7 +81,7 @@ Page({
       
     })
   },
-  // 获取晒晒
+  // 获取晒晒 
   SelectshowList() {
     var that = this
     var data={
@@ -92,6 +90,7 @@ Page({
       caseName:that.data.sousuonr
     }
     qingqiu.get("CasePage", data, function(re) {
+      console.log(re)
       if (re.success == true) {
         if (re.result != null) {
           that.showList=re.result.records
@@ -186,6 +185,89 @@ Page({
   submitShow: function() {
     wx.navigateTo({
       url: '../submitShow/submitShow',
+    })
+  },
+  // 发布视频
+  submitVideo:function(){
+    var that = this
+    // wx.chooseImage({
+    //   sourceType: ['album', 'camera'],
+    //   success:function(res){
+    //     console.log(res)
+    //     var tempFilePath = res.tempFilePaths[0].replace('http://','')
+    //     console.log(tempFilePath)
+    //     wx.uploadFile({
+    //       url: api.uploadurl,
+    //       filePath: tempFilePath,
+    //       header: {
+    //         "Content-Type": "multipart/form-data"
+    //       },
+    //       formData: {
+    //         method: 'POST' //请求方式
+    //       },
+    //       name: 'files',
+    //       success:function(res){
+    //         console.log(res)
+    //       }
+    //     })
+    //   }
+    // })
+    wx.chooseVideo({
+      camera: ['album','camera'],
+      maxDuration:60,
+      success:function(res){
+        console.log(res)
+        var tempFilePath = res.tempFilePath
+        console.log(tempFilePath)
+        wx.uploadFile({
+          url: api.uploadurl,
+          filePath: tempFilePath,
+          header: {
+            "Content-Type": "multipart/form-data"
+          },
+          formData: {
+            method: 'POST' //请求方式
+          },
+          name: 'file',
+          success:function(res){
+            console.log(res)
+            var re = JSON.parse(res.data)
+            if(re.success == true){
+              var data = {
+                wxUserId:app.globalData.wxid,
+                backup3:1,
+                backup4:0,
+                picOne:re.message
+              }
+              qingqiu.get('insertCase',data,function(res){
+                if(res.success == true){
+                  wx.showToast({
+                    title: '发布成功,视频正在审核中...',
+                    icon:'success',
+                    duration:2000
+                  })
+                  setTimeout(function(){
+                    that.hideModal1()
+                    that.onLoad()
+                  },1000)
+                }else{
+                  wx.showToast({
+                    title: res.message,
+                    icon:'none',
+                    duration:2000
+                  })
+                }
+              },'post')
+            }else{
+              wx.showToast({
+                title: res.message,
+                icon:'none',
+                duration:2000
+              })
+            }
+          }
+        })
+      }
     })
   }
 })

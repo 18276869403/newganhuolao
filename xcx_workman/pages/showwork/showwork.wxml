@@ -100,7 +100,7 @@
       </block>
     </view>
     <!-- 右侧 -->
-    <view class="right">
+    <view class="right"> 
       <block wx:for-items="{{showList}}" wx:key="{{item.id}}">
         <view class="show" wx:if="{{index%2 != 0}}">
           <view class="show-item-top" bindtap="showDetails" data-ssid="{{item.id}}">

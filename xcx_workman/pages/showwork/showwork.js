@@ -81,7 +81,7 @@ Page({
       
     })
   },
-  // 获取晒晒
+  // 获取晒晒 
   SelectshowList() {
     var that = this
     var data={

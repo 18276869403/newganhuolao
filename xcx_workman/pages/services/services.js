@@ -39,6 +39,7 @@ Page({
         twoclass:'erji111'
       }]
     }],
+    wid:1,
     flerjiid:'',
     yijiid:'',
     yijiname:'',
@@ -85,6 +86,7 @@ Page({
       weizhi:app.globalData.weizhi
     })
     this.QueryoneArea()
+    this.QuerytwoArea()
     this.grneedlist({pages:1,size:10,wxState:this.data.chooseworker})
   },
   // 我要入驻
@@ -565,7 +567,7 @@ Page({
   QuerytwoArea(){
     var that = this
     var data ={
-      oneAreaId:that.data.id
+      oneAreaId:that.data.wid
     }
     qingqiu.get("queryTwoArea", data, function(re) {
     if (re.success == true) {
@@ -682,7 +684,7 @@ Page({
   // 右侧单选点击
   arearight: function(e) {
     var that = this;
-    if(that.data.cityname1=='')
+    if(that.data.cityname1==undefined)
     {
       wx.showToast({
         title: '请先选择城市',

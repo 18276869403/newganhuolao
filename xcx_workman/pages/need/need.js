@@ -193,6 +193,13 @@ Page({
     this.setData({ pageNo: this.data.pageNo + 1 })
     this.xqneedlist()
   },
+  //置顶
+  goTop(){
+    wx.pageScrollTo({
+      scrollTop: 0,
+      duration: 300
+    })
+  },
   // 需求列表
   xqneedlist(data) {
     var that = this

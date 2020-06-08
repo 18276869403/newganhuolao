@@ -3,7 +3,7 @@
   <view class="hengxian"></view>
   <view class="top zongxiang">
     <view class="top-title hengxiang">
-      <view class="top-title-left hengxiang">
+      <view class="top-title-left hengxiang" bindtap="weizhi">
         <view class="top-title-left-name">上海杨浦区</view>
         <view class="top-title-left-enter">
           <image src="{{viewUrl}}static/image/xiala.png" class="xiala-img"></image>

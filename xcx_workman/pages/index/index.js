@@ -337,6 +337,22 @@ Page({
       } 
     })
   },
+  //获取位置信息
+  weizhi:function(){
+    var that = this;
+    wx.getLocation({
+      type: 'wgs84',
+      success(res) {
+        var latitude = res.latitude
+        var longitude = res.longitude
+        wx.showModal({
+          title: '当前位置',
+          content: "纬度:" + latitude + ",经度:" + longitude,
+        })
+        console.log(res)
+      }
+    })
+  },
   // 跳转到商品详情页面
   goodsDetails(e) {
     var obj =e.currentTarget.dataset.vals;

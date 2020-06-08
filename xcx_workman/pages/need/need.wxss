@@ -342,9 +342,9 @@ position: absolute;
 bottom: 145rpx;
 
 }
-/* 遮罩层 需求分类*/
+/* 遮罩层 地址选择*/
 
-.commodity_screen6 {
+.commodity_screen {
   width: 100%;
   height: 100%;
   position: fixed;
@@ -357,7 +357,19 @@ bottom: 145rpx;
   color: #fff;
   text-align: center;
 }
+
 .commodity_attr_box6 {
+  position: fixed;
+  z-index: 20000;
+  text-align: center;
+  justify-content: center;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  top: -2rpx;
+}
+
+.commodity_attr_box {
   position: fixed;
   z-index: 20000;
   text-align: center;
@@ -553,9 +565,11 @@ width: 100%;
   text-align: center;
 }
 .cleclass{
-  background-color: rgb(128, 223, 226);
+  /* background-color: rgb(128, 223, 226);
   width: 150rpx;
-  text-align: center;
+  text-align: center; */
+  width: 170rpx;
+  height: 80rpx;
 }
 
 .tankuang-content2 {
@@ -586,11 +600,11 @@ width: 100%;
   text-overflow: ellipsis;
   white-space: nowrap;
   width: 100%;
-  height: 68rpx;
+  height: 80rpx;
   font-size: 26rpx;
   font-weight: 400;
   color: rgba(153, 153, 153, 1);
-  line-height: 68rpx;
+  line-height: 80rpx;
   border-bottom: 1rpx solid #ececec;
 }
 .list-two-item{

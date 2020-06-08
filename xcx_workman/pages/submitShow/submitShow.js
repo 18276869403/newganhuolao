@@ -140,8 +140,9 @@ Page({
       that.data.picIurl1+=obj+','
     }
     that.data.picIurl1=that.data.picIurl1.substring(0,that.data.picIurl1.length-1)
+    console.log(app.globalData.wxid)
     var data={
-      wxUserId : that.data.wxuserid,
+      wxUserId:app.globalData.wxid,
       backup3:0,
       backup4:0,
       oneAreaId:that.data.cityId,
@@ -149,7 +150,9 @@ Page({
       caseName : that.data.needscontent,
       picOne:that.data.picIurl1
     }
+    console.log(data)
     qingqiu.get("insertCase", data, function(re) {
+      console.log(re)
     if (re.success == true) {
       wx.showToast({
         title: '发布成功！',

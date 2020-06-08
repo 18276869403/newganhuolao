@@ -12,6 +12,7 @@ Page({
     showModalStatus:'',
     animationData:'',
     navRightItems:'',
+    isLastPage:false,
     hasMask:'',
     sousuotext:'',
     needsListfy:[],
@@ -43,7 +44,7 @@ Page({
     erjiname:'',
     pageNo:1,
     pageSize:10,
-    videos:[],
+    jihe:[],
     id:1,
     mid:''
   },
@@ -182,6 +183,11 @@ Page({
   // 上拉功能
   onReachBottom: function () {
     if (this.data.isLastPage) {
+      wx.showToast({
+        title: '没有更多了！',
+        icon:'none',
+        duration:2000
+      })
         return
     }
     this.setData({ pageNo: this.data.pageNo + 1 })
@@ -200,20 +206,35 @@ Page({
     qingqiu.get("zuixinxq", data, function(re) {
       if (re.success == true) {
         if (re.result != null) {
+          if(re.result.records=='')
+          {
+            that.data.isLastPage=true
+            wx.showToast({
+              title: '没有更多了！',
+              icon:'none',
+              duration:2000
+            })
+            return
+          }
           that.needsList = re.result.records
           for(var i= 0 ; i < that.needsList.length; i++){
             re.result.records[i].publishTime = re.result.records[i].publishTime.split(' ')[0]
             if(re.result.records[i].backup1!= null&&re.result.records[i].backup1.length>0){
               re.result.records[i].backup1 = re.result.records[i].backup1.split(',')
             }
+            that.data.needsList.push(re.result.records[i])
           }
-          console.log(re.result.records)
+          console.log(that.data.needsList)
           that.setData ({
-            needsList : re.result.records,
+            needsList : that.data.needsList,
             needsListfy : re.result.records
           })
         } else {
-          qingqiu.tk('未查询到任何数据')
+          wx.showToast({
+            title: '暂无数据',
+            icon:'none',
+            duration:2000
+          })
         }
       } 
     })

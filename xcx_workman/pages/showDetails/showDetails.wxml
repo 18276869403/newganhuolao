@@ -1,6 +1,6 @@
 <!--pages/showDetails/showDetails.wxml-->
 <view class="container">
-  <view class='banner'>
+  <view class='banner' wx:if="{{caseMsgList.caseType==0}}">
     <swiper indicator-dots="true" indicator-color="rgba(255,255,255,.3)" indicator-active-color="#fff" autoplay="true" class="swiper">
       <block wx:for="{{caseMsgList.picOne}}">
         <swiper-item bindtap="imgYu" data-src="{{item}}">
@@ -8,6 +8,9 @@
         </swiper-item>
       </block>
     </swiper>
+  </view>
+  <view class='banner' wx:if="{{caseMsgList.caseType=='1'}}">
+    <video src="{{viewUrl}}{{caseMsgList.picOne[0]}}" style="width:100%"></video>
   </view>
   <!-- 产品名 -->
   <view class="top-text">

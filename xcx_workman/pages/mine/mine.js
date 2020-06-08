@@ -64,6 +64,8 @@ Page({
           }
           if(re.result.backup4 == "0" || re.result.backup4 == "" || re.result.backup4==null){
             re.result.backup4 = "未实名认证"
+          }else{
+            re.result.backup4 = "实名认证"
           }
           if(re.result.starClass == 0 || re.result.starClass == null){
             re.result.starClass = "暂未评定"

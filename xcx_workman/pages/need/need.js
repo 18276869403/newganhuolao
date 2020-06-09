@@ -46,7 +46,10 @@ Page({
     pageSize:10,
     jihe:[],
     id:1,
-    mid:''
+    mid:'',
+    needTitle:'',
+    oneClassId:'',
+    twoClassId:''
   },
    // 搜索框
    shurukuang:function(e){
@@ -67,20 +70,25 @@ Page({
   },
   // 搜索按钮
   btnsearch:function(){
-    var obj = {
-      pageNo:1,
-      pageSize:10
-    }
+    this.data.needsList.splice(0,this.data.needsList.length)
+    this.data.pageNo=1
     if(this.data.sousuotext != "" && this.data.yijiid != "undefined" && this.data.yijiid != null){
-      obj.needTitle = this.data.sousuotext
+      this.data.needTitle = this.data.sousuotext
+    }
+    else{
+      this.data.needTitle =''
     }
     if(this.data.yijiid != "" && this.data.yijiid != "undefined" && this.data.yijiid != null){
-      obj.oneClassId = this.data.yijiid
+      this.data.oneClassId = this.data.yijiid
+    }else{
+      this.data.oneClassId =''
     }
     if(this.data.flerjiid != "" && this.data.flerjiid != "undefined" && this.data.yijiid != null){
-      obj.twoClassId = this.data.flerjiid
+      this.data.twoClassId = this.data.flerjiid
+    }else{
+      this.data.twoClassId =''
     }
-    this.xqneedlist(obj)
+    this.xqneedlist()
   },
   // 获取需求
   // 下拉刷新
@@ -201,13 +209,16 @@ Page({
     })
   },
   // 需求列表
-  xqneedlist(data) {
+  xqneedlist() {
     var that = this
     var data={
       pageNo:that.data.pageNo,
       pageSize:10,
       wxUserId:that.data.mid,
       isLastPage: false,
+      needTitle:that.data.needTitle,
+      oneClassId:that.data.oneClassId,
+      twoClassId:that.data.twoClassId,
       tips: '上拉加载更多'
     }
     qingqiu.get("zuixinxq", data, function(re) {

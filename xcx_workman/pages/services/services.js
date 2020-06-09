@@ -47,7 +47,11 @@ Page({
     isLastPage:false,
     erjiname:'',
     fenleilx:1,
-    pageNo:1
+    pageNo:1,
+    oneClassId:'',
+    twoClassId:'',
+    name:'',
+    shopName:''
   },
   // 下拉刷新
   onPullDownRefresh: function () {
@@ -64,23 +68,33 @@ Page({
   },
   // 搜索按钮
   btnsearch:function(){
-    var data = { pages: 1,size: 10, wxState:this.data.chooseworker }
+    this.data.pageNo=1
     if(this.data.yijiid != "" && this.data.yijiid != "undefined" && this.data.yijiid != null){
-      data.oneClassId = this.data.yijiid
+      this.data.oneClassId = this.data.yijiid
+    }else{
+      this.data.oneClassId=''
     }
     if(this.data.flerjiid != "" && this.data.flerjiid != "undefined" && this.data.flerjiid != null){
-      data.twoClassId = this.data.flerjiid
+      this.data.twoClassId = this.data.flerjiid
+    }else{
+      this.data.twoClassId=''
     }
     if(this.data.chooseworker == 1){
+      this.data.workerlist.splice(0,this.data.workerlist.length)
       if(this.data.sousuotext != "" && this.data.sousuotext != "undefined" && this.data.sousuotext != null){
-        data.name = this.data.sousuotext
+        this.data.name = this.data.sousuotext
+      }else{
+        this.data.name=''
       }
-      this.grneedlist(data)
+      this.grneedlist()
     }else{
+      this.data.businesslist.splice(0,this.data.businesslist.length)
       if(this.data.sousuotext != "" && this.data.sousuotext != "undefined" && this.data.sousuotext != null){
-        data.shopName = this.data.sousuotext
+        this.data.shopName = this.data.sousuotext
+      }else{
+        this.data.shopName=''
       }
-      this.sjneedlist(data)
+      this.sjneedlist()
     }
   },
   onLoad: function() {
@@ -261,13 +275,6 @@ Page({
     this.setData({ pageNo: this.data.pageNo + 1 })
     this.grneedlist()
   },
-  //置顶
-  goTop(){
-    wx.pageScrollTo({
-      scrollTop: 0,
-      duration: 300
-    })
-  },
   // 推荐工人
   grneedlist() {
     var that = this
@@ -275,6 +282,9 @@ Page({
       pageNo:that.data.pageNo,
       size:10,
       isLastPage: false,
+      oneClassId:that.data.oneClassId,
+      twoClassId:that.data.twoClassId,
+      name:that.data.name,
       tips: '上拉加载更多',
       wxState:that.data.chooseworker
     }
@@ -323,6 +333,9 @@ Page({
       size:10,
       isLastPage: false,
       tips: '上拉加载更多',
+      oneClassId:that.data.oneClassId,
+      twoClassId:that.data.twoClassId,
+      shopName:that.data.shopName,
       wxState:that.data.chooseworker
     }
     qingqiu.get("wxUserPage", data, function(re) {

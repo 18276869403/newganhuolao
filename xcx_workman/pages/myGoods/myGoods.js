@@ -58,6 +58,9 @@ Page({
   onLoad: function(options) {
     this.mygoodsList()
   },
+  onShow(){
+    this.mygoodsList()
+  },
   // 我的商品
   mygoodsList() {
     var that = this
@@ -118,9 +121,7 @@ Page({
                 icon:'none',
                 duration:2000
               })
-              wx.navigateTo({
-                url: '../myGoods/myGoods?obj='+userid,
-              })
+              that.onLoad()
             }},"delete")
         } else if (res.cancel) {
           wx.showToast({

@@ -56,6 +56,7 @@ Page({
   // 下拉刷新
   onPullDownRefresh: function () {
     this.data.pageNo=1
+    this.data.isLastPage=false
     this.data.workerlist.splice(0,this.data.workerlist.length)
     this.data.businesslist.splice(0,this.data.businesslist.length)
     this.onLoad()
@@ -77,6 +78,7 @@ Page({
   // 搜索按钮
   btnsearch:function(){
     this.data.pageNo=1
+    this.data.isLastPage=false
     if(this.data.yijiid != "" && this.data.yijiid != "undefined" && this.data.yijiid != null){
       this.data.oneClassId = this.data.yijiid
     }else{
@@ -268,7 +270,7 @@ Page({
   //     firstname:that.data.firstname
   //   })
   // },
-  
+
   // 跳转到商家详情页面
   businessDetails: function (e) {
     var obj = JSON.stringify(e.currentTarget.dataset.vals)
@@ -485,7 +487,7 @@ Page({
         yijiname : that.data.yijiname,
         erjiname : that.data.erjiname,
       })
-      that.btnsearch()
+      //that.btnsearch()
     }else{
       that.setData({
         yijiname : '',
@@ -493,7 +495,7 @@ Page({
         yijiid:'',
         flerjiid:''
       })
-      that.btnsearch()
+      //that.btnsearch()
     }
     //this.writeclass(flag)
     var animation = wx.createAnimation({
@@ -772,6 +774,8 @@ Page({
     //var index = e.currentTarget.dataset.index;
     var id = e.currentTarget.dataset.id
     var name = e.currentTarget.dataset.name
+    getApp().globalData.weizhiid=this.data.cityId
+    getApp().globalData.weizhiid2=id
     getApp().globalData.weizhi = this.data.cityname1+name
     that.setData({
       weizhi:app.globalData.weizhi,

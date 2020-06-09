@@ -108,7 +108,6 @@ const floatReglist = function(str){
   }
   return 0
 }
-
 // 带错误信息数字验证 (带小数点)
 const numberReglist = function(str){
   var patten = /^[+-]?(0|([1-9]\d*))(\.\d+)?$/g;

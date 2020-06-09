@@ -3,7 +3,7 @@
  */
 var api = require('./config.js')
 const Get = function(url, data, huidiao, method = 'GET') {
-	console.log('UserAuthorization:' + wx.getStorageSync('yrzuser'))
+	// console.log('UserAuthorization:' + wx.getStorageSync('yrzuser'))
 	var auth = wx.getStorageSync('yrzuser') != null ? wx.getStorageSync('yrzuser').access_token : ''
 		var geturl = ""
 	if (api[url] != null) {

@@ -1034,7 +1034,7 @@ Page({
   },
   // 业务分类
   showModallist: function() {
-    this.fenlei()
+    this.typefenleiyj()
     this.setData({
       hasMask: true
     })

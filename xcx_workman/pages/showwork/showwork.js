@@ -200,6 +200,9 @@ Page({
   // 搜索
   btnsearch:function(){
     var that=this
+    that.data.pageNo=1
+    that.data.isLastPage=false
+    this.data.showList.splice(0,this.data.showList.length)
     that.data.sousuonr=that.data.sousuotext
     that.SelectshowList()
   },
@@ -273,11 +276,23 @@ Page({
             console.log(res)
             var re = JSON.parse(res.data)
             if(re.success == true){
-              var data = {
-                wxUserId:app.globalData.wxid,
-                backup3:1,
-                backup4:0,
-                picOne:re.message
+              if(app.globalData.weizhiid==undefined || app.globalData.weizhiid=='')
+              {
+                var data = {
+                  wxUserId:app.globalData.wxid,
+                  backup3:1,
+                  backup4:0,
+                  picOne:re.message
+                }
+              }else{
+                var data = {
+                  wxUserId:app.globalData.wxid,
+                  backup3:1,
+                  backup4:0,
+                  oneAreaId:app.globalData.weizhiid,
+                  twoAreaId:app.globalData.weizhiid2,
+                  picOne:re.message
+                }
               }
               qingqiu.get('insertCase',data,function(res){
                 if(res.success == true){
@@ -468,6 +483,8 @@ Page({
     //var index = e.currentTarget.dataset.index;
     var id = e.currentTarget.dataset.id
     var name = e.currentTarget.dataset.name
+    getApp().globalData.weizhiid=this.data.cityId
+    getApp().globalData.weizhiid2=id
     getApp().globalData.weizhi = this.data.cityname1+name
     that.setData({
       weizhi:app.globalData.weizhi,

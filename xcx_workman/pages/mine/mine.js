@@ -103,8 +103,6 @@ Page({
     })
   },
   onShow() {
-    this.chushishouquan()
-    console.log(app.globalData.wxState)
     this.setData({
       wxState: app.globalData.wxState
     })
@@ -137,89 +135,6 @@ Page({
       }
     })
   },
-  chushishouquan() {
-    var that = this
-    wx.getSetting({
-      success(res) {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-          wx.login({
-            success: function(res) {
-              var code = res.code
-              wx.getUserInfo({
-                lang: 'zh_CN',
-                success(res) {
-                  // debugger
-                  const userInfo = res.userInfo
-                  var data = {
-                    code: code,
-                    id: app.globalData.wxid,
-                    wxId: app.globalData.openid,
-                    picUrl: userInfo.avatarUrl,
-                    sex: userInfo.gender,
-                    wxNc: userInfo.nickName
-                  }
-                  console.log(data)
-                  qingqiu.get("getKeyInfo", data, function(re) {console.log(re)}, 'post')
-                  console.log(res.userInfo)
-                  that.setData({
-                    chushihua: '0'
-                  })
-                }
-              })
-            }
-          })
-        } else {
-          that.setData({
-            chushihua: '1'
-          })
-          // that.showModal1()
-        }
-      }
-    })
-  },
-  //用户授权
-  bindGetUserInfo(e) {
-    var that = this
-    if (e.detail.errMsg == "getUserInfo:fail auth deny") {
-      wx.showToast({
-        title: '未授权',
-        icon: 'none'
-      })
-    } else {
-      wx.login({
-        success: function(res) {
-          var code = res.code
-          wx.getUserInfo({
-            lang: 'zh_CN',
-            success(res) {
-              // debugger
-              const userInfo = res.userInfo
-              var data = {
-                code:code,
-                id: app.globalData.wxid,
-                wxId: app.globalData.openid,
-                picUrl: userInfo.avatarUrl,
-                sex: userInfo.gender,
-                wxNc: userInfo.nickName
-              }
-              qingqiu.get("getKeyInfo", data, function(re) {
-                console.log(re)
-                if (re.success == true) {
-                  app.globalData.sqgl = 1
-                  that.setData({
-                    chushihua: '0',
-                    showModalStatus1: false
-                  })
-                }
-              }, 'post')
-            }
-          })
-        }
-      })
-    }
-  },
-  
   // 跳转到我的雇佣页面
   myEmploy: function() {
     wx.navigateTo({

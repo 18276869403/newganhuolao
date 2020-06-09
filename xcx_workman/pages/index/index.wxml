@@ -88,7 +88,36 @@
 
       </view>
     </view>
-
+    <view class="sort zongxiang">
+      <view class="sort-top hengxiang">
+        <view class="sortImg">
+          <image src="{{viewUrl}}static/image/gongrenruzhu.png" class="sort-img"></image>
+        </view>
+        <view class="sortImg" bindtap="ershou">
+          <image src="{{viewUrl}}static/image/shangjiaruzhu.png" class="sort-img"></image>
+        </view>
+        <view class="sortImg" bindtap="bendi">
+          <image src="{{viewUrl}}static/image/tuijianyouli.png" class="sort-img"></image>
+        </view>
+        <view class="sortImg" bindtap="cuxiao">
+          <image src="{{viewUrl}}static/image/jiangongjisuan.png" class="sort-img"></image>
+        </view>
+      </view>
+      <view class="sort-bottom hengxiang">
+        <view class="sort-text">
+          拼车广场
+        </view>
+        <view class="sort-text">
+          二手商品
+        </view>
+        <view class="sort-text">
+          本地招工
+        </view>
+        <view class="sort-text">
+          商家促销
+        </view>
+      </view>
+    </view>
   </view>
   <view class="content zongxiang">
     <!-- 最新需求模块 -->

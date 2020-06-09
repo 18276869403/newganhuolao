@@ -72,6 +72,7 @@ Page({
   btnsearch:function(){
     this.data.needsList.splice(0,this.data.needsList.length)
     this.data.pageNo=1
+    this.data.isLastPage=false
     if(this.data.sousuotext != "" && this.data.yijiid != "undefined" && this.data.yijiid != null){
       this.data.needTitle = this.data.sousuotext
     }
@@ -96,6 +97,7 @@ Page({
     app.globalData.xuqiuid = 1
     this.data.needsList.splice(0,this.data.needsList.length)
     this.data.pageNo=1
+    this.data.isLastPage=false
     this.onLoad()
     setTimeout(() => {
       wx.stopPullDownRefresh()
@@ -457,6 +459,8 @@ Page({
         erjiname : that.data.erjiname,
       })
     }else{
+      that.data.yijiid=''
+      that.data.flerjiid=''
       that.setData({
         yijiname : '',
         erjiname : '',
@@ -722,6 +726,8 @@ Page({
     //var index = e.currentTarget.dataset.index;
     var id = e.currentTarget.dataset.id
     var name = e.currentTarget.dataset.name
+    getApp().globalData.weizhiid=this.data.cityId
+    getApp().globalData.weizhiid2=id
     getApp().globalData.weizhi = this.data.cityname1 + name
     that.setData({
       weizhi:app.globalData.weizhi,

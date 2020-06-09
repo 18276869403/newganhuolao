@@ -88,7 +88,6 @@ Page({
           that.setData ({
             jiedanList : that.data.jiedanList
           })
-          debugger
         } else {
           qingqiu.tk('未查询到任何数据')
         }

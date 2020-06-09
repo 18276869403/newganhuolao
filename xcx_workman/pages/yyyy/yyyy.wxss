@@ -1,0 +1,59 @@
+/* pages/yyyy/yyyy.wxss */
+.dfk{
+  width: 100%;
+  /* background: #ccc; */
+}
+.xfk{
+  width: 90%;
+  height: 80rpx;
+  /* background: #ddd; */
+  margin: 3% 5% 0% 5%;
+  border: 1px solid #000;
+  border-radius: 10rpx;
+}
+.shuruk{
+  float: left;
+width: 165rpx;
+margin: -22% 1% 5% 235%;
+/* background: #ccc; */
+color: #f0f0f0;
+
+}
+.mingzi{
+  margin: 3% 70% 5% 2%;
+  /* background: blue; */
+}
+.mi{
+  margin: -11% 1% 5% 93%;
+  /* background: blue; */
+}
+.xfk02{
+  width: 90%;
+  height: 80rpx;
+  background: orange;
+  margin: 5% 5% 0% 5%;
+  border-radius: 10rpx;
+}
+.mingzi02{
+  padding-top: 3%;
+  text-align: center;
+  /* background: blue; */
+  color: #fff;
+}
+.xfk03{
+  width: 90%;
+  height: 80rpx;
+  /* background: orange; */
+  margin: 3% 5% 0% 5%;
+  border-radius: 10rpx;
+}
+.mingzi03{
+  /* padding-top: 3%; */
+  /* text-align: center; */
+  /* background: blue; */
+  color: orange;
+}
+.placeholderStyle{
+  color:#aaa;
+}
+

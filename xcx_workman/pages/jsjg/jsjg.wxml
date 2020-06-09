@@ -1,0 +1,34 @@
+<!--pages/jsjg/jsjg.wxml-->
+
+<view>
+  <view class="jsjgs">
+    <view class="shuzi"><text >32升</text></view>
+  </view>
+  <view class="xinq">
+    <text>你可能感兴趣的商品</text>
+  </view>
+</view>
+<view>
+  <view class="chanp">
+   <view class="tup"><image class="tup02" src="../image/mine.png"></image></view> 
+    <view class="biaoti"><text>钢结构防火涂料20升</text></view>
+    <view class="jiage"><text>￥450/桶</text></view>
+  </view>
+   <view class="chanp">
+   <view class="tup"><image class="tup02" src="../image/mine.png"></image></view> 
+    <view class="biaoti"><text>钢结构防火涂料20升</text></view>
+    <view class="jiage"><text>￥450/桶</text></view>
+  </view>
+   <view class="chanp">
+   <view class="tup"><image class="tup02" src="../image/mine.png"></image></view> 
+    <view class="biaoti"><text>钢结构防火涂料20升</text></view>
+    <view class="jiage"><text>￥450/桶</text></view>
+  </view>
+   <view class="chanp">
+   <view class="tup"><image class="tup02" src="../image/mine.png"></image></view> 
+    <view class="biaoti"><text>钢结构防火涂料20升</text></view>
+    <view class="jiage"><text>￥450/桶</text></view>
+  </view>
+
+
+</view>

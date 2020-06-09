@@ -1,0 +1,48 @@
+<!--pages/activity02/activity02.wxml-->
+   <view>
+     <view class="zt">
+     <view class="tp" bindtap="yyyy">
+     <image class="tpp02" src="../image/tuliao.png"></image>
+     </view>
+     <view class="wenz">涂料用量</view>
+     </view>
+      <view class="zt">
+     <view class="tp" bindtap="yl02">
+      <image class="tpp02" src="../image/diban.png"></image></view>
+     <view class="wenz">地板用量</view>
+     </view>
+      <view class="zt">
+     <view class="tp" bindtap="yl03">
+      <image class="tpp02" src="../image/dizhuan.png"></image></view>
+     <view class="wenz">地砖用量</view>
+     </view>
+      <view class="zt">
+     <view class="tp" bindtap="yl04">
+    <image class="tpp02" src="../image/qiangzhuan.png"></image>
+     </view>
+     <view class="wenz">墙砖用量</view>
+     </view>
+      <view class="zt">
+     <view class="tp" bindtap="yl05">
+      <image class="tpp02" src="../image/bizhi.png"></image>
+     </view>
+     <view class="wenz">壁纸用量</view>
+     </view>
+      <view class="zt">
+     <view class="tp" bindtap="yl06">
+      <image class="tpp02" src="../image/chuanglian.png"></image>
+      </view>
+     <view class="wenz">窗帘用量</view>
+     </view>
+      <view class="zt">
+     <view class="tp" bindtap="yl07">
+      <image class="tpp02" src="../image/dingpeng.png"></image>
+     </view>
+     <view class="wenz">顶棚用量</view>
+     </view>
+   
+   
+   
+   
+   </view>
+

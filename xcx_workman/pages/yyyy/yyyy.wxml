@@ -1,0 +1,63 @@
+<!--pages/yl01/yl01.wxml-->
+<view class="dfk">
+
+<view class="xfk">
+<view class="mingzi">房间深度
+<view class="shuruk">
+<input placeholder="输入进深" placeholder-class="placeholderStyle" type="number" value="{{shendu}}" bindinput="shendu"></input></view></view>
+<view class="mi"><text >米</text></view>
+</view>
+<view class="xfk">
+<view class="mingzi">房间宽度
+<view class="shuruk">
+<input placeholder="输入宽度" placeholder-class="placeholderStyle" type="number" value="{{fjkd}}" bindinput="fjkd"></input></view></view>
+<view class="mi"><text >米</text></view>
+</view>
+<view class="xfk">
+<view class="mingzi">门高度
+<view class="shuruk">
+<input placeholder="输入门高" placeholder-class="placeholderStyle" type="number" value="{{mgd}}" bindinput="mgd"></input></view></view>
+<view class="mi"><text >米</text></view>
+</view>
+<view class="xfk">
+<view class="mingzi">门宽度
+<view class="shuruk">
+<input placeholder="输入门宽" placeholder-class="placeholderStyle" type="number" value="{{mkd}}" bindinput="mkd"></input></view></view>
+<view class="mi"><text >米</text></view>
+</view>
+<view class="xfk">
+<view class="mingzi">门数量
+<view class="shuruk">
+<input placeholder="输入数量" placeholder-class="placeholderStyle" type="number" value="{{msl}}" bindinput="msl"></input></view></view>
+<view class="mi"><text >扇</text></view>
+</view>
+<view class="xfk">
+<view class="mingzi">窗高度
+<view class="shuruk">
+<input placeholder="输入高度" placeholder-class="placeholderStyle" type="number" value="{{cgd}}" bindinput="cgd"></input></view></view>
+<view class="mi"><text >米</text></view>
+</view>
+<view class="xfk">
+<view class="mingzi">窗宽度
+<view class="shuruk">
+<input placeholder="输入宽度" placeholder-class="placeholderStyle" type="number" value="{{ckd}}" bindinput="ckd"></input></view></view>
+<view class="mi"><text >米</text></view>
+</view>
+<view class="xfk">
+<view class="mingzi">窗数量
+<view class="shuruk">
+<input placeholder="输入数量" placeholder-class="placeholderStyle" type="number" value="{{csl}}" bindinput="csl"></input></view></view>
+<view class="mi"><text >扇</text></view>
+</view>
+<view class="xfk02">
+<view class="mingzi02" bindtap="jisuan"><text >立即计算</text></view>
+</view>
+<view class="xfk03">
+<view class="mingzi03"><text >行业标准  8.6 平米/升</text></view>
+</view>
+
+
+</view>
+
+
+

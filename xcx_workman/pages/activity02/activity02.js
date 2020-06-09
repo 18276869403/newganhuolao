@@ -7,10 +7,10 @@ Page({
   data: {
 
   },
-   // 跳转到建工计算
+   // 跳转到涂料用量
    yyyy: function () {
     wx.navigateTo({
-      url: '../yyyy/yyyy',
+      url: '../yyyy/yyyy？obj='+1,
     })
   },
 

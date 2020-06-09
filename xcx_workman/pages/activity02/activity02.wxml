@@ -1,5 +1,6 @@
 <!--pages/activity02/activity02.wxml-->
-   <view>
+   <view> 
+     <view class="hengxian"></view>
      <view class="zt">
      <view class="tp" bindtap="yyyy">
      <image class="tpp02" src="../image/tuliao.png"></image>

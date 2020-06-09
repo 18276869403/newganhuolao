@@ -579,6 +579,8 @@ Page({
     //var index = e.currentTarget.dataset.index;
     var id = e.currentTarget.dataset.id
     var name = e.currentTarget.dataset.name
+    getApp().globalData.weizhiid=this.data.cityId
+    getApp().globalData.weizhiid2=id
     getApp().globalData.weizhi = this.data.cityname1+name
     that.setData({
       weizhi:app.globalData.weizhi,

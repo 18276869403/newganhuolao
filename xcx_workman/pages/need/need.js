@@ -94,15 +94,19 @@ Page({
   // 下拉刷新
   onPullDownRefresh: function () {
     app.globalData.xuqiuid = 1
+    this.data.needsList.splice(0,this.data.needsList.length)
+    this.data.pageNo=1
     this.onLoad()
     setTimeout(() => {
       wx.stopPullDownRefresh()
     }, 1000);
   },
-  onLoad: function() {
+  onShow(){
     this.setData({
       weizhi:app.globalData.weizhi
     })
+  },
+  onLoad: function() {
     if(app.globalData.xuqiuid == 0){
       this.data.mid=app.globalData.wxid
     }else{
@@ -420,7 +424,7 @@ Page({
   },
   // 业务分类
   showModallist: function() {
-    this.fenlei()
+    this.typefenleiyj()
     this.setData({
       hasMask: true
     })
@@ -718,7 +722,7 @@ Page({
     //var index = e.currentTarget.dataset.index;
     var id = e.currentTarget.dataset.id
     var name = e.currentTarget.dataset.name
-    getApp().globalData.weizhi = this.data.cityname1+name
+    getApp().globalData.weizhi = this.data.cityname1 + name
     that.setData({
       weizhi:app.globalData.weizhi,
       areaId: id,

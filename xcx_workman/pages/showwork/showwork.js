@@ -47,15 +47,19 @@ Page({
   },
   onPullDownRefresh: function () {
     app.globalData.showid = 1
+    this.data.pageNo=1
+    this.data.showList.splice(0,this.data.showList.length)
     this.onLoad()
     setTimeout(() => {
       wx.stopPullDownRefresh()
     }, 1000);
   },
-  onLoad: function (options) {
+  onShow(){
     this.setData({
       weizhi:app.globalData.weizhi
     })
+  },
+  onLoad: function (options) {
     this.QueryoneArea()
     this.QuerytwoArea()
     if(app.globalData.showid == 0){

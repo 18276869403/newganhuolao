@@ -88,8 +88,11 @@ Page({
         icon:'success',
         duration:2000
       })
-      wx.navigateTo({
-        url: '../myGoods/myGoods?obj='+data.userId,
+      // wx.navigateTo({
+      //   url: '../myGoods/myGoods?obj='+data.userId,
+      // })
+      wx.navigateBack({
+        delta: 1
       })
     } 
   },'put')

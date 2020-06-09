@@ -87,8 +87,8 @@
               <view>
                 <image src="{{viewUrl}}static/image/liulan.png" class="liulan-img"></image>
               </view>
-              <view wx:if="{{item.giveGood == ''||item.giveGood==null}}">0</view>
-              <view wx:if="{{item.giveGood != ''&&item.giveGood!=null}}">{{item.giveGood}}</view>
+              <view wx:if="{{item.backup5 == ''||item.backup5==null}}">0</view>
+              <view wx:if="{{item.backup5 != ''&&item.backup5!=null}}">{{item.backup5}}</view>
             </view>
             <view class="hengxiang">
               <view>
@@ -113,8 +113,8 @@
               <view>
                 <image src="{{viewUrl}}static/image/liulan.png" class="liulan-img"></image>
               </view>
-              <view wx:if="{{item.giveGood == ''||item.giveGood==null}}">0</view>
-              <view wx:if="{{item.giveGood != ''&&item.giveGood!=null}}">{{item.giveGood}}</view>
+              <view wx:if="{{item.backup5 == ''||item.backup5==null}}">0</view>
+              <view wx:if="{{item.backup5 != ''&&item.backup5!=null}}">{{item.backup5}}</view>
             </view>
             <view class="hengxiang">
               <view>

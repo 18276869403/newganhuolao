@@ -48,6 +48,7 @@ Page({
   onPullDownRefresh: function () {
     app.globalData.showid = 1
     this.data.pageNo=1
+    this.data.isLastPage=false
     this.data.showList.splice(0,this.data.showList.length)
     this.onLoad()
     setTimeout(() => {

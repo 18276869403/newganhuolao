@@ -35,12 +35,14 @@ Page({
           icon: 'success',
           duration: 2000
         })
-        setTimeout(function(){
-          wx.redirectTo({
-            url: '../showDetails/showDetails?obj=' + that.data.id,
-          })
-        },1000)
-        
+        // setTimeout(function(){
+        //   wx.redirectTo({
+        //     url: '../showDetails/showDetails?obj=' + that.data.id,
+        //   })
+        // },1000)
+        wx.navigateBack({
+          delta: 1
+        })
       }else{
         wx.showToast({
           title: re.message,

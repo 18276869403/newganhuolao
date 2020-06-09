@@ -4,8 +4,7 @@
         title='微信授权登录' 
         content='小程序需要您的授权获取昵称、头像等公开信息才能提供更好的服务哦' 
         confirmText='发起授权'
-        bind:confirmEvent='bindGetUserInfo'
-        bind:cancelEvent='_cancelEvent'>
+        bind:confirmEvent='bindGetUserInfo'>
   </dialog>
   <view class="hengxian"></view>
   <view class="top zongxiang">
@@ -311,20 +310,3 @@
     </view>
   </view>
 </view>
-
-<!-- 遮罩层显示 （授权） -->
-<!-- <view>
-  <view class="commodity_screen1" wx:if="{{showModalStatus1}}"></view>
-  <view animation="{{animationData1}}" class="commodity_attr_box1" wx:if="{{showModalStatus1}}">
-    <view class='content-alert zongxiang'>
-      <view class='alert-title'>微信授权登录</view>
-      <view class='alert-content'>获取昵称、头像等公开信息</view>
-      <view class='alert-button'>
-        <button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" class='tijiao'>发起授权</button>
-        <view bindgetuserinfo="bindGetUserInfo"></view>
-        <view bindtap='hideModal1'>取消</view>
-      </view>
-    </view>
-  </view>
-</view> -->
-

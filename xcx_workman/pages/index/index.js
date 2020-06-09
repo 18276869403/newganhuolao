@@ -25,18 +25,11 @@ Page({
     sjlist:[],
     tupian:[],
     id:1,
-    isAuto:1
+    isAuto:0
   },
   onReady: function () {
     //获得dialog组件
     this.dialog = this.selectComponent("#dialog");
-  },
-  showDialog: function(){
-    this.dialog.showDialog();
-  },
-  //取消事件
-  _cancelEvent(){
-    this.chushishouquan()
   },
   // 搜索框
   shurukuang:function(e){
@@ -61,7 +54,12 @@ Page({
     wx.getSetting({
       success(res) {
         if (res.authSetting['scope.userInfo']) {
-          that.dialog.hideDialog();
+          if(that.data.isAuto==0){
+            that.dialog.showDialog();
+          }
+          that.setData({
+            isAuto:1
+          })
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称
           wx.login({
             success: function(res) {
@@ -71,11 +69,13 @@ Page({
                 success(res) {
                   // debugger
                   const userInfo = res.userInfo
+                  var openid = wx.getStorageSync('openid')
                   var data = {
                     code: code,
                     picUrl: userInfo.avatarUrl,
                     sex: userInfo.gender,
-                    wxNc: userInfo.nickName
+                    wxNc: userInfo.nickName,
+                    backup1:openid
                   }
                   qingqiu.get("getKeyInfo", data, function(re) {
                     app.globalData.wxid = re.result.wxUser.id
@@ -101,7 +101,14 @@ Page({
       }
     })
   },
-  onLoad: function() {
+  onLoad: function(options) {
+    // 获取二维码参数
+    var scene = decodeURIComponent(options.scene);
+    if (scene != undefined) {
+      wx.setStorageSync('openid', scene)
+    } else {
+      wx.setStorageSync('openid', '')
+    }
     this.chushishouquan()
     this.firstbanner() //banner
     this.pointList() //通知

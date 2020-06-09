@@ -37,7 +37,6 @@ Page({
   //取消事件
   _cancelEvent(){
     this.chushishouquan()
-    this.dialog.hideDialog()
   },
   // 搜索框
   shurukuang:function(e){
@@ -62,6 +61,7 @@ Page({
     wx.getSetting({
       success(res) {
         if (res.authSetting['scope.userInfo']) {
+          that.dialog.hideDialog();
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称
           wx.login({
             success: function(res) {
@@ -85,7 +85,6 @@ Page({
                     app.globalData.openid = re.result.openId
                     app.globalData.wxState = re.result.wxUser.wxState
                     app.globalData.gender = re.result.wxUser.sex
-                    that.dialog.hideDialog();
                   }, 'post')
                 }
               })

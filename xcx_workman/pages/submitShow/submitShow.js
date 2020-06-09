@@ -159,8 +159,11 @@ Page({
         icon:'success',
         duration:2000
       })
-      wx.switchTab({
-        url: '../showwork/showwork',
+      // wx.switchTab({
+      //   url: '../showwork/showwork',
+      // })
+      wx.navigateBack({
+        delta: 1
       })
     } 
   },'post')

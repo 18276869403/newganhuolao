@@ -90,6 +90,7 @@ Page({
       this.data.where==""
     }
     this.data.pageNo=1
+    this.data.isLastPage=false
     this.data.goodslist.splice(0,this.data.goodslist.length)
     this.selectsp()
   },

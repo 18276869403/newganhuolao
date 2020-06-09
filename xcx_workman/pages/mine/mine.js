@@ -219,54 +219,7 @@ Page({
       })
     }
   },
-  //显示弹窗样式 授权
-  showModal1: function(e) {
-    var animation = wx.createAnimation({
-      duration: 300,
-      timingFunction: "linear",
-      delay: 0
-    })
-    this.animation = animation
-
-    animation.opacity(0).rotateX(-100).step();
-    this.setData({
-      animationData: animation.export(),
-      showModalStatus1: true
-    })
-    setTimeout(function() {
-      animation.opacity(1).rotateX(0).step();
-      this.setData({
-        animationData: animation.export()
-      })
-    }.bind(this), 200)
-
-
-  },
-  //隐藏分类弹窗样式
-  hideModal1: function() {
-    var that = this;
-    var animation = wx.createAnimation({
-      duration: 200,
-      timingFunction: "linear",
-      delay: 0
-    })
-    this.animation = animation
-    animation.translateY(300).step()
-    this.setData({
-      animationData: animation.export(),
-      hasMask: false
-    })
-
-    setTimeout(function() {
-      animation.translateY(0).step()
-      this.setData({
-        animationData: animation.export(),
-        showModalStatus1: false,
-        navLeftItems: [],
-
-      })
-    }.bind(this), 200)
-  },
+  
   // 跳转到我的雇佣页面
   myEmploy: function() {
     wx.navigateTo({

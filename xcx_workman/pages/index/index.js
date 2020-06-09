@@ -9,6 +9,7 @@ const util = require('../../utils/util.js')
 Page({
   data: {
     viewUrl:api.viewUrl,
+    showModalStatus1:true,
     sousuotext:'',
     gongren:'2',
     shangjia:'1',
@@ -23,7 +24,25 @@ Page({
     grlist:[],
     sjlist:[],
     tupian:[],
-    id:1
+    id:1,
+    isAuto:1
+  },
+  onReady: function () {
+    //获得dialog组件
+    this.dialog = this.selectComponent("#dialog");
+  },
+  showDialog: function(){
+    this.dialog.showDialog();
+  },
+  //确认事件
+  _confirmEvent(){
+    console.log('你点击了确定');
+    this.dialog.hideDialog();
+  },
+  //取消事件
+  _cancelEvent(){
+    console.log('你点击了取消');
+    this.dialog.hideDialog();
   },
   // 搜索框
   shurukuang:function(e){
@@ -42,25 +61,8 @@ Page({
     }
     this.xqneedlist(obj)
   },
+
   onLoad: function() {
-    var that = this
-    wx.login({
-      success: function(res) {
-        qingqiu.get("getKeyInfo", {
-          code: res.code
-        }, function(re) {
-          app.globalData.wxid = re.result.wxUser.id
-          if (re.result.wxUser.picUrl != null && re.result.wxUser.picUrl.length > 0) {
-            app.globalData.sqgl = 1
-          }
-          app.globalData.openid = re.result.openId
-          app.globalData.wxState = re.result.wxUser.wxState
-          that.setData({
-            openid:re.result.openId
-          })
-        }, "POST")
-      } 
-    })
     this.firstbanner() //banner
     this.pointList() //通知
     this.xqneedlist({pageNo:1,pageSize:3}) //需求
@@ -70,8 +72,14 @@ Page({
     this.QueryoneArea() //一级区域
     this.QuerytwoArea() //二级区域
     this.setData({
+      chushihua: '0',
+      showModalStatus1: false,
       weizhi:app.globalData.weizhi
     })
+  },
+  //用户授权
+  bindGetUserInfo() {
+    
   },
   // 下拉刷新
   onPullDownRefresh: function () {
@@ -537,5 +545,51 @@ Page({
       showModalStatus: false,
       cityname: this.data.cityname1
     })
+  },
+  // 显示弹窗样式 授权
+  showModal1: function(e) {
+    var animation = wx.createAnimation({
+      duration: 300,
+      timingFunction: "linear",
+      delay: 0
+    })
+    this.animation = animation
+
+    animation.opacity(0).rotateX(-100).step();
+    this.setData({
+      animationData: animation.export(),
+      showModalStatus1: true
+    })
+    setTimeout(function() {
+      animation.opacity(1).rotateX(0).step();
+      this.setData({
+        animationData: animation.export()
+      })
+    }.bind(this), 200)
+
+
+  },
+  //隐藏分类弹窗样式
+  hideModal1: function() {
+    var that = this;
+    var animation = wx.createAnimation({
+      duration: 200,
+      timingFunction: "linear",
+      delay: 0
+    })
+    this.animation = animation
+    animation.translateY(300).step()
+    this.setData({
+      animationData: animation.export(),
+      hasMask: false
+    })
+    setTimeout(function() {
+      animation.translateY(0).step()
+      this.setData({
+        animationData: animation.export(),
+        showModalStatus1: false,
+        navLeftItems: [],
+      })
+    }.bind(this), 200)
   },
 })

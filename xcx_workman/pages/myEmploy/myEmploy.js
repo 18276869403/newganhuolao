@@ -22,7 +22,7 @@ Page({
         name: '雇佣我的'
       }
     ],
-    price:0,
+    price:'',
     istrue:0,
     flag: true,
     index: 0,

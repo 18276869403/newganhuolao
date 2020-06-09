@@ -13,7 +13,7 @@ Page({
     id:'',
     wxUserId:'',
     workerskill:'',
-    price:0,
+    price:'',
     istrue:0,
     flag: true,
     index: 0,
@@ -168,22 +168,22 @@ Page({
       flag: true
     })
   },
-  onUser: function() {
-    wx.login({
-      success: function(res) {
-        qingqiu.get("getKeyInfo", {
-          code: res.code
-        }, function(re) {
-          app.globalData.wxid = re.result.wxUser.id
-          if (re.result.wxUser.picUrl != null && re.result.wxUser.picUrl.length > 0) {
-            app.globalData.sqgl = 1
-          }
-          app.globalData.openid = re.result.openId
-          app.globalData.wxState = re.result.wxUser.wxState
-        }, "POST")
-      }
-    })
-  },
+  // onUser: function() {
+  //   wx.login({
+  //     success: function(res) {
+  //       qingqiu.get("getKeyInfo", {
+  //         code: res.code
+  //       }, function(re) {
+  //         app.globalData.wxid = re.result.wxUser.id
+  //         if (re.result.wxUser.picUrl != null && re.result.wxUser.picUrl.length > 0) {
+  //           app.globalData.sqgl = 1
+  //         }
+  //         app.globalData.openid = re.result.openId
+  //         app.globalData.wxState = re.result.wxUser.wxState
+  //       }, "POST")
+  //     }
+  //   })
+  // },
   phonecall:function(e){
     var phone = e.currentTarget.dataset.phone
     wx.makePhoneCall({

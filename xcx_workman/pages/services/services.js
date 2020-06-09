@@ -160,6 +160,8 @@ Page({
   },
   changeType: function(e) {
     var that = this
+    this.data.oneClassId=''
+    this.data.twoClassId=''
     that.setData({
       yijiname : '',
       erjiname : '',
@@ -266,6 +268,7 @@ Page({
   //     firstname:that.data.firstname
   //   })
   // },
+  
   // 跳转到商家详情页面
   businessDetails: function (e) {
     var obj = JSON.stringify(e.currentTarget.dataset.vals)
@@ -599,7 +602,7 @@ Page({
   // 改变二级分类
   changetwoclass: function (e) {
     var that=this
-    that.fenlei()
+    //that.fenlei()
     that.data.flerjiid = e.currentTarget.dataset.id
     that.data.yijiid = e.currentTarget.dataset.yjid
     that.data.yijiname = e.currentTarget.dataset.yijiname

@@ -84,11 +84,13 @@ Page({
   },
   // 搜索商品
   getGoods:function(){
-    // if(this.data.where==""){
-    //   this.selectsp({pages:1,size:this.data.size})
-    // }else{
-    //   this.selectsp({pages:1,size:this.data.size,goodName:this.data.where})
-    // }
+    if(this.data.where==""){
+      this.data.where==this.data.where
+    }else{
+      this.data.where==""
+    }
+    this.data.pageNo=1
+    this.data.goodslist.splice(0,this.data.goodslist.length)
     this.selectsp()
   },
   // 上拉功能

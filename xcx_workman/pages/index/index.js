@@ -114,7 +114,7 @@ Page({
     this.pointList() //通知
     this.xqneedlist({pageNo:1,pageSize:3}) //需求
     this.grneedlist() //工人
-    this.sjneedlist()  //商家
+    this.sjneedlist()  //商家 
     this.spneedlist() //商品
     this.QueryoneArea() //一级区域
     this.QuerytwoArea() //二级区域

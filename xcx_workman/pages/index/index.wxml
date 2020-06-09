@@ -5,7 +5,7 @@
         content='小程序需要您的授权获取昵称、头像等公开信息才能提供更好的服务哦' 
         confirmText='发起授权'
         bind:confirmEvent='bindGetUserInfo'>
-  </dialog>
+  </dialog> 
   <view class="hengxian"></view>
   <view class="top zongxiang">
     <view class="top-title hengxiang">

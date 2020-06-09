@@ -444,6 +444,11 @@ Page({
         console.log(res)
       }
     })
+    wx.chooseLocation({
+      success: function(res) {
+      console.log(res.address)
+      },
+    })
   },
   //手动选择位置
   weizhi2(){},
@@ -642,4 +647,10 @@ Page({
       weizhi:app.globalData.weizhi
     })
   },
+  // 跳转到建工计算详情
+  activity02(){
+    wx.navigateTo({
+      url: '../activity02/activity02',
+    })
+  }
 })

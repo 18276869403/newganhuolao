@@ -68,7 +68,7 @@
         <view class="sortImg" bindtap="activity">
           <image src="{{viewUrl}}static/image/tuijianyouli.png" class="sort-img"></image>
         </view>
-        <view class="sortImg">
+        <view class="sortImg" bindtap="activity02">
           <image src="{{viewUrl}}static/image/jiangongjisuan.png" class="sort-img"></image>
         </view>
       </view>

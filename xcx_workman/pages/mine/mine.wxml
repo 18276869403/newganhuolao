@@ -1,33 +1,15 @@
 <!--pages/mine/mine.wxml-->
 <view class="container">
 
-  <!-- 上方详情块  普通用户-->
-  <view class="content zongxiang" wx:if="{{userType==2}}">
-    <image src="{{viewUrl}}static/image/minebg.png" class="minebg-img"></image>
-    <view class="content-list zongxiang">
-      <!-- 用户为浏览者 -->
-      <view class="content-list-item zongxiang">
-        <view class="userinfo-nickname">
-          <open-data type="userNickName" lang="zh_CN" wx:if="{{chushihua=='0'}}"></open-data>
-          <view wx:if="{{chushihua=='1'}}" bindtap="showModal1">请点击登陆</view>
-        </view>
-        <view class="userinfo-avatar">
-          <open-data type="userAvatarUrl"></open-data>
-        </view>
-        <!-- <view class="content-apply" wx:if="{{wxState==2}}" bindtap="applyBusiness">申请成为商家或者工人</view>
-        <view class="content-apply" wx:if="{{wxState!=2}}">身份：{{wxState==0?'商人':'工人'}}</view> -->
-      </view>
-    </view>
-  </view>
   <!-- 上方详情块  工人,商家-->
-  <view class="content zongxiang" wx:if="{{userType==1||userType==0}}">
+  <view class="content zongxiang">
     <image src="{{viewUrl}}static/image/minebg.png" class="minebg-img"></image>
     <view class="content-top hengxiang">
       <view class="content-top-left zongxiang">
         <view class="hengxiang top-left-details">
           <view class="top-left-name" style="font-weight:350;" wx:if="{{Name!=''}}">{{Name}}</view>
           <view class="top-left-name" style="font-weight:350;" wx:if="{{Name==''}}">
-            <open-data type="userNickName" lang="zh_CN" wx:if="{{chushihua=='0'}}"></open-data>
+            <open-data type="userNickName" lang="zh_CN"></open-data>
           </view>
         </view>
         <view class="top-left-type hengxiang">

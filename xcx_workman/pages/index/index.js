@@ -34,15 +34,9 @@ Page({
   showDialog: function(){
     this.dialog.showDialog();
   },
-  //确认事件
-  _confirmEvent(){
-    console.log('你点击了确定');
-    this.dialog.hideDialog();
-  },
   //取消事件
   _cancelEvent(){
-    console.log('你点击了取消');
-    this.dialog.hideDialog();
+    this.chushishouquan()
   },
   // 搜索框
   shurukuang:function(e){
@@ -61,8 +55,54 @@ Page({
     }
     this.xqneedlist(obj)
   },
-
+  // 授权
+  chushishouquan() {
+    var that = this
+    wx.getSetting({
+      success(res) {
+        if (res.authSetting['scope.userInfo']) {
+          that.dialog.hideDialog();
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+          wx.login({
+            success: function(res) {
+              var code = res.code
+              wx.getUserInfo({
+                lang: 'zh_CN',
+                success(res) {
+                  // debugger
+                  const userInfo = res.userInfo
+                  var data = {
+                    code: code,
+                    picUrl: userInfo.avatarUrl,
+                    sex: userInfo.gender,
+                    wxNc: userInfo.nickName
+                  }
+                  qingqiu.get("getKeyInfo", data, function(re) {
+                    app.globalData.wxid = re.result.wxUser.id
+                    if (re.result.wxUser.picUrl != null && re.result.wxUser.picUrl.length > 0) {
+                      app.globalData.sqgl = 1
+                    }
+                    app.globalData.openid = re.result.openId
+                    app.globalData.wxState = re.result.wxUser.wxState
+                    app.globalData.gender = re.result.wxUser.sex
+                  }, 'post')
+                }
+              })
+            }
+          })
+        } else {
+          wx.showToast({
+            title: '未授权',
+            icon:'none',
+            duration:1000
+          })
+          return
+        }
+      }
+    })
+  },
   onLoad: function() {
+    this.chushishouquan()
     this.firstbanner() //banner
     this.pointList() //通知
     this.xqneedlist({pageNo:1,pageSize:3}) //需求
@@ -76,10 +116,6 @@ Page({
       showModalStatus1: false,
       weizhi:app.globalData.weizhi
     })
-  },
-  //用户授权
-  bindGetUserInfo() {
-    
   },
   // 下拉刷新
   onPullDownRefresh: function () {
@@ -591,5 +627,10 @@ Page({
         navLeftItems: [],
       })
     }.bind(this), 200)
+  },
+  onShow(){
+    this.setData({
+      weizhi:app.globalData.weizhi
+    })
   },
 })

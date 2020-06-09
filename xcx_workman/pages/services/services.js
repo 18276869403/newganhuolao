@@ -55,10 +55,18 @@ Page({
   },
   // 下拉刷新
   onPullDownRefresh: function () {
+    this.data.pageNo=1
+    this.data.workerlist.splice(0,this.data.workerlist.length)
+    this.data.businesslist.splice(0,this.data.businesslist.length)
     this.onLoad()
     setTimeout(() => {
       wx.stopPullDownRefresh()
     }, 1000);
+  },
+  onShow(){
+    this.setData({
+      weizhi:app.globalData.weizhi
+    })
   },
   // 搜索框
   shurukuang:function(e){
@@ -98,9 +106,6 @@ Page({
     }
   },
   onLoad: function() {
-    this.setData({
-      weizhi:app.globalData.weizhi
-    })
     this.QueryoneArea()
     this.QuerytwoArea()
     this.grneedlist()
@@ -155,6 +160,12 @@ Page({
   },
   changeType: function(e) {
     var that = this
+    that.setData({
+      yijiname : '',
+      erjiname : '',
+      yijiid:'',
+      flerjiid:''
+    })
     if (that.data.chooseworker == 0) {
       that.setData({
         chooseworker: 1
@@ -435,7 +446,7 @@ Page({
   },
   // 业务分类
   showModallist: function() {
-    this.fenlei()
+    this.typefenleiyj()
     this.setData({
       hasMask: true
     })
@@ -588,6 +599,7 @@ Page({
   // 改变二级分类
   changetwoclass: function (e) {
     var that=this
+    that.fenlei()
     that.data.flerjiid = e.currentTarget.dataset.id
     that.data.yijiid = e.currentTarget.dataset.yjid
     that.data.yijiname = e.currentTarget.dataset.yijiname

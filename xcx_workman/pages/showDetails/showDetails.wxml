@@ -26,7 +26,8 @@
       <view class="top-content-bottom hengxiang">
         <view class="top-content-bottom-item hengxiang">
           <image src="{{viewUrl}}static/image/dingwei.png" class="dingwei-img"></image>
-          <view class="top-dingwei">{{caseMsgList.oneAreaName}} | {{caseMsgList.twoAreaName}}</view>
+          <view class="top-dingwei" wx-if="{{caseMsgList.oneAreaName==null}}"></view>
+          <view class="top-dingwei" wx-if="{{caseMsgList.oneAreaName!=null}}">{{caseMsgList.oneAreaName}} | {{caseMsgList.twoAreaName}}</view>
         </view>
         <view class="hengxiang top-content-bottom-item1">
           <view>
@@ -58,9 +59,9 @@
     <view class="bottom-list zongxiang" wx:for='{{pinglunList}}'>
       <view class="hengxiang">
         <view class="top-left">
-          <image src="{{item.picUrl}}" class="avator-img1"></image>
+          <image src="{{viewUrl}}{{item.picIurl}}" class="avator-img1"></image>
         </view>
-        <view class="top-content-top1">{{item.wxNc}}</view>
+        <view class="top-content-top1">{{item.name}}</view>
         <view class="hengxiang bottom-time">
           <view>
             <image src="{{viewUrl}}static/image/shijian.png" class="time-img1"></image>

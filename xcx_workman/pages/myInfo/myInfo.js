@@ -12,7 +12,7 @@ Page({
     birth: "2019-01-02",
     sex: '0',
     itemList: ['男', '女'],
-    date: '1990-01-01',
+    date: '1970-01-01',
     name: '',
     phone: '',
     wxUser:[]

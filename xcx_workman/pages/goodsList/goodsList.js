@@ -71,10 +71,23 @@ Page({
     this.selectsp()
   },
   // 我要开店
-  kaidian:function(){
-    wx.navigateTo({
-      url: '../applyBusiness/applyBusiness?typeid='+ "2",
-    })
+  kaidian:function(e){
+    var type = e.currentTarget.dataset.type
+    if(type == 2){
+      if(app.globalData.wxState == 1){
+        wx.showToast({
+          title: '您已入驻工人,同一微信不能入驻两种类型',
+          icon:'none',
+          duration:2000
+        })
+        return
+      }else{
+        app.globalData.type1 = 3
+        wx.navigateTo({
+          url: '../applyBusiness/applyBusiness?typeid=' + type
+        })
+      }
+    }
   },
   // 获取搜索内容
   getText:function(e){

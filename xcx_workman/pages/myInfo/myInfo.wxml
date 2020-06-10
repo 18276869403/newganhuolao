@@ -22,9 +22,10 @@
         <view class='list-left'>生日：</view>
         <view class='list-right'>
           <picker mode="date" value="{{wxUser.dateBirth}}" start="1900-01-01" bindchange="bindDateChange">
-            <view class="picker">
+            <view class="picker" wx:if='{{wxUser.dateBirth != null}}'>
               {{wxUser.dateBirth}}
             </view>
+            <view class="picker" wx:if='{{wxUser.dateBirth == null}}'>1970-01-01</view>
           </picker>
         </view>
       </view>

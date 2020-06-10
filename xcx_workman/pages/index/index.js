@@ -311,6 +311,30 @@ Page({
       })
     }
   },
+  // 商家促销
+  cuxiao:function(){
+    wx.showToast({
+      title: '开发中，敬请期待...',
+      icon:'none',
+      duration:1000
+    })
+  },
+  // 二手商品
+  ershou:function(){
+    wx.showToast({
+      title: '开发中，敬请期待...',
+      icon:'none',
+      duration:1000
+    })
+  },
+  // 本地招工
+  bendi:function(){
+    wx.showToast({
+      title: '开发中，敬请期待...',
+      icon:'none',
+      duration:1000
+    })
+  },
   // 跳转到推荐有礼页面
   activity: function() {
     wx.navigateTo({

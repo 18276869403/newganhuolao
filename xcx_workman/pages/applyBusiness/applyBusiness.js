@@ -218,6 +218,11 @@ Page({
     if(type == 0 || type ==1){
       this.getshuju()
     }
+    if(app.globalData.type1 == 3){
+      this.setData({
+        type:0
+      })
+    }
     this.setData({
       imgUrl: api.imgUrl
     })

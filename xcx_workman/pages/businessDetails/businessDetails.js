@@ -77,11 +77,12 @@ Page({
       phoneNumber: phone,
     })
   },
-  // 跳转商家详情页
+  // 跳转店家晒晒
   goshowshai:function(e){
     var id = e.currentTarget.dataset.id
+    console.log(id)
     wx.navigateTo({
-      url: '../showDetails/showDetails?obj=' + id,
+      url: '../showDetails/showDetails?obj='+id,
     })
   },
 
@@ -100,9 +101,10 @@ Page({
               obj.picOne = that.data.viewUrl + obj.picOne
             }else{
               obj.picOne= that.data.viewUrl + obj.picOne.split(',')[0]
-              obj.picTwo= that.data.viewUrl + obj.picTwo.split(',')[0]
+              // obj.picTwo= that.data.viewUrl + obj.picTwo.split(',')[0]
             }
           }
+        console.log(re.result.records)
           that.setData ({
             showList: re.result.records
           })

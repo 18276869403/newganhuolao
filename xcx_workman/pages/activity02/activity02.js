@@ -18,7 +18,37 @@ Page({
     wx.navigateTo({
       url: '../yyyy/yyyy?obj='+2,
     })
-},
+  },
+  // 跳转到地砖用量
+  yl03: function () {
+    wx.navigateTo({
+      url: '../yyyy/yyyy?obj='+3,
+    })
+  },
+  // 跳转到墙砖用量
+  yl04: function () {
+    wx.navigateTo({
+      url: '../yyyy/yyyy?obj='+4,
+    })
+  },
+  // 跳转到壁纸用量
+  yl05: function () {
+    wx.navigateTo({
+      url: '../yyyy/yyyy?obj='+5,
+    })
+  },
+  // 跳转到窗帘用量
+  yl06: function () {
+    wx.navigateTo({
+      url: '../yyyy/yyyy?obj='+6,
+    })
+  },
+  // 跳转到顶棚用量
+  yl07: function () {
+    wx.navigateTo({
+      url: '../yyyy/yyyy?obj='+7,
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

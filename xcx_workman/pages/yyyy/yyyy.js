@@ -30,10 +30,10 @@ Page({
     qzfjcd:'',
     qzfjkd:'',
     qzfjgd:'',
-    qzmgu:'',
+    qzmgd:'',
     qzmkd:'',
     qzmss:'',
-    qzccd:'',
+    qzcgd:'',
     qzckd:'',
     qzcss:'',
     qzcd:'',
@@ -110,38 +110,38 @@ Page({
       fjcd:e.detail.value
     })
   },
-    //门高度
+  //门高度
   mgd:function(e){
     this.setData({
       mgd:e.detail.value
     })
 
   },
-    //门宽度
+  //门宽度
   mkd:function(e){
     this.setData({
       mkd:e.detail.value
     })
   },
-//门数量
+  //门数量
   msl:function(e){
     this.setData({
       msl:e.detail.value
     })
   },
-    //窗高度
-    cgd:function(e){
+  //窗高度
+  cgd:function(e){
     this.setData({
       cgd:e.detail.value
     })
   },
-    //窗宽度
+  //窗宽度
   ckd:function(e){
     this.setData({
       ckd:e.detail.value
     })
   },
-    //窗数量
+  //窗数量
   csl:function(e){
     this.setData({
       csl:e.detail.value
@@ -238,18 +238,19 @@ Page({
     var menmainji=Number(that.data.mgd)*Number(that.data.mkd)*Number(that.data.msl)
     var chuangmainji=Number(that.data.cgd)*Number(that.data.ckd)*Number(that.data.csl)
     var sjmj=Number(mainji)-Number(menmainji)-Number(chuangmainji)
-    var jieguo=(Number(sjmj)/8.6*100)/100
-    if(Number(jieguo)>Number(jieguo).toFixed(0))
+    var jieguo1=(Number(sjmj)/8.6*100)/100
+    var jieguotl=Math.round((Number(sjmj)/8.6*100)/100)
+    if(Number(jieguotl)<Number(jieguo1))
     {
-      var jieguo=(Number(jieguo)+1).toFixed(0)
+      var jieguotl=Number(jieguotl)+1
     }
-    console.log(jieguo)
+    console.log(jieguotl)
     wx.navigateTo({
-      url: '../jsjg/jsjg?obj='+jieguo,
+      url: '../jsjg/jsjg?obj='+jieguotl,
     })
   },
-   // 地板用量计算
-   
+
+  // 地板用量计算
   //房间长度
   dbfjcd:function(e){
     this.setData({
@@ -277,7 +278,16 @@ Page({
   //计算
   jisuandb(){
     var that=this
-    var jieguodb=Math.round((Number(that.data.dbfjcd)/Number(that.data.dbdcd))*(Number(that.data.dbfjkd)/Number(that.data.dbdkd)))
+    // 耗损率
+    var rate=1.05
+    var dbfjcd=Number(that.data.dbfjcd)*100
+    var dbfjkd=Number(that.data.dbfjkd)*100
+    var jieguo2=(Number(dbfjcd)/Number(that.data.dbdcd))*(Number(dbfjkd)/Number(that.data.dbdkd))*Number(rate)
+    var jieguodb=Math.round(jieguo2)
+    if(Number(jieguodb)<Number(jieguo2))
+    {
+      var jieguodb=Number(jieguodb)+1
+    }
     console.log(jieguodb)
     wx.navigateTo({
       url: '../jsjg/jsjg?obj='+jieguodb,
@@ -285,7 +295,6 @@ Page({
   },
 
   // 地砖用量计算
-   
   //房间长度
   dzfjcd:function(e){
     this.setData({
@@ -313,7 +322,14 @@ Page({
   //计算
   jisuandz(){
     var that=this
-    var jieguodz=Math.round((Number(that.data.dzfjcd)/Number(that.data.dzzcd))*(Number(that.data.dzfjkd)/Number(that.data.dzzkd)))
+    // 耗损率
+    var rate=1.05
+    var jieguo3=(Number(that.data.dzfjcd)*100/Number(that.data.dzzcd))*(Number(that.data.dzfjkd)*100/Number(that.data.dzzkd))*Number(rate)
+    var jieguodz=Math.round(jieguo3)
+    if(Number(jieguodz)<Number(jieguo3))
+    {
+      var jieguodz=Number(jieguodz)+1
+    }
     console.log(jieguodz)
     wx.navigateTo({
       url: '../jsjg/jsjg?obj='+jieguodz,
@@ -341,9 +357,9 @@ Page({
     })
   },
   //门高度
-  qzmgu:function(e){
+  qzmgd:function(e){
     this.setData({
-      qzmgu:e.detail.value
+      qzmgd:e.detail.value
     })
   },
   //门宽度
@@ -359,9 +375,9 @@ Page({
     })
   },
   //窗高度
-  qzccd:function(e){
+  qzcgd:function(e){
     this.setData({
-      qzccd:e.detail.value
+      qzcgd:e.detail.value
     })
   },
   //窗宽度
@@ -391,7 +407,20 @@ Page({
   //计算
   jisuanqz(){
     var that=this
-    var jieguoqz=0
+    // 耗损率
+    var rate=1.05
+    debugger
+    var num1= (Number(that.data.qzfjcd)*100/Number(that.data.qzcd))*(Number(that.data.qzfjgd)*100/Number(that.data.qzkd))*2
+    var num2= (Number(that.data.qzfjkd)*100/Number(that.data.qzcd))*(Number(that.data.qzfjcd)*100/Number(that.data.qzkd))*2
+    var num3= (Number(that.data.qzcgd)*100/Number(that.data.qzcd))*(Number(that.data.qzckd)*100/Number(that.data.qzkd))*Number(that.data.qzcss)
+    var num4= (Number(that.data.qzmgd)*100/Number(that.data.qzcd))*(Number(that.data.qzmkd)*100/Number(that.data.qzkd))*Number(that.data.qzmss)
+    var num5=Number(num1)+Number(num2)-Number(num3)-Number(num4)
+    var jieguo4=Number(num5)*Number(rate)
+    var jieguoqz=Math.round(jieguo4)
+    if(Number(jieguoqz)<Number(jieguo4))
+    {
+      var jieguoqz=Number(jieguoqz)+1
+    }
     console.log(jieguoqz)
     wx.navigateTo({
       url: '../jsjg/jsjg?obj='+jieguoqz,
@@ -403,7 +432,7 @@ Page({
   //房间长度
   bzfjcd:function(e){
     this.setData({
-      qzfjcd:e.detail.value
+      bzfjcd:e.detail.value
     })
   },
   //房间宽度
@@ -425,9 +454,16 @@ Page({
     })
   },
   //计算
-  jisuanqz(){
+  jisuanbz(){
     var that=this
-    var jieguobz=0
+    // 耗损率
+    var rate=1.1
+    var jieguo5=(Number(that.data.bzfjcd)*2+Number(that.data.bzfjkd)*2)*Number(that.data.bzfjgd)*Number(rate)/Number(that.data.bzgg)
+    var jieguobz=Math.round(jieguo5)
+    if(Number(jieguobz)<Number(jieguo5))
+    {
+      var jieguobz=Number(jieguobz)+1
+    }
     console.log(jieguobz)
     wx.navigateTo({
       url: '../jsjg/jsjg?obj='+jieguobz,
@@ -457,7 +493,12 @@ Page({
   //计算
   jisuancl(){
     var that=this
-    var jieguocl=0
+    var jieguo6=(Number(that.data.chkd)+0.15*2)*2/Number(that.data.blkd)*(0.85+Number(that.data.chcd))
+    var jieguocl=Math.round(jieguo6)
+    if(Number(jieguocl)<Number(jieguo6))
+    {
+      var jieguocl=Number(jieguocl)+1
+    }
     console.log(jieguocl)
     wx.navigateTo({
       url: '../jsjg/jsjg?obj='+jieguocl,

@@ -88,13 +88,13 @@
 <view class="mingzi">地板长度</view>
 <view class="shuruk">
 <input placeholder="输入地板长度" placeholder-class="placeholderStyle" type="number" value="{{dbdcd}}" bindinput="dbdcd" class="ipt"></input></view>
-<view class="mi"><text >米</text></view>
+<view class="mi"><text >厘米</text></view>
 </view>
 <view class="xfk">
 <view class="mingzi">地板宽度</view>
 <view class="shuruk">
 <input placeholder="输入地板宽度" placeholder-class="placeholderStyle" type="number" value="{{dbdkd}}" bindinput="dbdkd" class="ipt"></input></view>
-<view class="mi"><text >米</text></view>
+<view class="mi"><text >厘米</text></view>
 </view>
 <view class="xfk02">
 <view class="mingzi02" bindtap="jisuandb"><text >立即计算</text></view>
@@ -124,13 +124,13 @@
 <view class="mingzi">地砖长度</view>
 <view class="shuruk">
 <input placeholder="输入地砖长度" placeholder-class="placeholderStyle" type="number" value="{{dzzcd}}" bindinput="dzzcd" class="ipt"></input></view>
-<view class="mi"><text >米</text></view>
+<view class="mi"><text >厘米</text></view>
 </view>
 <view class="xfk">
 <view class="mingzi">地板宽度</view>
 <view class="shuruk">
 <input placeholder="输入地砖宽度" placeholder-class="placeholderStyle" type="number" value="{{dzzkd}}" bindinput="dzzkd" class="ipt"></input></view>
-<view class="mi"><text >米</text></view>
+<view class="mi"><text >厘米</text></view>
 </view>
 <view class="xfk02">
 <view class="mingzi02" bindtap="jisuandz"><text >立即计算</text></view>
@@ -203,13 +203,13 @@
 <view class="mingzi">墙砖长度</view>
 <view class="shuruk">
 <input placeholder="输入墙砖长度" placeholder-class="placeholderStyle" type="number" value="{{qzcd}}" bindinput="qzcd" class="ipt"></input></view>
-<view class="mi"><text >米</text></view>
+<view class="mi"><text >厘米</text></view>
 </view>
 <view class="xfk">
 <view class="mingzi">墙砖宽度</view>
 <view class="shuruk">
 <input placeholder="输入墙砖宽度" placeholder-class="placeholderStyle" type="number" value="{{qzkd}}" bindinput="qzkd" class="ipt"></input></view>
-<view class="mi"><text >米</text></view>
+<view class="mi"><text >厘米</text></view>
 </view>
 <view class="xfk02">
 <view class="mingzi02" bindtap="jisuanqz"><text >立即计算</text></view>
@@ -239,7 +239,7 @@
 <view class="xfk">
 <view class="mingzi">房间高度</view>
 <view class="shuruk">
-<input placeholder="输入房间高度" placeholder-class="placeholderStyle" type="number" value="{{dzfjgd}}" bindinput="dzfjgd" class="ipt"></input></view>
+<input placeholder="输入房间高度" placeholder-class="placeholderStyle" type="number" value="{{bzfjgd}}" bindinput="bzfjgd" class="ipt"></input></view>
 <view class="mi"><text >米</text></view>
 </view>
 <view class="xfk">
@@ -249,7 +249,7 @@
 <view class="mi"><text >米</text></view>
 </view>
 <view class="xfk02">
-<view class="mingzi02" bindtap="jisuandz"><text >立即计算</text></view>
+<view class="mingzi02" bindtap="jisuanbz"><text >立即计算</text></view>
 </view>
 <view class="xfk03">
 </view>

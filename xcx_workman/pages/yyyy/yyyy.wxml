@@ -104,8 +104,207 @@
 
 
 </view>
+<!--pages/yl01/yl01.wxml-->
+<!-- 地砖用量-->
+<view class="dfk" wx-if="{{type==3}}">
+<view class="hengxian"></view>
+<view class="xfk">
+<view class="mingzi">房间长度</view>
+<view class="shuruk">
+<input placeholder="输入长度" placeholder-class="placeholderStyle" type="number" value="{{dzfjcd}}" bindinput="dzfjcd" class="ipt"></input></view>
+<view class="mi"><text >米</text></view>
+</view>
+<view class="xfk">
+<view class="mingzi">房间宽度</view>
+<view class="shuruk">
+<input placeholder="输入宽度" placeholder-class="placeholderStyle" type="number" value="{{dzfjkd}}" bindinput="dzfjkd" class="ipt"></input></view>
+<view class="mi"><text >米</text></view>
+</view>
+<view class="xfk">
+<view class="mingzi">地砖长度</view>
+<view class="shuruk">
+<input placeholder="输入地砖长度" placeholder-class="placeholderStyle" type="number" value="{{dzzcd}}" bindinput="dzzcd" class="ipt"></input></view>
+<view class="mi"><text >米</text></view>
+</view>
+<view class="xfk">
+<view class="mingzi">地板宽度</view>
+<view class="shuruk">
+<input placeholder="输入地砖宽度" placeholder-class="placeholderStyle" type="number" value="{{dzzkd}}" bindinput="dzzkd" class="ipt"></input></view>
+<view class="mi"><text >米</text></view>
+</view>
+<view class="xfk02">
+<view class="mingzi02" bindtap="jisuandz"><text >立即计算</text></view>
+</view>
+<view class="xfk03">
+</view>
+
+
+</view>
+
+<!--pages/yl01/yl01.wxml-->
+<!-- 墙砖用量-->
+<view class="dfk" wx-if="{{type==4}}">
+<view class="hengxian"></view>
+<view class="xfk">
+<view class="mingzi">房间长度</view>
+<view class="shuruk">
+<input placeholder="输入房间长度" placeholder-class="placeholderStyle" type="number" value="{{qzfjcd}}" bindinput="qzfjcd" class="ipt"></input></view>
+<view class="mi"><text >米</text></view>
+</view>
+<view class="xfk">
+<view class="mingzi">房间宽度</view>
+<view class="shuruk">
+<input placeholder="输入房间宽度" placeholder-class="placeholderStyle" type="number" value="{{qzfjkd}}" bindinput="qzfjkd" class="ipt"></input></view>
+<view class="mi"><text >米</text></view>
+</view>
+<view class="xfk">
+<view class="mingzi">房间高度</view>
+<view class="shuruk">
+<input placeholder="输入房间高度" placeholder-class="placeholderStyle" type="number" value="{{qzfjgd}}" bindinput="qzfjgd" class="ipt"></input></view>
+<view class="mi"><text >米</text></view>
+</view>
+<view class="xfk">
+<view class="mingzi">门高度</view>
+<view class="shuruk">
+<input placeholder="输入门高度" placeholder-class="placeholderStyle" type="number" value="{{qzmgd}}" bindinput="qzmgd" class="ipt"></input></view>
+<view class="mi"><text >米</text></view>
+</view>
+<view class="xfk">
+<view class="mingzi">门宽度</view>
+<view class="shuruk">
+<input placeholder="输入门宽度" placeholder-class="placeholderStyle" type="number" value="{{qzmkd}}" bindinput="qzmkd" class="ipt"></input></view>
+<view class="mi"><text >米</text></view>
+</view>
+<view class="xfk">
+<view class="mingzi">门扇数</view>
+<view class="shuruk">
+<input placeholder="输入门扇数" placeholder-class="placeholderStyle" type="number" value="{{qzmss}}" bindinput="qzmss" class="ipt"></input></view>
+<view class="mi"><text >米</text></view>
+</view>
+<view class="xfk">
+<view class="mingzi">窗高度</view>
+<view class="shuruk">
+<input placeholder="输入窗高度" placeholder-class="placeholderStyle" type="number" value="{{qzcgd}}" bindinput="qzcgd" class="ipt"></input></view>
+<view class="mi"><text >米</text></view>
+</view>
+<view class="xfk">
+<view class="mingzi">窗宽度</view>
+<view class="shuruk">
+<input placeholder="输入窗宽度" placeholder-class="placeholderStyle" type="number" value="{{qzckd}}" bindinput="qzckd" class="ipt"></input></view>
+<view class="mi"><text >米</text></view>
+</view>
+<view class="xfk">
+<view class="mingzi">窗扇数</view>
+<view class="shuruk">
+<input placeholder="输入窗扇数" placeholder-class="placeholderStyle" type="number" value="{{qzcss}}" bindinput="qzcss" class="ipt"></input></view>
+<view class="mi"><text >米</text></view>
+</view>
+<view class="xfk">
+<view class="mingzi">墙砖长度</view>
+<view class="shuruk">
+<input placeholder="输入墙砖长度" placeholder-class="placeholderStyle" type="number" value="{{qzcd}}" bindinput="qzcd" class="ipt"></input></view>
+<view class="mi"><text >米</text></view>
+</view>
+<view class="xfk">
+<view class="mingzi">墙砖宽度</view>
+<view class="shuruk">
+<input placeholder="输入墙砖宽度" placeholder-class="placeholderStyle" type="number" value="{{qzkd}}" bindinput="qzkd" class="ipt"></input></view>
+<view class="mi"><text >米</text></view>
+</view>
+<view class="xfk02">
+<view class="mingzi02" bindtap="jisuanqz"><text >立即计算</text></view>
+</view>
+<view class="xfk03">
+</view>
+
+
+</view>
+
+<!--pages/yl01/yl01.wxml-->
+<!-- 壁纸用量-->
+<view class="dfk" wx-if="{{type==5}}">
+<view class="hengxian"></view>
+<view class="xfk">
+<view class="mingzi">房间长度</view>
+<view class="shuruk">
+<input placeholder="输入房间长度" placeholder-class="placeholderStyle" type="number" value="{{bzfjcd}}" bindinput="bzfjcd" class="ipt"></input></view>
+<view class="mi"><text >米</text></view>
+</view>
+<view class="xfk">
+<view class="mingzi">房间宽度</view>
+<view class="shuruk">
+<input placeholder="输入房间宽度" placeholder-class="placeholderStyle" type="number" value="{{bzfjkd}}" bindinput="bzfjkd" class="ipt"></input></view>
+<view class="mi"><text >米</text></view>
+</view>
+<view class="xfk">
+<view class="mingzi">房间高度</view>
+<view class="shuruk">
+<input placeholder="输入房间高度" placeholder-class="placeholderStyle" type="number" value="{{dzfjgd}}" bindinput="dzfjgd" class="ipt"></input></view>
+<view class="mi"><text >米</text></view>
+</view>
+<view class="xfk">
+<view class="mingzi">壁纸规格</view>
+<view class="shuruk">
+<input placeholder="输入壁纸每卷平方数" placeholder-class="placeholderStyle" type="number" value="{{bzgg}}" bindinput="bzgg" class="ipt"></input></view>
+<view class="mi"><text >米</text></view>
+</view>
+<view class="xfk02">
+<view class="mingzi02" bindtap="jisuandz"><text >立即计算</text></view>
+</view>
+<view class="xfk03">
+</view>
+
+
+</view>
+
+<!--pages/yl01/yl01.wxml-->
+<!-- 窗帘用量-->
+<view class="dfk" wx-if="{{type==6}}">
+<view class="hengxian"></view>
+<view class="xfk">
+<view class="mingzi">窗户长度</view>
+<view class="shuruk">
+<input placeholder="输入窗户长度" placeholder-class="placeholderStyle" type="number" value="{{chcd}}" bindinput="chcd" class="ipt"></input></view>
+<view class="mi"><text >米</text></view>
+</view>
+<view class="xfk">
+<view class="mingzi">窗户宽度</view>
+<view class="shuruk">
+<input placeholder="输入窗户宽度" placeholder-class="placeholderStyle" type="number" value="{{chkd}}" bindinput="chkd" class="ipt"></input></view>
+<view class="mi"><text >米</text></view>
+</view>
+<view class="xfk">
+<view class="mingzi">布料宽度</view>
+<view class="shuruk">
+<input placeholder="输入布料宽度" placeholder-class="placeholderStyle" type="number" value="{{blkd}}" bindinput="blkd" class="ipt"></input></view>
+<view class="mi"><text >米</text></view>
+</view>
+<view class="xfk02">
+<view class="mingzi02" bindtap="jisuancl"><text >立即计算</text></view>
+</view>
+<view class="xfk03">
+</view>
+
+
+</view>
 
 
 
+<!--pages/yl01/yl01.wxml-->
+<!-- 顶棚用量-->
+<view class="dfk" wx-if="{{type==7}}">
+<view class="hengxian"></view>
+<view class="xfk">
+<view class="mingzi">长度</view>
+<view class="shuruk">
+<input placeholder="输入长度" placeholder-class="placeholderStyle" type="number" value="{{cd}}" bindinput="cd" class="ipt"></input></view>
+<view class="mi"><text >米</text></view>
+</view>
+<view class="xfk02">
+<view class="mingzi02" bindtap="jisuancl"><text >立即计算</text></view>
+</view>
+<view class="xfk03">
+</view>
 
 
+</view>

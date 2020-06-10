@@ -16,11 +16,39 @@ Page({
     cgd:'',
     ckd:'',
     csl:'',
-
+    // 地板
     dbfjcd:'',
     dbfjkd:'',
     dbdcd:'',
     dbdkd:'',
+    // 地砖
+    dzfjcd:'',
+    dzfjkd:'',
+    dzzcd:'',
+    dzzkd:'',
+    // 墙砖
+    qzfjcd:'',
+    qzfjkd:'',
+    qzfjgd:'',
+    qzmgu:'',
+    qzmkd:'',
+    qzmss:'',
+    qzccd:'',
+    qzckd:'',
+    qzcss:'',
+    qzcd:'',
+    qzkd:'',
+    //壁纸
+    bzfjcd:'',
+    bzfjkd:'',
+    bzfjgd:'',
+    bzgg:'',
+    //窗帘
+    chcd:'',
+    chkd:'',
+    blkd:'',
+    //顶棚
+    cd:''
   },
 
   /**
@@ -36,6 +64,31 @@ Page({
     if(options.obj==2){
       this.setData({
         type:2
+      })
+    }
+    if(options.obj==3){
+      this.setData({
+        type:3
+      })
+    }
+    if(options.obj==4){
+      this.setData({
+        type:4
+      })
+    }
+    if(options.obj==5){
+      this.setData({
+        type:5
+      })
+    }
+    if(options.obj==6){
+      this.setData({
+        type:6
+      })
+    }
+    if(options.obj==7){
+      this.setData({
+        type:7
       })
     }
   },
@@ -228,6 +281,204 @@ Page({
     console.log(jieguodb)
     wx.navigateTo({
       url: '../jsjg/jsjg?obj='+jieguodb,
+    })
+  },
+
+  // 地砖用量计算
+   
+  //房间长度
+  dzfjcd:function(e){
+    this.setData({
+      dzfjcd:e.detail.value
+    })
+  },
+  //房间宽度
+  dzfjkd:function(e){
+    this.setData({
+      dzfjkd:e.detail.value
+    })
+  },
+  //地砖长度
+  dzzcd:function(e){
+    this.setData({
+      dzzcd:e.detail.value
+    })
+  },
+  //地砖宽度
+  dzzkd:function(e){
+    this.setData({
+      dzzkd:e.detail.value
+    })
+  },
+  //计算
+  jisuandz(){
+    var that=this
+    var jieguodz=Math.round((Number(that.data.dzfjcd)/Number(that.data.dzzcd))*(Number(that.data.dzfjkd)/Number(that.data.dzzkd)))
+    console.log(jieguodz)
+    wx.navigateTo({
+      url: '../jsjg/jsjg?obj='+jieguodz,
+    })
+  },
+  
+  // 墙砖用量计算
+   
+  //房间长度
+  qzfjcd:function(e){
+    this.setData({
+      qzfjcd:e.detail.value
+    })
+  },
+  //房间宽度
+  qzfjkd:function(e){
+    this.setData({
+      qzfjkd:e.detail.value
+    })
+  },
+  //房间高度
+  qzfjgd:function(e){
+    this.setData({
+      qzfjgd:e.detail.value
+    })
+  },
+  //门高度
+  qzmgu:function(e){
+    this.setData({
+      qzmgu:e.detail.value
+    })
+  },
+  //门宽度
+  qzmkd:function(e){
+    this.setData({
+      qzmkd:e.detail.value
+    })
+  },
+  //门扇数
+  qzmss:function(e){
+    this.setData({
+      qzmss:e.detail.value
+    })
+  },
+  //窗高度
+  qzccd:function(e){
+    this.setData({
+      qzccd:e.detail.value
+    })
+  },
+  //窗宽度
+  qzckd:function(e){
+    this.setData({
+      qzckd:e.detail.value
+    })
+  },
+  //窗扇数
+  qzcss:function(e){
+    this.setData({
+      qzcss:e.detail.value
+    })
+  },
+  //墙砖长度
+  qzcd:function(e){
+    this.setData({
+      qzcd:e.detail.value
+    })
+  },
+  //墙砖宽度
+  qzkd:function(e){
+    this.setData({
+      qzkd:e.detail.value
+    })
+  },
+  //计算
+  jisuanqz(){
+    var that=this
+    var jieguoqz=0
+    console.log(jieguoqz)
+    wx.navigateTo({
+      url: '../jsjg/jsjg?obj='+jieguoqz,
+    })
+  },
+
+  // 壁纸用量计算
+   
+  //房间长度
+  bzfjcd:function(e){
+    this.setData({
+      qzfjcd:e.detail.value
+    })
+  },
+  //房间宽度
+  bzfjkd:function(e){
+    this.setData({
+      bzfjkd:e.detail.value
+    })
+  },
+  //房间高度
+  bzfjgd:function(e){
+    this.setData({
+      bzfjgd:e.detail.value
+    })
+  },
+  //壁纸规格
+  bzgg:function(e){
+    this.setData({
+      bzgg:e.detail.value
+    })
+  },
+  //计算
+  jisuanqz(){
+    var that=this
+    var jieguobz=0
+    console.log(jieguobz)
+    wx.navigateTo({
+      url: '../jsjg/jsjg?obj='+jieguobz,
+    })
+  },
+  
+  // 窗帘用量计算
+   
+  //窗户长度
+  chcd:function(e){
+    this.setData({
+      chcd:e.detail.value
+    })
+  },
+  //窗户宽度
+  chkd:function(e){
+    this.setData({
+      chkd:e.detail.value
+    })
+  },
+  //布料宽度
+  blkd:function(e){
+    this.setData({
+      blkd:e.detail.value
+    })
+  },
+  //计算
+  jisuancl(){
+    var that=this
+    var jieguocl=0
+    console.log(jieguocl)
+    wx.navigateTo({
+      url: '../jsjg/jsjg?obj='+jieguocl,
+    })
+  },
+  
+  // 顶棚用量计算
+   
+  //窗户长度
+  cd:function(e){
+    this.setData({
+      cd:e.detail.value
+    })
+  },
+  //计算
+  jisuandp(){
+    var that=this
+    var jieguodp=0
+    console.log(jieguodp)
+    wx.navigateTo({
+      url: '../jsjg/jsjg?obj='+jieguodp,
     })
   },
   /**

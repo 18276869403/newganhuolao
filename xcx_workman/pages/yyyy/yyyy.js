@@ -24,7 +24,7 @@ Page({
   onLoad: function (options) {
     if(options.obj=1){
       this.setData({
-        type=1
+        type:1
       })
     }
   },

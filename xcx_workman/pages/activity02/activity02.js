@@ -8,12 +8,17 @@ Page({
 
   },
    // 跳转到涂料用量
-   yyyy: function () {
+  yyyy: function () {
     wx.navigateTo({
-      url: '../yyyy/yyyy？obj='+1,
+      url: '../yyyy/yyyy?obj='+1,
     })
   },
-
+  // 跳转到地板用量
+  yl02: function () {
+    wx.navigateTo({
+      url: '../yyyy/yyyy?obj='+2,
+    })
+},
   /**
    * 生命周期函数--监听页面加载
    */

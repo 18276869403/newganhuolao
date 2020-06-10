@@ -1,3 +1,5 @@
+// import { match } from "assert"
+
 // pages/yyyy/yyyy.js
 Page({
 
@@ -5,14 +7,26 @@ Page({
    * 页面的初始数据
    */
   data: {
-    shendu:''
+    shendu:'',
+    fjkd:'',
+    fjcd:'',
+    mgd:'',
+    mkd:'',
+    msl:'',
+    cgd:'',
+    ckd:'',
+    csl:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    if(options.obj=1){
+      this.setData({
+        type=1
+      })
+    }
   },
   // 获取深度
   shendu:function(e){
@@ -24,6 +38,12 @@ Page({
   fjkd:function(e){
     this.setData({
       fjkd:e.detail.value
+    })
+  },
+  //房间长度
+  fjcd:function(e){
+    this.setData({
+      fjcd:e.detail.value
     })
   },
     //门高度
@@ -46,9 +66,9 @@ Page({
     })
   },
     //窗高度
-    sgd:function(e){
+    cgd:function(e){
     this.setData({
-      sgd:e.detail.value
+      cgd:e.detail.value
     })
   },
     //窗宽度
@@ -71,10 +91,98 @@ Page({
   },
   // 计算
   jisuan:function(){
+    var that=this
+    if(that.data.shendu==''){
+      wx.showToast({
+        title: '请输入房间深度',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    if(that.data.fjkd==''){
+      wx.showToast({
+        title: '请输入房间宽度',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    if(that.data.fjcd==''){
+      wx.showToast({
+        title: '请输入房间长度',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    if(that.data.mgd==''){
+      wx.showToast({
+        title: '请输入门高度',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    if(that.data.mkd==''){
+      wx.showToast({
+        title: '请输入门宽度',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    if(that.data.msl==''){
+      wx.showToast({
+        title: '请输入门数量',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    if(that.data.cgd==''){
+      wx.showToast({
+        title: '请输入窗高度',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    if(that.data.ckd==''){
+      wx.showToast({
+        title: '请输入窗宽度',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    if(that.data.csl==''){
+      wx.showToast({
+        title: '请输入窗数量',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    console.log(that.data.fjcd)
+    console.log(that.data.fjkd)
+    console.log(that.data.shendu)
+    var fc=that.data.fjcd
+    var fk=that.data.fjkd
+    var fs=that.data.shendu
+    var mainji=(Number(fc)+Number(fk))*2*Number(fs)+Number(fc)*Number(fk)
+    var menmainji=Number(that.data.mgd)*Number(that.data.mkd)*Number(that.data.msl)
+    var chuangmainji=Number(that.data.cgd)*Number(that.data.ckd)*Number(that.data.csl)
+    var sjmj=Number(mainji)-Number(menmainji)-Number(chuangmainji)
+    var jieguo=(Number(sjmj)/8.6*100)/100
+    if(Number(jieguo)>Number(jieguo).toFixed(0))
+    {
+      var jieguo=(Number(jieguo)+1).toFixed(0)
+    }
+    console.log(jieguo)
     wx.navigateTo({
-      url: '../jsjg/jsjg',
+      url: '../jsjg/jsjg?obj='+jieguo,
     })
-    console.log(this.data.shendu)
   },
    
   /**

@@ -1,3 +1,6 @@
 {
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "涂料用量",
   "usingComponents": {}
 }

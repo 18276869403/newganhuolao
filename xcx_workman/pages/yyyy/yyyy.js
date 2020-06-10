@@ -22,9 +22,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if(options.obj=1){
+    console.log(options.obj)
+    if(options.obj==1){
       this.setData({
         type:1
+      })
+    }
+    if(options.obj==2){
+      this.setData({
+        type:2
       })
     }
   },

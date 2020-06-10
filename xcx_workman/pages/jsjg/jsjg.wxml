@@ -2,7 +2,7 @@
 
 <view>
   <view class="jsjgs">
-    <view class="shuzi"><text >32升</text></view>
+    <view class="shuzi"><text >{{jieguo}}</text></view>
   </view>
   <view class="xinq">
     <text>你可能感兴趣的商品</text>

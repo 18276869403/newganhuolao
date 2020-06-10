@@ -15,7 +15,12 @@ Page({
     msl:'',
     cgd:'',
     ckd:'',
-    csl:''
+    csl:'',
+
+    dbfjcd:'',
+    dbfjkd:'',
+    dbdcd:'',
+    dbdkd:'',
   },
 
   /**
@@ -190,7 +195,41 @@ Page({
       url: '../jsjg/jsjg?obj='+jieguo,
     })
   },
+   // 地板用量计算
    
+  //房间长度
+  dbfjcd:function(e){
+    this.setData({
+      dbfjcd:e.detail.value
+    })
+  },
+  //房间宽度
+  dbfjkd:function(e){
+    this.setData({
+      dbfjkd:e.detail.value
+    })
+  },
+  //地板长度
+  dbdcd:function(e){
+    this.setData({
+      dbdcd:e.detail.value
+    })
+  },
+  //地板宽度
+  dbdkd:function(e){
+    this.setData({
+      dbdkd:e.detail.value
+    })
+  },
+  //计算
+  jisuandb(){
+    var that=this
+    var jieguodb=Math.round((Number(that.data.dbfjcd)/Number(that.data.dbdcd))*(Number(that.data.dbfjkd)/Number(that.data.dbdkd)))
+    console.log(jieguodb)
+    wx.navigateTo({
+      url: '../jsjg/jsjg?obj='+jieguodb,
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

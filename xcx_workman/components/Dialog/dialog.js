@@ -67,7 +67,6 @@ Component({
     bindGetUserInfo(e){
       var that = this
       this.triggerEvent("bindGetUserInfo");
-      console.log(e)
       if (e.detail.errMsg == "getUserInfo:fail auth deny") {
         wx.showToast({
           title: '未授权',

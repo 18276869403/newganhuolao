@@ -5,6 +5,8 @@ const app = getApp()
 const qingqiu = require('../../utils/request.js')
 const api = require('../../utils/config.js')
 const util = require('../../utils/util.js')
+const bmap = require('../../utils/bmap-wx.min.js')
+var wxMarkerData = [];  //定位成功回调对象  
 
 Page({
   data: {
@@ -25,7 +27,13 @@ Page({
     sjlist:[],
     tupian:[],
     id:1,
-    isAuto:0
+    cityId:0,
+    addressId:0,
+    oneid:0,
+    areaId:0,
+    isAuto:0,
+    yijiAddress:'',
+    erjiAddress:'',
   },
   onReady: function () {
     //获得dialog组件
@@ -53,6 +61,7 @@ Page({
     var that = this
     wx.getSetting({
       success(res) {
+        console.log(res)
         if (res.authSetting['scope.userInfo']) {
           if(that.data.isAuto==0){
             that.dialog.showDialog();
@@ -101,6 +110,54 @@ Page({
       }
     })
   },
+
+  // 获取地理位置信息 
+  getAddress(){
+    var that = this
+    /* 获取地理位置 */
+    var BMap = new bmap.BMapWX({
+      ak:api.baiduAK
+    })
+    var fail = function(data){
+      console.log(data)
+    }
+    // 发起regeocoding检索请求   
+    BMap.regeocoding({
+      fail: fail,
+      success: function(data){
+        var address = data.originalData.result.addressComponent
+        // 返回数据内，已经包含经纬度
+        that.setData({
+          yijiAddress: address.city,
+          yijiAddress: address.district,
+          weizhi:address.city + address.district
+        })
+        var data = {
+          one:address.city,
+          two:address.district
+        }
+        qingqiu.get("queryAreaByName",data,function(res){
+          console.log(res)
+          if(res.success == true){
+            that.setData({
+              cityId:res.result.one,
+              id:res.result.one,
+              areaId:res.result.two
+            })
+            that.QueryoneArea() //一级区域
+            that.QuerytwoArea() //二级区域
+          }else{
+            wx.showToast({
+              title: res.message,
+              icon:'none',
+              duration:1000
+            })
+          }
+        })
+      }
+    })
+  },
+  
   onLoad: function(options) {
     // 获取二维码参数
     var scene = decodeURIComponent(options.scene);
@@ -109,6 +166,7 @@ Page({
     } else {
       wx.setStorageSync('openid', '')
     }
+    this.getAddress() // 获取位置信息
     this.chushishouquan()
     this.firstbanner() //banner
     this.pointList() //通知
@@ -116,8 +174,6 @@ Page({
     this.grneedlist() //工人
     this.sjneedlist()  //商家 
     this.spneedlist() //商品
-    this.QueryoneArea() //一级区域
-    this.QuerytwoArea() //二级区域
     this.setData({
       chushihua: '0',
       showModalStatus1: false,
@@ -474,8 +530,6 @@ Page({
       },
     })
   },
-  //手动选择位置
-  weizhi2(){},
   // 跳转到商品详情页面
   goodsDetails(e) {
     var obj =e.currentTarget.dataset.vals;
@@ -567,6 +621,7 @@ Page({
     that.setData({
       cityId: id,
       cityname1: name,
+      weizhi:name
     })
     var data ={
       oneAreaId:id
@@ -610,7 +665,6 @@ Page({
     var name = e.currentTarget.dataset.name
     getApp().globalData.weizhiid=this.data.cityId
     getApp().globalData.weizhiid2=id
-    getApp().globalData.weizhi = this.data.cityname1+name
     that.setData({
       weizhi:app.globalData.weizhi,
       areaId: id,

@@ -86,14 +86,16 @@ Component({
               success(res) {
                 // debugger
                 const userInfo = res.userInfo
+                var openid = wx.getStorageSync('openid')
+                console.log(openid)
                 var data = {
                   code:code,
                   picUrl: userInfo.avatarUrl,
                   sex: userInfo.gender,
-                  wxNc: userInfo.nickName
+                  wxNc: userInfo.nickName,
+                  backup1:openid
                 }
                 qingqiu.get("getKeyInfo", data, function(re) {
-                  console.log(re)
                   if (re.success == true) {
                     app.globalData.wxid = re.result.wxUser.id
                     if (re.result.wxUser.picUrl != null && re.result.wxUser.picUrl.length > 0) {

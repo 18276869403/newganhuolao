@@ -1,7 +1,7 @@
 /* pages/components/dialog.wxss */
 .dialog-mask{
   position: fixed;
-    z-index: 1000;
+    z-index: 10000;
     top: 0;
     right: 0;
     left: 0;
@@ -10,7 +10,7 @@
 }
 .dialog-info{
     position: fixed;
-    z-index: 5000;
+    z-index: 15000;
     width: 80%;
     max-width: 600rpx;
     top: 50%;
@@ -47,5 +47,5 @@
     -webkit-flex: 1;
     flex: 1;
     position: relative;
-    color: #3CC51F;
+    color: #f4820d;
 }

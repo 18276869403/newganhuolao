@@ -2,8 +2,8 @@
 // const sysUrl = "https://localhost:5001/api/sys/"
 var deng = require('./configdxy.js')
 var zhu = require('./configzpy.js')
-// const imgurl = "http://111.231.51.198:91/work-boot/" 
-const imgurl = "http://192.168.1.242:9123/work-boot/" //本地
+const imgurl = "http://111.231.51.198:91/work-boot/" 
+// const imgurl = "http://192.168.1.242:9123/work-boot/" //本地
 const viewUrl = imgurl+ 'sys/common/view/'
 const Download = imgurl + 'sys/common/download' 
 const Uploadurl2 = imgurl + 'sys/common/upload2'

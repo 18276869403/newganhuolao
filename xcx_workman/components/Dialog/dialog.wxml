@@ -3,10 +3,12 @@
     <view class='dialog-mask'></view>
     <view class='dialog-info'>
         <view class='dialog-title'>{{ title }}</view>
-        <view class='dialog-content'>{{ content }}</view>
+        <view>
+          <image src="/pages/image/bizhi.png"></image>  
+        </view>
+        <!-- <view class='dialog-content'>{{ content }}</view> -->
         <view class='dialog-footer'>
-          <button class='dialog-btn' open-type="getUserInfo" bindgetuserinfo='bindGetUserInfo' catchtap='_confirmEvent'>{{ confirmText }}</button>
-          <button class='dialog-btn' catchtap='_cancelEvent'>{{ cancelText }}</button>
+          <button class='dialog-btn' open-type="getUserInfo" bindgetuserinfo='bindGetUserInfo'>{{ confirmText }}</button>
         </view>
     </view>
 </view>

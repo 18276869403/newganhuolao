@@ -43,6 +43,8 @@ const UserWorkBy = baseUrl + "/pc/user/userWorkBy"
 const UserWorkUpdateById = baseUrl + "/pc/user/userWorkUpdateById"
 // 晒晒浏览+1
 const UpdateWxCase = baseUrl + "/pc/user/updateWxCase"
+// 定位-获取区域id
+const queryAreaByName = baseUrl + "pc/hall/queryAreaByName"
 
 module.exports = {
   wxUserAdd: WxUserAdd,
@@ -64,5 +66,6 @@ module.exports = {
   yneedBy:YneedBy,
   userWorkBy:UserWorkBy,
   userWorkUpdateById:UserWorkUpdateById,
-  updateWxCase:UpdateWxCase
+  updateWxCase:UpdateWxCase,
+  queryAreaByName:queryAreaByName
 };

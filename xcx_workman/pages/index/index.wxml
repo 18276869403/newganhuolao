@@ -239,7 +239,7 @@
     <view class="content-worker">
       <view class="need-title hengxiang">
         <view class="need-title-left">推荐商家</view>
-        <view class="need-title-right" bindtap="services">更多 > </view>
+        <view class="need-title-right" bindtap="services" data-id="">更多 > </view>
       </view>
       <scroll-view class="worker-list" scroll-x="true" style='width:100%'>
         <view class="hengxiang">

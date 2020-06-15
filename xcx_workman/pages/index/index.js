@@ -6,7 +6,6 @@ const qingqiu = require('../../utils/request.js')
 const api = require('../../utils/config.js')
 const util = require('../../utils/util.js')
 const bmap = require('../../utils/bmap-wx.min.js')
-var wxMarkerData = [];  //定位成功回调对象  
 
 Page({
   data: {
@@ -31,13 +30,9 @@ Page({
     addressId:0,
     oneid:0,
     areaId:0,
-    isAuto:0,
     yijiAddress:'',
+    isAuto:0,
     erjiAddress:'',
-  },
-  onReady: function () {
-    //获得dialog组件
-    this.dialog = this.selectComponent("#dialog");
   },
   // 搜索框
   shurukuang:function(e){
@@ -61,14 +56,13 @@ Page({
     var that = this
     wx.getSetting({
       success(res) {
-        console.log(res)
         if (res.authSetting['scope.userInfo']) {
           if(that.data.isAuto==0){
             that.dialog.showDialog();
+            that.setData({
+              isAuto:1
+            })
           }
-          that.setData({
-            isAuto:1
-          })
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称
           wx.login({
             success: function(res) {
@@ -130,7 +124,6 @@ Page({
         that.setData({
           yijiAddress: address.city,
           yijiAddress: address.district,
-          weizhi:address.city + address.district
         })
         var data = {
           one:address.city,
@@ -139,13 +132,30 @@ Page({
         qingqiu.get("queryAreaByName",data,function(res){
           console.log(res)
           if(res.success == true){
-            that.setData({
-              cityId:res.result.one,
-              id:res.result.one,
-              areaId:res.result.two
-            })
+            var obj ={};
+            var erjiname = ''
+            var yijiname = ''
+            if(res.result.two!=null){
+              erjiname = address.district
+              obj.cityId = res.result.one
+              obj.id = res.result.one
+            }else{
+              obj.cityId = null
+            }
+            if(res.result.one != null){
+              yijiname = address.city
+              obj.areaId =res.result.two
+            }else{
+              obj.areaId = null
+            }
+            obj.weizhi = yijiname + erjiname
+            that.setData(obj)
             that.QueryoneArea() //一级区域
             that.QuerytwoArea() //二级区域
+            that.xqneedlist({pageNo:1,pageSize:3,oneAreaId: obj.cityId,twoAreaId:obj.areaId}) //需求
+            that.grneedlist({pageNo:1,pageSize:10,wxState:1,oneAreaId: obj.cityId,twoAreaId:obj.areaId}) //工人
+            that.sjneedlist({pageNo:1,pageSize:10,wxState:0,oneAreaId: obj.cityId,twoAreaId:obj.areaId})  //商家 
+            that.spneedlist({pageNo:1,pageSize:10,backup1:1,oneAreaId: obj.cityId,twoAreaId:obj.areaId}) //商品
           }else{
             wx.showToast({
               title: res.message,
@@ -159,25 +169,28 @@ Page({
   },
   
   onLoad: function(options) {
+    //获得dialog组件
+    this.dialog = this.selectComponent("#dialog");
     // 获取二维码参数
-    var scene = decodeURIComponent(options.scene);
-    if (scene != undefined) {
-      wx.setStorageSync('openid', scene)
-    } else {
-      wx.setStorageSync('openid', '')
-    }
-    this.getAddress() // 获取位置信息
+    // var scene = decodeURIComponent(options.scene);
+    // if (scene != undefined) {
+    //   wx.setStorageSync('openid', scene)
+    // } else {
+    //   wx.setStorageSync('openid', '')
+    // }
+    // this.getAddress() // 获取位置信息
     this.chushishouquan()
     this.firstbanner() //banner
     this.pointList() //通知
+    this.QueryoneArea() //一级区域
+    this.QuerytwoArea() //二级区域
     this.xqneedlist({pageNo:1,pageSize:3}) //需求
-    this.grneedlist() //工人
-    this.sjneedlist()  //商家 
-    this.spneedlist() //商品
+    this.grneedlist({pageNo:1,pageSize:10,wxState:1}) //工人
+    this.sjneedlist({pageNo:1,pageSize:10,wxState:0})  //商家 
+    this.spneedlist({pageNo:1,pageSize:10,backup1:1}) //商品
     this.setData({
       chushihua: '0',
       showModalStatus1: false,
-      weizhi:app.globalData.weizhi
     })
   },
   // 下拉刷新
@@ -194,6 +207,7 @@ Page({
   // 需求列表
   xqneedlist(data) {
     var that = this
+    console.log(data)
     qingqiu.get("zuixinxq", data, function(re) {
       if (re.success == true) {
         if (re.result != null) {
@@ -215,13 +229,8 @@ Page({
     })
   },
   // 推荐工人
-  grneedlist() {
+  grneedlist(data) {
     var that = this
-    var data={
-      pages: 1,
-      size: 4,
-      wxState:1
-    }
     qingqiu.get("wxUserPage", data, function(re) {
       if (re.success == true) {
         if (re.result != null) {
@@ -253,13 +262,8 @@ Page({
     })
   },
   // 推荐商家
-  sjneedlist() {
+  sjneedlist(data) {
     var that = this
-    var data={
-      pages: 1,
-      size: 4,
-      wxState:0
-    }
     qingqiu.get("wxUserPage", data, function(re) {
       if (re.success == true) {
         if (re.result != null) {
@@ -448,13 +452,8 @@ Page({
     })
   },
   // 推荐商品
-  spneedlist() {
+  spneedlist(data) {
     var that = this
-    var data={
-      pages: 1,
-      size: 10,
-      backup1:1
-    }
     qingqiu.get("tjsp", data, function(re) {
       if (re.success == true) {
         if (re.result.records != null) {
@@ -467,7 +466,6 @@ Page({
           that.setData ({
             goodsList: re.result.records
           })
-
         } else {
           qingqiu.tk('未查询到任何数据')
         }
@@ -480,9 +478,9 @@ Page({
     qingqiu.get("queryOneArea", null, function(re) {
     if (re.success == true) {
       if (re.result != null) {
-        that.city=re.result
+        var city=re.result
         that.setData({
-          city:that.city
+          city:city
         })
       }else {
         qingqiu.tk('未查询到任何数据')
@@ -510,26 +508,26 @@ Page({
   })
   },
   //获取位置信息
-  weizhi:function(){
-    var that = this;
-    wx.getLocation({
-      type: 'wgs84',
-      success(res) {
-        var latitude = res.latitude
-        var longitude = res.longitude
-        wx.showModal({
-          title: '当前位置',
-          content: "纬度:" + latitude + ",经度:" + longitude,
-        })
-        console.log(res)
-      }
-    })
-    wx.chooseLocation({
-      success: function(res) {
-      console.log(res.address)
-      },
-    })
-  },
+  // weizhi:function(){
+  //   var that = this;
+  //   wx.getLocation({
+  //     type: 'wgs84',
+  //     success(res) {
+  //       var latitude = res.latitude
+  //       var longitude = res.longitude
+  //       wx.showModal({
+  //         title: '当前位置',
+  //         content: "纬度:" + latitude + ",经度:" + longitude,
+  //       })
+  //       console.log(res)
+  //     }
+  //   })
+  //   wx.chooseLocation({
+  //     success: function(res) {
+  //     console.log(res.address)
+  //     },
+  //   })
+  // },
   // 跳转到商品详情页面
   goodsDetails(e) {
     var obj =e.currentTarget.dataset.vals;
@@ -561,8 +559,6 @@ Page({
         animationData: animation.export()
       })
     }.bind(this), 200)
-
-
   },
   //隐藏弹窗样式 地址
   hideModal: function() {
@@ -586,32 +582,6 @@ Page({
       })
     }.bind(this), 200)
   },
-  cityyiji: function() {
-    var that = this
-    qingqiu.get("oneAreaService", {}, function(re) {
-      if (re.data.result.length > 0) {
-        that.setData({
-          cityId: re.data.result[0].id,
-          cityname1: re.data.result[0].areaName
-        })
-      }
-      that.setData({
-        city: re.data.result
-      })
-      that.cityerji()
-    })
-  },
-  cityerji: function() {
-    var that = this
-    var data = {
-      oneAreaId: that.data.cityId
-    }
-    qingqiu.get("getAllTwoArea", data, function(re) {
-      that.setData({
-        area: re.data.result
-      })
-    })
-  },
   // 左侧按钮
   cityleft: function(e) {
     var that = this;
@@ -621,11 +591,16 @@ Page({
     that.setData({
       cityId: id,
       cityname1: name,
-      weizhi:name
+      weizhi:name,
+      areaId:0
     })
     var data ={
       oneAreaId:id
     }
+    that.xqneedlist({pageNo:1,pageSize:3,oneAreaId:id,twoAreaId:null}) //需求
+    that.grneedlist({pageNo:1,pageSize:10,wxState:1,oneAreaId:id,twoAreaId:null}) //工人
+    that.sjneedlist({pageNo:1,pageSize:10,wxState:0,oneAreaId:id,twoAreaId:null})  //商家 
+    that.spneedlist({pageNo:1,pageSize:10,backup1:1,oneAreaId:id,twoAreaId:null}) //商品
     qingqiu.get("queryTwoArea", data, function(re) {
       if (re.success == true) {
         if (re.result != null) {
@@ -663,16 +638,28 @@ Page({
     //var index = e.currentTarget.dataset.index;
     var id = e.currentTarget.dataset.id
     var name = e.currentTarget.dataset.name
-    getApp().globalData.weizhiid=this.data.cityId
-    getApp().globalData.weizhiid2=id
+    getApp().globalData.oneCity=this.data.cityId
+    getApp().globalData.twoCity=id
+    if(that.data.weizhi == undefined || that.data.weizhi == ""){
+      wx.showToast({
+        title: '请选择城市',
+        icon:'none',
+        duration:1000
+      })
+      return
+    }
     that.setData({
-      weizhi:app.globalData.weizhi,
+      weizhi:that.data.cityname1 + name,
       areaId: id,
       //curIndex: index,
       areaname: name,
       showModalStatus: false,
       cityname: this.data.cityname1
     })
+    that.xqneedlist({pageNo:1,pageSize:3,oneAreaId:app.globalData.oneCity,twoAreaId:id}) //需求
+    that.grneedlist({pageNo:1,pageSize:10,wxState:1,oneAreaId:app.globalData.oneCity,twoAreaId:id}) //工人
+    that.sjneedlist({pageNo:1,pageSize:10,wxState:0,oneAreaId:app.globalData.oneCity,twoAreaId:id})  //商家 
+    that.spneedlist({pageNo:1,pageSize:10,backup1:1,oneAreaId:app.globalData.oneCity,twoAreaId:id}) //商品
   },
   // 显示弹窗样式 授权
   showModal1: function(e) {
@@ -719,11 +706,6 @@ Page({
         navLeftItems: [],
       })
     }.bind(this), 200)
-  },
-  onShow(){
-    this.setData({
-      weizhi:app.globalData.weizhi
-    })
   },
   // 跳转到建工计算详情
   activity02(){

@@ -4,6 +4,7 @@ const app = getApp()
 //调用接口js
 const qingqiu = require('../../utils/request.js')
 const api = require('../../utils/config.js')
+const bmap = require('../../utils/bmap-wx.min.js')
 
 Page({
   data: {
@@ -68,6 +69,67 @@ Page({
         firstname:that.data.firstname
       })
   },
+
+  // 获取地理位置信息 
+  getAddress(){
+    var that = this
+    /* 获取地理位置 */
+    var BMap = new bmap.BMapWX({
+      ak:api.baiduAK
+    })
+    var fail = function(data){
+      console.log(data)
+    }
+    // 发起regeocoding检索请求   
+    BMap.regeocoding({
+      fail: fail,
+      success: function(data){
+        var address = data.originalData.result.addressComponent
+        // 返回数据内，已经包含经纬度
+        that.setData({
+          yijiAddress: address.city,
+          yijiAddress: address.district,
+        })
+        var data = {
+          one:address.city,
+          two:address.district
+        }
+        qingqiu.get("queryAreaByName",data,function(res){
+          console.log(res)
+          if(res.success == true){
+            var obj ={};
+            var erjiname = ''
+            var yijiname = ''
+            if(res.result.two!=null){
+              erjiname = address.district
+              obj.cityId = res.result.one
+              obj.id = res.result.one
+            }else{
+              obj.cityId = null
+            }
+            if(res.result.one != null){
+              yijiname = address.city
+              obj.areaId =res.result.two
+            }else{
+              obj.areaId = null
+            }
+            obj.weizhi = yijiname + erjiname
+            that.setData(obj)
+            that.QueryoneArea() //一级区域
+            that.QuerytwoArea() //二级区域
+            that.xqneedlist({pageNo:1,pageSize:3,oneAreaId: obj.cityId,twoAreaId:obj.areaId}) //需求
+          }else{
+            wx.showToast({
+              title: res.message,
+              icon:'none',
+              duration:1000
+            })
+          }
+        })
+      }
+    })
+  },
+
   // 搜索按钮
   btnsearch:function(){
     this.data.needsList.splice(0,this.data.needsList.length)

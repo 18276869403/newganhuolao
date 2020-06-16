@@ -19,7 +19,7 @@
   </view>
     
     <!-- 上传 -->
-     <view class="fabu" wx-if="{{num<7}}">
+     <view class="fabu" wx-if="{{tupianlists.length<7}}">
       <view class="fabu-item zongxiang" bindtap='upimg' data-number="0" data-type="{{num}}">
         <view>
           <image src="{{viewUrl}}static/image/jiahao.png" class="fabu-img"></image>

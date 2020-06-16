@@ -108,9 +108,21 @@ Page({
     }
   },
   onLoad: function() {
+    console.log(app.globalData.servicestype)
+    var type = app.globalData.servicestype
+    if(type == 0){
+      this.setData({
+        chooseworker:0
+      })
+      this.sjneedlist()
+    }else{
+      this.setData({
+        chooseworker:1
+      })
+      this.grneedlist()
+    }
     this.QueryoneArea()
     this.QuerytwoArea()
-    this.grneedlist()
   },
   // 我要入驻
   ruzhu:function(){
@@ -342,7 +354,7 @@ Page({
   },
 
   // 推荐商家
-  sjneedlist(data) {
+  sjneedlist() {
     var that = this
     var data={
       pageNo:that.data.pageNo,

@@ -421,6 +421,12 @@ page {
   line-height: 82rpx;
 }
 
+.font-dd{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .business-bottom-left {
   width: 80%;
   overflow: hidden;

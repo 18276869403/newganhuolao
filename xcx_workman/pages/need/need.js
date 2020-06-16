@@ -50,7 +50,8 @@ Page({
     mid:'',
     needTitle:'',
     oneClassId:'',
-    twoClassId:''
+    twoClassId:'',
+    weizhi:''
   },
    // 搜索框
    shurukuang:function(e){
@@ -160,7 +161,7 @@ Page({
     this.data.needsList.splice(0,this.data.needsList.length)
     this.data.pageNo=1
     this.data.isLastPage=false
-    this.onLoad()
+    this.onShow()
     setTimeout(() => {
       wx.stopPullDownRefresh()
     }, 1000);
@@ -183,6 +184,7 @@ Page({
       })
       this.xqneedlist()
     }else{
+      this.setData({weizhi:'全部'})
       this.xqneedlist()
     }
   },
@@ -781,11 +783,12 @@ Page({
     that.setData({
       cityId: id,
       weizhi:name,
-      cityname1: name
+      cityname1: name,
+      needsList:[],
     })
     if(id == 0){
       id = 0
-      that.xqneedlist({pageNo:1,pageSize:3}) //需求
+      that.xqneedlist() //需求
       that.setData({
         showModalStatus: false,
       })
@@ -793,7 +796,7 @@ Page({
       var data ={
         oneAreaId:id
       }
-      that.xqneedlist({pageNo:1,pageSize:3,oneAreaId:id}) //需求
+      that.xqneedlist() //需求
       qingqiu.get("queryTwoArea", data, function(re) {
         if (re.success == true) {
           if (re.result != null) {
@@ -838,6 +841,7 @@ Page({
       //curIndex: index,
       areaname: name,
       showModalStatus: false,
+      needsList:[],
       cityname: this.data.cityname1
     })
     that.xqneedlist({pageNo:1,pageSize:3,oneAreaId:app.globalData.oneCity.id,twoAreaId:id}) //需求

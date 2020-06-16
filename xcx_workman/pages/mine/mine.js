@@ -68,6 +68,12 @@ Page({
           }else{
             re.result.backup4 = "实名认证"
           }
+          if(re.result.backup2 == null || re.result.backup2 == ''){
+            re.result.backup2 = 0
+          }
+          if(re.result.userPoint == null || re.result.userPoint == ''){
+            re.result.userPoint = 0
+          }
           if(re.result.starClass == 0 || re.result.starClass == null){
             re.result.starClass = "暂未评定"
           }else if(re.result.starClass == 1){

@@ -91,7 +91,7 @@
     <view class="sort zongxiang">
       <view class="sort-top hengxiang">
         <view class="sortImg">
-          <image src="{{viewUrl}}static/image/gongrenruzhu.png" class="sort-img"></image>
+          <image src="../image/gonyihuodong.png" class="sort-img"></image>
         </view>
         <view class="sortImg" bindtap="ershou">
           <image src="../image/ershoushangping.png" class="sort-img"></image>
@@ -105,7 +105,7 @@
       </view>
       <view class="sort-bottom hengxiang">
         <view class="sort-text">
-          拼车广场
+          公益活动
         </view>
         <view class="sort-text">
           二手商品

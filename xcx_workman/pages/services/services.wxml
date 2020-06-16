@@ -109,11 +109,11 @@
           <view class="right-sort zongxiang">
             <view class="right-sort-item hengxiang">
               <view class="dot"></view>
-              <view>{{item.oneClassName}} </view>
+              <view class="font-dd">{{item.oneClassName}} </view>
             </view>
             <view class="right-sort-item hengxiang">
               <view class="dot"></view>
-              <view>{{item.twoClassName}}</view>
+              <view class="font-dd">{{item.twoClassName}}</view>
             </view>
           </view>
           <view class="right-bottom hengxiang">

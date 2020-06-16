@@ -70,7 +70,9 @@ Page({
               wx.getUserInfo({
                 lang: 'zh_CN',
                 success(res) {
-                  // debugger
+                  if(res.userInfo == undefined){
+                    that.dialog.showDialog()
+                  }
                   const userInfo = res.userInfo
                   var openid = wx.getStorageSync('openid')
                   var data = {
@@ -81,6 +83,7 @@ Page({
                     backup1:openid
                   }
                   qingqiu.get("getKeyInfo", data, function(re) {
+                    console.log(re)
                     app.globalData.wxid = re.result.wxUser.id
                     if (re.result.wxUser.picUrl != null && re.result.wxUser.picUrl.length > 0) {
                       app.globalData.sqgl = 1
@@ -94,6 +97,7 @@ Page({
             }
           })
         } else {
+          that.dialog.showDialog();
           wx.showToast({
             title: '未授权',
             icon:'none',
@@ -292,6 +296,7 @@ Page({
     qingqiu.get("bannerlist", data , function(re){
       if(re.success == true){
         if(re.result != null){
+          console.log('banner',re)
           that.data.bannerImg = re.result
           for(let obj of that.data.bannerImg){
             obj.bannerUrl= that.data.viewUrl+obj.bannerUrl;

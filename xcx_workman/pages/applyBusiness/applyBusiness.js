@@ -1133,6 +1133,7 @@ Page({
     var name = e.currentTarget.dataset.name
     that.setData({
       show: false,
+      showModalStatus:false,
       areaId: id,
       curIndex: index,
       workareaname: name,

@@ -416,7 +416,9 @@ Page({
     })
   },
   // 跳转到推荐工人更多页面
-  services: function() {
+  services: function(e) {
+    app.globalData.servicestype = e.currentTarget.dataset.type
+    console.log(app.globalData.servicestype)
     wx.switchTab({
       url: '../services/services',
     })

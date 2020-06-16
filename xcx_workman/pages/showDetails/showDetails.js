@@ -76,8 +76,16 @@ Page({
       id : that.data.ssid
     }
     qingqiu.get("pcQueryWxCaseById", data, function(re) {
+      console.log(re)
     if (re.success == true) {
       if (re.result != null) {
+        if(re.result.name != "null" && re.result.name != null && re.result.name != ''){
+          re.result.name = re.result.name
+        }else if(re.result.name != "null" && re.result.name != null && re.result.name != ''){
+          re.result.name = re.result.name
+        }else{
+          re.result.name = re.result.wxnc
+        }
         that.caseMsgList = re.result
         that.imgList = that.caseMsgList.picOne.split(',')
         that.caseMsgList.picOne = that.caseMsgList.picOne.split(',')
@@ -85,7 +93,6 @@ Page({
         for(var i= 0 ; i < that.imgList.length; i++){
           that.imgList[i]=api.viewUrl+that.imgList[i]
         }
-        console.log()
         that.setData ({
           caseMsgList : re.result,
           imgList :that.imgList
@@ -109,6 +116,7 @@ Page({
       size: 10
     }
     qingqiu.get("caseMessageVoList", data, function(re) {
+      console.log(re)
     if (re.success == true) {
       if (re.result != null) {
         that.data.pinglunList = re.result.records

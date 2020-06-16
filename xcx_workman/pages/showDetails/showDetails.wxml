@@ -19,7 +19,9 @@
   <!-- 顶部详情 -->
   <view class="top hengxiang">
     <view class="top-left">
-      <image src="{{viewUrl}}{{caseMsgList.picOne[0]}}" class="avator-img"></image>
+      <image src="{{viewUrl}}{{caseMsgList.piciurl}}" class="avator-img" wx:if="{{caseMsgList.piciurl != null || caseMsgList.piciurl != ''}}"></image>
+      <image src="{{caseMsgList.wximgurl}}" class="avator-img" wx:if="{{caseMsgList.piciurl == null || caseMsgList.piciurl == ''}}"></image>
+      <image src="{{viewUrl}}{{caseMsgList.picOne[0]}}" class="avator-img" wx:if="{{caseMsgList.piciurl == null && caseMsgList.piciurl == ''}}"></image>
     </view>
     <view class="top-content zongxiang">
       <view class="top-content-top">{{caseMsgList.name}}</view>
@@ -59,9 +61,10 @@
     <view class="bottom-list zongxiang" wx:for='{{pinglunList}}'>
       <view class="hengxiang">
         <view class="top-left">
-          <image src="{{viewUrl}}{{item.picIurl}}" class="avator-img1"></image>
+          <image src="{{viewUrl}}{{item.picIurl}}" class="avator-img1" wx:if="{{item.picIurl!=''&&item.picIurl!=null}}"></image>
+          <image src="{{item.wximgurl}}" class="avator-img1" wx:if="{{item.picIurl==''||item.picIurl==null}}"></image>
         </view>
-        <view class="top-content-top1">{{item.name}}</view>
+        <view class="top-content-top1" wx:if="{{item.name!=''&&item.name!=null}}">{{item.name}}</view>
         <view class="hengxiang bottom-time">
           <view>
             <image src="{{viewUrl}}static/image/shijian.png" class="time-img1"></image>

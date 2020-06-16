@@ -75,7 +75,7 @@
   <view class="bottom1">
     <!-- 左侧 -->
     <view class="left">
-      <block wx:for-items="{{showList}}" wx:key="{{item.id}}">
+      <block wx:for-items="{{showList}}">
         <view class="show" wx:if="{{index%2 == 0}}">
           <view class="show-item-top" bindtap="showDetails" data-ssid="{{item.id}}">
             <image src="{{item.picOne}}" class="show-img" mode="widthFix" wx:if="{{item.backup3=='0'}}">
@@ -102,7 +102,7 @@
     </view>
     <!-- 右侧 -->
     <view class="right"> 
-      <block wx:for-items="{{showList}}" wx:key="{{item.id}}">
+      <block wx:for-items="{{showList}}">
         <view class="show" wx:if="{{index%2 != 0}}">
           <view class="show-item-top" bindtap="showDetails" data-ssid="{{item.id}}">
             <image src="{{item.picOne}}" class="show-img" mode="widthFix" wx:if="{{item.backup3=='0'}}"></image>

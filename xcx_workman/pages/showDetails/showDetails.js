@@ -76,7 +76,6 @@ Page({
       id : that.data.ssid
     }
     qingqiu.get("pcQueryWxCaseById", data, function(re) {
-      console.log(re)
     if (re.success == true) {
       if (re.result != null) {
         that.caseMsgList = re.result
@@ -86,6 +85,7 @@ Page({
         for(var i= 0 ; i < that.imgList.length; i++){
           that.imgList[i]=api.viewUrl+that.imgList[i]
         }
+        console.log()
         that.setData ({
           caseMsgList : re.result,
           imgList :that.imgList

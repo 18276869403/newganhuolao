@@ -4,7 +4,7 @@
   <view class="top zongxiang">
     <view class="top-title hengxiang">
       <view class="top-title-left hengxiang" bindtap="showModal">
-        <view class="top-title-left-name" wx-if="{{weizhi==undefined}}">当前位置</view>
+        <view class="top-title-left-name" wx-if="{{weizhi==undefined}}">全部</view>
         <view class="top-title-left-name" wx-if="{{weizhi!=undefined}}">{{weizhi}}</view>
         <view class="top-title-left-enter">
           <image src="{{viewUrl}}static/image/xiala.png" class="xiala-img"></image>

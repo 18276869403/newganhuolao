@@ -4,8 +4,8 @@
     <view class='dialog-info'>
         <view class='dialog-title'>{{ title }}</view>
         <view>
-          <view>需要授权获取微信头像和昵称才能有更好的体验哦~</view>
-          <!-- <image src="/pages/image/bizhi.png"></image>   -->
+          <!-- <view>需要授权获取微信头像和昵称才能有更好的体验哦~</view> -->
+          <image src="/pages/image/bizhi.png"></image>  
         </view>
         <!-- <view class='dialog-content'>{{ content }}</view> -->
         <view class='dialog-footer'>

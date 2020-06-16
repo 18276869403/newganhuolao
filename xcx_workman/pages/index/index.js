@@ -209,8 +209,10 @@ Page({
     var that = this
     console.log(data)
     qingqiu.get("zuixinxq", data, function(re) {
+      console.log(re)
       if (re.success == true) {
         if (re.result != null) {
+          console.log(re)
           that.xuqiulist = re.result.records
           for(var i= 0 ; i < that.xuqiulist.length; i++){
             that.xuqiulist[i].publishTime = re.result.records[i].publishTime.split(" ")[0]
@@ -418,9 +420,13 @@ Page({
   // 跳转到推荐工人更多页面
   services: function(e) {
     app.globalData.servicestype = e.currentTarget.dataset.type
-    console.log(app.globalData.servicestype)
     wx.switchTab({
       url: '../services/services',
+      success:function(res){
+        var page = getCurrentPages().pop()
+        if(page==undefined || page == null) return
+        page.onLoad()
+      }
     })
 
   },
@@ -480,7 +486,10 @@ Page({
     qingqiu.get("queryOneArea", null, function(re) {
     if (re.success == true) {
       if (re.result != null) {
-        var city=re.result
+        var obj = {id:0,areaName:'全部'}
+        var city=[]
+        city.push(obj)
+        city.push(re.result[0])
         that.setData({
           city:city
         })
@@ -499,7 +508,12 @@ Page({
     qingqiu.get("queryTwoArea", data, function(re) {
     if (re.success == true) {
       if (re.result != null) {
-        that.area=re.result
+        var obj = {id:0,oneAreaId:0,areaName:'全部'}
+        var area = []
+        area.push(obj)
+        for(let obj of re.result){
+          area.push(obj)
+        }
         that.setData({
           area:that.area
         })
@@ -589,37 +603,53 @@ Page({
     var that = this;
     // var index = e.currentTarget.dataset.index;
     var id = e.currentTarget.dataset.id
-    var name = e.currentTarget.dataset.name
+    var name = e.currentTarget.dataset.name.replace(' ','')
+    if(id != 0){
+      app.globalData.oneCity = {id:id,name:name}
+    }else{
+      app.globalData.oneCity = undefined
+    }
     that.setData({
       cityId: id,
       cityname1: name,
       weizhi:name,
       areaId:0
     })
-    var data ={
-      oneAreaId:id
+    if(id == 0){
+      id = 0
+      that.xqneedlist({pageNo:1,pageSize:3}) //需求
+      that.grneedlist({pageNo:1,pageSize:10,wxState:1}) //工人
+      that.sjneedlist({pageNo:1,pageSize:10,wxState:0})  //商家 
+      that.spneedlist({pageNo:1,pageSize:10,backup1:1}) //商品
+      that.setData({
+        showModalStatus: false,
+      })
+    }else{
+      var data ={
+        oneAreaId:id
+      }
+      that.xqneedlist({pageNo:1,pageSize:3,oneAreaId:id}) //需求
+      that.grneedlist({pageNo:1,pageSize:10,wxState:1,oneAreaId:id}) //工人
+      that.sjneedlist({pageNo:1,pageSize:10,wxState:0,oneAreaId:id})  //商家 
+      that.spneedlist({pageNo:1,pageSize:10,backup1:1,oneAreaId:id}) //商品
+      qingqiu.get("queryTwoArea", data, function(re) {
+        if (re.success == true) {
+          if (re.result != null) {
+            that.area=re.result
+            that.setData({
+              area:that.area
+            })
+          }else {
+            qingqiu.tk('未查询到任何数据')
+          }
+        } 
+      })
     }
-    that.xqneedlist({pageNo:1,pageSize:3,oneAreaId:id,twoAreaId:null}) //需求
-    that.grneedlist({pageNo:1,pageSize:10,wxState:1,oneAreaId:id,twoAreaId:null}) //工人
-    that.sjneedlist({pageNo:1,pageSize:10,wxState:0,oneAreaId:id,twoAreaId:null})  //商家 
-    that.spneedlist({pageNo:1,pageSize:10,backup1:1,oneAreaId:id,twoAreaId:null}) //商品
-    qingqiu.get("queryTwoArea", data, function(re) {
-      if (re.success == true) {
-        if (re.result != null) {
-          that.area=re.result
-          that.setData({
-            area:that.area
-          })
-        }else {
-          qingqiu.tk('未查询到任何数据')
-        }
-      } 
-    })
   },
   // 右侧单选点击
   arearight: function(e) {
     var that = this;
-    if(that.data.cityname1==undefined)
+    if(that.data.cityname1==undefined || that.data.cityname1 == '')
     {
       wx.showToast({
         title: '请先选择城市',
@@ -628,20 +658,11 @@ Page({
       })
       return
     }
-    if(that.data.cityname1=='')
-    {
-      wx.showToast({
-        title: '请先选择城市',
-        icon:'none',
-        duration:2000
-      })
-      return
-    }
+    
     //var index = e.currentTarget.dataset.index;
     var id = e.currentTarget.dataset.id
     var name = e.currentTarget.dataset.name
-    getApp().globalData.oneCity=this.data.cityId
-    getApp().globalData.twoCity=id
+    app.globalData.twoCity={id:id,name:name}
     if(that.data.weizhi == undefined || that.data.weizhi == ""){
       wx.showToast({
         title: '请选择城市',
@@ -658,10 +679,10 @@ Page({
       showModalStatus: false,
       cityname: this.data.cityname1
     })
-    that.xqneedlist({pageNo:1,pageSize:3,oneAreaId:app.globalData.oneCity,twoAreaId:id}) //需求
-    that.grneedlist({pageNo:1,pageSize:10,wxState:1,oneAreaId:app.globalData.oneCity,twoAreaId:id}) //工人
-    that.sjneedlist({pageNo:1,pageSize:10,wxState:0,oneAreaId:app.globalData.oneCity,twoAreaId:id})  //商家 
-    that.spneedlist({pageNo:1,pageSize:10,backup1:1,oneAreaId:app.globalData.oneCity,twoAreaId:id}) //商品
+    that.xqneedlist({pageNo:1,pageSize:3,oneAreaId:app.globalData.oneCity.id,twoAreaId:id}) //需求
+    that.grneedlist({pageNo:1,pageSize:10,wxState:1,oneAreaId:app.globalData.oneCity.id,twoAreaId:id}) //工人
+    that.sjneedlist({pageNo:1,pageSize:10,wxState:0,oneAreaId:app.globalData.oneCity.id,twoAreaId:id})  //商家 
+    that.spneedlist({pageNo:1,pageSize:10,backup1:1,oneAreaId:app.globalData.oneCity.id,twoAreaId:id}) //商品
   },
   // 显示弹窗样式 授权
   showModal1: function(e) {

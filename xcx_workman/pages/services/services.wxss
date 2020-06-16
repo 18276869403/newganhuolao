@@ -389,18 +389,23 @@ page {
 }
 
 .content-business {
-  width: 100%;
+  margin-bottom: 25rpx;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 8rpx;
+  font-size: 24rpx;
+  font-weight: 400;
+  color: rgba(102, 102, 102, 1);
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0rpx 2rpx 12rpx 0rpx rgba(45, 49, 61, 0.1);
 }
 
 .content-business-list {
-  width: 94%;
-  margin-left: 3%;
-  margin-right: 3%;
+  width: 100%;
+  text-align: center;
 }
 
 .content-business-img {
   width: 100%;
-  margin-top: 25rpx;
 }
 
 .business-img {
@@ -409,9 +414,11 @@ page {
 }
 
 .content-business-bottom {
-  margin-top: 20rpx;
-  padding-bottom: 20rpx;
-  border-bottom: 1rpx solid #f0f0f0;
+  width: 100%;
+  font-size: 30rpx;
+  padding-left: 3%;
+  height: 82rpx;
+  line-height: 82rpx;
 }
 
 .business-bottom-left {
@@ -737,3 +744,29 @@ width: 100%;
   font-size: 17px;
   text-align: center;
 } 
+
+/* 商家 */
+.bottom1{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding-bottom: 30rpx;
+  width: 100%;
+  overflow-x: hidden;
+}
+.left{
+  display: flex;
+  flex-direction: column;
+  width: 45.5%;
+  margin-left: 3%;
+  margin-right: 1.5%;
+  justify-content: flex-start;
+}
+.right{
+  display: flex;
+  flex-direction: column;
+  width: 45.5%;
+  margin-right: 3%;
+  margin-left: 1.5%;
+  justify-content: flex-start;
+}

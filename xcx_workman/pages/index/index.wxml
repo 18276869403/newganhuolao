@@ -10,7 +10,7 @@
   <view class="top zongxiang">
     <view class="top-title hengxiang">
       <view class="top-title-left hengxiang" bindtap="showModal">
-        <view class="top-title-left-name" wx-if="{{weizhi==undefined}}">当前位置</view>
+        <view class="top-title-left-name" wx-if="{{weizhi==undefined}}">全部</view>
         <view class="top-title-left-name" wx-if="{{weizhi!=undefined}}">{{weizhi}}</view>
         <view class="top-title-left-enter">
           <image src="{{viewUrl}}static/image/xiala.png" class="xiala-img"></image>
@@ -94,13 +94,13 @@
           <image src="{{viewUrl}}static/image/gongrenruzhu.png" class="sort-img"></image>
         </view>
         <view class="sortImg" bindtap="ershou">
-          <image src="{{viewUrl}}static/image/shangjiaruzhu.png" class="sort-img"></image>
+          <image src="../image/ershoushangping.png" class="sort-img"></image>
         </view>
         <view class="sortImg" bindtap="bendi">
-          <image src="{{viewUrl}}static/image/tuijianyouli.png" class="sort-img"></image>
+          <image src="../image/bendizhaogong.png" class="sort-img"></image>
         </view>
         <view class="sortImg" bindtap="cuxiao">
-          <image src="{{viewUrl}}static/image/jiangongjisuan.png" class="sort-img"></image>
+          <image src="../image/shangjiacuxiao.png" class="sort-img"></image>
         </view>
       </view>
       <view class="sort-bottom hengxiang">

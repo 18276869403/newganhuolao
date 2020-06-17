@@ -263,8 +263,16 @@ Page({
             }
             obj.picIurl = that.data.viewUrl + obj.picIurl
             obj.dateBirth = util.ages(obj.dateBirth)
-            obj.oneClassName = obj.oneClassName.replace(/,/, "|")
-            obj.twoClassName = obj.twoClassName.replace(/,/, "|")
+            if(obj.oneClassName != null){
+              if(obj.oneClassName.indexOf(',') != -1){
+                obj.oneClassName = obj.oneClassName.replace(/,/, "|")
+              }
+            }
+            if(obj.twoClassName != null){
+              if(obj.twoClassName.indexOf(',') != -1){
+                obj.twoClassName = obj.twoClassName.replace(/,/, "|")
+              }
+            }
           }
           console.log(re.result.records)
           that.setData({
@@ -282,8 +290,16 @@ Page({
         if (re.result != null) {
           for(let obj of re.result.records){
             obj.picIurl = that.data.viewUrl + obj.picIurl
-            obj.oneClassName = obj.oneClassName.replace(/,/, "|")
-            obj.twoClassName = obj.twoClassName.replace(/,/, "|")
+            if(obj.oneClassName != null){
+              if(obj.oneClassName.indexOf(',') != -1){
+                obj.oneClassName = obj.oneClassName.replace(/,/, "|")
+              }
+            }
+            if(obj.twoClassName != null){
+              if(obj.twoClassName.indexOf(',') != -1){
+                obj.twoClassName = obj.twoClassName.replace(/,/, "|")
+              }
+            }
           }
           that.setData({
             storeList:re.result.records

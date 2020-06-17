@@ -373,8 +373,16 @@ Page({
             }
             obj.dateBirth = util.ages(obj.dateBirth)
             obj.picIurl = that.data.viewUrl + obj.picIurl
-            obj.oneClassName = obj.oneClassName.replace(/,/, " | ")
-            obj.twoClassName = obj.twoClassName.replace(/,/, " | ")
+            if(obj.oneClassName != null){
+              if(obj.oneClassName.indexOf(',') != -1){
+                obj.oneClassName = obj.oneClassName.replace(/,/, "|")
+              }
+            }
+            if(obj.twoClassName != null){
+              if(obj.twoClassName.indexOf(',') != -1){
+                obj.twoClassName = obj.twoClassName.replace(/,/, "|")
+              }
+            }
             that.data.workerlist.push(obj)
           }
           that.setData({
@@ -414,8 +422,16 @@ Page({
           // }
           for(let obj of re.result.records){
             obj.picIurl = that.data.viewUrl + obj.picIurl
-            obj.oneClassName = obj.oneClassName.replace(/,/, "|")
-            obj.twoClassName = obj.twoClassName.replace(/,/, "|")
+            if(obj.oneClassName != null){
+              if(obj.oneClassName.indexOf(',') != -1){
+                obj.oneClassName = obj.oneClassName.replace(/,/, "|")
+              }
+            }
+            if(obj.twoClassName != null){
+              if(obj.twoClassName.indexOf(',') != -1){
+                obj.twoClassName = obj.twoClassName.replace(/,/, "|")
+              }
+            }
             that.data.businesslist.push(obj)
           }
           that.setData({

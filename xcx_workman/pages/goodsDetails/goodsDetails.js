@@ -31,6 +31,14 @@ Page({
   // 进他的店
   goShopping:function(){
     var that = this
+    if(that.data.splist.userId == 0){
+      wx.showToast({
+        title: '该店尚未开张，敬请期待',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
     var data = {
       id:that.data.splist.userId,
     }

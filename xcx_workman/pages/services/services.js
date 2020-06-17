@@ -40,7 +40,6 @@ Page({
       }]
     }],
     wid:1,
-    flerjiid:'',
     yijiid:'',
     yijiname:'',
     erjiid:'',
@@ -80,8 +79,8 @@ Page({
     }else{
       this.data.oneClassId=''
     }
-    if(this.data.flerjiid != "" && this.data.flerjiid != "undefined" && this.data.flerjiid != null){
-      this.data.twoClassId = this.data.flerjiid
+    if(this.data.erjiid != "" && this.data.erjiid != "undefined" && this.data.erjiid != null){
+      this.data.twoClassId = this.data.erjiid
     }else{
       this.data.twoClassId=''
     }
@@ -111,13 +110,15 @@ Page({
       })
       if(app.globalData.oneCity != undefined){
         this.setData({
-          needsList:[],
+          businesslist:[],
           weizhi:app.globalData.oneCity.name + app.globalData.twoCity.name,
           pageNo:1
         })
         this.sjneedlist()
       }else{
         this.setData({
+          businesslist:[],
+          pageNo:1,
           weizhi:'全部'
         })
         this.sjneedlist()
@@ -135,6 +136,8 @@ Page({
         this.grneedlist()
       }else{
         this.setData({
+          workerlist:[],
+          pageNo:1,
           weizhi:'全部'
         })
         this.grneedlist()
@@ -196,13 +199,13 @@ Page({
   },
   changeType: function(e) {
     var that = this
-    this.data.oneClassId=''
-    this.data.twoClassId=''
+    console.log(that.data.chooseworker)
     that.setData({
       yijiname : '',
       erjiname : '',
       yijiid:'',
-      flerjiid:''
+      erjiid:'',
+      pageNo:1
     })
     if (that.data.chooseworker == 0) {
       that.setData({
@@ -334,18 +337,20 @@ Page({
     var data={
       pageNo:that.data.pageNo,
       pageSize:10,
-      oneClassId:that.data.oneClassId,
-      twoClassId:that.data.twoClassId,
+      oneClassId:that.data.yijiid,
+      twoClassId:that.data.erjiid,
       name:that.data.name,
       wxState:that.data.chooseworker
     }
-    if(app.globalData.oneCity != undefined){
+    if(app.globalData.oneCity != undefined && app.globalData.oneCity != "undefined" ){
       data.oneAreaId = app.globalData.oneCity.id
     }
-    if(app.globalData.twoCity != undefined){
+    if(app.globalData.twoCity != undefined && app.globalData.twoCity != "undefined"){
       data.twoAreaId = app.globalData.twoCity.id
     }
+    console.log(data)
     qingqiu.get("wxUserPage", data, function(re) {
+      console.log(re)
       if (re.success == true) {
         if (re.result != null) {
           // if(re.result.records==''){
@@ -372,7 +377,6 @@ Page({
             obj.twoClassName = obj.twoClassName.replace(/,/, " | ")
             that.data.workerlist.push(obj)
           }
-          console.log(that.data.workerlist)
           that.setData({
             workerlist:that.data.workerlist,
             workerlist1:re.result.records
@@ -388,18 +392,20 @@ Page({
     var data={
       pageNo:that.data.pageNo,
       size:10,
-      oneClassId:that.data.oneClassId,
-      twoClassId:that.data.twoClassId,
+      oneClassId:that.data.yijiid,
+      twoClassId:that.data.erjiid,
       shopName:that.data.shopName,
       wxState:that.data.chooseworker
     }
-    if(app.globalData.oneCity != undefined){
+    if(app.globalData.oneCity != undefined && app.globalData.oneCity != "undefined"){
       data.oneAreaId = app.globalData.oneCity.id
     }
-    if(app.globalData.twoCity != undefined){
+    if(app.globalData.twoCity != undefined && app.globalData.twoCity != "undefined"){
       data.twoAreaId = app.globalData.twoCity.id
     }
+    console.log(data)
     qingqiu.get("wxUserPage", data, function(re) {
+      console.log(re)
       if (re.success == true) {
         if (re.result != null) {
           // if(re.result.records==''){
@@ -412,7 +418,6 @@ Page({
             obj.twoClassName = obj.twoClassName.replace(/,/, "|")
             that.data.businesslist.push(obj)
           }
-          console.log(that.data.businesslist)
           that.setData({
             businesslist:re.result.records,
             businesslist1:re.result.records
@@ -525,24 +530,28 @@ Page({
   hideModallist: function(e) {
     var that=this
     var flag = e.currentTarget.dataset.return
-    if(flag=="ture"){
+    if(flag=="true"){
       that.setData({
         yijiid: that.data.yijiid,
-        flerjiid:that.data.flerjiid,
+        erjiid:that.data.erjiid,
         yijiname : that.data.yijiname,
         erjiname : that.data.erjiname,
       })
-      //that.btnsearch()
     }else{
       that.setData({
         yijiname : '',
         erjiname : '',
         yijiid:'',
-        flerjiid:''
+        erjiid:''
       })
-      //that.btnsearch()
+      if(that.data.chooseworker == 1){
+        that.setData({workerlist:[]})
+        that.grneedlist()
+      }else{
+        that.setData({businesslist:[]})
+        that.sjneedlist()
+      }
     }
-    //this.writeclass(flag)
     var animation = wx.createAnimation({
       duration: 200,
       timingFunction: "linear",
@@ -601,17 +610,17 @@ Page({
       } 
     })
   },
-  typefenleiej: function() {
-    var data = {
-      oneClassId: this.data.typeyj
-    }
-    var that = this
-    qingqiu.get("twoClassService", data, function(re) {
-      that.setData({
-        typeejlist: re.data.result
-      })
-    })
-  },
+  // typefenleiej: function() {
+  //   var data = {
+  //     oneClassId: this.data.typeyj
+  //   }
+  //   var that = this
+  //   qingqiu.get("twoClassService", data, function(re) {
+  //     that.setData({
+  //       typeejlist: re.data.result
+  //     })
+  //   })
+  // },
   // 选项卡点击事件获取分类
   fenlei: function(e) {
     var that = this;
@@ -649,27 +658,31 @@ Page({
   // 改变二级分类
   changetwoclass: function (e) {
     var that=this
-    //that.fenlei()
-    that.data.flerjiid = e.currentTarget.dataset.id
-    that.data.yijiid = e.currentTarget.dataset.yjid
-    that.data.yijiname = e.currentTarget.dataset.yijiname
-    that.data.erjiname = e.currentTarget.dataset.erjiname
+    var erjiid = e.currentTarget.dataset.id
+    var yijiid = e.currentTarget.dataset.yjid
+    var yijiname = e.currentTarget.dataset.yijiname
+    var erjiname = e.currentTarget.dataset.erjiname
     that.setData({
-      flerjiid : that.data.flerjiid
+      erjiid:erjiid,
+      yijiid:yijiid,
+      yijiname:yijiname,
+      erjiname:erjiname,
+      pageNo:1
     })
+    if (that.data.chooseworker == 1) {
+      that.setData({
+        workerlist:[]
+      })
+      // that.data.fenleilx=1
+      that.grneedlist()
+    } else {
+      that.setData({
+        businesslist:[]
+      }) 
+      that.sjneedlist()
+    }
   },
-  // 获取选择分类
-  // selectfenlei(){
-  //   var that=this
-  //   that.setData({
-  //     yijiname : that.data.yijiname,
-  //     erjiname : that.data.erjiname,
-  //     showModalStatuslist: false,
-  //     showModalStatus6:false
-  //   })
-  //   console.log(that.data.yijiname)
-  //   console.log(that.data.erjiname)
-  // }
+
   // 一级区域
   QueryoneArea(){
     var that = this
@@ -792,29 +805,29 @@ Page({
     // var index = e.currentTarget.dataset.index;
     var id = e.currentTarget.dataset.id
     var name = e.currentTarget.dataset.name.replace(' ','')
-    if(id != 0){
-      app.globalData.oneCity = {id:id,name:name}
-    }else{
-      app.globalData.oneCity = undefined
-    }
     that.setData({
       cityId: id,
       cityname1: name,
       weizhi:name,
       workerlist:[],
-      businesslist:[]
+      businesslist:[],
+      pageNo:1
     })
     if(id == 0){
+      app.globalData.oneCity = undefined
+      app.globalData.twoCity = undefined
       id = 0
       that.grneedlist() //工人
       that.sjneedlist()  //商家 
       that.setData({
+        area:[],
         showModalStatus: false,
       })
     }else{
       var data ={
         oneAreaId:id
       }
+      app.globalData.oneCity = {id:id,name:name}
       that.grneedlist() //工人
       that.sjneedlist()  //商家 
       qingqiu.get("queryTwoArea", data, function(re) {

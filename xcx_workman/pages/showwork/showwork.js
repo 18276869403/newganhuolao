@@ -70,14 +70,13 @@ Page({
         this.SelectshowList()
       }else{
         this.setData({
+          showList:[],
+          pageNo:1,
           weizhi:'全部'
         })
         this.SelectshowList()
       }
     }
-    this.setData({
-      weizhi:app.globalData.weizhi
-    })
   },
   // onLoad: function () {
     
@@ -127,13 +126,15 @@ Page({
       size: 10,
       caseName:that.data.sousuonr
     }
-    if(app.globalData.oneCity != undefined){
+    if(app.globalData.oneCity != undefined && app.globalData.oneCity != "undefined"){
       data.oneAreaId = app.globalData.oneCity.id
     }
-    if(app.globalData.twoCity != undefined){
+    if(app.globalData.twoCity != undefined && app.globalData.twoCity != "undefined"){
       data.twoAreaId = app.globalData.twoCity.id
     }
+    console.log(data)
     qingqiu.get("CasePage", data, function(re) {
+      console.log(re)
       if (re.success == true) {
         if (re.result != null) {
           // if(re.result.records==''){
@@ -464,11 +465,6 @@ Page({
     // var index = e.currentTarget.dataset.index;
     var id = e.currentTarget.dataset.id
     var name = e.currentTarget.dataset.name.replace(' ','')
-    if(id != 0){
-      app.globalData.oneCity = {id:id,name:name}
-    }else{
-      app.globalData.oneCity = undefined
-    }
     that.setData({
       cityId: id,
       cityname1: name,
@@ -476,7 +472,8 @@ Page({
       showList:[]
     })
     if(id == 0){
-      id = 0
+      app.globalData.oneCity = undefined
+      app.globalData.twoCity = undefined
       that.SelectshowList()  //商家 
       that.setData({
         showModalStatus: false,
@@ -485,6 +482,7 @@ Page({
       var data ={
         oneAreaId:id
       }
+      app.globalData.oneCity = {id:id,name:name}
       that.SelectshowList()  //商家 
       qingqiu.get("queryTwoArea", data, function(re) {
         if (re.success == true) {

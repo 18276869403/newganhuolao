@@ -121,6 +121,13 @@ Page({
       if (re.result != null) {
         that.data.pinglunList = re.result.records
         for(var i=0;i<re.result.records.length;i++){
+          if(that.data.pinglunList[i].name != null && that.data.pinglunList[i].name != '' && that.data.pinglunList[i].name !="null"){
+            that.data.pinglunList[i].name = that.data.pinglunList[i].name
+          }else if(that.data.pinglunList[i].shopName != null && that.data.pinglunList[i].shopName != '' && that.data.pinglunList[i].shopName != "null"){
+            that.data.pinglunList[i].name = that.data.pinglunList[i].shopName
+          }else{
+            that.data.pinglunList[i].name = that.data.pinglunList[i].wxnc
+          }
           that.data.pinglunList[i].createTime=that.data.pinglunList[i].createTime.substring(0,16)
         }
         that.setData ({

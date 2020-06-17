@@ -21,7 +21,9 @@
     "pages/submitNeeds/submitNeeds",
     "pages/needsDetails/needsDetails",
     "pages/need/need",
-    "pages/outurl/outurl"
+    "pages/outurl/outurl",
+    "pages/submitShow/submitShow",
+    "pages/showDetails/showDetails"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",

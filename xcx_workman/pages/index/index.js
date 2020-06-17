@@ -172,7 +172,7 @@ Page({
     })
   },
   
-  onLoad: function(options) {
+  onShow:function(options){
     //获得dialog组件
     this.dialog = this.selectComponent("#dialog");
     // 获取二维码参数
@@ -188,18 +188,26 @@ Page({
     this.pointList() //通知
     this.QueryoneArea() //一级区域
     this.QuerytwoArea() //二级区域
-    this.xqneedlist({pageNo:1,pageSize:3}) //需求
-    this.grneedlist({pageNo:1,pageSize:10,wxState:1}) //工人
-    this.sjneedlist({pageNo:1,pageSize:10,wxState:0})  //商家 
-    this.spneedlist({pageNo:1,pageSize:10,backup1:1}) //商品
-    this.setData({
-      chushihua: '0',
-      showModalStatus1: false,
-    })
+    console.log(app.globalData.oneCity)
+    if(app.globalData.oneCity == undefined || app.globalData.oneCity == "undefined"){
+      this.setData({weizhi:'全部'})
+      this.xqneedlist({pageNo:1,pageSize:3}) //需求
+      this.grneedlist({pageNo:1,pageSize:10,wxState:1}) //工人
+      this.sjneedlist({pageNo:1,pageSize:10,wxState:0})  //商家 
+      this.spneedlist({pageNo:1,pageSize:10,backup1:1}) //商品
+    }else{
+      this.xqneedlist({pageNo:1,pageSize:3,oneAreaId:app.globalData.oneCity.id,twoAreaId:app.globalData.twoCity.id}) //需求
+      this.grneedlist({pageNo:1,pageSize:10,wxState:1,oneAreaId:app.globalData.oneCity.id,twoAreaId:app.globalData.twoCity.id}) //工人
+      this.sjneedlist({pageNo:1,pageSize:10,wxState:0,oneAreaId:app.globalData.oneCity.id,twoAreaId:app.globalData.twoCity.id})  //商家 
+      this.spneedlist({pageNo:1,pageSize:10,backup1:1,oneAreaId:app.globalData.oneCity.id,twoAreaId:app.globalData.twoCity.id}) //商品
+    }
   },
+  // onLoad: function(options) {
+    
+  // },
   // 下拉刷新
   onPullDownRefresh: function () {
-    this.onLoad()
+    this.onShow()
     setTimeout(() => {
       wx.stopPullDownRefresh()
     }, 1000);
@@ -211,7 +219,6 @@ Page({
   // 需求列表
   xqneedlist(data) {
     var that = this
-    console.log(data)
     qingqiu.get("zuixinxq", data, function(re) {
       console.log(re)
       if (re.success == true) {
@@ -468,11 +475,15 @@ Page({
   spneedlist(data) {
     var that = this
     qingqiu.get("tjsp", data, function(re) {
+      console.log('推荐商品',re)
       if (re.success == true) {
         if (re.result.records != null) {
           that.goodsList = re.result.records
-          //debugger
           for(let obj of re.result.records){
+            if(obj.shopName == null){
+              obj.userId = 0
+              obj.shopName = '敬请期待'
+            }
             obj.goodPic1 = that.data.viewUrl + obj.goodPic1.split(',')[0]
             obj.goodPic2  = that.data.viewUrl + obj.goodPic2.split(',')[0]
           }
@@ -613,6 +624,7 @@ Page({
       app.globalData.oneCity = {id:id,name:name}
     }else{
       app.globalData.oneCity = undefined
+      app.globalData.twoCity = undefined
     }
     that.setData({
       cityId: id,
@@ -697,7 +709,6 @@ Page({
       delay: 0
     })
     this.animation = animation
-
     animation.opacity(0).rotateX(-100).step();
     this.setData({
       animationData: animation.export(),

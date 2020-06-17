@@ -69,7 +69,7 @@
       <!-- 找商家 -->
       <view class="content-qiehuan-right" wx:if="{{chooseworker==0}}">
         <view>
-          <image src="{{viewUrl}}static/image/zhaoshangjia.png" class="zhaogongren-img"  ></image>
+          <image src="{{viewUrl}}static/image/zhaoshangjia.png" class="zhaogongren-img"></image>
         </view>
         <view class="shangjia-xuanqu" bindtap="changeType"></view>
       </view>
@@ -176,7 +176,7 @@
     <view class="tankuang-top2 hengxiang">
       <view class="tankuang-top2-left" bindtap="hideModallist" data-return="false">取消</view>
       <view class="tankuang-top2-content">选择业务类型</view>
-      <view class="tankuang-top2-right" bindtap="hideModallist" data-return="false">确定</view>
+      <view class="tankuang-top2-right" bindtap="hideModallist" data-return="true">确定</view>
     </view>
     <scroll-view scroll-y style="height:310px;" class="tankuang-content2 zongxiang">
       <view class="content2-list zongxiang" wx:for="{{gongzhong}}" wx:key="key" wx:for-index="keys" wx:for-item="itemaa">
@@ -186,7 +186,7 @@
         <view class="content-list-two zongxiang" wx:for="{{itemaa.twoclasslist}}" wx:key="key" wx:for-index="keys" wx:for-item="item">
           <view class="list-two-item hengxiang" bindtap="changetwoclass" data-id="{{item.id}}" data-yjid="{{itemaa.id}}" data-yijiname="{{itemaa.oneclass}}" data-erjiname="{{item.className}}">
             <view class="list-two-item-left">{{item.className}}</view>
-            <view class="list-two-item-right" wx:if="{{flerjiid==item.id}}">
+            <view class="list-two-item-right" wx:if="{{erjiid==item.id}}">
               <image src="{{viewUrl}}static/image/duihao.png" class="duihao-img"></image>
             </view>
           </view>

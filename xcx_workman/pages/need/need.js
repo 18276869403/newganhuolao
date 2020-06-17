@@ -176,7 +176,7 @@ Page({
     this.twoClass()
     this.QueryoneArea()
     this.QuerytwoArea()
-    if(app.globalData.oneCity != undefined){
+    if(app.globalData.oneCity != undefined && app.globalData.oneCity != "undefined"){
       this.setData({
         needsList:[],
         weizhi:app.globalData.oneCity.name + app.globalData.twoCity.name,
@@ -294,16 +294,18 @@ Page({
       pageSize:10,
       wxUserId:that.data.mid,
       needTitle:that.data.needTitle,
-      oneClassId:that.data.oneClassId,
-      twoClassId:that.data.twoClassId,
+      oneClassId:that.data.yijiid,
+      twoClassId:that.data.erjiid,
     }
-    if(app.globalData.oneCity != undefined){
+    if(app.globalData.oneCity != undefined && app.globalData.oneCity != "undefined"){
       data.oneAreaId = app.globalData.oneCity.id
     }
-    if(app.globalData.twoCity != undefined){
+    if(app.globalData.twoCity != undefined && app.globalData.twoCity != "undefined"){
       data.twoAreaId = app.globalData.twoCity.id
     }
+    console.log(data)
     qingqiu.get("zuixinxq", data, function(re) {
+      console.log(re)
       if (re.success == true) {
         if (re.result != null) {
           // if(re.result.records==''){
@@ -318,7 +320,6 @@ Page({
             }
             that.data.needsList.push(re.result.records[i])
           }
-          console.log(that.data.needsList)
           that.setData ({
             needsList : that.data.needsList,
             needsListfy : re.result.records
@@ -529,18 +530,16 @@ Page({
   hideModallist: function(e) {
     var that=this
     var flag = e.currentTarget.dataset.return
-    if(flag=="ture"){
+    if(flag=="false"){
       that.setData({
-        yijiname : that.data.yijiname,
-        erjiname : that.data.erjiname,
+        yijiid:'',
+        erjiid:'',
+        yijiname:'',
+        erjiname:'',
+        pageNo:1,
+        needsList:[]
       })
-    }else{
-      that.data.yijiid=''
-      that.data.flerjiid=''
-      that.setData({
-        yijiname : '',
-        erjiname : '',
-      })
+      that.xqneedlist()
     }
     //this.writeclass(flag)
     var animation = wx.createAnimation({
@@ -644,14 +643,19 @@ Page({
   },
   // 改变二级分类
   changetwoclass: function (e) {
-    var that=this
-    that.data.flerjiid = e.currentTarget.dataset.id
-    that.data.yijiid = e.currentTarget.dataset.yjid
-    that.data.yijiname = e.currentTarget.dataset.yijiname
-    that.data.erjiname = e.currentTarget.dataset.erjiname
-    that.setData({
-      flerjiid : that.data.flerjiid
+    var erjiid = e.currentTarget.dataset.id
+    var yijiid = e.currentTarget.dataset.yjid
+    var yijiname = e.currentTarget.dataset.yijiname
+    var erjiname = e.currentTarget.dataset.erjiname
+    this.setData({
+      erjiid:erjiid,
+      yijiid:yijiid,
+      yijiname:yijiname,
+      erjiname:erjiname,
+      needsList:[],
+      pageNo:1
     })
+    this.xqneedlist()
   },
   // 一级区域
   QueryoneArea(){
@@ -775,11 +779,6 @@ Page({
     // var index = e.currentTarget.dataset.index;
     var id = e.currentTarget.dataset.id
     var name = e.currentTarget.dataset.name.replace(' ','')
-    if(id != 0){
-      app.globalData.oneCity = {id:id,name:name}
-    }else{
-      app.globalData.oneCity = undefined
-    }
     that.setData({
       cityId: id,
       weizhi:name,
@@ -787,15 +786,18 @@ Page({
       needsList:[],
     })
     if(id == 0){
-      id = 0
+      app.globalData.oneCity = undefined
+      app.globalData.twoCity = undefined
       that.xqneedlist() //需求
       that.setData({
+        area:[],
         showModalStatus: false,
       })
     }else{
       var data ={
         oneAreaId:id
       }
+      app.globalData.oneCity = {id:id,name:name}
       that.xqneedlist() //需求
       qingqiu.get("queryTwoArea", data, function(re) {
         if (re.success == true) {

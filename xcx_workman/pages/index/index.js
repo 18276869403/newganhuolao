@@ -68,6 +68,7 @@ Page({
                   if(res.userInfo == undefined){
                     that.dialog.showDialog()
                   }
+                  that.dialog.showDialog()
                   const userInfo = res.userInfo
                   var openid = wx.getStorageSync('openid')
                   var data = {

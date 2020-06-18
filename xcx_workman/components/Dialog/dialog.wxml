@@ -3,6 +3,7 @@
     <view class='dialog-mask'></view>
     <view class='dialog-info'>
         <view class='dialog-title'>{{ title }}</view>
+        <view class="dialog-divLine"></view>
         <view class="dialog-content">
           <!-- <view>需要授权获取微信头像和昵称才能有更好的体验哦~</view> -->
           <view class="dialog-content-img">

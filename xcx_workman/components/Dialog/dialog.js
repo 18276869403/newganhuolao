@@ -17,7 +17,7 @@ Component({
     // 弹窗内容
     content:{
       type:String,
-      value:'获取昵称、头像等公开信息'
+      value:'获取你的公开信息（昵称、头像等）'
     },
     // 弹窗确认按钮文字
     confirmText:{
@@ -36,7 +36,6 @@ Component({
   data: {
     // 弹窗显示控制
     isShow:true,
-    isAuto:false
   },
 
   /**
@@ -46,13 +45,13 @@ Component({
     //隐藏弹框
     hideDialog(){
       this.setData({
-        isShow: !this.data.isShow
+        isShow: false
       })
     },
     //展示弹框
     showDialog(){
       this.setData({
-        isShow: !this.data.isShow
+        isShow: true
       })
     },
     /**

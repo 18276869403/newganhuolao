@@ -57,12 +57,7 @@ Page({
     wx.getSetting({
       success(res) {
         if (res.authSetting['scope.userInfo']) {
-          if(that.data.isAuto==0){
-            that.dialog.showDialog();
-            that.setData({
-              isAuto:1
-            })
-          }
+          that.dialog.hideDialog();
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称
           wx.login({
             success: function(res) {
@@ -73,6 +68,7 @@ Page({
                   if(res.userInfo == undefined){
                     that.dialog.showDialog()
                   }
+                  that.dialog.showDialog()
                   const userInfo = res.userInfo
                   var openid = wx.getStorageSync('openid')
                   var data = {

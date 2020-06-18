@@ -1,11 +1,18 @@
 <!--pages/components/dialog.wxml-->
-<view class='dialog-container' hidden="{{!isShow}}">
+<view class='dialog-container' hidden="{{!isShow}}" catchtouchmove='true'>
     <view class='dialog-mask'></view>
     <view class='dialog-info'>
         <view class='dialog-title'>{{ title }}</view>
-        <view>
+        <view class="dialog-divLine"></view>
+        <view class="dialog-content">
           <!-- <view>需要授权获取微信头像和昵称才能有更好的体验哦~</view> -->
-          <image src="/pages/image/bizhi.png"></image>  
+          <view class="dialog-content-img">
+            <image src="/pages/image/shouquan.png" class="dialog-img"></image>  
+          </view>
+          
+          <view class="dialog-content-text">
+            {{content}}
+          </view>
         </view>
         <!-- <view class='dialog-content'>{{ content }}</view> -->
         <view class='dialog-footer'>

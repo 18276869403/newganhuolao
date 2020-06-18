@@ -20,6 +20,7 @@ Page({
     needsList:[],
     oneclass:[],
     twoclass:[],
+    city:[],
     firstId:'',
     firstname:'',
     firstnamewhere:'',
@@ -154,7 +155,6 @@ Page({
     }
     this.xqneedlist()
   },
-  // 获取需求
   // 下拉刷新
   onPullDownRefresh: function () {
     app.globalData.xuqiuid = 1
@@ -166,7 +166,22 @@ Page({
       wx.stopPullDownRefresh()
     }, 1000);
   },
+
+  // 授权
+  chushishouquan() {
+    wx.getSetting({
+      success(res) {
+        if (!res.authSetting['scope.userInfo']) {
+          wx.switchTab({
+            url: '../index/index',
+          })
+        }
+      }
+    })
+  },
+
   onShow(){
+    this.chushishouquan()
     if(app.globalData.xuqiuid == 0){
       this.data.mid=app.globalData.wxid
     }else{
@@ -184,7 +199,7 @@ Page({
       })
       this.xqneedlist()
     }else{
-      this.setData({weizhi:'全部'})
+      this.setData({needsList:[],weizhi:'全部',pageNo:1})
       this.xqneedlist()
     }
   },

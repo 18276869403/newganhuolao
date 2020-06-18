@@ -108,7 +108,22 @@ Page({
       }
     })
   },
+
+  // 授权
+  chushishouquan() {
+    wx.getSetting({
+      success(res) {
+        if (!res.authSetting['scope.userInfo']) {
+          wx.switchTab({
+            url: '../index/index',
+          })
+        }
+      }
+    })
+  },
+
   onShow() {
+    this.chushishouquan()
     this.setData({
       wxState: app.globalData.wxState
     })

@@ -137,6 +137,9 @@
       <view class="tankuang-top2-right" bindtap="hideModallist" data-return="ture">确认</view>
     </view>
     <scroll-view scroll-y style="height:310px;" class="tankuang-content2 zongxiang">
+      <view class="content-list-one" bindtap="typeQuan" data-id="-1">
+        【行业大类： 全部】
+      </view>
       <view class="content2-list zongxiang" wx:for="{{gongzhong}}" wx:key="key" wx:for-index="keys" wx:for-item="itemaa">
         <view class="content-list-one">
           【行业大类： {{itemaa.oneclass}}】

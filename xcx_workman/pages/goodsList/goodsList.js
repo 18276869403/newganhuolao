@@ -7,11 +7,22 @@ const api = require('../../utils/config.js')
 Page({
   data: {
     viewUrl:api.viewUrl,
+    cityId:'',
+    cityname1:'',
+    cityname:'',
+    areaname:'',
+    yijiid:'',
+    erjiid:'',
+    yijiname:'',
+    erjiname:'',
+    areaId:'',
     weizhi:'',
     showModalStatus:false,
     goodslist:[],
     where:'',
     isLastPage:false,
+    twoclass:[],
+    oneclass:[],
     pageNo:1,
     size:10,
     city:[],
@@ -91,8 +102,12 @@ Page({
     var data={
       pageNo:that.data.pageNo,
       size:10,
-      goodName:that.data.where
     }
+    if(that.data.where != ''){ data.goodName = that.data.where }
+    if(app.globalData.oneCity != undefined){ data.oneAreaId = app.globalData.oneCity.id }
+    if(app.globalData.twoCity != undefined){ data.twoAreaId = app.globalData.oneCity.id }
+    if(that.data.yijiid != ''){ data.oneClassId =  that.data.yijiid }
+    if(that.data.erjiid != ''){ data.twoClassId =  that.data.erjiid }
     qingqiu.get("tjsp", data, function(re) {
       if (re.success == true) {
         if (re.result != null) {
@@ -138,6 +153,29 @@ Page({
       url: '../goodsDetails/goodsDetails?obj=' + shopxq,
     })
   },
+  //显示弹窗样式
+  showModal: function (e) {
+    this.setData({
+      hasMask: true
+    })
+    var animation = wx.createAnimation({
+      duration: 300,
+      timingFunction: "linear",
+      delay: 0
+    })
+    this.animation = animation
+    animation.opacity(0).rotateX(-100).step();
+    this.setData({
+      animationData: animation.export(),
+      showModalStatus: true
+    })
+    setTimeout(function () {
+      animation.opacity(1).rotateX(0).step();
+      this.setData({
+        animationData: animation.export()
+      })
+    }.bind(this), 200)
+  },
   //隐藏弹窗样式 地址
   hideModal: function() {
     var that = this;
@@ -170,12 +208,12 @@ Page({
       cityId: id,
       weizhi:name,
       cityname1: name,
-      needsList:[],
+      goodslist:[],
     })
     if(id == 0){
       app.globalData.oneCity = undefined
       app.globalData.twoCity = undefined
-      that.xqneedlist() //需求
+      that.selectsp() //商品
       that.setData({
         area:[],
         showModalStatus: false,
@@ -185,7 +223,7 @@ Page({
         oneAreaId:id
       }
       app.globalData.oneCity = {id:id,name:name}
-      that.xqneedlist() //需求
+      that.selectsp() //商品
       qingqiu.get("queryTwoArea", data, function(re) {
         if (re.success == true) {
           if (re.result != null) {
@@ -199,6 +237,41 @@ Page({
         } 
       })
     }
+  },
+  // 右侧单选点击
+  arearight: function(e) {
+    var that = this;
+    if(that.data.cityname1==undefined)
+    {
+      wx.showToast({
+        title: '请先选择城市',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    //var index = e.currentTarget.dataset.index;
+    var id = e.currentTarget.dataset.id
+    var name = e.currentTarget.dataset.name
+    app.globalData.twoCity={id:id,name:name}
+    if(that.data.weizhi == undefined || that.data.weizhi == ""){
+      wx.showToast({
+        title: '请选择城市',
+        icon:'none',
+        duration:1000
+      })
+      return
+    }
+    that.setData({
+      weizhi:that.data.cityname1 + name,
+      areaId: id,
+      //curIndex: index,
+      areaname: name,
+      showModalStatus: false,
+      goodslist:[],
+      cityname: this.data.cityname1
+    })
+    that.selectsp() //商品
   },
   // 一级区域
   QueryoneArea(){
@@ -273,7 +346,7 @@ Page({
   oneClass(){
     var that =this
     var data={
-      type:3
+      type:2
     }
     qingqiu.get("oneClassList", data, function(re) {
     if (re.success == true) {
@@ -306,5 +379,134 @@ Page({
         }
       } 
     })
+  },
+  // 业务分类
+  showModallist: function() {
+    this.typefenleiyj()
+    this.setData({
+      hasMask: true
+    })
+    var animation = wx.createAnimation({
+      duration: 300,
+      timingFunction: "linear",
+      delay: 0
+    })
+    this.animation = animation
+    animation.opacity(0).rotateX(-100).step();
+    this.setData({
+      animationData: animation.export(),
+      showModalStatuslist: true,
+      showModalStatus6:true
+    })
+    setTimeout(function() {
+      animation.opacity(1).rotateX(0).step();
+      this.setData({
+        animationData: animation.export()
+      })
+    }.bind(this), 200)
+  },
+  //选择业务页面关闭
+  hideModallist: function(e) {
+    var that=this
+    var flag = e.currentTarget.dataset.return
+    if(flag=="false"){
+      that.setData({
+        yijiid:'',
+        erjiid:'',
+        yijiname:'',
+        erjiname:'',
+        pageNo:1,
+        goodslist:[]
+      })
+      that.selectsp()
+    }
+    var animation = wx.createAnimation({
+      duration: 200,
+      timingFunction: "linear",
+      delay: 0
+    })
+    // flag = 0;
+    this.animation = animation
+    animation.translateY(300).step()
+    this.setData({
+      animationData2: animation.export(),
+      hasMask: false
+    })
+    setTimeout(function() {
+      animation.translateY(0).step()
+      this.setData({
+        animationData2: animation.export(),
+        showModalStatuslist: false,
+        showModalStatus6:false
+      })
+    }.bind(this), 200)
+  },
+  // 获取分类
+  typefenleiyj: function() {
+    var that = this
+    var data = {
+      type:2
+    }
+    qingqiu.get("oneClassList", data, function(re) {
+      if (re.success == true) {
+        if (re.result != null) {
+          for(let i=0;i<re.result.length;i++){
+            var gongzhongclass = 'gongzhong[' + i +'].oneclass'
+            var gongzhongid = 'gongzhong[' + i + '].id'
+            that.setData({
+              [gongzhongid]:re.result[i].id,
+              [gongzhongclass]:re.result[i].className
+            })
+            console.log(re.result[i].className)
+            var onedata = { oneClassId:re.result[i].id }
+            qingqiu.get("twoClassList",onedata,function(re){
+              if (re.success == true){
+                if (re.result != null) {
+                  var gongzhongclass2 = 'gongzhong[' + i +'].twoclasslist'
+                  that.setData({
+                    [gongzhongclass2]:re.result
+                  })
+                }
+              }
+            })
+          }
+        } 
+      } 
+    })
+  },
+  // 选项卡点击事件获取分类
+  fenlei: function(e) {
+    var that = this;
+    var id = 1
+    var typeid = "fenleitype1.yjid"
+    var typeerji = "fenleitype1.erjiid"
+    var typestate = "fenleitype1.typestate"
+    that.setData({
+      [typeid]:'',
+      [typeerji]:'',
+      [typestate]:false,
+      fenClass1:'',
+      fenClass2:'',
+      yijiname: '',
+      secondId: 0,
+      typeyj: 0
+    })
+    this.typefenleiyj()
+  },
+  // 改变二级分类
+  changetwoclass: function (e) {
+    var erjiid = e.currentTarget.dataset.id
+    var yijiid = e.currentTarget.dataset.yjid
+    var yijiname = e.currentTarget.dataset.yijiname
+    var erjiname = e.currentTarget.dataset.erjiname
+    this.setData({
+      erjiid:erjiid,
+      yijiid:yijiid,
+      yijiname:yijiname,
+      erjiname:erjiname,
+      goodslist:[],
+      pageNo:1
+    })
+    this.selectsp()
   },
 })

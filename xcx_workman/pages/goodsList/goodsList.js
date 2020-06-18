@@ -7,68 +7,33 @@ const api = require('../../utils/config.js')
 Page({
   data: {
     viewUrl:api.viewUrl,
-    // goodslist: [{
-    //     id: 1,
-    //     name: '室内F-10木门（含五室内F-10木门（含五',
-    //     price: '122',
-    //     img: '../image/top.png',
-    //     storename: ' 马克波罗瓷砖专卖店'
-    //   },
-    //   {
-    //     id: 2,
-    //     name: '室内F-10木门（含五室内F-10木门（含五',
-    //     price: '120',
-    //     img: '../image/chuang.png',
-    //     storename: ' 马克波罗瓷砖专卖店'
-    //   },
-    //   { 
-    //     id: 3,
-    //     name: '室内F-10木门（含五室内F-10木门（含五',
-    //     price: '12',
-    //     img: '../image/chuang.png',
-    //     storename: ' 马克波罗瓷砖专卖店'
-    //   },
-    // ],
-    // needsList: [{
-    //     id: 1,
-    //     needType: 0,
-    //     title: '祥源乡新农村工程点需要友们火速联系！',
-    //     price: '350/天',
-    //     location: '万载 | 双桥镇',
-    //     number: 2,
-    //     date: '2019.11.15',
-    //     status: '进行中'
-    //   },
-    //   {
-    //     id: 2,
-    //     needType: 1,
-    //     title: '祥源乡新农村工程点需要友们火速联系！',
-    //     price: '350/天',
-    //     location: '万载 | 双桥镇',
-    //     number: 2,
-    //     date: '2019.11.15',
-    //     status: '进行中'
-    //   },
-    //   {
-    //     id: 3,
-    //     needType: 0,
-    //     title: '祥源乡新农村工程点需要友们火速联系！',
-    //     price: '350/天',
-    //     location: '万载 | 双桥镇',
-    //     number: 2,
-    //     date: '2019.11.15',
-    //     status: '进行中'
-    //   }
-    // ],
+    weizhi:'',
+    showModalStatus:false,
     goodslist:[],
     where:'',
     isLastPage:false,
     pageNo:1,
-    size:10
+    size:10,
+    city:[],
+    area:[]
   },
 
   onLoad: function() {
-    this.selectsp()
+    this.oneClass()
+    this.twoClass()
+    this.QueryoneArea()
+    this.QuerytwoArea()
+    if(app.globalData.oneCity != undefined && app.globalData.oneCity != "undefined"){
+      this.setData({
+        goodslist:[],
+        weizhi:app.globalData.oneCity.name + app.globalData.twoCity.name,
+        pageNo:1
+      })
+      this.selectsp()
+    }else{
+      this.setData({goodslist:[],weizhi:'全部',pageNo:1})
+      this.selectsp()
+    }
   },
   // 我要开店
   kaidian:function(e){
@@ -126,8 +91,6 @@ Page({
     var data={
       pageNo:that.data.pageNo,
       size:10,
-      isLastPage: false,
-      tips: '上拉加载更多',
       goodName:that.data.where
     }
     qingqiu.get("tjsp", data, function(re) {
@@ -147,7 +110,6 @@ Page({
             obj.goodPic1 = api.viewUrl + obj.goodPic1.split(',')[0]
             that.data.goodslist.push(obj)
           }
-          console.log(that.data.goodslist)
           that.setData({
             goodslist:that.data.goodslist
           })
@@ -174,6 +136,175 @@ Page({
         //debugger
     wx.navigateTo({
       url: '../goodsDetails/goodsDetails?obj=' + shopxq,
+    })
+  },
+  //隐藏弹窗样式 地址
+  hideModal: function() {
+    var that = this;
+    var animation = wx.createAnimation({
+      duration: 200,
+      timingFunction: "linear",
+      delay: 0
+    })
+    this.animation = animation
+    animation.translateY(300).step()
+    this.setData({
+      animationData: animation.export(),
+      hasMask: false
+    })
+    setTimeout(function() {
+      animation.translateY(0).step()
+      this.setData({
+        animationData: animation.export(),
+        showModalStatus: false
+      })
+    }.bind(this), 200)
+  },
+  // 左侧按钮
+  cityleft: function(e) {
+    var that = this;
+    // var index = e.currentTarget.dataset.index;
+    var id = e.currentTarget.dataset.id
+    var name = e.currentTarget.dataset.name.replace(' ','')
+    that.setData({
+      cityId: id,
+      weizhi:name,
+      cityname1: name,
+      needsList:[],
+    })
+    if(id == 0){
+      app.globalData.oneCity = undefined
+      app.globalData.twoCity = undefined
+      that.xqneedlist() //需求
+      that.setData({
+        area:[],
+        showModalStatus: false,
+      })
+    }else{
+      var data ={
+        oneAreaId:id
+      }
+      app.globalData.oneCity = {id:id,name:name}
+      that.xqneedlist() //需求
+      qingqiu.get("queryTwoArea", data, function(re) {
+        if (re.success == true) {
+          if (re.result != null) {
+            that.area=re.result
+            that.setData({
+              area:that.area
+            })
+          }else {
+            qingqiu.tk('未查询到任何数据')
+          }
+        } 
+      })
+    }
+  },
+  // 一级区域
+  QueryoneArea(){
+    var that = this
+    qingqiu.get("queryOneArea", null, function(re) {
+    if (re.success == true) {
+      if (re.result != null) {
+        var obj = {id:0,areaName:'全部'}
+        var city=[]
+        city.push(obj)
+        city.push(re.result[0])
+        that.setData({
+          city:city
+        })
+      }else {
+        qingqiu.tk('未查询到任何数据')
+      }
+    } 
+  })
+  },
+  // 二级区域
+  QuerytwoArea(){
+    var that = this
+    var data ={
+      oneAreaId:that.data.id
+    }
+    qingqiu.get("queryTwoArea", data, function(re) {
+      if (re.success == true) {
+        if (re.result != null) {
+          var obj = {id:0,oneAreaId:0,areaName:'全部'}
+          var area = []
+          area.push(obj)
+          for(let obj of re.result){
+            area.push(obj)
+          }
+          that.setData({
+            area:that.area
+          })
+        }else {
+          qingqiu.tk('未查询到任何数据')
+        }
+      } 
+    })
+  },
+  cityyiji: function() {
+    var that = this
+    qingqiu.get("oneAreaService", {}, function(re) {
+      if (re.data.result.length > 0) {
+        that.setData({
+          cityId: re.data.result[0].id,
+          cityname1: re.data.result[0].areaName
+        })
+      }
+      that.setData({
+        city: re.data.result
+      })
+      that.cityerji()
+    })
+  },
+  cityerji: function() {
+    var that = this
+    var data = {
+      oneAreaId: that.data.cityId
+    }
+    qingqiu.get("getAllTwoArea", data, function(re) {
+      that.setData({
+        area: re.data.result
+      })
+    })
+  },
+  // 一级分类
+  oneClass(){
+    var that =this
+    var data={
+      type:3
+    }
+    qingqiu.get("oneClassList", data, function(re) {
+    if (re.success == true) {
+      if (re.result != null) {
+        that.oneclass = re.result
+        that.setData ({
+          oneclass : that.oneclass
+        })
+      } else {
+        qingqiu.tk('未查询到任何数据')
+      }
+    } 
+  })
+  },
+  // 二级分类
+  twoClass(){
+    var that =this
+    var data={
+      oneClassId:3
+    }
+    qingqiu.get("twoClassList", data, function(re) {
+      if (re.success == true) {
+        if (re.result != null) {
+          that.twoclass = re.result
+          that.setData ({
+            twoclass : that.twoclass
+          })
+        } else {
+          qingqiu.tk('未查询到任何数据')
+        }
+      } 
     })
   },
 })

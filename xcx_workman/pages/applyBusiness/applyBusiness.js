@@ -52,14 +52,7 @@ Page({
     gongzhong: [{
       id: 1,
       oneclass: '',
-      twoclasslist:[{
-        id:1,
-        twoclass:'erji'
-      },
-      {
-        id:2,
-        twoclass:'erji111'
-      }]
+      twoclasslist:[]
     }],
     needsTypeList: [{
         id: 1,

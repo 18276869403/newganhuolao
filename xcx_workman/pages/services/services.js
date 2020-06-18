@@ -11,6 +11,7 @@ Page({
     chooseworker: 1,
     needsList: [],
     goodsdata3: [],
+    city:[],
     workerlist: [],
     workerlist1:[],
     businesslist1:[],

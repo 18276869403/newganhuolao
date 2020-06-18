@@ -2,7 +2,7 @@
 <view class="container">
   <dialog id='dialog' 
         title='微信授权登录' 
-        content='小程序需要您的授权获取昵称、头像等公开信息才能提供更好的服务哦' 
+        content='获取你的公开信息（昵称、头像等）' 
         confirmText='发起授权'
         bind:confirmEvent='bindGetUserInfo'>
   </dialog> 

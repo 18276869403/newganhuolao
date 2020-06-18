@@ -55,7 +55,22 @@ Page({
       wx.stopPullDownRefresh()
     }, 1000);
   },
+
+  // 授权
+  chushishouquan() {
+    wx.getSetting({
+      success(res) {
+        if (!res.authSetting['scope.userInfo']) {
+          wx.switchTab({
+            url: '../index/index',
+          })
+        }
+      }
+    })
+  },
+
   onShow:function(){
+    this.chushishouquan()
     this.QueryoneArea()
     this.QuerytwoArea()
     if(app.globalData.showid == 0){

@@ -102,7 +102,22 @@ Page({
       this.sjneedlist()
     }
   },
+
+  // 授权
+  chushishouquan() {
+    wx.getSetting({
+      success(res) {
+        if (!res.authSetting['scope.userInfo']) {
+          wx.switchTab({
+            url: '../index/index',
+          })
+        }
+      }
+    })
+  },
+  
   onShow: function(){
+    this.chushishouquan()
     var type = app.globalData.servicestype
     if(type == 0){
       this.setData({

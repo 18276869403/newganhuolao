@@ -61,6 +61,7 @@ Page({
     this.data.workerlist.splice(0,this.data.workerlist.length)
     this.data.businesslist.splice(0,this.data.businesslist.length)
     this.onShow()
+    // this.onLoad()
     setTimeout(() => {
       wx.stopPullDownRefresh()
     }, 1000);
@@ -163,7 +164,8 @@ Page({
     this.QuerytwoArea()
   },
   onLoad: function() {
-    
+    // this.grneedlist()
+    // this.sjneedlist()
   },
   // 我要入驻
   ruzhu:function(){
@@ -215,6 +217,7 @@ Page({
   },
   changeType: function(e) {
     var that = this
+    that.data.isLastPage=false
     that.setData({
       yijiname : '',
       erjiname : '',
@@ -466,8 +469,8 @@ Page({
             that.data.businesslist.push(obj)
           }
           that.setData({
-            businesslist:re.result.records,
-            businesslist1:re.result.records
+            businesslist:that.data.businesslist,
+            businesslist1:that.data.businesslist
           })
         } 
       } 
@@ -475,6 +478,7 @@ Page({
   },
   // 跳转到工人详情页面
   workerDetails: function (e) {
+    app.globalData.servicestype = 1
     var obj = JSON.stringify(e.currentTarget.dataset.vals)
     wx.navigateTo({
       url: '../workerDetails/workerDetails?obj=' + obj,

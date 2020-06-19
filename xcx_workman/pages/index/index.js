@@ -434,11 +434,26 @@ Page({
   },
   // 跳转到需求详情页面
   needsDetails: function(e) {
+    var that = this
     var obj1 =e.currentTarget.dataset.vall;
-    var xqxq = JSON.stringify(obj1);
-    wx.navigateTo({
-      url: '../needsDetails/needsDetails?obj1=' + xqxq,
-    })
+    var data = {
+      id:obj1.id
+    }
+    qingqiu.get("updateYeedById",data,function(res){
+      console.log(res)
+      if(res.success == true){
+        var xqxq = JSON.stringify(obj1);
+        wx.navigateTo({
+          url: '../needsDetails/needsDetails?obj1=' + xqxq,
+        })
+      }else{
+        wx.showToast({
+          title: res.message,
+          icon:'none',
+          duration:2000
+        })
+      }
+    },'put')
   },
   // 跳转到推荐工人更多页面
   services: function(e) {

@@ -158,7 +158,7 @@ Page({
   // 下拉刷新
   onPullDownRefresh: function () {
     app.globalData.xuqiuid = 1
-    this.data.needsList.splice(0,this.data.needsList.length)
+    // this.data.needsList.splice(0,this.data.needsList.length)
     this.data.pageNo=1
     this.data.isLastPage=false
     this.onShow()

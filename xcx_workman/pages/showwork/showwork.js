@@ -147,15 +147,10 @@ Page({
     if(app.globalData.twoCity != undefined && app.globalData.twoCity != "undefined"){
       data.twoAreaId = app.globalData.twoCity.id
     }
-    console.log(data)
     qingqiu.get("CasePage", data, function(re) {
       console.log(re)
       if (re.success == true) {
         if (re.result != null) {
-          // if(re.result.records==''){
-          //   that.data.isLastPage=true
-          //   return
-          // }
           that.showList=re.result.records
           for(var i= 0 ; i < that.showList.length; i++){
             that.showList[i].picOne = api.viewUrl+re.result.records[i].picOne.split(',')[0]

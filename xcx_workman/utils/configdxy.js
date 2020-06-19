@@ -1,6 +1,6 @@
 var api = require('./config.js')
 const baseUrl = "http://111.231.51.198:91/work-boot/" 
-// const baseUrl = "http://192.168.1.242:9123/work-boot/" 
+// const baseUrl = "http://192.168.1.241:8081/work-boot/" 
 
 // 2.0需要工人，商家分类表：可选2个分类-编辑
 const WxUserAdd = baseUrl + "/pc/hall/wxUserAdd"
@@ -44,6 +44,8 @@ const UserWorkUpdateById = baseUrl + "/pc/user/userWorkUpdateById"
 const UpdateWxCase = baseUrl + "/pc/user/updateWxCase"
 // 定位-获取区域id
 const queryAreaByName = baseUrl + "pc/hall/queryAreaByName"
+// 需求浏览人数+1
+const updateYeedById = baseUrl + "pc/hall/updateYeedById"
 
 module.exports = {
   wxUserAdd: WxUserAdd,
@@ -66,5 +68,6 @@ module.exports = {
   userWorkBy:UserWorkBy,
   userWorkUpdateById:UserWorkUpdateById,
   updateWxCase:UpdateWxCase,
-  queryAreaByName:queryAreaByName
+  queryAreaByName:queryAreaByName,
+  updateYeedById:updateYeedById
 };

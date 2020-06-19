@@ -261,28 +261,6 @@ Page({
   // 发布视频
   submitVideo:function(){
     var that = this
-    // wx.chooseImage({
-    //   sourceType: ['album', 'camera'],
-    //   success:function(res){
-    //     console.log(res)
-    //     var tempFilePath = res.tempFilePaths[0].replace('http://','')
-    //     console.log(tempFilePath)
-    //     wx.uploadFile({
-    //       url: api.uploadurl,
-    //       filePath: tempFilePath,
-    //       header: {
-    //         "Content-Type": "multipart/form-data"
-    //       },
-    //       formData: {
-    //         method: 'POST' //请求方式
-    //       },
-    //       name: 'files',
-    //       success:function(res){
-    //         console.log(res)
-    //       }
-    //     })
-    //   }
-    // })
     wx.chooseVideo({
       camera: ['album','camera'],
       maxDuration:60,

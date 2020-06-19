@@ -125,7 +125,6 @@ deletemyLY: function(e) {
     wxCaseId:mylyid
   }
   qingqiu.get("deleteMessage", data, function(re) {
-    debugger
     if (re.success == true) {
       if (re.result ==1) {
         qingqiu.tk('删除成功！')

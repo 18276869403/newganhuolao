@@ -215,7 +215,6 @@ Page({
   },
   changeType: function(e) {
     var that = this
-    console.log(that.data.chooseworker)
     that.setData({
       yijiname : '',
       erjiname : '',
@@ -226,14 +225,16 @@ Page({
     if (that.data.chooseworker == 0) {
       that.setData({
         chooseworker: 1,
-        workerlist:[]
+        workerlist:[],
+        fenleilx:1
       })
       // that.data.fenleilx=1
       that.grneedlist()
     } else {
       that.setData({
         chooseworker: 0,
-        businesslist:[]
+        businesslist:[],
+        fenleilx:2
       }) 
       // that.data.fenleilx=2
       that.sjneedlist()
@@ -328,6 +329,7 @@ Page({
 
   // 跳转到商家详情页面
   businessDetails: function (e) {
+    app.globalData.servicestype = 0
     var obj = JSON.stringify(e.currentTarget.dataset.vals)
     console.log(obj)
     wx.navigateTo({
@@ -336,16 +338,29 @@ Page({
   },
   // 上拉功能
   onReachBottom: function () {
-    if (this.data.isLastPage) {
-      wx.showToast({
-        title: '没有更多了！',
-        icon:'none',
-        duration:2000
-      })
+    if(this.data.chooseworker == 1){
+      if (this.data.isLastPage) {
+        wx.showToast({
+          title: '没有更多了！',
+          icon:'none',
+          duration:2000
+        })
         return
+      }
+      this.setData({ pageNo: this.data.pageNo + 1 })
+      this.grneedlist()
+    }else{
+      if (this.data.isLastPage) {
+        wx.showToast({
+          title: '没有更多了！',
+          icon:'none',
+          duration:2000
+        })
+          return
+      }
+      this.setData({ pageNo: this.data.pageNo + 1 })
+      this.sjneedlist()
     }
-    this.setData({ pageNo: this.data.pageNo + 1 })
-    this.grneedlist()
   },
   // 推荐工人
   grneedlist() {
@@ -369,10 +384,10 @@ Page({
       console.log(re)
       if (re.success == true) {
         if (re.result != null) {
-          // if(re.result.records==''){
-          //   that.data.isLastPage=true
-          //   return
-          // }
+          if(re.result.records==''){
+            that.data.isLastPage=true
+            return
+          }
           for(let obj of re.result.records){
             if(obj.starClass == 0){
               obj.shopName = ""
@@ -432,10 +447,10 @@ Page({
       console.log(re)
       if (re.success == true) {
         if (re.result != null) {
-          // if(re.result.records==''){
-          //   that.data.isLastPage=true
-          //   return
-          // }
+          if(re.result.records==''){
+            that.data.isLastPage=true
+            return
+          }
           for(let obj of re.result.records){
             obj.picIurl = that.data.viewUrl + obj.picIurl
             if(obj.oneClassName != null){
@@ -687,6 +702,34 @@ Page({
     })
     this.typefenleiyj()
   },
+  // 分类全部
+ typeQuan:function(e){
+  var type = e.currentTarget.dataset.id
+  if(type == -1){
+   if (this.data.chooseworker == 1) {
+     this.setData({
+       workerlist:[],
+       yijiid:'',
+       erjiid:'',
+       fenleilx:1,
+       yijiname:'',
+       pageNo:1
+     })
+     this.grneedlist()
+   } else {
+     this.setData({
+       businesslist:[],
+       fenleilx:2,
+       yijiid:'',
+       erjiid:'',
+       yijiname:'',
+       pageNo:1
+     }) 
+     this.sjneedlist()
+   }
+  }
+},
+ 
   // 改变二级分类
   changetwoclass: function (e) {
     var that=this
@@ -703,13 +746,14 @@ Page({
     })
     if (that.data.chooseworker == 1) {
       that.setData({
-        workerlist:[]
+        workerlist:[],
+        fenleilx:1
       })
-      // that.data.fenleilx=1
       that.grneedlist()
     } else {
       that.setData({
-        businesslist:[]
+        businesslist:[],
+        fenleilx:2
       }) 
       that.sjneedlist()
     }

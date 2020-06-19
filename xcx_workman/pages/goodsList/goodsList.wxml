@@ -113,7 +113,7 @@
         <view class="content-list-two zongxiang" wx:for="{{itemaa.twoclasslist}}" wx:key="key" wx:for-index="keys" wx:for-item="item">
           <view class="list-two-item hengxiang" bindtap="changetwoclass" data-id="{{item.id}}" data-yjid="{{itemaa.id}}" data-yijiname="{{itemaa.oneclass}}" data-erjiname="{{item.className}}">
             <view class="list-two-item-left">{{item.className}}</view>
-            <view class="list-two-item-right" wx:if="{{flerjiid==item.id}}">
+            <view class="list-two-item-right" wx:if="{{erjiid==item.id}}">
               <image src="{{viewUrl}}static/image/duihao.png" class="duihao-img"></image>
             </view>
           </view>

@@ -102,12 +102,14 @@ Page({
     var data={
       pageNo:that.data.pageNo,
       size:10,
+      backup1:1
     }
     if(that.data.where != ''){ data.goodName = that.data.where }
     if(app.globalData.oneCity != undefined){ data.oneAreaId = app.globalData.oneCity.id }
     if(app.globalData.twoCity != undefined){ data.twoAreaId = app.globalData.oneCity.id }
     if(that.data.yijiid != ''){ data.oneClassId =  that.data.yijiid }
     if(that.data.erjiid != ''){ data.twoClassId =  that.data.erjiid }
+    console.log(data)
     qingqiu.get("tjsp", data, function(re) {
       if (re.success == true) {
         if (re.result != null) {
@@ -128,6 +130,7 @@ Page({
           that.setData({
             goodslist:that.data.goodslist
           })
+          console.log(that.data.goodslist)
         }else{
           wx.showToast({
             title: '暂无商品！',
@@ -148,7 +151,7 @@ Page({
   goodsDetails(e) {
     var obj =e.currentTarget.dataset.vals;
     var shopxq = JSON.stringify(obj);
-        //debugger
+    // debugger
     wx.navigateTo({
       url: '../goodsDetails/goodsDetails?obj=' + shopxq,
     })
@@ -509,4 +512,19 @@ Page({
     })
     this.selectsp()
   },
+  // 分类全部
+ typeQuan:function(e){
+  var type = e.currentTarget.dataset.id
+  if(type == -1){
+    this.setData({
+      goodslist:[],
+      yijiid:'',
+      erjiid:'',
+      fenleilx:1,
+      yijiname:'',
+      pageNo:1
+    })
+  }
+  this.selectsp()
+},
 })

@@ -948,4 +948,31 @@ Page({
     that.grneedlist() //工人
     that.sjneedlist()  //商家 
   },
+  // 分类全部
+typeQuan:function(e){
+  var type = e.currentTarget.dataset.id
+  if(type == -1){
+    if (this.data.chooseworker == 1) {
+      this.setData({
+        workerlist:[],
+        yijiid:'',
+        erjiid:'',
+        fenleilx:1,
+        yijiname:'',
+        pageNo:1
+      })
+      this.grneedlist()
+    } else {
+      this.setData({
+        businesslist:[],
+        fenleilx:2,
+        yijiid:'',
+        erjiid:'',
+        yijiname:'',
+        pageNo:1
+      }) 
+      this.sjneedlist()
+      }
+    }
+  },
 })

@@ -582,7 +582,7 @@ Page({
   typefenleiyj: function() {
     var that = this
     var data = {
-      type:2
+      type:3
     }
     qingqiu.get("oneClassList", data, function(re) {
       if (re.success == true) {

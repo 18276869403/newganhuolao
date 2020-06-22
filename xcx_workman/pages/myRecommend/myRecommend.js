@@ -1,5 +1,6 @@
 // pages/myRecommend/myRecommend.js
 //调用接口js
+const app = getApp()
 const qingqiu = require('../../utils/request.js')
 const api = require('../../utils/config.js')
 Page({
@@ -35,21 +36,21 @@ Page({
     this.myid = JSON.parse(options.obj)
     this.myrecommedlist()
   },
-// 推荐商品
+// 我的推荐
 myrecommedlist() {
     var that = this
     var data={
       pages: 1,
       size: 10,
-      userPoint: that.myid
+      userId: app.globalData.wxid
     }
-    qingqiu.get("wxUserPage", data, function(re) {
+    qingqiu.get("pcQueryUserPointPage", data, function(re) {
     console.log(re)
       if (re.success == true) {
         if (re.result.records != null) {
           that.recommendLists= re.result.records
           that.setData ({
-          recommendLists: re.result.records
+            recommendLists: re.result.records
           })
 
         } else {

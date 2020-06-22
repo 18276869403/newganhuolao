@@ -80,7 +80,18 @@ Page({
           console.log(re)
           var list  = re.result.records
           for(let obj of list){
-            obj.picIurl = api.viewUrl + obj.picIurl
+            if(obj.name != null && obj.name != "" && obj.name != "null"){
+              obj.name = obj.name
+            }else if(obj.shopName != null && obj.shopName != "" && obj.shopName != "null"){
+              obj.name = obj.shopName
+            }else{
+              obj.name = obj.wxNc
+            }
+            if(obj.picIurl != null && obj.picIurl!=""&& obj.picIurl!= "null"){
+              obj.picIurl = api.viewUrl + obj.picIurl
+            }else{
+              obj.picIurl = obj.picUrl
+            }
             if(obj.signTime != null && obj.signTime != undefined && obj.signTime != ""){
               obj.signTime = obj.signTime.slice(0,16)
             }

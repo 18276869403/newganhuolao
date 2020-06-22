@@ -3,9 +3,9 @@
 <view class="dfk" wx-if="{{type==1}}">
 <view class="hengxian"></view>
 <view class="xfk">
-<view class="mingzi">房间深度</view>
+<view class="mingzi">房间高度</view>
 <view class="shuruk">
-<input placeholder="输入进深" placeholder-class="placeholderStyle" type="number" value="{{shendu}}" bindinput="shendu" class="ipt"></input></view>
+<input placeholder="输入高度" placeholder-class="placeholderStyle" type="number" value="{{shendu}}" bindinput="shendu" class="ipt"></input></view>
 <view class="mi"><text >米</text>
 </view>
 

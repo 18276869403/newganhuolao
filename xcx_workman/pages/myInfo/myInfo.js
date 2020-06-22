@@ -11,7 +11,7 @@ Page({
     viewUrl:api.viewUrl,
     birth: "2019-01-02",
     sex: '0',
-    itemList: ['男', '女'],
+    itemList: ['未知','男', '女'],
     date: '1970-01-01',
     name: '',
     phone: '',

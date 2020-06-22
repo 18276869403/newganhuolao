@@ -96,7 +96,7 @@
         <view class="show-item zongxiang" wx:for="{{showList}}" bindtap="goshowshai" wx:key="key" data-id="{{item.id}}">
           <view class="show">
             <view class="show-item-top">
-              <image src="{{viewUrl}}static/image/top.png" class="show-img"></image>
+              <image src="{{item.picOne}}" class="show-img"></image>
             </view>
             <view class="show-item-bottom hengxiang">
               <view class="hengxiang">

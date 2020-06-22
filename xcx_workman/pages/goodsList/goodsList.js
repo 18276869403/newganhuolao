@@ -124,9 +124,14 @@ Page({
           }
           that.goodslist=re.result.records
           for(let obj of re.result.records){
-            obj.goodPic1 = api.viewUrl + obj.goodPic1.split(',')[0]
+            if(obj.shopName == null){
+              obj.userId = 0
+              obj.shopName = '敬请期待'
+            }
+            obj.goodPic1 = that.data.viewUrl + obj.goodPic1.split(',')[0]
+            obj.goodPic2  = that.data.viewUrl + obj.goodPic2.split(',')[0]
             that.data.goodslist.push(obj)
-          }
+          }
           that.setData({
             goodslist:that.data.goodslist
           })

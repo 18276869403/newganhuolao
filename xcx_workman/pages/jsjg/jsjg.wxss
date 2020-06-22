@@ -1,21 +1,23 @@
 /* pages/jsjg/jsjg.wxss */
-.jsjgs{
-  width: 96%;
-  background: #f0f0f0;
-  border:1rpx solid #ccc;
-  border-radius: 10rpx;
-  margin: 0 auto;
-  height: 180rpx;
+.top-class{
+  width: 100%;
   text-align: center;
 }
-.shuzi{
+.jieguo-img-class{
+  width:94%;
+  height: 240rpx;
+  z-index:10;
+  padding-top: 15rpx;
+}
+.jieguo-class{
+  margin-top: -140rpx;
   font-size:50rpx;
   color: orange;
-  margin-top: 55rpx;
- 
 }
 .xinq{
-  margin: 20rpx 0 20rpx 20rpx;
+  margin-top: 50px;
+  margin-left: 3%;
+  margin-bottom: 20px;
 }
 .chanp{
   width: 46%;
@@ -25,7 +27,6 @@
  margin: 15rpx;
  float: left;
  overflow: hidden;
-
 }
 .biaoti{
   border-top:1rpx solid #ccc;
@@ -44,5 +45,61 @@
 .tup02{
   width: 100%;
   height: 270rpx;
-  
+  z-index: 30;
+}
+
+/* 商品 */
+.bottom1{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding-bottom: 30rpx;
+  width: 100%;
+  overflow-x: hidden;
+}
+.bottom-left{
+  display: flex;
+  flex-direction: column;
+  width: 45.5%;
+  margin-left: 3%;
+  margin-right: 1.5%;
+  justify-content: flex-start;
+}
+.bottom-content {
+  margin-bottom: 25rpx;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 8rpx;
+  font-size: 24rpx;
+  font-weight: 400;
+  color: rgba(102, 102, 102, 1);
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0rpx 2rpx 12rpx 0rpx rgba(45, 49, 61, 0.1);
+  height: 210px;
+}
+.bottom-content-top {
+  width: 100%;
+  text-align: center;
+}
+.goods-img {
+  width: 100%;
+  height: 356rpx;
+}
+.bottom-content-bottom {
+  width: 100%;
+  font-size: 30rpx;
+  padding-left: 3%;
+  height: 60rpx;
+  line-height: 60rpx;
+}
+.bottom-right{
+  display: flex;
+  flex-direction: column;
+  width: 45.5%;
+  margin-right: 3%;
+  margin-left: 1.5%;
+  justify-content: flex-start;
+}
+.goods-bottom-title{
+  font-size: 32rpx;
+  font-weight: 600;
 }

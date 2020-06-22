@@ -228,9 +228,6 @@ Page({
       })
       return
     }
-    console.log(that.data.fjcd)
-    console.log(that.data.fjkd)
-    console.log(that.data.shendu)
     var fc=that.data.fjcd
     var fk=that.data.fjkd
     var fs=that.data.shendu
@@ -246,7 +243,7 @@ Page({
     }
     console.log(jieguotl)
     wx.navigateTo({
-      url: '../jsjg/jsjg?obj='+jieguotl,
+      url: '../jsjg/jsjg?obj='+jieguotl+'&oneclass=26&twoclass=73',
     })
   },
 
@@ -290,7 +287,7 @@ Page({
     }
     console.log(jieguodb)
     wx.navigateTo({
-      url: '../jsjg/jsjg?obj='+jieguodb,
+      url: '../jsjg/jsjg?obj='+jieguodb+'&oneclass=26&twoclass=72',
     })
   },
 
@@ -332,7 +329,7 @@ Page({
     }
     console.log(jieguodz)
     wx.navigateTo({
-      url: '../jsjg/jsjg?obj='+jieguodz,
+      url: '../jsjg/jsjg?obj='+jieguodz+'&oneclass=26&twoclass=72',
     })
   },
   
@@ -409,7 +406,6 @@ Page({
     var that=this
     // 耗损率
     var rate=1.05
-    debugger
     var num1= (Number(that.data.qzfjcd)*100/Number(that.data.qzcd))*(Number(that.data.qzfjgd)*100/Number(that.data.qzkd))*2
     var num2= (Number(that.data.qzfjkd)*100/Number(that.data.qzcd))*(Number(that.data.qzfjcd)*100/Number(that.data.qzkd))*2
     var num3= (Number(that.data.qzcgd)*100/Number(that.data.qzcd))*(Number(that.data.qzckd)*100/Number(that.data.qzkd))*Number(that.data.qzcss)
@@ -423,7 +419,7 @@ Page({
     }
     console.log(jieguoqz)
     wx.navigateTo({
-      url: '../jsjg/jsjg?obj='+jieguoqz,
+      url: '../jsjg/jsjg?obj='+jieguoqz+'&oneclass=26&twoclass=72',
     })
   },
 
@@ -466,7 +462,7 @@ Page({
     }
     console.log(jieguobz)
     wx.navigateTo({
-      url: '../jsjg/jsjg?obj='+jieguobz,
+      url: '../jsjg/jsjg?obj='+jieguobz+'&oneclass=26&twoclass=81',
     })
   },
   
@@ -501,7 +497,7 @@ Page({
     }
     console.log(jieguocl)
     wx.navigateTo({
-      url: '../jsjg/jsjg?obj='+jieguocl,
+      url: '../jsjg/jsjg?obj='+jieguocl+'&oneclass=26&twoclass=90',
     })
   },
   
@@ -519,7 +515,7 @@ Page({
     var jieguodp=0
     console.log(jieguodp)
     wx.navigateTo({
-      url: '../jsjg/jsjg?obj='+jieguodp,
+      url: '../jsjg/jsjg?obj='+jieguodp+'&oneclass=26&twoclass=74',
     })
   },
   /**

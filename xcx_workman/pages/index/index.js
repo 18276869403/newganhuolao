@@ -187,14 +187,14 @@ Page({
     if(app.globalData.oneCity == undefined || app.globalData.oneCity == "undefined"){
       this.setData({weizhi:'全部'})
       this.xqneedlist({pageNo:1,pageSize:3}) //需求
-      this.grneedlist({pageNo:1,pageSize:20,wxState:1}) //工人
-      this.sjneedlist({pageNo:1,pageSize:20,wxState:0})  //商家 
-      this.spneedlist({pageNo:1,pageSize:20,backup1:1}) //商品
+      this.grneedlist({pageNo:1,pageSize:10,wxState:1}) //工人
+      this.sjneedlist({pageNo:1,pageSize:10,wxState:0})  //商家 
+      this.spneedlist({pageNo:1,pageSize:10,backup1:1}) //商品
     }else{
       this.xqneedlist({pageNo:1,pageSize:3,oneAreaId:app.globalData.oneCity.id,twoAreaId:app.globalData.twoCity.id}) //需求
-      this.grneedlist({pageNo:1,pageSize:20,wxState:1,oneAreaId:app.globalData.oneCity.id,twoAreaId:app.globalData.twoCity.id}) //工人
-      this.sjneedlist({pageNo:1,pageSize:20,wxState:0,oneAreaId:app.globalData.oneCity.id,twoAreaId:app.globalData.twoCity.id})  //商家 
-      this.spneedlist({pageNo:1,pageSize:20,backup1:1,oneAreaId:app.globalData.oneCity.id,twoAreaId:app.globalData.twoCity.id}) //商品
+      this.grneedlist({pageNo:1,pageSize:10,wxState:1,oneAreaId:app.globalData.oneCity.id,twoAreaId:app.globalData.twoCity.id}) //工人
+      this.sjneedlist({pageNo:1,pageSize:10,wxState:0,oneAreaId:app.globalData.oneCity.id,twoAreaId:app.globalData.twoCity.id})  //商家 
+      this.spneedlist({pageNo:1,pageSize:10,backup1:1,oneAreaId:app.globalData.oneCity.id,twoAreaId:app.globalData.twoCity.id}) //商品
     }
   },
   // onLoad: function(options) {
@@ -501,7 +501,6 @@ Page({
   spneedlist(data) {
     var that = this
     qingqiu.get("tjsp", data, function(re) {
-      console.log('推荐商品',re)
       if (re.success == true) {
         if (re.result.records != null) {
           that.goodsList = re.result.records

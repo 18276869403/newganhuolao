@@ -102,6 +102,7 @@ Page({
       wxUserId:app.globalData.wxid
     }
     qingqiu.get("casePage",data,function(re){
+      console.log(re)
       if(re.success==true){
         that.data.showList=re.result.records
         for(var i= 0 ; i < that.data.showList.length; i++){

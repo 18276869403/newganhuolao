@@ -1,11 +1,15 @@
 // pages/jsjg/jsjg.js
+const qingqiu = require('../../utils/request.js')
+const api = require('../../utils/config.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    jieguo:''
+    viewUrl:api.viewUrl,
+    jieguo:'',
+    goodslist:[]
   },
 
   /**
@@ -13,11 +17,36 @@ Page({
    */
   onLoad: function (options) {
     this.data.jieguo=options.obj
+    this.getGoodsList({pageNo:1,pageSize:10,oneClassId:options.oneclass,twoClassId:options.twoclass})
     this.setData({
       jieguo:this.data.jieguo
     })
   },
 
+  getGoodsList(data){
+    var that = this
+    qingqiu.get("tjsp",data,function(res){
+      console.log(res)
+      if(res.success == true){
+        for(let obj of res.result.records){
+          obj.goodPic1 = that.data.viewUrl + obj.goodPic1
+          obj.goodPic2 = that.data.viewUrl + obj.goodPic2
+        }
+        that.setData({
+          goodslist:res.result.records
+        })
+      }
+    })
+  },
+
+  // 跳转到商品详情页面
+  goodsDetails(e) {
+    var obj =e.currentTarget.dataset.vals;
+    var shopxq = JSON.stringify(obj);
+    wx.navigateTo({
+      url: '../goodsDetails/goodsDetails?obj=' + shopxq,
+     })
+   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

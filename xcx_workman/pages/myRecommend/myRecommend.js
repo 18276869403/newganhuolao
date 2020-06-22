@@ -36,8 +36,8 @@ Page({
     this.myid = JSON.parse(options.obj)
     this.myrecommedlist()
   },
-// 我的推荐
-myrecommedlist() {
+  // 我的推荐
+  myrecommedlist() {
     var that = this
     var data={
       pages: 1,

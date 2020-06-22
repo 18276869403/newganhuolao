@@ -58,7 +58,12 @@ Page({
     }
     qingqiu.get("editWxUser",data,function(re){
       if (re.success == true) {
-        wx.navigateTo({
+        wx.showToast({
+          title: '保存成功！',
+          icon:'none',
+          duration:1000
+        })
+        wx.switchTab({
           url: '../mine/mine'
         })
       } 

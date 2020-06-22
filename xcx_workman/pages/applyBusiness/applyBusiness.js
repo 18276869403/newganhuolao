@@ -1256,14 +1256,16 @@ Page({
         that.setData({
           [typeid]:'',
           [typeerji]:'',
-          [typestate]:false
+          [typestate]:false,
+          fenClass1:''
         })
         return
       }else if(that.data.fenleitype2.typestate == true && that.data.fenleitype2.erjiid == id && that.data.fenleitype2.yjid == yjid){
         that.setData({
           [typeid1]:'',
           [typeerji1]:'',
-          [typestate1]:false
+          [typestate1]:false,
+          fenClass2:''
         })
         return
       }
@@ -1343,9 +1345,15 @@ Page({
         yijiname:''
       })
     }else{
-      this.setData({
-        tempClass:this.data.fenClass1 + "," + this.data.fenClass2
-      })
+      if(this.data.fenClass2 !=  ''){
+        this.setData({
+          tempClass:this.data.fenClass1 + "," + this.data.fenClass2
+        })
+      }else{
+        this.setData({
+          tempClass:this.data.fenClass1
+        })
+      }
     }
-  }
+  },
 })

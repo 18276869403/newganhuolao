@@ -1301,14 +1301,16 @@ Page({
         that.setData({
           [typeid]:'',
           [typeerji]:'',
-          [typestate]:false
+          [typestate]:false,
+          fenClass1:''
         })
         return
       }else if(that.data.fenleitype2.typestate == true && that.data.fenleitype2.erjiid == id && that.data.fenleitype2.yjid == yjid){
         that.setData({
           [typeid1]:'',
           [typeerji1]:'',
-          [typestate1]:false
+          [typestate1]:false,
+          fenClass2:''
         })
         return
       }

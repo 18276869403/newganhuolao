@@ -50,6 +50,7 @@ Page({
     this.data.pageNo=1
     this.data.isLastPage=false
     this.data.showList.splice(0,this.data.showList.length)
+    app.globalData.showworkRefresh = 1
     this.onShow()
     setTimeout(() => {
       wx.stopPullDownRefresh()
@@ -70,26 +71,29 @@ Page({
   },
 
   onShow:function(){
-    this.chushishouquan()
-    this.QueryoneArea()
-    this.QuerytwoArea()
-    if(app.globalData.showid == 0){
-      this.getShowList()
-    }else{
-      if(app.globalData.oneCity != undefined){
-        this.setData({
-          showList:[],
-          weizhi:app.globalData.oneCity.name + app.globalData.twoCity.name,
-          pageNo:1
-        })
-        this.SelectshowList()
+    console.log(app.globalData.showworkRefresh)
+    if(app.globalData.showworkRefresh != 0){
+      this.chushishouquan()
+      this.QueryoneArea()
+      this.QuerytwoArea()
+      if(app.globalData.showid == 0){
+        this.getShowList()
       }else{
-        this.setData({
-          showList:[],
-          pageNo:1,
-          weizhi:'全部'
-        })
-        this.SelectshowList()
+        if(app.globalData.oneCity != undefined){
+          this.setData({
+            showList:[],
+            weizhi:app.globalData.oneCity.name + app.globalData.twoCity.name,
+            pageNo:1
+          })
+          this.SelectshowList()
+        }else{
+          this.setData({
+            showList:[],
+            pageNo:1,
+            weizhi:'全部'
+          })
+          this.SelectshowList()
+        }
       }
     }
   },
@@ -239,7 +243,9 @@ Page({
    showDetails: function(e) {
     var ssid =e.currentTarget.dataset.ssid;
     qingqiu.get("updateWxCase",{id:ssid},function(re){
+      console.log(re)
       if(re.success == true){
+        app.globalData.showworkRefresh = 0
         wx.navigateTo({
           url: '../showDetails/showDetails?obj='+ssid,
         })
@@ -255,6 +261,7 @@ Page({
   },
   // 发布晒晒页面
   submitShow: function() {
+    app.globalData.showworkRefresh = 0
     wx.navigateTo({
       url: '../submitShow/submitShow',
     })

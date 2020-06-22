@@ -73,12 +73,11 @@ Page({
                   var data = {
                     code: code,
                     picUrl: userInfo.avatarUrl,
-                    sex: userInfo.gender,
+                    // sex: userInfo.gender,
                     wxNc: userInfo.nickName,
                     backup1:openid
                   }
                   qingqiu.get("getKeyInfo", data, function(re) {
-                    console.log(re)
                     app.globalData.wxid = re.result.wxUser.id
                     if (re.result.wxUser.picUrl != null && re.result.wxUser.picUrl.length > 0) {
                       app.globalData.sqgl = 1
@@ -93,11 +92,6 @@ Page({
           })
         } else {
           that.dialog.showDialog();
-          wx.showToast({
-            title: '未授权',
-            icon:'none',
-            duration:1000
-          })
           return
         }
       }

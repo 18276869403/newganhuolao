@@ -60,6 +60,7 @@ Page({
     this.data.isLastPage=false
     this.data.workerlist.splice(0,this.data.workerlist.length)
     this.data.businesslist.splice(0,this.data.businesslist.length)
+    app.globalData.serverRefresh = 1
     this.onShow()
     // this.onLoad()
     setTimeout(() => {
@@ -119,49 +120,51 @@ Page({
   },
   
   onShow: function(){
-    this.chushishouquan()
-    var type = app.globalData.servicestype
-    if(type == 0){
-      this.setData({
-        chooseworker:0
-      })
-      if(app.globalData.oneCity != undefined){
+    if(app.globalData.serverRefresh != 0){
+      this.chushishouquan()
+      var type = app.globalData.servicestype
+      if(type == 0){
         this.setData({
-          businesslist:[],
-          weizhi:app.globalData.oneCity.name + app.globalData.twoCity.name,
-          pageNo:1
+          chooseworker:0
         })
-        this.sjneedlist()
+        if(app.globalData.oneCity != undefined){
+          this.setData({
+            businesslist:[],
+            weizhi:app.globalData.oneCity.name + app.globalData.twoCity.name,
+            pageNo:1
+          })
+          this.sjneedlist()
+        }else{
+          this.setData({
+            businesslist:[],
+            pageNo:1,
+            weizhi:'全部'
+          })
+          this.sjneedlist()
+        }
       }else{
         this.setData({
-          businesslist:[],
-          pageNo:1,
-          weizhi:'全部'
+          chooseworker:1
         })
-        this.sjneedlist()
+        if(app.globalData.oneCity != undefined){
+          this.setData({
+            workerlist:[],
+            weizhi:app.globalData.oneCity.name + app.globalData.twoCity.name,
+            pageNo:1
+          })
+          this.grneedlist()
+        }else{
+          this.setData({
+            workerlist:[],
+            pageNo:1,
+            weizhi:'全部'
+          })
+          this.grneedlist()
+        }
       }
-    }else{
-      this.setData({
-        chooseworker:1
-      })
-      if(app.globalData.oneCity != undefined){
-        this.setData({
-          workerlist:[],
-          weizhi:app.globalData.oneCity.name + app.globalData.twoCity.name,
-          pageNo:1
-        })
-        this.grneedlist()
-      }else{
-        this.setData({
-          workerlist:[],
-          pageNo:1,
-          weizhi:'全部'
-        })
-        this.grneedlist()
-      }
+      this.QueryoneArea()
+      this.QuerytwoArea()
     }
-    this.QueryoneArea()
-    this.QuerytwoArea()
   },
   onLoad: function() {
     // this.grneedlist()
@@ -179,6 +182,7 @@ Page({
         })
         return
       }else{
+        app.globalData.serverRefresh = 0
         wx.navigateTo({
           url: '../applyBusiness/applyBusiness?typeid=1',
         })
@@ -190,11 +194,13 @@ Page({
         })
         return
       }else{
+        app.globalData.serverRefresh = 0
         wx.navigateTo({
           url: '../applyBusiness/applyBusiness?typeid=2',
         })
       }
     }else{
+      app.globalData.serverRefresh = 0
       type = type == 0 ? 2:1
       wx.navigateTo({
         url: '../applyBusiness/applyBusiness?typeid='+type,
@@ -334,7 +340,7 @@ Page({
   businessDetails: function (e) {
     app.globalData.servicestype = 0
     var obj = JSON.stringify(e.currentTarget.dataset.vals)
-    console.log(obj)
+    app.globalData.serverRefresh = 0
     wx.navigateTo({
       url: '../businessDetails/businessDetails?obj=' + obj,
     })
@@ -480,6 +486,7 @@ Page({
   workerDetails: function (e) {
     app.globalData.servicestype = 1
     var obj = JSON.stringify(e.currentTarget.dataset.vals)
+    app.globalData.serverRefresh = 0
     wx.navigateTo({
       url: '../workerDetails/workerDetails?obj=' + obj,
     })

@@ -78,15 +78,15 @@ Page({
       if (re.success == true) {
         if (re.result != null) {
           console.log(re)
-          that.data.jiedanList = re.result.records
-          for(var i=0;i<that.data.jiedanList.length;i++){
-            that.data.jiedanList.picIurl = api.viewUrl + that.data.jiedanList.picIurl
-            if(that.data.jiedanList.signTime != null && that.data.jiedanList.signTime != undefined && that.data.jiedanList.signTime != ""){
-              that.data.jiedanList.signTime = that.data.jiedanList.signTime.subString(0,16)
+          var list  = re.result.records
+          for(let obj of list){
+            obj.picIurl = api.viewUrl + obj.picIurl
+            if(obj.signTime != null && obj.signTime != undefined && obj.signTime != ""){
+              obj.signTime = obj.signTime.slice(0,16)
             }
           } 
           that.setData ({
-            jiedanList : that.data.jiedanList
+            jiedanList : list
           })
         } else {
           qingqiu.tk('未查询到任何数据')

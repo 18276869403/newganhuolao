@@ -2,6 +2,7 @@
 var app = getApp()
 var qingqiu = require('../../utils/request.js')
 var api = require('../../utils/config.js') 
+var utils = require('../../utils/util.js')
 Page({
 
   /**
@@ -11,7 +12,7 @@ Page({
     viewUrl:api.viewUrl,
     birth: "2019-01-02",
     sex: '0',
-    itemList: ['未知','男', '女'],
+    itemList: ['男', '女'],
     date: '1970-01-01',
     name: '',
     phone: '',
@@ -30,10 +31,21 @@ Page({
       id:id
     }
     qingqiu.get("queryWxUser",data,function(re){
-      console.log(re)
       if(re.success == true){
-        re.result.name = re.result.name == "" ? '请输入姓名':re.result.name
-        re.result.phone = re.result.phone == "" ? '请输入手机号':re.result.phone
+        if(re.result.name == "" || re.result.name == null || re.result.name == "null"){
+          re.result.name = '请输入姓名'
+        }
+        if(re.result.phone == "" || re.result.phone == null || re.result.phone == null){
+          re.result.phone = '请输入手机号'
+        }
+        if(re.result.dateBirth == null || re.result.dateBirth == "" || re.result.dateBirth == "null"){
+          re.result.dateBirth = '1970-01-01'
+        }
+        if(re.result.sex == 0 || re.result.sex == 1){
+          re.result.sex = 0
+        }else{
+          re.result.sex = 1
+        }
         that.setData({
           wxUser:re.result
         })
@@ -53,8 +65,16 @@ Page({
       id:that.data.wxUser.id,
       name:that.data.wxUser.name,
       dateBirth:that.data.wxUser.dateBirth,
-      sex:that.data.wxUser.sex,
+      sex:that.data.wxUser.sex + 1,
       phone:that.data.wxUser.phone
+    }
+    var s = qingqiu.yanzheng(data.name + ',请输入真实姓名|' + data.sex + ',请选择性别|' + data.dateBirth + ',请选择出生年月|' + data.phone + ',请输入手机号')
+    if(s != 0){
+      wx.showToast({
+        title: s,
+        icon:'none'
+      })
+      return
     }
     qingqiu.get("editWxUser",data,function(re){
       if (re.success == true) {
@@ -63,10 +83,19 @@ Page({
           icon:'none',
           duration:1000
         })
-        wx.switchTab({
-          url: '../mine/mine'
+        setTimeout(function(){
+          wx.switchTab({
+            url: '../mine/mine'
+          })
+        },1000)
+      } else{
+        wx.showToast({
+          title: re.message,
+          icon:'none',
+          duration:2000
         })
-      } 
+        return
+      }
     },'put')
   },
 

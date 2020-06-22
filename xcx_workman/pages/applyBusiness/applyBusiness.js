@@ -605,8 +605,7 @@ Page({
         })
         return
       }
-      var s = qingqiu.yanzheng(that.data.areaId + ",请选择区域|" + that.data.fenleitype1.yjid + ",请选择工种分类|" + that.data.workername + ",请输入工人姓名|" + that.data.date + ",请选择出生年月日|" + that.data.worktime + ",请输入从业时长|" + that.data.workerphone + ",请输入联系电话|" + that.data.workerskill + ",请输入技能介绍|" + that.data.picPerson1 + ",请上传身份证正面照|" + that.data.picPerson1 + ",请上传身份证反面照")
-      // + that.data.workeraddress + ",请输入详细地址|" + that.data.picPerson1 + ",请上传身份证正面|" + that.data.picPerson2 + ",请上传身份证反面"
+      var s = qingqiu.yanzheng(that.data.areaId + ",请选择区域|" + that.data.fenleitype1.yjid + ",请选择工种分类|" + that.data.workername + ",请输入工人姓名|" + that.data.date + ",请选择出生年月日|" + that.data.worktime + ",请输入从业时长|"+ that.data.workeraddress + ",请输入详细地址|" + that.data.workerphone + ",请输入联系电话|" + that.data.workerskill + ",请输入技能介绍|" + that.data.picIurl + ",请上传头像照片|")
       if (s != 0) {
         wx.showToast({
           title: s,

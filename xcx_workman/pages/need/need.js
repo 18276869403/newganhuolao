@@ -161,6 +161,7 @@ Page({
     // this.data.needsList.splice(0,this.data.needsList.length)
     this.data.pageNo=1
     this.data.isLastPage=false
+    app.globalData.needRefresh = 1
     this.onShow()
     setTimeout(() => {
       wx.stopPullDownRefresh()
@@ -181,26 +182,28 @@ Page({
   },
 
   onShow(){
-    this.chushishouquan()
-    if(app.globalData.xuqiuid == 0){
-      this.data.mid=app.globalData.wxid
-    }else{
-      this.data.mid=''
-    }
-    this.oneClass()
-    this.twoClass()
-    this.QueryoneArea()
-    this.QuerytwoArea()
-    if(app.globalData.oneCity != undefined && app.globalData.oneCity != "undefined"){
-      this.setData({
-        needsList:[],
-        weizhi:app.globalData.oneCity.name + app.globalData.twoCity.name,
-        pageNo:1
-      })
-      this.xqneedlist()
-    }else{
-      this.setData({needsList:[],weizhi:'全部',pageNo:1})
-      this.xqneedlist()
+    if(app.globalData.needRefresh != 0){
+      this.chushishouquan()
+      if(app.globalData.xuqiuid == 0){
+        this.data.mid=app.globalData.wxid
+      }else{
+        this.data.mid=''
+      }
+      this.oneClass()
+      this.twoClass()
+      this.QueryoneArea()
+      this.QuerytwoArea()
+      if(app.globalData.oneCity != undefined && app.globalData.oneCity != "undefined"){
+        this.setData({
+          needsList:[],
+          weizhi:app.globalData.oneCity.name + app.globalData.twoCity.name,
+          pageNo:1
+        })
+        this.xqneedlist()
+      }else{
+        this.setData({needsList:[],weizhi:'全部',pageNo:1})
+        this.xqneedlist()
+      }
     }
   },
 
@@ -418,14 +421,31 @@ Page({
   },
   // 跳转到需求详情页面
   needsDetails: function(e) {
+    var that = this
     var obj1 =e.currentTarget.dataset.vall;
-    var xqxq = JSON.stringify(obj1);
-    wx.navigateTo({
-      url: '../needsDetails/needsDetails?obj1=' + xqxq,
-    })
+    var data = {
+      id:obj1.id
+    }
+    qingqiu.get("updateYeedById",data,function(res){
+      console.log(res)
+      if(res.success == true){
+        var xqxq = JSON.stringify(obj1);
+        app.globalData.needRefresh = 0
+        wx.navigateTo({
+          url: '../needsDetails/needsDetails?obj1=' + xqxq,
+        })
+      }else{
+        wx.showToast({
+          title: res.message,
+          icon:'none',
+          duration:2000
+        })
+      }
+    },'put')
   },
   // 跳转到提交需求页面
   submitNeeds: function() {
+    app.globalData.needRefresh = 0
     wx.navigateTo({
       url: '../submitNeeds/submitNeeds?type=0&id=0',
     })

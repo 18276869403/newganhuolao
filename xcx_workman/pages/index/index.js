@@ -172,7 +172,6 @@ Page({
     //   wx.setStorageSync('openid', '')
     // }
     // this.getAddress() // 获取位置信息
-
     this.chushishouquan()
     this.firstbanner() //banner
     this.pointList() //通知

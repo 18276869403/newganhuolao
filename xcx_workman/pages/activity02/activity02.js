@@ -10,43 +10,43 @@ Page({
    // 跳转到涂料用量
   yyyy: function () {
     wx.navigateTo({
-      url: '../yyyy/yyyy?obj='+1,
+      url: '../calculate/calculate?obj='+1,
     })
   },
   // 跳转到地板用量
   yl02: function () {
     wx.navigateTo({
-      url: '../yyyy/yyyy?obj='+2,
+      url: '../calculate/calculate?obj='+2,
     })
   },
   // 跳转到地砖用量
   yl03: function () {
     wx.navigateTo({
-      url: '../yyyy/yyyy?obj='+3,
+      url: '../calculate/calculate?obj='+3,
     })
   },
   // 跳转到墙砖用量
   yl04: function () {
     wx.navigateTo({
-      url: '../yyyy/yyyy?obj='+4,
+      url: '../calculate/calculate?obj='+4,
     })
   },
   // 跳转到壁纸用量
   yl05: function () {
     wx.navigateTo({
-      url: '../yyyy/yyyy?obj='+5,
+      url: '../calculate/calculate?obj='+5,
     })
   },
   // 跳转到窗帘用量
   yl06: function () {
     wx.navigateTo({
-      url: '../yyyy/yyyy?obj='+6,
+      url: '../calculate/calculate?obj='+6,
     })
   },
   // 跳转到顶棚用量
   yl07: function () {
     wx.navigateTo({
-      url: '../yyyy/yyyy?obj='+7,
+      url: '../calculate/calculate?obj='+7,
     })
   },
   /**

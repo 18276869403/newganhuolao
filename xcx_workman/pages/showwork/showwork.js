@@ -71,60 +71,28 @@ Page({
   },
 
   onShow:function(){
-    console.log(app.globalData.showworkRefresh)
     if(app.globalData.showworkRefresh != 0){
       this.chushishouquan()
       this.QueryoneArea()
       this.QuerytwoArea()
-      if(app.globalData.showid == 0){
-        this.getShowList()
+      if(app.globalData.oneCity != undefined){
+        this.setData({
+          showList:[],
+          weizhi:app.globalData.oneCity.name + app.globalData.twoCity.name,
+          pageNo:1
+        })
+        this.SelectshowList()
       }else{
-        if(app.globalData.oneCity != undefined){
-          this.setData({
-            showList:[],
-            weizhi:app.globalData.oneCity.name + app.globalData.twoCity.name,
-            pageNo:1
-          })
-          this.SelectshowList()
-        }else{
-          this.setData({
-            showList:[],
-            pageNo:1,
-            weizhi:'全部'
-          })
-          this.SelectshowList()
-        }
+        this.setData({
+          showList:[],
+          pageNo:1,
+          weizhi:'全部'
+        })
+        this.SelectshowList()
       }
     }
   },
-  // onLoad: function () {
-    
-  // }, 
-  getShowList(){
-    var that = this
-    var data = {
-      wxUserId:app.globalData.wxid
-    }
-    qingqiu.get("casePage",data,function(re){
-      console.log(re)
-      if(re.success==true){
-        that.data.showList=re.result.records
-        for(var i= 0 ; i < that.data.showList.length; i++){
-          that.data.showList[i].picOne = api.viewUrl+re.result.records[i].picOne.split(',')[0]
-        } 
-        that.setData({
-          showList:re.result.records
-        })
-      }else{
-        wx.showToast({
-          title: re.message,
-          icon:'none',
-          duration:2000
-        })
-      }
-      
-    })
-  },
+  
   // 上拉功能
   onReachBottom: function () {
     if (this.data.isLastPage) {
@@ -257,7 +225,6 @@ Page({
         })
       }
     },'put')
-    
   },
   // 发布晒晒页面
   submitShow: function() {

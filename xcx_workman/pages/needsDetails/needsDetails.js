@@ -55,10 +55,10 @@ Page({
 
   onLoad: function (options) {
     var xqxqlist = JSON.parse(options.obj1)
-    this.id = xqxqlist.id
     xqxqlist.publishMan = utils.formatName(xqxqlist.publishMan)
     this.setData({
       xqxqlist: xqxqlist,
+      id:xqxqlist.id,
       wxUserid: app.globalData.wxid
     })
     console.log(this.data.wxUserid)
@@ -70,10 +70,11 @@ Page({
   SelectjiedanList() {
     var that = this
     var data={
-      needId: that.id,
+      needId: that.data.id,
       pages: 1,
       size: 10
     }
+    console.log(data)
     qingqiu.get("needSignPage", data, function(re) {
       if (re.success == true) {
         if (re.result != null) {
@@ -146,9 +147,8 @@ Page({
   baoming(){
     var that = this
     var data = {
-      needId:that.id,
+      needId:that.data.id,
       wxUserId:app.globalData.wxid
-      // signTime:utils.formatTime(new Date())
     }
     wx.showModal({
       title:'提示',

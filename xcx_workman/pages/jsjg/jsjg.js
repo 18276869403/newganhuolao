@@ -50,7 +50,6 @@ Page({
       }
     })
   },
-
   // 跳转到商品详情页面
   goodsDetails(e) {
     var obj =e.currentTarget.dataset.vals;

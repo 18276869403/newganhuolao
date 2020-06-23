@@ -81,7 +81,7 @@
           <image src="{{item.picIurl}}" class="worker-img"></image>
         </view>
         <view class="list-item-right zongxiang">
-          <view class="right-name">
+          <view class="right-name right-name-text">
             {{item.name}}
             <text class="right-text-age">{{item.dateBirth}}岁</text>
           </view>
@@ -142,7 +142,7 @@
             <image src="{{item.picIurl}}" class="business-img"></image>
           </view>
           <view class="content-business-bottom hengxiang">
-            <view>{{item.shopName}}</view>
+            <view class="content-business-bottom-text">{{item.shopName}}</view>
           </view>
         </view>
       </block>

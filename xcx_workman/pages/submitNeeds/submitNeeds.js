@@ -262,7 +262,8 @@ Page({
           oneClassId:that.data.firstId,
           twoClassId:that.data.flerjiid,
           oneAreaId:that.data.cityId,
-          twoAreaId:that.data.areaId
+          twoAreaId:that.data.areaId,
+          backup5:0
         }
         qingqiu.get("needUpdateStateById", data, function(re) {
           if (re.success == true) {

@@ -287,6 +287,12 @@ page {
   color: rgba(51, 51, 51, 1);
 }
 
+.right-name-length{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  will-change: nowrap;
+}
+
 .right-text-age {
   font-size: 24rpx;
   font-weight: 400;
@@ -419,6 +425,12 @@ page {
   padding-left: 3%;
   height: 82rpx;
   line-height: 82rpx;
+}
+
+.content-business-bottom-text{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .font-dd{

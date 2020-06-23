@@ -1,9 +1,7 @@
-// const baseUrl = "https://localhost:5001/api/app/"
-// const sysUrl = "https://localhost:5001/api/sys/"
 var deng = require('./configdxy.js')
 var zhu = require('./configzpy.js')
 const imgurl = "http://111.231.51.198:91/work-boot/" 
-// const imgurl = "http://192.168.1.241:8081/work-boot/" //本地
+// const imgurl = "http://192.168.1.241:9123/work-boot/" //本地
 const baiduAK = 'CauqHCxjKu4NcebB4UjlUYTbGqtRpEN5'
 
 // url

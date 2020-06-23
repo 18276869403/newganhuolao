@@ -401,12 +401,10 @@ Page({
       duration:1000
     })
   },
-  // 二手商品
+  // 剩料交易
   ershou:function(){
-    wx.showToast({
-      title: '开发中，敬请期待...',
-      icon:'none',
-      duration:1000
+    wx.navigateTo({
+      url: '../submitMaterial/submitMaterial',
     })
   },
   // 本地招工

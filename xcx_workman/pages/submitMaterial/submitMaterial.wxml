@@ -15,8 +15,8 @@
     </view>
 
     <view class="content-item hengxiang">
-      <view class="content-title">出价</view>
-      <input type="number" placeholder="请输入出价" class="shurukuang" placeholder-class="placeholder" value='{{youhuijia}}' name="youhuijia" bindinput='youhuijiainput'></input>
+      <view class="content-title">定价</view>
+      <input type="digit" placeholder="请输入定价" class="shurukuang" placeholder-class="placeholder" value='{{youhuijia}}' name="youhuijia" bindinput='youhuijiainput'></input>
     </view>
 
     <view class="content-item-textarea">

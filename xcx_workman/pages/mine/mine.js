@@ -193,9 +193,8 @@ Page({
   },
   // 跳转到我的晒活页面
   showwork: function() {
-    getApp().globalData.showid = 0
-    wx.reLaunch({
-      url: '../showwork/showwork',
+    wx.navigateTo({
+      url: '../myShowwork/myShowwork',
     })
   },
   // 跳转到我留言页面

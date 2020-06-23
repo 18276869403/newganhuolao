@@ -172,6 +172,7 @@ Page({
     //   wx.setStorageSync('openid', '')
     // }
     // this.getAddress() // 获取位置信息
+
     this.chushishouquan()
     this.firstbanner() //banner
     this.pointList() //通知
@@ -185,6 +186,9 @@ Page({
       this.sjneedlist({pageNo:1,pageSize:10,wxState:0})  //商家 
       this.spneedlist({pageNo:1,pageSize:10,backup1:1}) //商品
     }else{
+      this.setData({
+        weizhi:app.globalData.oneCity.name + app.globalData.twoCity.name
+      })
       this.xqneedlist({pageNo:1,pageSize:3,oneAreaId:app.globalData.oneCity.id,twoAreaId:app.globalData.twoCity.id}) //需求
       this.grneedlist({pageNo:1,pageSize:10,wxState:1,oneAreaId:app.globalData.oneCity.id,twoAreaId:app.globalData.twoCity.id}) //工人
       this.sjneedlist({pageNo:1,pageSize:10,wxState:0,oneAreaId:app.globalData.oneCity.id,twoAreaId:app.globalData.twoCity.id})  //商家 

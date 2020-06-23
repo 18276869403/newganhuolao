@@ -9,7 +9,14 @@ Page({
   data: {
     viewUrl:api.viewUrl,
     jieguo:'',
-    goodslist:[]
+    goodslist:[],
+    zanwu:[{
+      id:1,
+      goodPic1:api.viewUrl+'static/image/zawu1.png',
+      goodName:'敬请期待',
+      newPrice:'',
+      state:false
+    }]
   },
 
   /**
@@ -36,12 +43,20 @@ Page({
           goodslist:res.result.records
         })
       }
+      if(res.result.records==''){
+        that.setData({
+          goodslist:that.data.zanwu
+        })
+      }
     })
   },
 
   // 跳转到商品详情页面
   goodsDetails(e) {
     var obj =e.currentTarget.dataset.vals;
+    if(obj.state==false){
+      return
+    }
     var shopxq = JSON.stringify(obj);
     wx.navigateTo({
       url: '../goodsDetails/goodsDetails?obj=' + shopxq,

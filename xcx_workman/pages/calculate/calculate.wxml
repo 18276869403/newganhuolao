@@ -246,7 +246,7 @@
 <view class="mingzi">壁纸规格</view>
 <view class="shuruk">
 <input placeholder="输入壁纸每卷平方数" placeholder-class="placeholderStyle" type="number" value="{{bzgg}}" bindinput="bzgg" class="ipt"></input></view>
-<view class="mi"><text >米</text></view>
+<view class="mi"><text >㎡/卷</text></view>
 </view>
 <view class="xfk02">
 <view class="mingzi02" bindtap="jisuanbz"><text >立即计算</text></view>

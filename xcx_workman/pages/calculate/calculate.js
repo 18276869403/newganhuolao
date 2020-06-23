@@ -264,7 +264,7 @@ Page({
     }
     console.log(jieguotl)
     wx.navigateTo({
-      url: '../jsjg/jsjg?obj='+jieguotl+'&oneclass=26&twoclass=73',
+      url: '../jsjg/jsjg?obj='+jieguotl+'升'+'&oneclass=26&twoclass=73',
     })
   },
 
@@ -308,7 +308,7 @@ Page({
     }
     console.log(jieguodb)
     wx.navigateTo({
-      url: '../jsjg/jsjg?obj='+jieguodb+'&oneclass=26&twoclass=72',
+      url: '../jsjg/jsjg?obj='+jieguodb+'块'+'&oneclass=26&twoclass=72',
     })
   },
 
@@ -350,7 +350,7 @@ Page({
     }
     console.log(jieguodz)
     wx.navigateTo({
-      url: '../jsjg/jsjg?obj='+jieguodz+'&oneclass=26&twoclass=72',
+      url: '../jsjg/jsjg?obj='+jieguodz+'块'+'&oneclass=26&twoclass=72',
     })
   },
   
@@ -440,7 +440,7 @@ Page({
     }
     console.log(jieguoqz)
     wx.navigateTo({
-      url: '../jsjg/jsjg?obj='+jieguoqz+'&oneclass=26&twoclass=72',
+      url: '../jsjg/jsjg?obj='+jieguoqz+'块'+'&oneclass=26&twoclass=72',
     })
   },
 
@@ -483,7 +483,7 @@ Page({
     }
     console.log(jieguobz)
     wx.navigateTo({
-      url: '../jsjg/jsjg?obj='+jieguobz+'&oneclass=26&twoclass=81',
+      url: '../jsjg/jsjg?obj='+jieguobz+'卷'+'&oneclass=26&twoclass=81',
     })
   },
   
@@ -518,7 +518,7 @@ Page({
     }
     console.log(jieguocl)
     wx.navigateTo({
-      url: '../jsjg/jsjg?obj='+jieguocl+'&oneclass=26&twoclass=90',
+      url: '../jsjg/jsjg?obj='+jieguocl+'米'+'&oneclass=26&twoclass=90',
     })
   },
   

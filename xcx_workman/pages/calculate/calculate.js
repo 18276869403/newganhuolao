@@ -174,7 +174,7 @@ Page({
       shendu:e.detail.value
     })
   },
-  // 计算
+  // 计算-涂料用量
   jisuan:function(){
     var that=this
     if(that.data.shendu==''){

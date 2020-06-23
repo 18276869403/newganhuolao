@@ -48,7 +48,9 @@ Page({
     chkd:'',
     blkd:'',
     //顶棚
-    cd:''
+    dpfjcd:'',
+    dpfjkd:'',
+    dpddgd:''
   },
 
   /**
@@ -179,7 +181,7 @@ Page({
     var that=this
     if(that.data.shendu==''){
       wx.showToast({
-        title: '请输入房间深度',
+        title: '请输入房间高度',
         icon:'none',
         duration:2000
       })
@@ -296,6 +298,38 @@ Page({
   //计算
   jisuandb(){
     var that=this
+    if(that.data.dbfjcd==''){
+      wx.showToast({
+        title: '请输入房间长度',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    if(that.data.dbfjkd==''){
+      wx.showToast({
+        title: '请输入房间宽度',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    if(that.data.dbdcd==''){
+      wx.showToast({
+        title: '请输入地板长度',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    if(that.data.dbdkd==''){
+      wx.showToast({
+        title: '请输入地板宽度',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
     // 耗损率
     var rate=1.05
     var dbfjcd=Number(that.data.dbfjcd)*100
@@ -340,6 +374,38 @@ Page({
   //计算
   jisuandz(){
     var that=this
+    if(that.data.dzfjcd==''){
+      wx.showToast({
+        title: '请输入房间长度',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    if(that.data.dzfjkd==''){
+      wx.showToast({
+        title: '请输入房间宽度',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    if(that.data.dzzcd==''){
+      wx.showToast({
+        title: '请输入地砖长度',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    if(that.data.dzzkd==''){
+      wx.showToast({
+        title: '请输入地砖宽度',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
     // 耗损率
     var rate=1.05
     var jieguo3=(Number(that.data.dzfjcd)*100/Number(that.data.dzzcd))*(Number(that.data.dzfjkd)*100/Number(that.data.dzzkd))*Number(rate)
@@ -425,6 +491,94 @@ Page({
   //计算
   jisuanqz(){
     var that=this
+    if(that.data.qzfjcd==''){
+      wx.showToast({
+        title: '请输入房间长度',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    if(that.data.qzfjkd==''){
+      wx.showToast({
+        title: '请输入房间宽度',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    if(that.data.qzfjgd==''){
+      wx.showToast({
+        title: '请输入房间高度',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    if(that.data.qzmgd==''){
+      wx.showToast({
+        title: '请输入门高度',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    if(that.data.qzmkd==''){
+      wx.showToast({
+        title: '请输入门宽度',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    if(that.data.qzmss==''){
+      wx.showToast({
+        title: '请输入门扇数',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    if(that.data.qzcgd==''){
+      wx.showToast({
+        title: '请输入窗高度',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    if(that.data.qzckd==''){
+      wx.showToast({
+        title: '请输入窗宽度',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    if(that.data.qzcss==''){
+      wx.showToast({
+        title: '请输入窗扇数',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    if(that.data.qzcd==''){
+      wx.showToast({
+        title: '请输入墙砖长度',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    if(that.data.qzkd==''){
+      wx.showToast({
+        title: '请输入墙砖宽度',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
     // 耗损率
     var rate=1.05
     var num1= (Number(that.data.qzfjcd)*100/Number(that.data.qzcd))*(Number(that.data.qzfjgd)*100/Number(that.data.qzkd))*2
@@ -473,6 +627,38 @@ Page({
   //计算
   jisuanbz(){
     var that=this
+    if(that.data.bzfjcd==''){
+      wx.showToast({
+        title: '请输入房间长度',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    if(that.data.bzfjkd==''){
+      wx.showToast({
+        title: '请输入房间宽度',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    if(that.data.bzfjgd==''){
+      wx.showToast({
+        title: '请输入房间高度',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    if(that.data.bzgg==''){
+      wx.showToast({
+        title: '请输入壁纸规格',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
     // 耗损率
     var rate=1.1
     var jieguo5=(Number(that.data.bzfjcd)*2+Number(that.data.bzfjkd)*2)*Number(that.data.bzfjgd)*Number(rate)/Number(that.data.bzgg)
@@ -510,6 +696,30 @@ Page({
   //计算
   jisuancl(){
     var that=this
+    if(that.data.chcd==''){
+      wx.showToast({
+        title: '请输入窗户长度',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    if(that.data.chkd==''){
+      wx.showToast({
+        title: '请输入窗户宽度',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    if(that.data.blkd==''){
+      wx.showToast({
+        title: '请输入布料宽度',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
     var jieguo6=(Number(that.data.chkd)+0.15*2)*2/Number(that.data.blkd)*(0.85+Number(that.data.chcd))
     var jieguocl=Math.round(jieguo6)
     if(Number(jieguocl)<Number(jieguo6))
@@ -524,19 +734,55 @@ Page({
   
   // 顶棚用量计算
    
-  //窗户长度
-  cd:function(e){
+  //房间长度
+  dpfjcd:function(e){
     this.setData({
-      cd:e.detail.value
+      dpfjcd:e.detail.value
+    })
+  },
+  //房间宽度
+  dpfjkd:function(e){
+    this.setData({
+      dpfjkd:e.detail.value
+    })
+  },
+  //吊顶高度
+  dpddgd:function(e){
+    this.setData({
+      dpddgd:e.detail.value
     })
   },
   //计算
   jisuandp(){
     var that=this
-    var jieguodp=0
+    if(that.data.dpfjcd==''){
+      wx.showToast({
+        title: '请输入房间长度',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    if(that.data.dpfjkd==''){
+      wx.showToast({
+        title: '请输入房间宽度',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    if(that.data.dpddgd==''){
+      wx.showToast({
+        title: '请输入吊顶高度',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
+    var jieguodp=(Number(that.data.dpfjcd)*Number(that.data.dpfjkd))+(Number(that.data.dpfjcd)*Number(that.data.dpddgd))
     console.log(jieguodp)
     wx.navigateTo({
-      url: '../jsjg/jsjg?obj='+jieguodp+'&oneclass=26&twoclass=74',
+      url: '../jsjg/jsjg?obj='+jieguodp+'平方米'+'&oneclass=26&twoclass=74',
     })
   },
   /**

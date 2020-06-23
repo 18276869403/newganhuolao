@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/submitMaterial/submitMaterial", 
     "pages/jsjg/jsjg",
     "pages/services/services",
     "pages/mine/mine",

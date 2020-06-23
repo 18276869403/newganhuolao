@@ -36,8 +36,8 @@ Page({
       console.log(res)
       if(res.success == true){
         for(let obj of res.result.records){
-          obj.goodPic1 = that.data.viewUrl + obj.goodPic1
-          obj.goodPic2 = that.data.viewUrl + obj.goodPic2
+          obj.goodPic1 = that.data.viewUrl + obj.goodPic1.split(',')[0]
+          obj.goodPic2 = that.data.viewUrl + obj.goodPic2.split(',')[0]
         }
         that.setData({
           goodslist:res.result.records

@@ -60,35 +60,56 @@ Page({
       this.setData({
         type:1
       })
+      wx.setNavigationBarTitle({
+        title: '涂料用量'
+      })
     }
     if(options.obj==2){
       this.setData({
         type:2
+      })
+      wx.setNavigationBarTitle({
+        title: '地板用量'
       })
     }
     if(options.obj==3){
       this.setData({
         type:3
       })
+      wx.setNavigationBarTitle({
+        title: '地砖用量'
+      })
     }
     if(options.obj==4){
       this.setData({
         type:4
+      })
+      wx.setNavigationBarTitle({
+        title: '墙砖用量'
       })
     }
     if(options.obj==5){
       this.setData({
         type:5
       })
+      wx.setNavigationBarTitle({
+        title: '壁纸用量'
+      })
     }
     if(options.obj==6){
       this.setData({
         type:6
       })
+      wx.setNavigationBarTitle({
+        title: '窗帘用量'
+      })
     }
     if(options.obj==7){
       this.setData({
         type:7
+      })
+      wx.setNavigationBarTitle({
+        title: '顶棚用量'
       })
     }
   },

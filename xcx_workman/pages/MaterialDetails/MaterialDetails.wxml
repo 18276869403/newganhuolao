@@ -1,0 +1,64 @@
+<view class="container">
+  <image src="{{viewUrl}}static/image/xuqiubg.png" class="top"></image>
+  <view class="content zongxiang">
+    <view class="content-list zongxiang">
+      <view class="content-list-title">标题：{{xqxqlist.needTitle}}</view>
+      <view class="hengxiang content-list-type">
+        <view>
+          <image src="{{viewUrl}}static/image/jiancailei.png" class="leixing-img"></image>
+        </view> 
+        <view>
+          {{xqxqlist.oneClassName}} | {{xqxqlist.twoClassName}}
+        </view>
+      </view>
+      <view class="hengxiang content-list-type">
+        <view>
+          <image src="{{viewUrl}}static/image/dizhi.png" class="leixing-img"></image>
+        </view>
+        <view>
+          {{xqxqlist.oneAreaName}} | {{xqxqlist.twoAreaName}}
+        </view>
+      </view>
+      <view class="hengxiang content-list-type">
+        <view>
+          <image src="{{viewUrl}}static/image/lianxiren.png" class="leixing-img"></image>
+        </view>
+        <view>
+          {{xqxqlist.publishMan}}
+        </view>
+      </view>
+      <view class="hengxiang content-list-type">
+        <view>
+          <image src="{{viewUrl}}static/image/baoming2.png" class="leixing-img"></image>
+        </view>
+
+        <view>
+          {{xqxqlist.backup2}}人浏览
+        </view>
+
+        <view class="content-chuangjian hengxiang">
+          <view class="complete-button" style="width:155rpx;" bindtap="zaixianlianxi">
+            在线联系
+          </view>
+        </view>
+      </view>
+
+    </view>
+    <view class="content-content zongxiang">
+      <view class="content-content-title">剩料内容</view>
+      <view class="content-content-list">{{xqxqlist.needContent}}</view>
+    </view>
+    <!-- 图片 -->
+    <view class="content-content zongxiang">
+      <view class="content-content-title">图片</view>
+      <view class="zhanshi" wx:if="{{xqxqlist.backup1.length>0}}">
+        <view class="zhanshi-item" wx:for='{{xqxqlist.backup1}}' data-id="{{item.id}}">
+          <image src="{{viewUrl}}{{item}}" bindtap="fangda" class="zhanshitu" data-src="{{viewUrl}}{{item}}"></image>
+        </view>
+      </view>
+      <view class="zhanshi" wx:if="{{xqxqlist.backup1 == null}}">
+        <image src="{{viewUrl}}static/image/zawu1.png" class="zhanshitu1"></image>
+      </view>
+    </view>
+  </view>
+</view>

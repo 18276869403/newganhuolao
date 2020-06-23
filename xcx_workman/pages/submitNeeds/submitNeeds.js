@@ -32,11 +32,11 @@ Page({
     show: false,
     needsTypeList: [{
       id: 0,
-      name: '普通'
+      name: '人找活'
     },
     {
       id: 1,
-      name: '加急'
+      name: '活找人'
     }
     ],
     navLeftItems: [],

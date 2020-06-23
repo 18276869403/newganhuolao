@@ -187,7 +187,7 @@ Page({
   // 跳转到我的需求页面
   myNeeds: function() {
     // getApp().globalData.xuqiuid =0
-    wx.reLaunch({ 
+    wx.navigateTo({ 
      url: '../myneeds/myneeds',
     })
   },

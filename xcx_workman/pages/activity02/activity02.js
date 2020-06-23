@@ -5,7 +5,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-
   },
    // 跳转到涂料用量
   yyyy: function () {

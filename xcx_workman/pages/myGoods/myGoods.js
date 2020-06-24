@@ -111,7 +111,7 @@ Page({
   },'put')
   this.mygoodsList()
   },
-  
+
   // 编辑商品
   addEditGoods2:function(e){
     var spxx = e.currentTarget.dataset.spxx
@@ -155,10 +155,8 @@ Page({
 mygooddetail(e){
   var spxx = e.currentTarget.dataset.mgd
   var spxx1 = JSON.stringify(spxx);
-  if(this.data.spid==''){
-    wx.navigateTo({
-       url: '../goodsDetails/goodsDetails?obj=' + spxx1,
-    })
-  }
+  wx.navigateTo({
+     url: '../goodsDetails/goodsDetails?obj=' + spxx1,
+  })
 }
 })

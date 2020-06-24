@@ -12,7 +12,7 @@ Page({
     goodslist:[],
     zanwu:[{
       id:1,
-      goodPic1:api.viewUrl+'static/image/zawu1.png',
+      goodPic1:['../image/zawushangpin.png'],
       goodName:'敬请期待',
       newPrice:'',
       state:false

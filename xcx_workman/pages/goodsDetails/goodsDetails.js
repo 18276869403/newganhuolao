@@ -8,7 +8,9 @@ Page({
    */
   data: {
     viewUrl:api.viewUrl,
-    spxqlist:[]
+    spxqlist:[],
+    tupian:[],
+    tupian2:[]
   },
 
   /**
@@ -17,6 +19,12 @@ Page({
   onLoad: function (options) {
     // this.spxiangqinglist()
     var splist = JSON.parse(options.obj)
+    for(var i=0;i<splist.goodPic1.length;i++){
+      this.data.tupian.push(api.viewUrl+splist.goodPic1[i])
+    }
+    for(var j=0;j<splist.goodPic2.length;j++){
+      this.data.tupian2.push(api.viewUrl+splist.goodPic2[j])
+    }
     this.setData({
       splist: splist
     })
@@ -25,7 +33,14 @@ Page({
     var current = api.viewUrl+e.currentTarget.dataset.src
     wx.previewImage({
       current: current,//当前显示图片的http链接，我这边是把图片转成了base64
-      urls: [current] //需要预览的图片http链接列表
+      urls: this.data.tupian //需要预览的图片http链接列表
+    })
+  },
+  tupian2:function(e){
+    var current = api.viewUrl+e.currentTarget.dataset.src
+    wx.previewImage({
+      current: current,//当前显示图片的http链接，我这边是把图片转成了base64
+      urls: this.data.tupian2 //需要预览的图片http链接列表
     })
   },
   // 进他的店

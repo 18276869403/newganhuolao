@@ -582,7 +582,7 @@ Page({
     // 耗损率
     var rate=1.05
     var num1= (Number(that.data.qzfjcd)*100/Number(that.data.qzcd))*(Number(that.data.qzfjgd)*100/Number(that.data.qzkd))*2
-    var num2= (Number(that.data.qzfjkd)*100/Number(that.data.qzcd))*(Number(that.data.qzfjcd)*100/Number(that.data.qzkd))*2
+    var num2= (Number(that.data.qzfjkd)*100/Number(that.data.qzcd))*(Number(that.data.qzfjgd)*100/Number(that.data.qzkd))*2
     var num3= (Number(that.data.qzcgd)*100/Number(that.data.qzcd))*(Number(that.data.qzckd)*100/Number(that.data.qzkd))*Number(that.data.qzcss)
     var num4= (Number(that.data.qzmgd)*100/Number(that.data.qzcd))*(Number(that.data.qzmkd)*100/Number(that.data.qzkd))*Number(that.data.qzmss)
     var num5=Number(num1)+Number(num2)-Number(num3)-Number(num4)

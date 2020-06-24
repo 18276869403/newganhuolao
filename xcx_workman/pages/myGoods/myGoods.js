@@ -67,7 +67,7 @@ Page({
     var data={
       userId:app.globalData.wxid
   }
-  qingqiu.get("tjsp", data, function(re) {
+  qingqiu.get("queryMyGoodPage", data, function(re) {
     console.log(re)
   if (re.success == true) {
     if (re.result != null) {
@@ -92,6 +92,23 @@ Page({
     wx.navigateTo({
       url: '../addEditGoods/addEditGoods?obj='+ app.globalData.wxid, 
     })
+  },
+  //置顶
+  onemyGood:function(e){
+    var spid =e.currentTarget.dataset.myspid;
+    var data={
+      id: spid 
+    }
+    qingqiu.get("editMyGoodTop", data, function(re) {
+    if (re.success == true) {
+      wx.showToast({
+        title: '已置顶！',
+        icon:'none',
+        duration:2000
+      })
+      return
+    } 
+  },'put')
   },
   // 编辑商品
   addEditGoods2:function(e){

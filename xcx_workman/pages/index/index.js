@@ -180,7 +180,7 @@ Page({
     console.log(app.globalData.oneCity)
     if(app.globalData.oneCity == undefined || app.globalData.oneCity == "undefined"){
       this.setData({weizhi:'全部'})
-      this.xqneedlist({pageNo:1,pageSize:3}) //需求
+      this.xqneedlist({pageNo:1,pageSize:3,backup5:0}) //需求
       this.grneedlist({pageNo:1,pageSize:10,wxState:1}) //工人
       this.sjneedlist({pageNo:1,pageSize:10,wxState:0})  //商家 
       this.spneedlist({pageNo:1,pageSize:10,backup1:1}) //商品
@@ -188,7 +188,7 @@ Page({
       this.setData({
         weizhi:app.globalData.oneCity.name + app.globalData.twoCity.name
       })
-      this.xqneedlist({pageNo:1,pageSize:3,oneAreaId:app.globalData.oneCity.id,twoAreaId:app.globalData.twoCity.id}) //需求
+      this.xqneedlist({pageNo:1,pageSize:3,oneAreaId:app.globalData.oneCity.id,twoAreaId:app.globalData.twoCity.id,backup5:0}) //需求
       this.grneedlist({pageNo:1,pageSize:10,wxState:1,oneAreaId:app.globalData.oneCity.id,twoAreaId:app.globalData.twoCity.id}) //工人
       this.sjneedlist({pageNo:1,pageSize:10,wxState:0,oneAreaId:app.globalData.oneCity.id,twoAreaId:app.globalData.twoCity.id})  //商家 
       this.spneedlist({pageNo:1,pageSize:10,backup1:1,oneAreaId:app.globalData.oneCity.id,twoAreaId:app.globalData.twoCity.id}) //商品
@@ -395,20 +395,26 @@ Page({
   },
   // 商家促销
   cuxiao:function(){
+    wx.navigateTo({
+      url: '../goodsList/goodsList',
+    })
+  },
+  // 剩料交易
+  ershou:function(){
+    wx.navigateTo({
+      url: '../Material/Material',
+    })
+  },
+  // 本地招工
+  bendi:function(){
     wx.showToast({
       title: '开发中，敬请期待...',
       icon:'none',
       duration:1000
     })
   },
-  // 剩料交易
-  ershou:function(){
-    wx.navigateTo({
-      url: '../submitMaterial/submitMaterial',
-    })
-  },
-  // 本地招工
-  bendi:function(){
+  // 公益活动
+  gongyi:function(){
     wx.showToast({
       title: '开发中，敬请期待...',
       icon:'none',
@@ -468,7 +474,6 @@ Page({
     wx.navigateTo({
       url: '../goodsList/goodsList',
     })
-
   },
   // 跳转到工人详情页面
   workerDetails: function(e) {
@@ -504,8 +509,8 @@ Page({
               obj.userId = 0
               obj.shopName = '敬请期待'
             }
-            obj.goodPic1 = obj.goodPic1.split(',')
-            obj.goodPic2  = obj.goodPic2.split(',')
+            obj.goodPic1 = obj.goodPic1.split(',')[0]
+            obj.goodPic2  = obj.goodPic2.split(',')[0]
           }
           that.setData ({
             goodsList: re.result.records

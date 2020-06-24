@@ -281,7 +281,7 @@
           <view class="" wx:for="{{goodsList}}" wx:for-index="index" wx:key="index">
             <view class="worker-item zongxiang" bindtap="goodsDetails" data-vals="{{item}}">
               <view class="worker-item-img">
-                <image src="{{item.goodPic1}}" class="worker-img"></image>
+                <image src="{{viewUrl}}{{item.goodPic1[0]}}" class="worker-img"></image>
               </view>
               <view class="worker-item-top shenglue">
                 {{item.goodName}}

@@ -96,19 +96,20 @@ Page({
   //置顶
   onemyGood:function(e){
     var spid =e.currentTarget.dataset.myspid;
+    this.data.spid=spid
     var data={
       id: spid 
     }
     qingqiu.get("editMyGoodTop", data, function(re) {
     if (re.success == true) {
       wx.showToast({
-        title: '已置顶！',
+        title: '置顶成功！',
         icon:'none',
         duration:2000
       })
-      return
-    } 
+    }
   },'put')
+  this.mygoodsList()
   },
   // 编辑商品
   addEditGoods2:function(e){
@@ -153,8 +154,10 @@ Page({
 mygooddetail(e){
   var spxx = e.currentTarget.dataset.mgd
   var spxx1 = JSON.stringify(spxx);
-  wx.navigateTo({
-     url: '../goodsDetails/goodsDetails?obj=' + spxx1,
-  })
+  if(this.data.spid==''){
+    wx.navigateTo({
+       url: '../goodsDetails/goodsDetails?obj=' + spxx1,
+    })
+  }
 }
 })

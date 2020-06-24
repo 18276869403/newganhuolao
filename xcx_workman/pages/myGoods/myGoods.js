@@ -132,5 +132,12 @@ Page({
         }
       }
     })
+},
+mygooddetail(e){
+  var spxx = e.currentTarget.dataset.mgd
+  var spxx1 = JSON.stringify(spxx);
+  wx.navigateTo({
+     url: '../goodsDetails/goodsDetails?obj=' + spxx1,
+  })
 }
 })

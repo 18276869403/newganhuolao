@@ -20,7 +20,7 @@ Page({
   },
 
   onLoad: function (options) {
-    if(options.obj != undefined){
+    if(options.obj1 != undefined){
       var xqxqlist = JSON.parse(options.obj1)
       xqxqlist.publishMan = utils.formatName(xqxqlist.publishMan)
       this.setData({

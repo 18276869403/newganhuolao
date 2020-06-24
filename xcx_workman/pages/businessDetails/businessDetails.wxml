@@ -10,8 +10,9 @@
     <view class="content-list zongxiang">
       <view class="content-list-name">{{goodsList.shopName}}</view>
       <view class="hengxiang content-lianxi">
-        <view class="hengxiang">
-          <image src='{{goodsList.starClass>index?"{{viewUrl}}static/image/starhuang.png":"{{viewUrl}}static/image/starhui.png"}}' class='star-img' wx:for="{{5}}"></image>
+        <view class="hengxiang" wx:for="{{5}}">
+          <image src='{{viewUrl}}static/image/starhui.png' class='star-img' wx:if="{{goodsList.starClass<=index}}"></image>
+          <image src='{{viewUrl}}static/image/starhuang.png' class='star-img' wx:if="{{goodsList.starClass>index}}"></image>
         </view>
         <view class="hengxiang shiming">
           <view>

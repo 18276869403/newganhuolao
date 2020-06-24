@@ -299,7 +299,8 @@ Page({
           oneClassId:that.data.firstId,
           twoClassId:that.data.flerjiid,
           oneAreaId:that.data.cityId,
-          twoAreaId:that.data.areaId
+          twoAreaId:that.data.areaId,
+          backup5:0
         }
         console.log(data)
         qingqiu.get("insertYneed", data, function(re) {

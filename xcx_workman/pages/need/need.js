@@ -314,6 +314,7 @@ Page({
       needTitle:that.data.needTitle,
       oneClassId:that.data.yijiid,
       twoClassId:that.data.erjiid,
+      backup5:0
     }
     if(app.globalData.oneCity != undefined && app.globalData.oneCity != "undefined"){
       data.oneAreaId = app.globalData.oneCity.id

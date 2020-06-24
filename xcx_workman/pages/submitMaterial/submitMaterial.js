@@ -251,7 +251,7 @@ Page({
         var data={
           id:that.data.id,
           wxUserId : that.data.wxuserid,
-          needType:that.data.needsTypeid,
+          // needType:that.data.needsTypeid,
           needContent:that.data.needscontent,
           needTitle:that.data.needsname,
           backup3:that.data.youhuijia,
@@ -288,7 +288,7 @@ Page({
       }else{
         var data={
           wxUserId : that.data.wxuserid,
-          needType:that.data.needsTypeid,
+          // needType:that.data.needsTypeid,
           needContent:that.data.needscontent,
           needTitle:that.data.needsname,
           backup3:that.data.youhuijia,
@@ -299,7 +299,8 @@ Page({
           oneClassId:that.data.firstId,
           twoClassId:that.data.flerjiid,
           oneAreaId:that.data.cityId,
-          twoAreaId:that.data.areaId
+          twoAreaId:that.data.areaId,
+          backup5:1
         }
         console.log(data)
         qingqiu.get("insertYneed", data, function(re) {

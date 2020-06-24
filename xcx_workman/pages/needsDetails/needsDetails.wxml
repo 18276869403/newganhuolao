@@ -93,7 +93,7 @@
       <view class="content-jiedan zongxiang" wx:for="{{jiedanList}}" wx:for-index="index" wx:key="{{item.id}}">
         <view class="jiedan-top hengxiang">
           <view class="jiedan-top-left">
-            <image src="{{item.picIurl}}" class="avator-img"></image>
+            <image src="{{item.picUrl}}" class="avator-img"></image>
           </view>
           <view class="jiedan-top-content zongxiang">
             <view class="jiedan-top-content-name">{{item.name}}</view>

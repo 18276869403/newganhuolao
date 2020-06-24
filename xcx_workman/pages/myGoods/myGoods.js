@@ -111,6 +111,7 @@ Page({
   },'put')
   this.mygoodsList()
   },
+  
   // 编辑商品
   addEditGoods2:function(e){
     var spxx = e.currentTarget.dataset.spxx

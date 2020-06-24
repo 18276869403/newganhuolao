@@ -74,7 +74,7 @@
   color: rgba(102, 102, 102, 1);
   background: rgba(255, 255, 255, 1);
   box-shadow: 0rpx 2rpx 12rpx 0rpx rgba(45, 49, 61, 0.1);
-  height: 210px;
+  height: 240px;
 }
 .bottom-content-top {
   width: 100%;

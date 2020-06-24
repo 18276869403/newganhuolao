@@ -1,13 +1,17 @@
 var api = require('./config.js')
-const baseUrl = "http://111.231.51.198:91/work-boot/"
-// const baseUrl = "http://192.168.1.241:9123/work-boot/" 
+// const baseUrl = "http://111.231.51.198:91/work-boot/"
+const baseUrl = "http://192.168.1.248:9123/work-boot/" 
 
 // 需求列表
 // const xqurl = baseUrl + "work/yneed/list"
 // 大厅最新需求
 const zuixinxq = baseUrl + "pc/hall/yneedList" 
-// 推荐商品-我的商品
+// 推荐商品
 const tjsp = baseUrl + "pc/hall/userGoodPage"
+// 我的商品
+const queryMyGoodPage = baseUrl + "pc/user/queryMyGoodPage"
+// 我的商品-置顶
+const editMyGoodTop = baseUrl + "pc/user/editMyGoodTop"
 // 工人晒晒
 const CasePage = baseUrl + "pc/hall/casePage"
 // 需求详情-报名接单人员
@@ -69,5 +73,7 @@ module.exports = {
   deleteMessage:deleteMessage,
   pcQueryMessagePageByUserID:pcQueryMessagePageByUserID,
   insertCase:insertCase,
-  pcQueryWxCaseById:pcQueryWxCaseById
+  pcQueryWxCaseById:pcQueryWxCaseById,
+  queryMyGoodPage:queryMyGoodPage,
+  editMyGoodTop:editMyGoodTop
 };

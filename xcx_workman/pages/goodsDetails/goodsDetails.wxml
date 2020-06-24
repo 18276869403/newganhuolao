@@ -2,7 +2,14 @@
 <view class="container">
   <view class="top zongxiang">
     <view class="top-img">
-      <image src="{{splist.goodPic1}}" class="img" bindtap="tupian" data-src="{{splist.goodPic1}}"></image>
+      <!-- <image src="{{viewUrl}}{{item}}" class="img" bindtap="tupian" data-src="{{item}}"></image> -->
+     <swiper indicator-dots="true" indicator-color="rgba(255,255,255,.3)" indicator-active-color="#fff" autoplay="true" class="swiper">
+      <block wx:for="{{splist.goodPic1}}">
+        <swiper-item bindtap="tupian" data-src="{{item}}" wx:if="{{item!=''}}">
+          <image src=" {{viewUrl}}{{item}}"  class="img" />
+        </swiper-item>
+      </block>
+    </swiper>
     </view> 
     <view class="top-title">
       {{splist.goodName}}
@@ -21,9 +28,9 @@
       <image src="{{viewUrl}}static/image/details.png" class="xiangqing-img"></image>
     </view>
     <view class="content-text">{{splist.goodMemo}}</view>
-    <view class="content-details">
-      <image src="{{splist.goodPic1}}" class="details-img" bindtap="tupian" data-src="{{splist.goodPic1}}"></image>
-      <image src="{{splist.goodPic2}}" class="details-img" bindtap="tupian" data-src="{{splist.goodPic2}}"></image>
+    <view class="content-details" wx:for="{{splist.goodPic2}}">
+      <!-- <image src="{{splist.goodPic1}}" class="details-img" bindtap="tupian" data-src="{{splist.goodPic1}}"></image> -->
+      <image src="{{viewUrl}}{{item}}" class="details-img" bindtap="tupian" data-src="{{item}}"></image>
     </view>
   </view>
 </view>

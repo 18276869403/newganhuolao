@@ -14,7 +14,7 @@
     <block wx:for="{{goodslist}}" wx:key="{{item.id}}" data-id="{{item.id}}" wx:if="{{index%2==0}}">
       <view class="bottom-content">
         <view class="bottom-content-list" bindtap="goodsDetails" data-vals="{{item}}">
-          <image src="{{item.goodPic1}}" class="goods-img"></image>
+          <image src="{{viewUrl}}{{item.goodPic1[0]}}" class="goods-img"></image>
         </view>
         <view class="bottom-content-bottom">
           <view class="goods-bottom-title">
@@ -30,8 +30,8 @@
   <view class="bottom-right">
     <block wx:for="{{goodslist}}" wx:key="{{item.id}}" data-id="{{item.id}}" wx:if="{{index%2!=0}}">
       <view class="bottom-content">
-        <view class="bottom-content-list" bindtap="goodsdetail" data-vals="{{item}}">
-          <image src="{{item.goodPic1}}" class="goods-img"></image>
+        <view class="bottom-content-list" bindtap="goodsDetails" data-vals="{{item}}">
+          <image src="{{viewUrl}}{{item.goodPic1[0]}}" class="goods-img"></image>
         </view>
         <view class="bottom-content-bottom">
           <view class="goods-bottom-title">

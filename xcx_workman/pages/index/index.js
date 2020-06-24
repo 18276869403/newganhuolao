@@ -508,7 +508,7 @@ Page({
             if(obj.shopName == null){
               obj.userId = 0
               obj.shopName = '敬请期待'
-            } 
+            }  
             obj.goodPic1 = obj.goodPic1.split(',')[0]
             obj.goodPic2  = obj.goodPic2.split(',')[0]
           }

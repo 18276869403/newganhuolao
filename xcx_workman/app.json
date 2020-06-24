@@ -28,7 +28,7 @@
     "pages/showDetails/showDetails",
     "pages/myneeds/myneeds",
     "pages/myShowwork/myShowwork",
-    "pages/Material/Material"
+    "pages/Material/Material" 
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",

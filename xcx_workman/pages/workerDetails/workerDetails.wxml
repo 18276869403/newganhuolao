@@ -47,8 +47,11 @@
             <view class="right-bottom-left hengxiang">
               <view class="guyong-button" bindtap="bintapDetails">雇佣TA</view>
             </view>
-            <view class="right-bottom-right">
-              <view class="contact-button" bindtap="phonecall" data-phone="{{workerDetail.phone}}">在线联系</view>
+            <view class="right-bottom-right"> 
+              <view class="contact-button" bindtap="phonecall" 
+                data-phone="{{workerDetail.phone}}" 
+                data-id="{{workerDetail.id}}"
+                data-name="{{workerDetail.name}}">在线联系</view>
             </view>
           </view>
         </view>

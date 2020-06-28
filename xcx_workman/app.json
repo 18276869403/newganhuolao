@@ -28,7 +28,8 @@
     "pages/showDetails/showDetails",
     "pages/myneeds/myneeds",
     "pages/myShowwork/myShowwork",
-    "pages/Material/Material" 
+    "pages/Material/Material",
+    "pages/HM-chat/HM-chat"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",

@@ -185,9 +185,14 @@ Page({
   //   })
   // },
   phonecall:function(e){
-    var phone = e.currentTarget.dataset.phone
-    wx.makePhoneCall({
-      phoneNumber: phone,
-    })
+    // var phone = e.currentTarget.dataset.phone;
+    // wx.makePhoneCall({
+    //   phoneNumber: phone,
+    // }) 
+    var wkId  = e.currentTarget.dataset.id;
+    var name  = e.currentTarget.dataset.name;
+    wx.navigateTo({ 
+      url: '../HM-chat/HM-chat?id=' + wkId + "&name=" + name 
+    });  
   }
 })

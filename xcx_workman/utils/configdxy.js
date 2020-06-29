@@ -1,6 +1,6 @@
 var api = require('./config.js')
-const baseUrl = "http://miss.it-ys.com:91/work-boot/" 
-// const baseUrl = "http://192.168.1.248:8080/work-boot/" 
+// const baseUrl = "http://miss.it-ys.com:91/work-boot/" 
+const baseUrl = "http://192.168.1.248:8080/work-boot/" 
 
 // 2.0需要工人，商家分类表：可选2个分类-编辑
 const WxUserAdd = baseUrl + "/pc/hall/wxUserAdd"
@@ -46,6 +46,10 @@ const UpdateWxCase = baseUrl + "/pc/user/updateWxCase"
 const queryAreaByName = baseUrl + "pc/hall/queryAreaByName"
 // 需求浏览人数+1
 const updateYeedById = baseUrl + "pc/hall/updateYeedById"
+// 给我的留言
+const messageForMe = baseUrl + "pc/user/messageForMe"
+// 我发起的留言
+const myMessage = baseUrl + "pc/user/myMessage"
 
 module.exports = {
   wxUserAdd: WxUserAdd,
@@ -69,5 +73,7 @@ module.exports = {
   userWorkUpdateById:UserWorkUpdateById,
   updateWxCase:UpdateWxCase,
   queryAreaByName:queryAreaByName,
-  updateYeedById:updateYeedById
+  updateYeedById:updateYeedById,
+  messageForMe:messageForMe,
+  myMessage:myMessage
 };

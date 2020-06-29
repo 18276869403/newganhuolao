@@ -266,7 +266,6 @@ Page({
       cityId: id,
       cityname1: name,
     })
-    debugger
     var data ={
       oneAreaId:id
     }

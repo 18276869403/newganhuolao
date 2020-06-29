@@ -25,7 +25,8 @@ Page({
     grlist:[],
     sjlist:[],
     tupian:[],
-    id:1,
+    id:'',
+    name:'',
     cityId:0,
     addressId:0,
     oneid:0,
@@ -179,7 +180,13 @@ Page({
     this.QuerytwoArea() //二级区域
     console.log(app.globalData.oneCity)
     if(app.globalData.oneCity == undefined || app.globalData.oneCity == "undefined"){
-      this.setData({weizhi:'全部'})
+      // this.setData({weizhi:'全部'})
+      this.setData({
+        cityId: this.data.id,
+        cityname1: this.data.name,
+        weizhi:'全部',
+        areaId:0
+      })
       this.xqneedlist({pageNo:1,pageSize:3,backup5:0}) //需求
       this.grneedlist({pageNo:1,pageSize:10,wxState:1}) //工人
       this.sjneedlist({pageNo:1,pageSize:10,wxState:0})  //商家 
@@ -195,7 +202,8 @@ Page({
     }
   },
   // onLoad: function(options) {
-    
+  //   this.QueryoneArea() //一级区域
+  //   this.QuerytwoArea() //二级区域
   // },
   // 下拉刷新
   onPullDownRefresh: function () {
@@ -531,6 +539,16 @@ Page({
         var city=[]
         city.push(obj)
         city.push(re.result[0])
+        that.data.id=re.result[0].id
+        that.data.name=re.result[0].areaName
+        if(app.globalData.oneCity == undefined || app.globalData.oneCity == "undefined"){
+          that.setData({
+            cityId: that.data.id,
+            cityname1: that.data.name,
+            weizhi:'全部',
+            areaId:0
+          })
+        }
         that.setData({
           city:city
         })
@@ -549,14 +567,14 @@ Page({
     qingqiu.get("queryTwoArea", data, function(re) {
     if (re.success == true) {
       if (re.result != null) {
-        var obj = {id:0,oneAreaId:0,areaName:'全部'}
+        // var obj = {id:0,oneAreaId:0,areaName:'全部'}
         var area = []
-        area.push(obj)
+        // area.push(obj)
         for(let obj of re.result){
           area.push(obj)
         }
         that.setData({
-          area:that.area
+          area:area
         })
       }else {
         qingqiu.tk('未查询到任何数据')
@@ -700,7 +718,10 @@ Page({
       })
       return
     }
-    
+    if(app.globalData.oneCity==undefined||app.globalData.oneCity==''){
+      app.globalData.oneCity= {id:that.data.id,name:that.data.name}
+      that.data.cityname1=that.data.name
+    }
     //var index = e.currentTarget.dataset.index;
     var id = e.currentTarget.dataset.id
     var name = e.currentTarget.dataset.name

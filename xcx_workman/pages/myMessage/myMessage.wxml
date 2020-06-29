@@ -17,8 +17,8 @@
     <!-- <view class="content-list zongxiang" wx:for="{{formymessageList}}" wx:key="{{item.id}}" wx:if="{{needsTypeid==2}}"> -->
       <view class="content-list-top hengxiang">
         <view class="list-top-img">
-          <image src="{{viewUrl}}static/image/top.png" class="avator-img" wx:if="{{item.pirIurl!=null&&item.picIurl!=''&&item.picIurl!='null'}}"></image>
-          <image src="{{viewUrl}}static/image/top.png" class="avator-img" wx:if="{{item.pirIurl==null&&item.picIurl==''&&item.picIurl=='null'}}"></image>
+          <image src="{{viewUrl}}{{item.picIurl}}" class="avator-img" wx:if="{{item.picIurl!=''}}"></image>
+          <image src="{{item.picUrl}}" class="avator-img" wx:if="{{item.picIurl==''}}"></image>
         </view>
         <view class="list-top-text zongxiang">
           <view>{{item.name}}</view>
@@ -45,7 +45,7 @@
           </view>
           <view class="left-text">一级区域 | 二级区域</view>
         </view>
-        <view class="content-list-bottom-right">
+        <view class="content-list-bottom-right" bindtap="liuyan" data-wxid="{{item.toUserId}}" data-name="{{item.name}}">
           <view class="look-button">查看留言</view>
         </view>
       </view>
@@ -53,8 +53,8 @@
     <view class="content-list zongxiang" wx:for="{{formymessageList}}" wx:key="{{item.id}}" wx:if="{{needsTypeid==2}}">
       <view class="content-list-top hengxiang"> 
         <view class="list-top-img">
-        <image src="{{item.pirIurl}}" class="avator-img" wx:if="{{item.picIurl!=null&&item.  picIurl!=''&&item.picIurl!='null'}}"></image>
-          <image src="{{item.pirUrl}}" class="avator-img" wx:if="{{item.picIurl==null&&item.picIurl==''&&item.picIurl=='null'}}"></image>
+        <image src="{{viewUrl}}{{item.picIurl}}" class="avator-img" wx:if="{{item.picIurl!=''}}"></image>
+          <image src="{{item.picUrl}}" class="avator-img" wx:if="{{item.picIurl==''}}"></image>
         </view>
         <view class="list-top-text zongxiang">
           <view>{{item.name}}</view>
@@ -81,7 +81,7 @@
           </view>
           <view class="left-text">{{item.oneAreaName}} | {{item.twoAreaName}}</view>
         </view>
-        <view class="content-list-bottom-right">
+        <view class="content-list-bottom-right" bindtap="liuyan" data-wxid="{{item.userId}}" data-name="{{item.name}}">
           <view class="look-button">查看留言</view>
         </view>
       </view>

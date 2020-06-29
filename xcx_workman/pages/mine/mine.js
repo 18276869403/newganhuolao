@@ -200,7 +200,7 @@ Page({
   // 跳转到我留言页面
   myMessage: function () {
     wx.navigateTo({
-      url: '../myMessage/myMessage',
+      url: '../myMessage/myMessage', 
     })
   },
   // 跳转到我的商品页面

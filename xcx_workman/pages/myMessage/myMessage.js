@@ -78,7 +78,7 @@ givemymessageList() {
   if (re.success == true) {
     if (re.result != null) {
       that.setData ({
-        formymessageList : re.result
+        formymessageList : re.result 
       })
     } else {
       qingqiu.tk('未查询到任何数据')

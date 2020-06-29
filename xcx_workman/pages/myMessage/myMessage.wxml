@@ -51,7 +51,7 @@
       </view>
     </view>
     <view class="content-list zongxiang" wx:for="{{formymessageList}}" wx:key="{{item.id}}" wx:if="{{needsTypeid==2}}">
-      <view class="content-list-top hengxiang">
+      <view class="content-list-top hengxiang"> 
         <view class="list-top-img">
         <image src="{{item.pirIurl}}" class="avator-img" wx:if="{{item.picIurl!=null&&item.  picIurl!=''&&item.picIurl!='null'}}"></image>
           <image src="{{item.pirUrl}}" class="avator-img" wx:if="{{item.picIurl==null&&item.picIurl==''&&item.picIurl=='null'}}"></image>

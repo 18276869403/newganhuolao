@@ -328,7 +328,7 @@ Page({
     qingqiu.get("queryTwoArea", data, function(re) {
       if (re.success == true) {
         if (re.result != null) {
-          // var obj = {id:0,oneAreaId:0,areaName:'全部'}
+          //var obj = {id:0,oneAreaId:0,areaName:'全部'}
           var area = []
           // area.push(obj)
           for(let obj of re.result){

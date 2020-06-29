@@ -394,7 +394,11 @@ Page({
       if (re.success == true) {
         if (re.result != null) {
           if(re.result.records==''){
-            that.data.isLastPage=true
+            that.setData({
+              workerlist:re.result.records,
+              workerlist1:re.result.records,
+              isLastPage:true
+            })
             return
           }
           for(let obj of re.result.records){
@@ -457,7 +461,11 @@ Page({
       if (re.success == true) {
         if (re.result != null) {
           if(re.result.records==''){
-            that.data.isLastPage=true
+            that.setData({
+              businesslist:that.data.businesslist,
+              businesslist1:that.data.businesslist,
+              isLastPage:true
+            })
             return
           }
           for(let obj of re.result.records){

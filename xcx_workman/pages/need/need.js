@@ -919,7 +919,7 @@ typeQuan:function(e){
       })
       return
     }
-    if(app.globalData.oneCity==undefined || app.globalData.oneCity==''){
+    if(app.globalData.oneCity==undefined ||app.globalData.oneCity==''){
       app.globalData.oneCity= {id:that.data.id,name:that.data.name}
       that.data.cityname1=that.data.name
     }

@@ -49,6 +49,7 @@ Page({
     // ],
     tupian: '',
     id:'',
+    name:'',
     tupianlist: [],
     imgUrl: '',
     cityname1: '',
@@ -68,7 +69,7 @@ Page({
       wxuserid: app.globalData.wxid
     })
     this.QueryoneArea()
-    this.QuerytwoArea()
+    // this.QuerytwoArea()
   },
   // 一级区域
   QueryoneArea(){
@@ -76,15 +77,20 @@ Page({
     qingqiu.get("queryOneArea", null, function(re) {
     if (re.success == true) {
       if (re.result != null) {
-        that.city=re.result
+        that.data.city=re.result
+        that.data.id=re.result[0].id
+        that.data.name=re.result[0].areaName
         that.setData({
-          city:that.city
+          cityId:  that.data.id,
+          cityname1: that.data.name,
+          city:that.data.city
         })
       }else {
         qingqiu.tk('未查询到任何数据')
       }
     } 
   })
+  that.QuerytwoArea()
   },
   // 二级区域
   QuerytwoArea(){
@@ -95,9 +101,9 @@ Page({
     qingqiu.get("queryTwoArea", data, function(re) {
     if (re.success == true) {
       if (re.result != null) {
-        that.area=re.result
+        that.data.area=re.result
         that.setData({
-          area:that.area
+          area:that.data.area
         })
       }else {
         qingqiu.tk('未查询到任何数据')
@@ -128,7 +134,10 @@ Page({
       })
       return
     }
-    if(that.data.cityId==""||that.data.areaId==""){
+    if(that.data.cityId==""){
+      that.data.cityId=that.data.id
+    }
+    if(that.data.areaId==""){
       wx.showToast({
         title: '请选择所在区域！',
         icon:'none',
@@ -257,6 +266,7 @@ Page({
       cityId: id,
       cityname1: name,
     })
+    debugger
     var data ={
       oneAreaId:id
     }
@@ -278,12 +288,13 @@ Page({
     var that = this;
     if(that.data.cityname1=='')
     {
-      wx.showToast({
-        title: '请先选择城市',
-        icon:'none',
-        duration:2000
-      })
-      return
+      // wx.showToast({
+      //   title: '请先选择城市',
+      //   icon:'none',
+      //   duration:2000
+      // })
+      // return
+      that.data.cityname1=that.data.name
     }
     //var index = e.currentTarget.dataset.index;
     var id = e.currentTarget.dataset.id
@@ -293,7 +304,7 @@ Page({
       //curIndex: index,
       areaname: name,
       showModalStatus: false,
-      cityname: this.data.cityname1
+      cityname: that.data.cityname1
     })
   },
   // 图片上传（对接完成）

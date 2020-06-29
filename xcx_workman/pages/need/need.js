@@ -872,7 +872,10 @@ typeQuan:function(e){
       app.globalData.twoCity = undefined
       that.xqneedlist() //需求
       that.setData({
-        area:[],
+        // area:[],
+        areaId:0,
+        cityId: that.data.id,
+        cityname1: that.data.name,
         showModalStatus: false,
       })
     }else{

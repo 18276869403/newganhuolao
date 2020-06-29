@@ -54,9 +54,20 @@ Page({
       wxId:app.globalData.wxid
     }
     qingqiu.get("myMessage", data, function(re) {
-    console.log('我发起的留言',re)
     if (re.success == true) {
       if (re.result != null) {
+        for(let obj of re.result){
+          if(obj.picIurl == null || obj.picIurl == '' || obj.picIurl == 'null' || obj.picIurl == undefined){
+            obj.picIurl = ''
+          }
+          if(obj.name != null && obj.name != 'null'&& obj.name!=''){
+            obj.name = obj.name
+          }else if(obj.shopName!=null && obj.shopName!='null'&& obj.shopName!=''){
+            obj.name = obj.shopName
+          }else{
+            obj.name = obj.wxNc
+          }
+        }
         that.setData ({
           messageList : re.result
         })
@@ -74,9 +85,20 @@ givemymessageList() {
     wxId:app.globalData.wxid
   }
   qingqiu.get("messageForMe", data, function(re) {
-    console.log('给我的留言',re)
   if (re.success == true) {
     if (re.result != null) {
+      for(let obj of re.result){
+        if(obj.picIurl == null || obj.picIurl == '' || obj.picIurl == 'null' || obj.picIurl == undefined){
+          obj.picIurl = ''
+        }
+        if(obj.name != null && obj.name != 'null' && obj.name!=''){
+          obj.name = obj.name
+        }else if(obj.shopName!=null && obj.shopName!='null' && obj.shopName!=''){
+          obj.name = obj.shopName
+        }else{
+          obj.name = obj.wxNc
+        }
+      }
       that.setData ({
         formymessageList : re.result 
       })
@@ -86,6 +108,16 @@ givemymessageList() {
   } 
 })
 },
+
+// 查看留言
+liuyan:function(e){
+  var id = e.currentTarget.dataset.wxid
+  var name = e.currentTarget.dataset.name
+  wx.navigateTo({
+    url: '../HM-chat/HM-chat?id='+id+'&name='+name, 
+  })
+},
+
 // 删除我的留言
 deletemyLY: function(e) {
   var mylyid =e.currentTarget.dataset.Lyid;

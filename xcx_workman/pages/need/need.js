@@ -719,6 +719,11 @@ Page({
             weizhi:'全部',
             areaId:0
           })
+        }else{
+          that.setData({
+            cityId: app.globalData.oneCity.id,
+            cityname1: app.globalData.oneCity.name
+          })
         }
         that.setData({
           city:city

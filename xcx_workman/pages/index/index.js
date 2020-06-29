@@ -548,6 +548,11 @@ Page({
             weizhi:'全部',
             areaId:0
           })
+        }else{
+          that.setData({
+            cityId: app.globalData.oneCity.id,
+            cityname1: app.globalData.oneCity.name
+          })
         }
         that.setData({
           city:city
@@ -682,6 +687,9 @@ Page({
       that.sjneedlist({pageNo:1,pageSize:10,wxState:0})  //商家 
       that.spneedlist({pageNo:1,pageSize:10,backup1:1}) //商品
       that.setData({
+        cityId: that.data.id,
+        cityname1: that.data.name,
+        areaId:0,
         showModalStatus: false,
       })
     }else{

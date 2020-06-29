@@ -1,10 +1,12 @@
 // pages/activity02/activity02.js
+var api = require('../../utils/config.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    viewUrl:api.viewUrl
   },
    // 跳转到涂料用量
   yyyy: function () {

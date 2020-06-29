@@ -13,7 +13,7 @@
     <video src="{{viewUrl}}{{caseMsgList.picOne[0]}}" style="width:100%"></video>
   </view>
   <!-- 产品名 -->
-  <view class="top-text">
+  <view class="top-text" wx:if="{{caseMsgList.caseName != null&&caseMsgList.caseName != 'null'&&caseMsgList.caseName!=''}}">
     {{caseMsgList.caseName}}
   </view>
   <!-- 顶部详情 -->

@@ -71,6 +71,15 @@ Page({
     },'delete')
   },
   
+  // 在线联系
+  liuyan:function(e){
+    var id = e.currentTarget.dataset.wxid
+    var name = e.currentTarget.dataset.name
+    wx.redirectTo({
+      url: '../HM-chat/HM-chat?id='+id+"&name="+name ,
+    })
+  },
+
   // 获取我的雇佣
   getmyEmploy:function(){
     var that = this
@@ -85,6 +94,7 @@ Page({
       }
     }
     qingqiu.get("userWorkPage",data,function(re){
+      console.log(re)
       if (re.success == true) {
         if (re.result != null) {
           for(let obj of re.result.records){

@@ -75,6 +75,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {  
+			console.log(options)
 			this.setData({
 				toUserId : options.id,
 				toUserName : options.name
@@ -237,7 +238,7 @@ Page({
 					lastId   : this.data.lastMsgId
 				},res =>{
 					// console.log("消息列表", res);
-					var list       = res.result.pageList;
+					var list = res.result.pageList;
 					if(list.length > 0){
 
 						list = list.reverse();
@@ -303,7 +304,7 @@ Page({
 					userId : app.globalData.wxid 
 				},res =>{
 					// console.log("消息列表", res);
-					var list       = res.result.pageList;
+					var list = res.result.pageList;
 					list = list.reverse();
 
 					var userInfo   = res.result.userInfo;
@@ -549,7 +550,7 @@ Page({
 							if(EM.alt==item){
 								//在线表情路径，图文混排必须使用网络路径，请上传一份表情到你的服务器后再替换此路径 
 								//比如你上传服务器后，你的100.gif路径为https://www.xxx.com/emoji/100.gif 则替换onlinePath填写为https://www.xxx.com/emoji/
-								let onlinePath = 'https://s2.ax1x.com/2019/04/12/'
+								let onlinePath = 'http://miss.it-ys.com:91/work-boot/sys/common/view/static'
 								let imgstr = '<img src="'+onlinePath+this.data.onlineEmoji[EM.url]+'">';
 								console.log("imgstr: " + imgstr);
 								return imgstr;
@@ -597,8 +598,9 @@ Page({
 			},
 			// 添加图片消息到列表
 			addImgMsg(msg){
-				msg.msg.content = this.setPicSize(msg.msg.content);
-				this.data.msgImgList.push(msg.msg.content.url);
+				console.log(msg)
+				msg.content = this.setPicSize(msg.content);
+				this.data.msgImgList.push(msg.content.url);
 				this.data.msgList.push(msg);
 				this.setData({
 					msgList : this.data.msgList

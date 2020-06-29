@@ -7,7 +7,7 @@ const imBaseUrl = "ws://miss.it-ys.com:91/work-boot/"
 // 消息列表
 const imList = baseUrl + "work/im/list"  
 // 接收消息ws /work/im/user/{id}
-const imReceive = imBaseUrl+ "work/im/user/"  
+const imReceive = imBaseUrl+ "work/im/user/"   
 // 发送消息 /work/im/user/{id}
 const imSend = baseUrl + "work/im/add"  
 // 附件上传路径

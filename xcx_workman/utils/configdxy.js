@@ -9,7 +9,7 @@ const GetKeyInfo = baseUrl + "work/wxLogin/getKeyInfo"
 // 图片上传
 const Upload = baseUrl + "sys/common/upload"
 // 获取广告列表
-const Bannerlist = baseUrl + "pc/hall/list"
+const Bannerlist = baseUrl + "pc/hall/list" 
 // 获取广告列表
 const PointLIst = baseUrl + "pc/hall/pointList"
 // 获取推荐工人/推荐商家

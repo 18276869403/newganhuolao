@@ -1,5 +1,5 @@
 var api = require('./config.js')
-// const baseUrl = "http://miss.it-ys.com:91/work-boot/" 
+// const baseUrl = "http://miss.it-ys.com:91/work-boot/"  
 const baseUrl = "http://192.168.1.248:8080/work-boot/" 
 
 // 2.0需要工人，商家分类表：可选2个分类-编辑
@@ -9,7 +9,7 @@ const GetKeyInfo = baseUrl + "work/wxLogin/getKeyInfo"
 // 图片上传
 const Upload = baseUrl + "sys/common/upload"
 // 获取广告列表
-const Bannerlist = baseUrl + "pc/hall/list" 
+const Bannerlist = baseUrl + "pc/hall/list"
 // 获取广告列表
 const PointLIst = baseUrl + "pc/hall/pointList"
 // 获取推荐工人/推荐商家

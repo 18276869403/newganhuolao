@@ -120,6 +120,14 @@ Page({
     })
   },
 
+  liuyan:function(e){
+    var id = e.currentTarget.dataset.wxid
+    var name = e.currentTarget.dataset.name
+    wx.redirectTo({
+      url: '../HM-chat/HM-chat?id='+id+'&name='+name,
+    })
+  }, 
+
   // 获取店家商品
   getGoodsList:function(goodsid) {
       var that = this

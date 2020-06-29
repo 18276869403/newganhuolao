@@ -671,7 +671,6 @@ Page({
       }
     }
     console.log(data)
-    debugger
     if(that.data.type == 1 || that.data.type == 0){
       qingqiu.get("editWxUser",data,function(re){
         console.log(re)

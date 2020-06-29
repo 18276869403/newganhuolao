@@ -51,7 +51,7 @@
       </view>
       <view class="content-list-bottom hengxiang">
         <view class="phone-button" bindtap="phonecall" data-phone="{{item.phone}}">电话联系</view>
-        <view class="online-button">在线联系</view>
+        <view class="online-button" bindtap="liuyan" data-wxid="{{item.wxUserId}}" data-name="{{item.name}}">在线联系</view>
       </view>
     </view>
   </view>

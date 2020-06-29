@@ -45,7 +45,8 @@ Page({
   btnsearch:function(){
     var obj = {
       pageNo:1,
-      pageSize:3
+      pageSize:3,
+      backup5:0
     }
     if(this.data.sousuotext != "" || this.data.firstId != "undefined" || this.data.firstId != null){
       obj.needTitle = this.data.sousuotext
@@ -146,7 +147,7 @@ Page({
             that.setData(obj)
             that.QueryoneArea() //一级区域
             that.QuerytwoArea() //二级区域
-            that.xqneedlist({pageNo:1,pageSize:3,oneAreaId: obj.cityId,twoAreaId:obj.areaId}) //需求
+            that.xqneedlist({pageNo:1,pageSize:3,oneAreaId: obj.cityId,twoAreaId:obj.areaId,backup5:0}) //需求
             that.grneedlist({pageNo:1,pageSize:10,wxState:1,oneAreaId: obj.cityId,twoAreaId:obj.areaId}) //工人
             that.sjneedlist({pageNo:1,pageSize:10,wxState:0,oneAreaId: obj.cityId,twoAreaId:obj.areaId})  //商家 
             that.spneedlist({pageNo:1,pageSize:10,backup1:1,oneAreaId: obj.cityId,twoAreaId:obj.areaId}) //商品
@@ -683,8 +684,7 @@ Page({
       areaId:0
     })
     if(id == 0){
-      id = 0
-      that.xqneedlist({pageNo:1,pageSize:3}) //需求
+      that.xqneedlist({pageNo:1,pageSize:3,backup5:0}) //需求
       that.grneedlist({pageNo:1,pageSize:10,wxState:1}) //工人
       that.sjneedlist({pageNo:1,pageSize:10,wxState:0})  //商家 
       that.spneedlist({pageNo:1,pageSize:10,backup1:1}) //商品
@@ -698,7 +698,7 @@ Page({
       var data ={
         oneAreaId:id
       }
-      that.xqneedlist({pageNo:1,pageSize:3,oneAreaId:id}) //需求
+      that.xqneedlist({pageNo:1,pageSize:3,oneAreaId:id,backup5:0}) //需求
       that.grneedlist({pageNo:1,pageSize:10,wxState:1,oneAreaId:id}) //工人
       that.sjneedlist({pageNo:1,pageSize:10,wxState:0,oneAreaId:id})  //商家 
       that.spneedlist({pageNo:1,pageSize:10,backup1:1,oneAreaId:id}) //商品
@@ -752,11 +752,12 @@ Page({
       showModalStatus: false,
       cityname: this.data.cityname1
     })
-    that.xqneedlist({pageNo:1,pageSize:3,oneAreaId:app.globalData.oneCity.id,twoAreaId:id}) //需求
+    that.xqneedlist({pageNo:1,pageSize:3,oneAreaId:app.globalData.oneCity.id,twoAreaId:id,backup5:0}) //需求
     that.grneedlist({pageNo:1,pageSize:10,wxState:1,oneAreaId:app.globalData.oneCity.id,twoAreaId:id}) //工人
     that.sjneedlist({pageNo:1,pageSize:10,wxState:0,oneAreaId:app.globalData.oneCity.id,twoAreaId:id})  //商家 
     that.spneedlist({pageNo:1,pageSize:10,backup1:1,oneAreaId:app.globalData.oneCity.id,twoAreaId:id}) //商品
   },
+  
   // 显示弹窗样式 授权
   showModal1: function(e) {
     var animation = wx.createAnimation({

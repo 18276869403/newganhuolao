@@ -247,5 +247,30 @@ Page({
       current: currentUrl, // 当前显示图片的http链接
       urls: [currentUrl] // 需要预览的图片http链接列表
     })
+  },
+  // 留言
+  liuyan:function(e){
+    var wxid = e.currentTarget.dataset.wxid
+    var name = e.currentTarget.dataset.name
+    var shopName = e.currentTarget.dataset.shopName
+    var wxNc = e.currentTarget.dataset.wxNc
+    var nameV = ''
+    if(name != '' && name != "null" && name != null && name != undefined){
+      nameV = name
+    }else if(shopName != '' && shopName != "null" && shopName!=null && shopName!= undefined){
+      nameV = shopName
+    }else{
+      nameV = wxNc
+    }
+    wx.redirectTo({
+      url: '../HM-chat/HM-chat?id=' + wxid + '&name=' + nameV,
+    })
+  },
+  // 打电话
+  phonecell:function(e){
+    var phone = e.currentTarget.dataset.phone
+    wx.makePhoneCall({
+      phoneNumber: phone,
+    })
   }
 })

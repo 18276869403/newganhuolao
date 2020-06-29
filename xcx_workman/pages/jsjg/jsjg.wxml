@@ -37,7 +37,7 @@
           <view class="goods-bottom-title">
             {{item.goodName}}
           </view>
-          <view class="goods-bottom-price">
+          <view class="goods-bottom-price" wx:if="{{item.state!=false}}">
             ￥{{item.newPrice}}
           </view>
         </view>

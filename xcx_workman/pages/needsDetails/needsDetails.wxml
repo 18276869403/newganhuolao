@@ -88,21 +88,22 @@
       </view>
     </view>
     <!-- 接单报名人员 -->
-    <view class="content-content zongxiang">
+    <view class="content-content zongxiang" wx-if="{{xqxqlist.wxUserId==wxUserid}}||{{jiedanList.wxUserId==wxUserid}}">
       <view class="content-content-title">报名接单人员</view>
       <view class="content-jiedan zongxiang" wx:for="{{jiedanList}}" wx:for-index="index" wx:key="{{item.id}}">
         <view class="jiedan-top hengxiang">
           <view class="jiedan-top-left">
-            <image src="{{item.picUrl}}" class="avator-img"></image>
+            <image src="{{item.picIurl}}" class="avator-img" wx-if="{{item.picIurl!=''|| item.picIurl!=null}}"></image>
+            <image src="{{item.picUrl}}" class="avator-img" wx-if="{{item.picIurl==''|| item.picIurl==null}}"></image>
           </view>
           <view class="jiedan-top-content zongxiang">
             <view class="jiedan-top-content-name">{{item.name}}</view>
             <view class="jiedan-top-content-date">{{item.signTime}}</view>
           </view>
-          <view class="jiedan-top-right">
+          <view class="jiedan-top-right" wx-if="{{xqxqlist.wxUserId==wxUserid}}">
             <image src="{{viewUrl}}static/image/liuyan.png" class="img"></image>
           </view>
-          <view class="jiedan-top-right1">
+          <view class="jiedan-top-right1" wx-if="{{xqxqlist.wxUserId==wxUserid}}">
             <image src="{{viewUrl}}static/image/dianhua.png" bindtap="phonecell" class="img"></image>
           </view>
         </view>

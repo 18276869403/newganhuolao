@@ -77,8 +77,8 @@
     <view class="content-item-text hengxiang">
       <view class="content-item-text-block" bindtap="myEmploy">我的雇佣</view>
       <view class="content-item-text-block" bindtap="myNeeds">我的需求</view>
-      <view class="content-item-text-block">我的晒晒</view>
-      <view class="content-item-text-block" bindtap="myMessage" data-Lyid="{{wxUser}}">我的留言</view>
+      <view class="content-item-text-block">我的晒晒</view> 
+      <view class="content-item-text-block" bindtap="myMessage">我的留言</view>
     </view>
   </view>
   <!-- 底部列表块 -->

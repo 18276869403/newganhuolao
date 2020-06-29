@@ -17,11 +17,12 @@
     <!-- <view class="content-list zongxiang" wx:for="{{formymessageList}}" wx:key="{{item.id}}" wx:if="{{needsTypeid==2}}"> -->
       <view class="content-list-top hengxiang">
         <view class="list-top-img">
-          <image src="{{viewUrl}}static/image/top.png" class="avator-img"></image>
+          <image src="{{viewUrl}}static/image/top.png" class="avator-img" wx:if="{{item.pirIurl!=null&&item.picIurl!=''&&item.picIurl!='null'}}"></image>
+          <image src="{{viewUrl}}static/image/top.png" class="avator-img" wx:if="{{item.pirIurl==null&&item.picIurl==''&&item.picIurl=='null'}}"></image>
         </view>
         <view class="list-top-text zongxiang">
           <view>{{item.name}}</view>
-          <view class="date">{{item.messageDate}}</view>
+          <view class="date">{{item.createTime}}</view>
         </view>
         <view class="list-top-delete">
           <image src="{{viewUrl}}static/image/delete.png" class="delete-img" bindtap="deletemyLY" data-lyid="{{item.id}}"></image>
@@ -30,7 +31,7 @@
       <view class="content-list-content zongxiang">
         <view class="list-content-item hengxiang">
           <view class="dot"></view>
-          <view class="item-type">{{item.oneClassName}}| {{item.twoClassName}}</view>
+          <view class="item-type">一级分类| 二级分类</view>
         </view>
         <!-- <view class="list-content-item hengxiang">
           <view class="dot"></view>
@@ -42,7 +43,7 @@
           <view class="left-dingwei">
             <image src="{{viewUrl}}static/image/dingwei.png" class="dingwei-img"></image>
           </view>
-          <view class="left-text">{{item.oneAreaName}} | {{item.twoAreaName}}</view>
+          <view class="left-text">一级区域 | 二级区域</view>
         </view>
         <view class="content-list-bottom-right">
           <view class="look-button">查看留言</view>
@@ -50,13 +51,14 @@
       </view>
     </view>
     <view class="content-list zongxiang" wx:for="{{formymessageList}}" wx:key="{{item.id}}" wx:if="{{needsTypeid==2}}">
-      <view class="content-list-top hengxiang">
+      <view class="content-list-top hengxiang"> 
         <view class="list-top-img">
-          <image src="{{viewUrl}}static/image/top.png" class="avator-img"></image>
+        <image src="{{item.pirIurl}}" class="avator-img" wx:if="{{item.picIurl!=null&&item.  picIurl!=''&&item.picIurl!='null'}}"></image>
+          <image src="{{item.pirUrl}}" class="avator-img" wx:if="{{item.picIurl==null&&item.picIurl==''&&item.picIurl=='null'}}"></image>
         </view>
         <view class="list-top-text zongxiang">
           <view>{{item.name}}</view>
-          <view class="date">{{item.messageDate}}</view>
+          <view class="date">{{item.createTime}}</view>
         </view>
         <view class="list-top-delete">
           <image src="{{viewUrl}}static/image/delete.png" class="delete-img" bindtap="deletemyLY" data-lyid="{{item.id}}"></image>
@@ -86,7 +88,12 @@
     </view>
   </view>
 </view>
-<view class="shuju" wx:if="{{messageList.length==0}}">
+<!-- <view class="shuju" wx:if="{{messageList.length==0&&needsTypeid==1&&formymessageList.length==0}}">
   <image src="{{viewUrl}}static/image/noshuju.png" class="shuju_img"></image>
   <view>暂无数据</view>
 </view>
+<view class="shuju" wx:if="{{formymessageList.length==0&&needsTypeid==2&&messageList.length==0}}">
+  <image src="{{viewUrl}}static/image/noshuju.png" class="shuju_img"></image>
+  <view>暂无数据</view>
+</view> -->
+

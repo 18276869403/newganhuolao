@@ -82,7 +82,7 @@
           <view class="left-text">{{item.oneAreaName}} | {{item.twoAreaName}}</view>
         </view>
         <view class="content-list-bottom-right" bindtap="liuyan" data-wxid="{{item.userId}}" data-name="{{item.name}}">
-          <view class="look-button">查看留言</view>
+          <view class="look-button">查看留言</view> 
         </view>
       </view>
     </view>

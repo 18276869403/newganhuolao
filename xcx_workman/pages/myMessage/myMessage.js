@@ -114,7 +114,7 @@ liuyan:function(e){
   var id = e.currentTarget.dataset.wxid
   var name = e.currentTarget.dataset.name
   wx.navigateTo({
-    url: '../HM-chat/HM-chat?id='+id+'&name='+name,
+    url: '../HM-chat/HM-chat?id='+id+'&name='+name, 
   })
 },
 

@@ -183,6 +183,9 @@ Page({
   },
 
   onShow(){
+    wx.showShareMenu({
+      withShareTicket: true
+    })
     if(app.globalData.needRefresh != 0){
       this.chushishouquan()
       if(app.globalData.xuqiuid == 0){

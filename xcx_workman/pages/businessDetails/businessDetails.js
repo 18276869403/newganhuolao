@@ -63,6 +63,9 @@ Page({
     })
   },
   onLoad: function(options) {
+    wx.showShareMenu({
+      withShareTicket: true
+    })
     var obj = JSON.parse(options.obj)
     console.log(obj)
     this.setData({

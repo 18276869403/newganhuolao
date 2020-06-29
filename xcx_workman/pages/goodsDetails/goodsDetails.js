@@ -17,6 +17,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.showShareMenu({
+      withShareTicket: true
+    })
     // this.spxiangqinglist()
     var splist = JSON.parse(options.obj)
     for(var i=0;i<splist.goodPic1.length;i++){

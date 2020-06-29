@@ -72,6 +72,9 @@ Page({
   },
 
   onShow:function(){
+    wx.showShareMenu({
+      withShareTicket: true
+    })
     if(app.globalData.showworkRefresh != 0){
       this.chushishouquan()
       this.QueryoneArea()
@@ -288,7 +291,7 @@ Page({
                   })
                   setTimeout(function(){
                     that.hideModal1()
-                    that.onLoad()
+                    that.onShow()
                   },1000)
                 }else{
                   wx.showToast({

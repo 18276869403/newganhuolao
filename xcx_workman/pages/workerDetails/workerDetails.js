@@ -24,6 +24,9 @@ Page({
   },
 
   onLoad: function (options) {
+    wx.showShareMenu({
+      withShareTicket: true
+    })
     var workerDetail = JSON.parse(options.obj)
     var id = workerDetail.id
     var phone = workerDetail.phone

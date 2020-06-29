@@ -164,6 +164,9 @@ Page({
   },
   
   onShow:function(options){
+    wx.showShareMenu({
+      withShareTicket: true
+    })
     //获得dialog组件
     this.dialog = this.selectComponent("#dialog");
     // 获取二维码参数

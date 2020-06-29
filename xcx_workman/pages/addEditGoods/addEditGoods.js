@@ -42,6 +42,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    wx.showShareMenu({
+      withShareTicket: true
+    })
     var spxglist= JSON.parse(options.obj1==undefined?options.obj:options.obj1)
     this.spid=spxglist
     if(options.obj==undefined)

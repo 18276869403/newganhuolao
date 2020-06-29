@@ -54,6 +54,9 @@ Page({
   },
 
   onLoad: function (options) {
+    wx.showShareMenu({
+      withShareTicket: true
+    })
     var xqxqlist = JSON.parse(options.obj1)
     xqxqlist.publishMan = utils.formatName(xqxqlist.publishMan)
     this.setData({
@@ -136,12 +139,8 @@ Page({
     })
   },
   // 需求在线联系
-  zaixianlianxi(){
-    wx.showToast({
-      title: '这个按钮还没有对接哦！',
-      icon:'success',
-      duration:2000
-    })
+  zaixianlianxi(e){
+   
   },
   // 需求报名
   baoming(){

@@ -122,6 +122,9 @@ Page({
   },
   
   onShow: function(){
+    wx.showShareMenu({
+      withShareTicket: true
+    })
     if(app.globalData.serverRefresh != 0){
       this.chushishouquan()
       var type = app.globalData.servicestype

@@ -123,6 +123,9 @@ Page({
   },
 
   onShow() {
+    wx.showShareMenu({
+      withShareTicket: true
+    })
     this.chushishouquan()
     this.setData({
       wxState: app.globalData.wxState
@@ -218,7 +221,12 @@ Page({
   },
   phonecall: function () {
     wx.makePhoneCall({
-      phoneNumber: 15001875806 //仅为示例，并非真实的电话号码
+      phoneNumber: '15001875806' //仅为示例，并非真实的电话号码
     })
+  },
+  //當時用了組件才會顯示
+  bindload: function (e) {
+    console.log(e.detail)
+    console.log('成功')
   }
 })

@@ -32,6 +32,9 @@ Page({
   },
 
   onLoad: function() {
+    wx.showShareMenu({
+      withShareTicket: true
+    })
     this.oneClass()
     this.twoClass()
     this.QueryoneArea()

@@ -30,6 +30,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.showShareMenu({
+      withShareTicket: true
+    })
     this.data.jieguo=options.obj
     this.getGoodsList({pageNo:1,pageSize:10,oneClassId:options.oneclass,twoClassId:options.twoclass})
     this.setData({

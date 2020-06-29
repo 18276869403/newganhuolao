@@ -20,6 +20,9 @@ Page({
   },
 
   onLoad: function (options) {
+    wx.showShareMenu({
+      withShareTicket: true
+    })
     if(options.obj1 != undefined){
       var xqxqlist = JSON.parse(options.obj1)
       xqxqlist.publishMan = utils.formatName(xqxqlist.publishMan)

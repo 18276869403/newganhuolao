@@ -12,7 +12,9 @@ const Get = function(url, data, huidiao, method = 'GET') {
 		geturl = api.deng[url]
 	} else if (api.zhu[url] != null) {
 		geturl = api.zhu[url]
-	} 
+	} else {
+		geturl = url;
+	}
 	wx.request({
 		url: geturl,
 		method: method,

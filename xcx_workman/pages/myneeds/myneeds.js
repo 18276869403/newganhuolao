@@ -26,7 +26,8 @@ Page({
     var data={
       pageNo:1,
       pageSize:10,
-      wxUserId:app.globalData.wxid
+      wxUserId:app.globalData.wxid,
+      backup5:0
     }
     qingqiu.get("zuixinxq", data, function(re) {
       console.log(re)
@@ -58,6 +59,7 @@ Page({
   needsDetails: function(e) {
     var that = this
     var obj1 =e.currentTarget.dataset.vall;
+    console.log(obj1)
     var data = {
       id:obj1.id
     }

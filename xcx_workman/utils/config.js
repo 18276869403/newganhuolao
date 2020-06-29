@@ -1,6 +1,7 @@
 var deng = require('./configdxy.js')
 var zhu = require('./configzpy.js')
-const imgurl = "http://111.231.51.198:91/work-boot/" 
+var im = require('./config-im.js')
+const imgurl = "http://miss.it-ys.com:91/work-boot/" 
 // const imgurl = "http://192.168.1.241:9123/work-boot/" //本地
 const baiduAK = 'CauqHCxjKu4NcebB4UjlUYTbGqtRpEN5'
 
@@ -14,6 +15,7 @@ module.exports = {
 	imgurl: imgurl,
 	deng: deng,
 	zhu: zhu,
+	im : im,
 	viewUrl: viewUrl, // 图片路径
 	download:Download,	// 下载
 	uploadurl2:Uploadurl2, //上传图片

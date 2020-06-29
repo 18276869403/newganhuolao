@@ -20,3 +20,7 @@
   <image src="{{viewUrl}}static/image/addgoods.png" class="add-img"></image>
   </view>
 </view> 
+<view class="shuju" wx:if="{{goodsLists.length==0}}">
+  <image src="{{viewUrl}}static/image/noshuju.png" class="shuju_img"></image>
+  <view>暂无数据</view>
+</view>

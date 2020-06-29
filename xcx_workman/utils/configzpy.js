@@ -1,6 +1,6 @@
 var api = require('./config.js')
-const baseUrl = "http://111.231.51.198:91/work-boot/"
-// const baseUrl = "http://192.168.1.248:9123/work-boot/" 
+const baseUrl = "http://miss.it-ys.com:91/work-boot/"
+// const baseUrl = "http://192.168.1.248:8080/work-boot/" 
 
 // 需求列表
 // const xqurl = baseUrl + "work/yneed/list"

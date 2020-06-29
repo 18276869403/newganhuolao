@@ -1,7 +1,7 @@
-const baseUrl = "http://111.231.51.198:91/work-boot/"
+const baseUrl = "http://miss.it-ys.com:91/work-boot/"
 //  const baseUrl = "http://127.0.0.1:9123/work-boot/" 
 
-const imBaseUrl = "ws://111.231.51.198:91/work-boot/"
+const imBaseUrl = "ws://miss.it-ys.com:91/work-boot/"
 //  const imBaseUrl = "ws://127.0.0.1:9123/work-boot/"  
 
 // 消息列表

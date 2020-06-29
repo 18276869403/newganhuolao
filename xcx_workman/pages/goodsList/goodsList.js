@@ -312,7 +312,9 @@ Page({
         }else{
           that.setData({
             cityId: app.globalData.oneCity.id,
-            cityname1: app.globalData.oneCity.name
+            cityname1: app.globalData.oneCity.name,
+            areaId:app.globalData.twoCity.id,
+            areaname:app.globalData.twoCity.name
           })
         }
         that.setData({

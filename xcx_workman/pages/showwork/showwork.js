@@ -41,7 +41,8 @@ Page({
     // ],
     imgList:[],
     sousuotext:'',
-    id:1,
+    id:'',
+    name:'',
     sousuonr:'',
     pageNo:1
   },
@@ -86,7 +87,10 @@ Page({
         this.setData({
           showList:[],
           pageNo:1,
-          weizhi:'全部'
+          cityId: this.data.id,
+          cityname1: this.data.name,
+          weizhi:'全部',
+          areaId:0
         })
         this.SelectshowList()
       }
@@ -316,6 +320,16 @@ Page({
         var city=[]
         city.push(obj)
         city.push(re.result[0])
+        that.data.id=re.result[0].id
+        that.data.name=re.result[0].areaName
+        if(app.globalData.oneCity == undefined || app.globalData.oneCity == "undefined"){
+          that.setData({
+            cityId: that.data.id,
+            cityname1: that.data.name,
+            weizhi:'全部',
+            areaId:0
+          })
+        }
         that.setData({
           city:city
         })
@@ -334,14 +348,14 @@ Page({
     qingqiu.get("queryTwoArea", data, function(re) {
     if (re.success == true) {
       if (re.result != null) {
-        var obj = {id:0,oneAreaId:0,areaName:'全部'}
+        // var obj = {id:0,oneAreaId:0,areaName:'全部'}
         var area = []
-        area.push(obj)
+        // area.push(obj)
         for(let obj of re.result){
           area.push(obj)
         }
         that.setData({
-          area:that.area
+          area:area
         })
       }else {
         qingqiu.tk('未查询到任何数据')
@@ -440,6 +454,9 @@ Page({
       that.SelectshowList()  //商家 
       that.setData({
         showModalStatus: false,
+        cityId: that.data.id,
+        cityname1: that.data.name,
+        areaId:0,
       })
     }else{
       var data ={
@@ -471,6 +488,10 @@ Page({
         duration:1000
       })
       return
+    }
+    if(app.globalData.oneCity==undefined || app.globalData.oneCity==''){
+      app.globalData.oneCity= {id:that.data.id,name:that.data.name}
+      that.data.cityname1=that.data.name
     }
     var id = e.currentTarget.dataset.id
     var name = e.currentTarget.dataset.name

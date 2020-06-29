@@ -73,6 +73,9 @@
         </view>
       </view>
     </view>
-
   </view>
+</view>
+<view class="shuju" wx:if="{{needsList.length==0}}">
+  <image src="{{viewUrl}}static/image/noshuju.png" class="shuju_img"></image>
+  <view>暂无数据</view>
 </view>

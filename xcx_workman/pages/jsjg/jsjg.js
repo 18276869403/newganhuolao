@@ -13,7 +13,14 @@ Page({
     zanwu:[{
       id:1,
       goodPic1:['static/image/zanwushangpin.png'],
-      goodName:'敬请期待',
+      goodName:'',
+      newPrice:'',
+      state:false
+    },
+    {
+      id:2,
+      goodPic1:['static/image/zanwushangpin.png'],
+      goodName:'',
       newPrice:'',
       state:false
     }]

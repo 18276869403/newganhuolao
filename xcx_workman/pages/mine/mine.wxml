@@ -127,7 +127,7 @@
         <image src="{{viewUrl}}static/image/enter.png" class="enter-img"></image>
       </view>
     </view>
-    <view class="bottom-list hengxiang" bindtap="phonecall" data-phone="{{wxUser.phone}}">
+    <view class="bottom-list hengxiang" bindtap="phonecall">
       <view class="bottom-list-left">
         <image src="{{viewUrl}}static/image/lianxiwomen.png" class="ziliao-img"></image>
       </view>

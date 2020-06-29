@@ -217,10 +217,9 @@ Page({
       url: '../myRecommend/myRecommend?obj='+myid,
     })
   },
-  phonecall: function (e) {
-    var phone = e.currentTarget.dataset.phone
+  phonecall: function () {
     wx.makePhoneCall({
-      phoneNumber: phone //仅为示例，并非真实的电话号码
+      phoneNumber: 15001875806 //仅为示例，并非真实的电话号码
     })
   }
 })

@@ -184,7 +184,7 @@ Page({
   shancuoxuqiu() {
     var that = this
     var data={
-      id: that.id
+      id: that.data.id
     }
     wx.showModal({
       title:'提示',
@@ -198,7 +198,11 @@ Page({
                  icon:'success',
                  duration:2000
                })
-               setTimeout()
+               setTimeout(function(){
+                wx.redirectTo({
+                  url: '../myneeds/myneeds',
+                })
+               },1000)
               } else {
                 wx.showToast({
                   title: re.message,

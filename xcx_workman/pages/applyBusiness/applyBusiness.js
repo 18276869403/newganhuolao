@@ -36,7 +36,7 @@ Page({
     areaId: '',
     needsname: '',
     needscontent: '',
-    workaddress: '',
+    workeraddress: '',
     linkman: '',
     phone: '',
     workername: '',
@@ -319,7 +319,7 @@ Page({
         needsname: re.result.shopName,
         linkman: re.result.name,
         phone: re.result.phone,
-        workaddress: re.result.shopAddress,
+        workeraddress: re.result.shopAddress,
         needscontent: re.result.content,
         picIurl: api.viewUrl +  re.result.picIurl,
         picIurl1:re.result.picIurl,
@@ -432,10 +432,12 @@ Page({
     })
   },
   //获取输入的工作地址
-  workaddressinput: function(e) {
+  workeraddressinput: function(e) {
     this.setData({
-      workaddress: e.detail.value
+      workeraddress: e.detail.value
     })
+    console.log(e.detail.value)
+    console.log(this.data.workeraddress)
   },
   // 日期选择
   bindDateChange: function(e) {
@@ -605,7 +607,8 @@ Page({
         })
         return
       }
-      var s = qingqiu.yanzheng(that.data.areaId + ",请选择区域|" + that.data.fenleitype1.yjid + ",请选择工种分类|" + that.data.workername + ",请输入工人姓名|" + that.data.date + ",请选择出生年月日|" + that.data.worktime + ",请输入从业时长|"+ that.data.workeraddress + ",请输入详细地址|" + that.data.workerphone + ",请输入联系电话|" + that.data.workerskill + ",请输入技能介绍|" + that.data.picIurl + ",请上传头像照片|")
+      console.log('详细地址',that.data.workeraddress)
+      var s = qingqiu.yanzheng(that.data.areaId + ",请选择区域|" + that.data.fenleitype1.yjid + ",请选择工种分类|" + that.data.workername + ",请输入工人姓名|" + that.data.date + ",请选择出生年月日|" + that.data.worktime + ",请输入从业时长|"+ that.data.workeraddress + ",请输入详细地址|" + that.data.workerphone + ",请输入联系电话|" + that.data.workerskill + ",请输入技能介绍|" + that.data.picIurl + ",请上传头像照片")
       if (s != 0) {
         wx.showToast({
           title: s,
@@ -641,7 +644,8 @@ Page({
         })
         return
       }
-      var s = qingqiu.yanzheng(that.data.areaId + ",请选择商铺区域|" + that.data.fenleitype1.yjid + ",请现在业务分类|" + that.data.needsname + ",请输入商品名称|" + that.data.linkman + ",请输入联系人|" + that.data.phone + ",请输入联系电话|" + that.data.workaddress + ",请输入商铺详细地址|" + that.data.needscontent + ",请输入商铺介绍|" + that.data.picIurl1 + ",请上传门头照|" + that.data.picZz + ",请上传营业执照")
+      console.log('详细地址',that.data.workeraddress)
+      var s = qingqiu.yanzheng(that.data.areaId + ",请选择商铺区域|" + that.data.fenleitype1.yjid + ",请现在业务分类|" + that.data.needsname + ",请输入商品名称|" + that.data.linkman + ",请输入联系人|" + that.data.phone + ",请输入联系电话|" + that.data.workeraddress + ",请输入商铺详细地址|" + that.data.needscontent + ",请输入商铺介绍|" + that.data.picIurl1 + ",请上传门头照|" + that.data.picZz + ",请上传营业执照")
       if (s != 0) {
         wx.showToast({
           title: s,
@@ -659,15 +663,18 @@ Page({
         shopName: that.data.needsname,
         name: that.data.linkman,
         phone: that.data.phone,
-        shopAddress: that.data.workaddress,
+        shopAddress: that.data.workeraddress,
         content: that.data.needscontent,
         picIurl: that.data.picIurl1,
         picZz: that.data.picZz1,
         wxState: 0,
       }
     }
+    console.log(data)
+    debugger
     if(that.data.type == 1 || that.data.type == 0){
       qingqiu.get("editWxUser",data,function(re){
+        console.log(re)
         if (re.success == true) {
           wx.showToast({
             title: '修改成功',
@@ -696,6 +703,7 @@ Page({
             icon: 'none',
             duration: 2000
           })
+          return
         }
       },'put')
     }else{
@@ -712,7 +720,7 @@ Page({
               success: function(res) {
                 qingqiu.get("getKeyInfo", {
                   code: res.code
-                }, function(re) {
+                }, function(re) { 
                   app.globalData.wxid = re.result.wxUser.id
                   app.globalData.openid = re.result.openId
                   app.globalData.wxState = re.result.wxUser.wxState

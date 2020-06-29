@@ -757,6 +757,7 @@ Page({
     that.sjneedlist({pageNo:1,pageSize:10,wxState:0,oneAreaId:app.globalData.oneCity.id,twoAreaId:id})  //商家 
     that.spneedlist({pageNo:1,pageSize:10,backup1:1,oneAreaId:app.globalData.oneCity.id,twoAreaId:id}) //商品
   },
+  
   // 显示弹窗样式 授权
   showModal1: function(e) {
     var animation = wx.createAnimation({

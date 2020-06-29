@@ -17,6 +17,8 @@ Page({
     erjiname:'',
     areaId:'',
     weizhi:'',
+    id:'',
+    name:'',
     showModalStatus:false,
     goodslist:[],
     where:'',
@@ -223,7 +225,10 @@ Page({
       app.globalData.twoCity = undefined
       that.selectsp() //商品
       that.setData({
-        area:[],
+        // area:[],
+        cityId: that.data.id,
+        cityname1: that.data.name,
+        areaId:0,
         showModalStatus: false,
       })
     }else{
@@ -249,6 +254,10 @@ Page({
   // 右侧单选点击
   arearight: function(e) {
     var that = this;
+    if(app.globalData.oneCity==undefined || app.globalData.oneCity==''){
+      app.globalData.oneCity= {id:that.data.id,name:that.data.name}
+      that.data.cityname1=that.data.name
+    }
     if(that.data.cityname1==undefined)
     {
       wx.showToast({
@@ -277,7 +286,7 @@ Page({
       areaname: name,
       showModalStatus: false,
       goodslist:[],
-      cityname: this.data.cityname1
+      cityname: that.data.cityname1
     })
     that.selectsp() //商品
   },
@@ -291,6 +300,16 @@ Page({
         var city=[]
         city.push(obj)
         city.push(re.result[0])
+        that.data.id=re.result[0].id
+        that.data.name=re.result[0].areaName
+        if(app.globalData.oneCity == undefined || app.globalData.oneCity == "undefined"){
+          that.setData({
+            cityId: that.data.id,
+            cityname1: that.data.name,
+            weizhi:'全部',
+            areaId:0
+          })
+        }
         that.setData({
           city:city
         })
@@ -309,14 +328,14 @@ Page({
     qingqiu.get("queryTwoArea", data, function(re) {
       if (re.success == true) {
         if (re.result != null) {
-          var obj = {id:0,oneAreaId:0,areaName:'全部'}
+          // var obj = {id:0,oneAreaId:0,areaName:'全部'}
           var area = []
-          area.push(obj)
+          // area.push(obj)
           for(let obj of re.result){
             area.push(obj)
           }
           that.setData({
-            area:that.area
+            area:area
           })
         }else {
           qingqiu.tk('未查询到任何数据')

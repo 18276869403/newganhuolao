@@ -56,7 +56,7 @@
         <image src="{{viewUrl}}static/image/enter.png" class="enter-img"></image>
       </view>
     </view>
-    <view class="content-item hengxiang">
+    <view class="content-item hengxiang"> 
       <view class="content-title">详细地址</view>
       <input type="text" placeholder="请输入商铺详细地址" class="shurukuang" style="color:#999999;" placeholder-class="placeholder" value='{{workeraddress}}' name="workaddress" bindinput='workeraddressinput'></input>
     </view>

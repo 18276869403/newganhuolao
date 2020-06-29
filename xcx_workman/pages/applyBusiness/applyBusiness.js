@@ -720,7 +720,7 @@ Page({
               success: function(res) {
                 qingqiu.get("getKeyInfo", {
                   code: res.code
-                }, function(re) {
+                }, function(re) { 
                   app.globalData.wxid = re.result.wxUser.id
                   app.globalData.openid = re.result.openId
                   app.globalData.wxState = re.result.wxUser.wxState

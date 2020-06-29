@@ -1,8 +1,8 @@
 const baseUrl = "http://miss.it-ys.com:91/work-boot/"
-//  const baseUrl = "http://127.0.0.1:9123/work-boot/" 
+//  const baseUrl = "http://192.168.1.248:8080/work-boot/" 
 
 const imBaseUrl = "ws://miss.it-ys.com:91/work-boot/"
-//  const imBaseUrl = "ws://127.0.0.1:9123/work-boot/"  
+//  const imBaseUrl = "ws://192.168.1.248:8080/work-boot/"  
 
 // 消息列表
 const imList = baseUrl + "work/im/list"  

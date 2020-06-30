@@ -2,7 +2,7 @@
 <view class="container">
   <view class="content zongxiang">
     <view class="content-item-textarea" wx:if="{{!showModalStatus}}">
-      <textarea class="textarea" placeholder="请输入晒晒描述" placeholder-class="placeholder" maxlength='-1' value='{{needscontent}}' name="comment" bindinput='commentinput'></textarea>
+      <textarea class="textarea" placeholder="请输入晒晒描述" placeholder-class="placeholder" maxlength='-1' value='{{needscontent}}' name="comment" bindinput='commentinput' bindblur="commentinputblur"></textarea>
     </view> 
     <view class="content-item hengxiang" bindtap="showModal">
       <view class="content-text" wx:if="{{cityname==''}}">请选择晒晒区域</view>

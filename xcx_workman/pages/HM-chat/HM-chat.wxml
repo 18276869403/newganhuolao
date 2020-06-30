@@ -153,7 +153,7 @@
 						<textarea auto-height="true"
 							bindinput="textMsgInput"
 							value="{{textMsg}}"
-							bindfocus="textareaFocus"></textarea>
+							bindfocus="textareaFocus" bindblur="textMsgInputblur"></textarea>
 					</view>
 					<view class="em" bindtap="chooseEmoji">
 						<view class="icon biaoqing"></view>

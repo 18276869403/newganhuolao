@@ -186,6 +186,23 @@ Page({
       needscontent: e.detail.value
     })
   },
+  commentinputblur:function(e){
+    var that = this
+    qingqiu.messageReg(e.detail.value,0,function(res){
+      console.log('回调函数',res)
+      if(res == 87014){
+        that.setData({
+          needscontent:''
+        })
+        wx.showToast({
+          title: '内容包含敏感词，请重新输入...',
+          icon:'none',
+          duration:2000
+        })
+        return
+      }
+    },'POST')
+  },
   //地址 显示弹窗样式
   showModal: function(e) {
     this.setData({

@@ -529,6 +529,23 @@ Page({
 					textMsg : e.detail.value
 				})
 			},
+			textMsgInputblur:function(e){
+				var that = this
+				qingqiu.messageReg(e.detail.value,0,function(res){
+					console.log('回调函数',res)
+					if(res == 87014){
+						that.setData({
+							textMsg:''
+						})
+						wx.showToast({
+							title: '内容包含敏感词，请重新输入...',
+							icon:'none',
+							duration:2000
+						})
+						return
+					}
+				},'POST')
+			},
 			// 发送文字消息
 			sendText(){
 				this.hideDrawer();//隐藏抽屉

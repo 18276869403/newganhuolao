@@ -489,17 +489,68 @@ Page({
       needsname: e.detail.value
     })
   },
+  needsnameinputblur:function(e){
+    var that = this
+    qingqiu.messageReg(e.detail.value,0,function(res){
+      console.log('回调函数',res)
+      if(res == 87014){
+        that.setData({
+          needsname:''
+        })
+        wx.showToast({
+          title: '内容包含敏感词，请重新输入...',
+          icon:'none',
+          duration:2000
+        })
+        return
+      }
+    },'POST')
+  },
   //获取输入的需求内容
   needscontentinput: function (e) {
     this.setData({
       needscontent: e.detail.value
     })
   },
+  needscontentinputblur:function(e){
+    var that = this
+    qingqiu.messageReg(e.detail.value,0,function(res){
+      console.log('回调函数',res)
+      if(res == 87014){
+        that.setData({
+          needscontent:''
+        })
+        wx.showToast({
+          title: '内容包含敏感词，请重新输入...',
+          icon:'none',
+          duration:2000
+        })
+        return
+      }
+    },'POST')
+  },
   //获取输入的联系人
   linkmaninput: function (e) {
     this.setData({
       linkman: e.detail.value
     })
+  },
+  linkmaninputblur:function(e){
+    var that = this
+    qingqiu.messageReg(e.detail.value,0,function(res){
+      console.log('回调函数',res)
+      if(res == 87014){
+        that.setData({
+          linkman:''
+        })
+        wx.showToast({
+          title: '内容包含敏感词，请重新输入...',
+          icon:'none',
+          duration:2000
+        })
+        return
+      }
+    },'POST')
   },
   //获取输入的联系电话
   phoneinput: function (e) {

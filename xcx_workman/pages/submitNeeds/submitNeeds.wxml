@@ -21,7 +21,7 @@
 
     <view class="content-item hengxiang">
       <view class="content-title">需求标题</view>
-      <input type="text" placeholder="请输入需求标题" class="shurukuang" placeholder-class="placeholder" value='{{needsname}}' name="needsname" bindinput='needsnameinput'></input>
+      <input type="text" placeholder="请输入需求标题" class="shurukuang" placeholder-class="placeholder" value='{{needsname}}' name="needsname" bindinput='needsnameinput' bindblur="needsnameblur"></input>
     </view>
 
     <view class="content-item hengxiang">
@@ -30,7 +30,7 @@
     </view>
 
     <view class="content-item-textarea">
-      <textarea class="textarea" placeholder="输入需求详情说明" placeholder-class="placeholder1" maxlength='-1' value='{{needscontent}}' name="needscontent" bindinput='needscontentinput' wx:if="{{!showModalStatus6&&!show&&!showModalStatus1&&!showModalStatus}}"></textarea>
+      <textarea class="textarea" placeholder="输入需求详情说明" placeholder-class="placeholder1" maxlength='-1' value='{{needscontent}}' name="needscontent" bindinput='needscontentinput' wx:if="{{!showModalStatus6&&!show&&!showModalStatus1&&!showModalStatus}}" bindblur="needscontentinputblur"></textarea>
     </view>
     <view class="content-item hengxiang" bindtap="showModal">
       <view class="content-title">所在区域</view>
@@ -47,7 +47,7 @@
 
     <view class="content-item hengxiang">
       <view class="content-title">联系人</view>
-      <input type="text" placeholder="请输入联系人" class="shurukuang" placeholder-class="placeholder" value='{{linkman}}' name="linkman" bindinput='linkmaninput'></input>
+      <input type="text" placeholder="请输入联系人" class="shurukuang" placeholder-class="placeholder" value='{{linkman}}' name="linkman" bindinput='linkmaninput' bindblur="linkmaninputblur"></input>
     </view>
 
     <view class="content-item hengxiang">

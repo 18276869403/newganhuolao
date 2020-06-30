@@ -123,18 +123,26 @@ liuyan:function(e){
 
 // 删除我的留言
 deletemyLY: function(e) {
-  var mylyid =e.currentTarget.dataset.Lyid;
+  var lyid=e.currentTarget.dataset.lyid
   var data={
-    wxId:mylyid
+    fromWxId:lyid.userId,
+    toWxId:lyid.toUserId
   }
-  qingqiu.get("deleteMessage", data, function(re) {
+  qingqiu.get("deleteUserIm", data, function(re) {
     if (re.success == true) {
-      if (re.result ==1) {
-        qingqiu.tk('删除成功！')
-      } else {
-        qingqiu.tk('删除失败！')
-      }
-    } 
-  })
+      wx.showToast({
+        title: '删除成功！',
+        icon:'none',
+        duration:2000
+      })
+    }else{
+      wx.showToast({
+        title: '删除失败！',
+        icon:'none',
+        duration:2000
+      })
+    }
+  },'delete')
+  this.onLoad()
 }
 })

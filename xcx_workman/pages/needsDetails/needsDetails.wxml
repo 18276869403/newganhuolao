@@ -88,7 +88,7 @@
       </view>
     </view>
     <!-- 接单报名人员 -->
-    <view class="content-content zongxiang" wx-if="{{xqxqlist.wxUserId==wxUserid||jiedanList.wxUserId==wxUserid}}">
+    <view class="content-content zongxiang" wx-if="{{xqxqlist.wxUserId==wxUserid}}||{{jiedanList.wxUserId==wxUserid}}">
       <view class="content-content-title">报名接单人员</view>
       <view class="content-jiedan zongxiang" wx:for="{{jiedanList}}" wx:for-index="index" wx:key="{{item.id}}">
         <view class="jiedan-top hengxiang">

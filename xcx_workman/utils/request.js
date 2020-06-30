@@ -1,6 +1,7 @@
 /**
  * 数据请求
  */
+const app = getApp()
 var api = require('./config.js')
 const Get = function(url, data, huidiao, method = 'GET') {
 	// console.log('UserAuthorization:' + wx.getStorageSync('yrzuser'))
@@ -52,8 +53,27 @@ const yanzheng = function(str){
 	}
 	return 0
 }
+// str/敏感词 type/类别(1/文字,2/图片,3/视频)
+const messageReg = function(str,type,huidiao, method = 'GET'){
+	if(type == 0){
+		wx.request({
+			url:'https://api.weixin.qq.com/wxa/msg_sec_check?access_token=' + app.globalData.access_Token,
+			method:method,
+			data:{content:str},
+			success:function(res){
+				console.log('敏感词信息',res)
+				huidiao(res.data.errcode)
+			}
+		})
+	}else if(type ==1){
+
+	}else{
+
+	}
+}
 
 module.exports = {
 	get: Get,
-	yanzheng:yanzheng
+	yanzheng:yanzheng,
+	messageReg:messageReg
 }

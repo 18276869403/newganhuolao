@@ -24,29 +24,11 @@
           <view>{{item.name}}</view>
           <view class="date">{{item.createTime}}</view>
         </view>
-        <view class="list-top-delete">
-          <image src="{{viewUrl}}static/image/delete.png" class="delete-img" bindtap="deletemyLY" data-lyid="{{item.id}}"></image>
-        </view>
-      </view>
-      <view class="content-list-content zongxiang">
-        <view class="list-content-item hengxiang">
-          <view class="dot"></view>
-          <view class="item-type">一级分类| 二级分类</view>
-        </view>
-        <!-- <view class="list-content-item hengxiang">
-          <view class="dot"></view>
-          <view class="item-type">{{item.sort2}}| {{item.sort22}} | {{item.sort222}}</view>
-        </view> -->
-      </view>
-      <view class="content-list-bottom hengxiang">
-        <view class="content-list-bottom-left hengxiang">
-          <view class="left-dingwei">
-            <image src="{{viewUrl}}static/image/dingwei.png" class="dingwei-img"></image>
-          </view>
-          <view class="left-text">一级区域 | 二级区域</view>
-        </view>
         <view class="content-list-bottom-right" bindtap="liuyan" data-wxid="{{item.toUserId}}" data-name="{{item.name}}">
           <view class="look-button">查看留言</view>
+        </view>
+        <view class="list-top-delete">
+          <image src="{{viewUrl}}static/image/delete.png" class="delete-img" bindtap="deletemyLY" data-lyid="{{item.id}}"></image>
         </view>
       </view>
     </view>
@@ -60,29 +42,11 @@
           <view>{{item.name}}</view>
           <view class="date">{{item.createTime}}</view>
         </view>
+         <view class="content-list-bottom-right" bindtap="liuyan" data-wxid="{{item.userId}}" data-name="{{item.name}}">
+          <view class="look-button">查看留言</view> 
+        </view>
         <view class="list-top-delete">
           <image src="{{viewUrl}}static/image/delete.png" class="delete-img" bindtap="deletemyLY" data-lyid="{{item.id}}"></image>
-        </view>
-      </view>
-      <view class="content-list-content zongxiang">
-        <view class="list-content-item hengxiang">
-          <view class="dot"></view>
-          <view class="item-type">{{item.oneClassName}}| {{item.twoClassName}}</view>
-        </view>
-        <!-- <view class="list-content-item hengxiang">
-          <view class="dot"></view>
-          <view class="item-type">{{item.sort2}}| {{item.sort22}} | {{item.sort222}}</view>
-        </view> -->
-      </view>
-      <view class="content-list-bottom hengxiang">
-        <view class="content-list-bottom-left hengxiang">
-          <view class="left-dingwei">
-            <image src="{{viewUrl}}static/image/dingwei.png" class="dingwei-img"></image>
-          </view>
-          <view class="left-text">{{item.oneAreaName}} | {{item.twoAreaName}}</view>
-        </view>
-        <view class="content-list-bottom-right" bindtap="liuyan" data-wxid="{{item.userId}}" data-name="{{item.name}}">
-          <view class="look-button">查看留言</view> 
         </view>
       </view>
     </view>

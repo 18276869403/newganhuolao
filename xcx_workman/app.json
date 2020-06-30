@@ -1,7 +1,7 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/submitMaterial/submitMaterial", 
+    "pages/submitMaterial/submitMaterial",
     "pages/jsjg/jsjg",
     "pages/services/services",
     "pages/mine/mine",
@@ -29,7 +29,8 @@
     "pages/myneeds/myneeds",
     "pages/myShowwork/myShowwork",
     "pages/Material/Material",
-    "pages/HM-chat/HM-chat"
+    "pages/HM-chat/HM-chat",
+    "pages/thePublic/thePublic"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",

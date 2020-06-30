@@ -62,7 +62,7 @@ const messageReg = function(str,type,huidiao, method = 'GET'){
 			data:{content:str},
 			success:function(res){
 				console.log('敏感词信息',res)
-				huidiao(res.data.errcode)
+				huidiao(res.data.errcode) 
 			}
 		})
 	}else if(type ==1){

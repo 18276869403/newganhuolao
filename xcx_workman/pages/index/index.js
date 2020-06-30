@@ -53,6 +53,15 @@ Page({
     }
     this.xqneedlist(obj)
   },
+  // 获取token值
+  getTokenValue(){
+    wx.request({
+      url: 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx51f85979e24ae75b&secret=84a07fa8501abc705c79f48667eabb35',
+      success:function(e){
+        console.log('获取token',e)
+      }
+    })
+  },
   // 授权
   chushishouquan() {
     var that = this
@@ -164,6 +173,7 @@ Page({
   },
   
   onShow:function(options){
+    this.getTokenValue()
     wx.showShareMenu({
       withShareTicket: true
     })

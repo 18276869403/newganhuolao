@@ -50,7 +50,8 @@ Page({
     jiedanList:[],
     tupianlist:[],
     id:'',
-    wxUserid:''
+    wxUserid:'',
+    type:''
   },
 
   onLoad: function (options) {
@@ -78,6 +79,7 @@ Page({
       size: 10
     }
     console.log(data)
+    that.data.type=''
     qingqiu.get("needSignPage", data, function(re) {
       if (re.success == true) {
         if (re.result != null) {
@@ -99,9 +101,13 @@ Page({
             if(obj.signTime != null && obj.signTime != undefined && obj.signTime != ""){
               obj.signTime = obj.signTime.slice(0,16)
             }
-          } 
+            if(obj.wxUserId==app.globalData.wxid){
+              that.data.type=1
+            }
+          }
           that.setData ({
-            jiedanList : list
+            jiedanList : list,
+            type:that.data.type
           })
         } else {
           qingqiu.tk('未查询到任何数据')

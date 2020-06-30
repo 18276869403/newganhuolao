@@ -55,10 +55,24 @@ Page({
   },
   // 获取token值
   getTokenValue(){
+    // 小程序
+    wx.request({
+      url: 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx14e076d27e942480&secret=fb16e928e1a41fa0e8f21b2f50aa89d5',
+      success:function(res){
+        if(res.data.expires_in == 7200){
+          app.globalData.access_Token = res.data.access_token
+        }
+        console.log('全局变量',app.globalData.access_Token)
+      }
+    })
+    // 公众号
     wx.request({
       url: 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx51f85979e24ae75b&secret=84a07fa8501abc705c79f48667eabb35',
-      success:function(e){
-        console.log('获取token',e)
+      success:function(res){
+        if(res.data.expires_in == 7200){
+          app.globalData.access_TokenOff = res.data.access_token
+        }
+        console.log('公众号token',app.globalData.access_TokenOff)
       }
     })
   },
@@ -821,5 +835,9 @@ Page({
     wx.navigateTo({
       url: '../activity02/activity02',
     })
+  },
+  handleContact:function(e){
+    console.log(e.detail.path)
+    console.log(e.detail.query)
   }
 })

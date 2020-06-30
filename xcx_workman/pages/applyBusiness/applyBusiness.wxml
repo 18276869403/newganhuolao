@@ -38,11 +38,11 @@
     </view>
     <view class="content-item hengxiang">
       <view class="content-title">商铺名称</view>
-      <input type="text" placeholder="请输入商铺名称" class="shurukuang" style="color:#999999;" placeholder-class="placeholder" value='{{needsname}}' name="needsname" bindinput='needsnameinput'></input>
+      <input type="text" placeholder="请输入商铺名称" class="shurukuang" style="color:#999999;" placeholder-class="placeholder" value='{{needsname}}' name="needsname" bindinput='needsnameinput' bindblur="needsnameblur"></input>
     </view>
     <view class="content-item hengxiang">
       <view class="content-title">联系人</view>
-      <input type="text" placeholder="请输入联系人" class="shurukuang" style="color:#999999;" placeholder-class="placeholder" value='{{linkman}}' name="linkman" bindinput='linkmaninput'></input>
+      <input type="text" placeholder="请输入联系人" class="shurukuang" style="color:#999999;" placeholder-class="placeholder" value='{{linkman}}' name="linkman" bindinput='linkmaninput' bindblur="linkmanblur"></input>
     </view>
     <view class="content-item hengxiang">
       <view class="content-title">联系电话</view>
@@ -58,10 +58,10 @@
     </view>
     <view class="content-item hengxiang"> 
       <view class="content-title">详细地址</view>
-      <input type="text" placeholder="请输入商铺详细地址" class="shurukuang" style="color:#999999;" placeholder-class="placeholder" value='{{workeraddress}}' name="workaddress" bindinput='workeraddressinput'></input>
+      <input type="text" placeholder="请输入商铺详细地址" class="shurukuang" style="color:#999999;" placeholder-class="placeholder" value='{{workeraddress}}' name="workaddress" bindinput='workeraddressinput' bindblur="workeraddressblur"></input>
     </view>
     <view class="content-item-textarea">
-      <textarea class="textarea" placeholder="请输入商铺介绍" style="color:#999999;" placeholder-class="placeholder" maxlength='-1' value='{{needscontent}}' name="needscontent" bindinput='needscontentinput' wx:if="{{!showModalStatus6&&!show&&!showModalStatus1&&!showModalStatus}}"></textarea>
+      <textarea class="textarea" placeholder="请输入商铺介绍" style="color:#999999;" placeholder-class="placeholder" maxlength='-1' value='{{needscontent}}' name="needscontent" bindinput='needscontentinput' bindblur="needscontentblur" wx:if="{{!showModalStatus6&&!show&&!showModalStatus1&&!showModalStatus}}"></textarea>
     </view>
     <view class="hengxiang fabu-list1">
       <view class="fabu" bindtap='upimg' data-number="0" data-type='5'>
@@ -96,7 +96,7 @@
     </view>
     <view class="content-item hengxiang">
       <view class="content-title">真实姓名</view>
-      <input type="text" style="color:#999999" placeholder="请输入工人姓名" class="shurukuang" placeholder-class="placeholder" value='{{workername}}' name="workername" bindinput='workernameinput'></input>
+      <input type="text" style="color:#999999" placeholder="请输入工人姓名" class="shurukuang" placeholder-class="placeholder" value='{{workername}}' name="workername" bindinput='workernameinput' bindblur="workernameblur"></input>
     </view>
     <!-- <view>
       <radio-group class="radio-group" bindchange="radioChange">
@@ -128,7 +128,7 @@
     </view>
      <view class="content-item hengxiang">
       <view class="content-title">详细地址</view>
-      <input type="text" placeholder="请输入详细地址" class="shurukuang" style="color:#999999;" placeholder-class="placeholder" value='{{workeraddress}}' name="workaddress" bindinput='workeraddressinput'></input>
+      <input type="text" placeholder="请输入详细地址" class="shurukuang" style="color:#999999;" placeholder-class="placeholder" value='{{workeraddress}}' name="workaddress" bindinput='workeraddressinput' bindblur="workeraddressblur"></input>
     </view>
     <view class="content-item hengxiang">
       <view class="content-title">手机号码</view>
@@ -137,7 +137,7 @@
 
 
     <view class="content-item-textarea" wx:if="{{!showModalStatus6&&!show&&!showModalStatus1&&!showModalStatus}}">
-      <textarea class="textarea" placeholder="请输入技能介绍" style="color:#999999" placeholder-class="placeholder" maxlength='-1' value='{{workerskill}}' name="workerskill" bindinput='workerskillinput'></textarea>
+      <textarea class="textarea" placeholder="请输入技能介绍" style="color:#999999" placeholder-class="placeholder" maxlength='-1' value='{{workerskill}}' name="workerskill" bindinput='workerskillinput' bindblur="workerskillblur"></textarea>
     </view>
 
     <view class="hengxiang fabu-list1">

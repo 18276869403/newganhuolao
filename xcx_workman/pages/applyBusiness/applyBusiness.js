@@ -416,17 +416,70 @@ Page({
       needsname: e.detail.value
     })
   },
+  needsnameblur:function(e){
+    var that = this
+    qingqiu.messageReg(e.detail.value,0,function(res){
+      console.log('回调函数',res)
+      if(res == 87014){
+        that.setData({
+          needscontent:''
+        })
+        wx.showToast({
+          title: '内容包含敏感词，请重新输入...',
+          icon:'none',
+          duration:2000
+        })
+        return
+      }
+    },'POST')
+  },
   //获取输入的需求内容
   needscontentinput: function(e) {
     this.setData({
       needscontent: e.detail.value
     })
   },
+  needscontentblur:function(e){
+    var that = this
+    qingqiu.messageReg(e.detail.value,0,function(res){
+      console.log('回调函数',res)
+      if(res == 87014){
+        that.setData({
+          needscontent:''
+        })
+        wx.showToast({
+          title: '内容包含敏感词，请重新输入...',
+          icon:'none',
+          duration:2000
+        })
+        return
+      }
+    },'POST')
+  },
+  
   //获取输入的联系人
   linkmaninput: function(e) {
     this.setData({
       linkman: e.detail.value
     })
+  },
+  //商家联系人敏感词
+  linkmanblur:function(e){
+    var that = this
+    qingqiu.messageReg(e.detail.value,0,function(res){
+      console.log('回调函数',res)
+      if(res == 87014){
+        that.setData({
+          linkman:''
+        })
+        wx.showToast({
+          title: '内容包含敏感词，请重新输入...',
+          icon:'none',
+          duration:2000
+        })
+        return
+      }
+    },'POST')
   },
   //获取输入的联系电话
   phoneinput: function(e) {
@@ -439,8 +492,6 @@ Page({
     this.setData({
       workeraddress: e.detail.value
     })
-    console.log(e.detail.value)
-    console.log(this.data.workeraddress)
   },
   // 日期选择
   bindDateChange: function(e) {
@@ -455,6 +506,24 @@ Page({
     this.setData({
       workername: e.detail.value
     })
+  },
+  //工人名称敏感词
+  workernameblur:function(e){
+    var that = this
+    qingqiu.messageReg(e.detail.value,0,function(res){
+      console.log('回调函数',res)
+      if(res == 87014){
+        that.setData({
+          workername:''
+        })
+        wx.showToast({
+          title: '内容包含敏感词，请重新输入...',
+          icon:'none',
+          duration:2000
+        })
+        return
+      }
+    },'POST')
   },
   //获取输入的从业时长
   worktimeinput: function(e) {
@@ -474,6 +543,23 @@ Page({
       workeraddress: e.detail.value
     })
   },
+  //工人详细地址敏感词
+  workeraddressblur:function(e){
+    var that = this
+    qingqiu.messageReg(e.detail.value,0,function(res){
+      if(res == 87014){
+        that.setData({
+          workeraddress:''
+        })
+        wx.showToast({
+          title: '内容包含敏感词，请重新输入...',
+          icon:'none',
+          duration:2000
+        })
+        return
+      }
+    },'POST')
+  },
   //获取输入的工人电话
   workerphoneinput: function(e) {
     this.setData({
@@ -485,6 +571,23 @@ Page({
     this.setData({
       workerskill: e.detail.value
     })
+  },
+  // 工人技能介绍敏感词
+  workerskillblur:function(e){
+    var that = this
+    qingqiu.messageReg(e.detail.value,0,function(res){
+      if(res == 87014){
+        that.setData({
+          workerskill:''
+        })
+        wx.showToast({
+          title: '内容包含敏感词，请重新输入...',
+          icon:'none',
+          duration:2000
+        })
+        return
+      }
+    },'POST')
   },
   // 默认加载获取分类
   onloadchangeType: function(e) {

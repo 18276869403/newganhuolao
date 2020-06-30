@@ -116,7 +116,7 @@
         <image src="{{viewUrl}}static/image/enter.png" class="enter-img"></image>
       </view>
     </view>
-    <view class="bottom-list hengxiang" bindtap="">
+    <view class="bottom-list hengxiang" bindtap="thePublic">
       <view class="bottom-list-left">
         <image src="{{viewUrl}}static/image/guanzhu.png" class="ziliao-img"></image>
       </view>

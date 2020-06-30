@@ -224,9 +224,10 @@ Page({
       phoneNumber: '15001875806' //仅为示例，并非真实的电话号码
     })
   },
-  //當時用了組件才會顯示
-  bindload: function (e) {
-    console.log(e.detail)
-    console.log('成功')
+  //关注公众号
+  thePublic:function(){
+    wx.navigateTo({
+      url: '../thePublic/thePublic',
+    })
   }
 })

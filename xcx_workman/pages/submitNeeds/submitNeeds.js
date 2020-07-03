@@ -22,7 +22,7 @@ Page({
     erjiname: '',
     cityname: '',
     areaname: '',
-    cityId: '',
+    cityId: 1,
     areaId: '',
     needsname: '',
     needscontent: '',
@@ -32,11 +32,11 @@ Page({
     show: false,
     needsTypeList: [{
       id: 0,
-      name: '人找活'
+      name: '普通需求'
     },
     {
       id: 1,
-      name: '活找人'
+      name: '加急需求'
     }
     ],
     navLeftItems: [],
@@ -168,6 +168,54 @@ Page({
         this.QuerytwoArea()
       }
     },
+    needsnameblur:function(e){
+      var that = this
+      qingqiu.messageReg(e.detail.value,0,function(res){
+        if(res == 87014){
+          that.setData({
+            needsname:''
+          })
+          wx.showToast({
+            title: '内容包含敏感词，请重新输入...',
+            icon:'none',
+            duration:2000
+          })
+          return
+        }
+      },'POST')
+    },
+    needscontentblur:function(e){
+      var that = this
+      qingqiu.messageReg(e.detail.value,0,function(res){
+        if(res == 87014){
+          that.setData({
+            needscontent:''
+          })
+          wx.showToast({
+            title: '内容包含敏感词，请重新输入...',
+            icon:'none',
+            duration:2000
+          })
+          return
+        }
+      },'POST')
+    },
+    linkmanblur:function(e){
+      var that = this
+      qingqiu.messageReg(e.detail.value,0,function(res){
+        if(res == 87014){
+          that.setData({
+            needscontent:''
+          })
+          wx.showToast({
+            title: '内容包含敏感词，请重新输入...',
+            icon:'none',
+            duration:2000
+          })
+          return
+        }
+      },'POST')
+    },
     // 获取需求
     needSignPage(){
       var that = this
@@ -196,12 +244,8 @@ Page({
             phone:res.result.publishPhone,
             picIurl:that.data.viewUrl + res.result.backup1,
             needstate:res.result.needState,
-            firstId:res.result.oneClassId,
-            secondId:res.result.twoClassId,
             cityId:res.result.oneAreaId,
             areaId:res.result.twoAreaId,
-            yijiname:res.result.oneClassName,
-            erjiname:res.result.twoClassName,
             cityname:res.result.oneAreaName,
             areaname:res.result.twoAreaName,
           })
@@ -215,7 +259,7 @@ Page({
         that.data.picIurl1 += obj+","
       }
       that.data.picIurl1=that.data.picIurl1.substring(0,that.data.picIurl1.length-1)
-      var s = qingqiu.yanzheng(that.data.firstId + ",请选择需求分类|" + that.data.flerjiid + ",请选择分类需求|" + that.data.cityId + ",请选择所在区域|" + that.data.areaId + ",请选择所在区域|" + that.data.picIurl1 + ",请上传图片|" + that.data.phone + ",请输入联系电话|" + that.data.linkman + ",请输入联系人|" + that.data.youhuijia + ",请输入出价|" + that.data.needscontent + ",请输入需求内容")
+      var s = qingqiu.yanzheng(that.data.needsname + ",输入需求标题|" + that.data.cityId + ",选择所在区域|" + that.data.areaId + ",选择所在区域|" + that.data.phone + ",输入联系电话|" + that.data.linkman + ",输入联系人|" + that.data.youhuijia + ",输入出价")
       if (s != 0) {
         wx.showToast({
           title: s,
@@ -257,17 +301,15 @@ Page({
           needType:that.data.needsTypeid,
           needContent:that.data.needscontent,
           needTitle:that.data.needsname,
-          backup3:that.data.youhuijia,
           publishMan:that.data.linkman,
           publishPhone:that.data.phone,
           backup1:that.data.picIurl1,
           needState:that.data.needstate,
-          oneClassId:that.data.firstId,
-          twoClassId:that.data.flerjiid,
           oneAreaId:that.data.cityId,
           twoAreaId:that.data.areaId,
           backup5:0
         }
+        console.log(data)
         qingqiu.get("needUpdateStateById", data, function(re) {
           if (re.success == true) {
             wx.showToast({
@@ -294,13 +336,10 @@ Page({
           needType:that.data.needsTypeid,
           needContent:that.data.needscontent,
           needTitle:that.data.needsname,
-          backup3:that.data.youhuijia,
           publishMan:that.data.linkman,
           publishPhone:that.data.phone,
           backup1:that.data.picIurl1,
           needState:0,
-          oneClassId:that.data.firstId,
-          twoClassId:that.data.flerjiid,
           oneAreaId:that.data.cityId,
           twoAreaId:that.data.areaId,
           backup5:0
@@ -310,8 +349,8 @@ Page({
           console.log(re)
           if (re.success == true) {
             wx.showToast({
-              title: '发布成功',
-              icon:'success',
+              title: '提交成功,等待后台审核...',
+              icon:'none',
               duration:2000
             })
             setTimeout(function(){
@@ -489,68 +528,17 @@ Page({
       needsname: e.detail.value
     })
   },
-  needsnameblur:function(e){
-    var that = this
-    qingqiu.messageReg(e.detail.value,0,function(res){
-      console.log('回调函数',res)
-      if(res == 87014){
-        that.setData({
-          needsname:''
-        })
-        wx.showToast({
-          title: '内容包含敏感词，请重新输入...',
-          icon:'none',
-          duration:2000
-        })
-        return
-      }
-    },'POST')
-  },
   //获取输入的需求内容
   needscontentinput: function (e) {
     this.setData({
       needscontent: e.detail.value
     })
   },
-  needscontentinputblur:function(e){
-    var that = this
-    qingqiu.messageReg(e.detail.value,0,function(res){
-      console.log('回调函数',res)
-      if(res == 87014){
-        that.setData({
-          needscontent:''
-        })
-        wx.showToast({
-          title: '内容包含敏感词，请重新输入...',
-          icon:'none',
-          duration:2000
-        })
-        return
-      }
-    },'POST')
-  },
   //获取输入的联系人
   linkmaninput: function (e) {
     this.setData({
       linkman: e.detail.value
     })
-  },
-  linkmaninputblur:function(e){
-    var that = this
-    qingqiu.messageReg(e.detail.value,0,function(res){
-      console.log('回调函数',res)
-      if(res == 87014){
-        that.setData({
-          linkman:''
-        })
-        wx.showToast({
-          title: '内容包含敏感词，请重新输入...',
-          icon:'none',
-          duration:2000
-        })
-        return
-      }
-    },'POST')
   },
   //获取输入的联系电话
   phoneinput: function (e) {

@@ -14,6 +14,7 @@ Page({
     animationData:'',
     navRightItems:'',
     isLastPage:false,
+    onecityName:'',
     hasMask:'',
     sousuotext:'',
     needsListfy:[],
@@ -162,7 +163,7 @@ Page({
     this.data.pageNo=1
     this.data.isLastPage=false
     app.globalData.needRefresh = 1
-    this.onShow()
+    this.onLoad()
     setTimeout(() => {
       wx.stopPullDownRefresh()
     }, 1000);
@@ -181,112 +182,47 @@ Page({
     })
   },
 
-  onShow(){
+  onLoad(){
     wx.showShareMenu({
       withShareTicket: true
     })
-    if(app.globalData.needRefresh != 0){
+    if(app.globalData.materialRefresh != 0){
       this.chushishouquan()
       if(app.globalData.xuqiuid == 0){
         this.data.mid=app.globalData.wxid
       }else{
         this.data.mid=''
       }
-      this.oneClass()
-      this.twoClass()
       this.QueryoneArea()
       this.QuerytwoArea()
       if(app.globalData.oneCity != undefined && app.globalData.oneCity != "undefined"){
+        var twoname = ''
+        if(app.globalData.twoCity != undefined && app.globalData.twoCity != "undefined"){
+          twoname = app.globalData.twoCity.name
+        }
         this.setData({
+          cityId: this.data.id,
           needsList:[],
-          weizhi:app.globalData.oneCity.name + app.globalData.twoCity.name,
+          weizhi:app.globalData.oneCity.name + twoname,
           pageNo:1
         })
         this.xqneedlist()
       }else{
-        this.setData({needsList:[],weizhi:'全部',pageNo:1})
+        this.setData({needsList:[],weizhi:'全部',pageNo:1, cityId: this.data.id})
         this.xqneedlist()
       }
     }
   },
 
-  // onLoad: function() {
-  // },
-
-  // 一级分类
-  oneClass(){
-    var that =this
-    var data={
-      type:4
-    }
-    qingqiu.get("oneClassList", data, function(re) {
-    if (re.success == true) {
-      if (re.result != null) {
-        that.oneclass = re.result
-        that.setData ({
-          oneclass : that.oneclass
-        })
-      } else {
-        qingqiu.tk('未查询到任何数据')
-      }
-    } 
-  })
-  },
-  // 二级分类
-  twoClass(){
-    var that =this
-    var data={
-      oneClassId:3
-    }
-    qingqiu.get("twoClassList", data, function(re) {
-    if (re.success == true) {
-      if (re.result != null) {
-        that.twoclass = re.result
-        that.setData ({
-          twoclass : that.twoclass
-        })
-      } else {
-        qingqiu.tk('未查询到任何数据')
-      }
-    } 
-  })
-  },
-  // 左侧按钮
-  left: function (e) {
-    var that = this;
+  // 在线联系
+  phonecall:function(e){
     var id = e.currentTarget.dataset.id
     var name = e.currentTarget.dataset.name
-    that.setData({
-      firstId: id,
-      firstname: name
-    })
-    var data={
-      oneClassId:that.data.firstId
-    }
-    qingqiu.get("twoClassList", data, function(re) {
-    if (re.success == true) {
-      if (re.result != null) {
-        that.twoclass = re.result
-        that.setData ({
-          twoclass : that.twoclass
-        })
-      } else {
-      }
-    } 
-  })
-  },
-  // 右侧单选点击
-  right: function (e) {
-    var that = this;
-    var id = e.currentTarget.dataset.id
-    var name = e.currentTarget.dataset.name
-    that.setData({
-      secondId: id,
-      secondname: name,
-      yijiname: this.data.yijiname1,
-      showModalStatus: false,
+    wx.navigateTo({
+      url: '../HM-chat/HM-chat?id='+id+'&name='+name,
     })
   },
+  
   // 上拉功能
   onReachBottom: function () {
     if (this.data.isLastPage) {
@@ -315,17 +251,16 @@ Page({
       pageSize:10,
       wxUserId:that.data.mid,
       needTitle:that.data.needTitle,
-      oneClassId:that.data.yijiid,
-      twoClassId:that.data.erjiid,
       backup5:1
     }
     if(app.globalData.oneCity != undefined && app.globalData.oneCity != "undefined"){
       data.oneAreaId = app.globalData.oneCity.id
     }
     if(app.globalData.twoCity != undefined && app.globalData.twoCity != "undefined"){
-      data.twoAreaId = app.globalData.twoCity.id
+      if(app.globalData.twoCity.id != 0){
+        data.twoAreaId = app.globalData.twoCity.id
+      }
     }
-    console.log(data)
     qingqiu.get("zuixinxq", data, function(re) {
       console.log(re)
       if (re.success == true) {
@@ -703,7 +638,9 @@ Page({
         city.push(obj)
         city.push(re.result[0])
         that.setData({
-          city:city
+          city:city,
+          cityId:re.result[0].id,
+          cityname1:re.result[0].areaName
         })
       }else {
         qingqiu.tk('未查询到任何数据')
@@ -727,7 +664,7 @@ Page({
           area.push(obj)
         }
         that.setData({
-          area:that.area
+          area:area
         })
       }else {
         qingqiu.tk('未查询到任何数据')
@@ -856,6 +793,7 @@ typeQuan:function(e){
       that.setData({
         area:[],
         showModalStatus: false,
+        onecityName:'全部'
       })
     }else{
       var data ={
@@ -889,6 +827,9 @@ typeQuan:function(e){
       })
       return
     }
+    if(that.data.onecityName != '全部'){
+      app.globalData.oneCity={id:1,name:'万载县'}
+    }
     //var index = e.currentTarget.dataset.index;
     var id = e.currentTarget.dataset.id
     var name = e.currentTarget.dataset.name
@@ -910,6 +851,10 @@ typeQuan:function(e){
       needsList:[],
       cityname: this.data.cityname1
     })
-    that.xqneedlist({pageNo:1,pageSize:3,oneAreaId:app.globalData.oneCity.id,twoAreaId:id}) //需求
+    if(id == 0){
+      that.xqneedlist() //需求
+    }else{
+      that.xqneedlist() //需求
+    }
   },
 })

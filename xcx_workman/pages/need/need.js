@@ -209,6 +209,7 @@ Page({
         this.setData({
           cityId: this.data.id,
           cityname1: this.data.name,
+          needsList:[],
           weizhi:'全部',
           areaId:0
         })
@@ -322,15 +323,15 @@ Page({
       pageSize:10,
       wxUserId:that.data.mid,
       needTitle:that.data.needTitle,
-      oneClassId:that.data.yijiid,
-      twoClassId:that.data.erjiid,
       backup5:0
     }
     if(app.globalData.oneCity != undefined && app.globalData.oneCity != "undefined"){
       data.oneAreaId = app.globalData.oneCity.id
     }
     if(app.globalData.twoCity != undefined && app.globalData.twoCity != "undefined"){
-      data.twoAreaId = app.globalData.twoCity.id
+      if(app.globalData.twoCity.id != 0){
+        data.twoAreaId = app.globalData.twoCity.id
+      }
     }
     console.log(data)
     qingqiu.get("zuixinxq", data, function(re) {
@@ -748,9 +749,9 @@ Page({
     qingqiu.get("queryTwoArea", data, function(re) {
     if (re.success == true) {
       if (re.result != null) {
-        // var obj = {id:0,oneAreaId:0,areaName:'全部'}
+        var obj = {id:0,oneAreaId:0,areaName:'全部'}
         var area = []
-        // area.push(obj)
+        area.push(obj)
         for(let obj of re.result){
           area.push(obj)
         }

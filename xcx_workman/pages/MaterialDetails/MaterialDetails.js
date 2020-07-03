@@ -25,6 +25,7 @@ Page({
     })
     if(options.obj1 != undefined){
       var xqxqlist = JSON.parse(options.obj1)
+      console.log(xqxqlist)
       xqxqlist.publishMan = utils.formatName(xqxqlist.publishMan)
       this.setData({
         xqxqlist: xqxqlist,
@@ -103,106 +104,14 @@ Page({
   //   })
   // },
   // 需求在线联系
-  zaixianlianxi(){
-    wx.showToast({
-      title: '这个按钮还没有对接哦！',
-      icon:'success',
-      duration:2000
+  zaixianlianxi(e){
+    var id = e.currentTarget.dataset.wxid
+    var name = e.currentTarget.dataset.name
+    wx.navigateTo({
+      url: '../HM-chat/HM-chat?id=' +id+'&name=' + name,
     })
   },
-  // // 需求报名
-  // baoming(){
-  //   var that = this
-  //   var data = {
-  //     needId:that.data.id,
-  //     wxUserId:app.globalData.wxid
-  //   }
-  //   wx.showModal({
-  //     title:'提示',
-  //     cancelText:'否',
-  //     content:'你确认参与该需求吗？确认后雇主将能够看见你的联系方式！',
-  //     confirmText:'是',
-  //     success:function(res){
-  //       if(res.confirm){
-  //         console.log(data)
-  //         qingqiu.get("insertNeedSign",data,function(res){
-  //           if(res.success == true){
-  //             wx.showToast({
-  //               title: '报名成功',
-  //               icon:'success',
-  //               duration:2000
-  //             })
-  //             that.SelectjiedanList()
-  //           }else{
-  //             wx.showToast({
-  //               title: res.message,
-  //               icon:'none',
-  //               duration:2000
-  //             })
-  //           }
-  //         },'post')
-  //       }else{
-  //         return
-  //       }
-  //     }
-  //   })
-  // },
-  // // 需求删除
-  // shancuoxuqiu() {
-  //   var that = this
-  //   var data={
-  //     id: that.id
-  //   }
-  //   wx.showModal({
-  //     title:'提示',
-  //     content:'您确定删除吗？',
-  //     success:function(res){
-  //       if(res.confirm){
-  //         qingqiu.get("delYneedAndNeedSign", data, function(re) {
-  //           if (re.success == true) {
-  //              wx.showToast({
-  //                title: '删除成功',
-  //                icon:'success',
-  //                duration:2000
-  //              })
-  //              setTimeout()
-  //             } else {
-  //               wx.showToast({
-  //                 title: re.message,
-  //                 icon: 'none',
-  //                 duration: 2000
-  //               })
-  //             } 
-  //         },'delete')
-  //       }else{
-  //         return
-  //       }
-  //     }
-  //   })
-  // },
-  // // 需求完成
-  // lianxita() {
-  //   var that = this
-  //   var data={
-  //     id: that.id,
-  //     needState: 1
-  //   }
-  //   qingqiu.get("needUpdateStateById", data, function(re) {
-  //     if (re.success == true) {
-  //       wx.showToast({
-  //         title: '需求已完成',
-  //         icon: 'success',
-  //         duration: 3000
-  //       })
-  //     } else{
-  //       wx.showToast({
-  //         title: re.message,
-  //         icon: 'none',
-  //         duration: 2000
-  //       })
-  //     }
-  //   },"put")
-  // },
+  
   // 图片放大
   fangda:function(e){
     var currentUrl = e.currentTarget.dataset.src

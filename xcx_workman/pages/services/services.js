@@ -63,6 +63,7 @@ Page({
     this.data.workerlist.splice(0,this.data.workerlist.length)
     this.data.businesslist.splice(0,this.data.businesslist.length)
     app.globalData.serverRefresh = 1
+    app.globalData.servicestype = this.data.chooseworker
     this.onShow()
     // this.onLoad()
     setTimeout(() => {
@@ -397,24 +398,24 @@ Page({
       data.oneAreaId = app.globalData.oneCity.id
     }
     if(app.globalData.twoCity != undefined && app.globalData.twoCity != "undefined"){
-      data.twoAreaId = app.globalData.twoCity.id
+      if(app.globalData.twoCity.id != 0){
+        data.twoAreaId = app.globalData.twoCity.id
+      }
     }
     console.log(data)
     qingqiu.get("wxUserPage", data, function(re) {
-      console.log(re)
       if (re.success == true) {
         if (re.result != null) {
           if(re.result.records==''){
             that.setData({
-              workerlist:re.result.records,
-              workerlist1:re.result.records,
               isLastPage:true
             })
             return
           }
           for(let obj of re.result.records){
+            debugger
             if(obj.starClass == 0){
-              obj.shopName = ""
+              obj.shopName = "暂未评级"
             }else if(obj.starClass == 1){
               obj.shopName = "一级工匠"
             }else if(obj.starClass == 2){
@@ -428,15 +429,27 @@ Page({
             }
             obj.dateBirth = util.ages(obj.dateBirth)
             obj.picIurl = that.data.viewUrl + obj.picIurl
+            var onename = []
+            var twoname = []
             if(obj.oneClassName != null){
               if(obj.oneClassName.indexOf(',') != -1){
-                obj.oneClassName = obj.oneClassName.replace(/,/, "|")
+                onename = obj.oneClassName.split(',')
+              }else{
+                onename[0] = obj.oneClassName
               }
             }
             if(obj.twoClassName != null){
               if(obj.twoClassName.indexOf(',') != -1){
-                obj.twoClassName = obj.twoClassName.replace(/,/, "|")
+                twoname = obj.twoClassName.split(',')
+              }else{
+                twoname[0] = obj.twoClassName
               }
+            }
+            obj.oneClassName = onename[0] + ' | '+twoname[0]
+            if(onename.length > 1){
+              obj.twoClassName = onename[1] + ' | ' + twoname[1] 
+            }else{
+              obj.twoClassName = ''
             }
             that.data.workerlist.push(obj)
           }
@@ -464,38 +477,50 @@ Page({
       data.oneAreaId = app.globalData.oneCity.id
     }
     if(app.globalData.twoCity != undefined && app.globalData.twoCity != "undefined"){
-      data.twoAreaId = app.globalData.twoCity.id
+      if(app.globalData.twoCity.id!=0){
+        data.twoAreaId = app.globalData.twoCity.id
+      }
     }
     console.log(data)
     qingqiu.get("wxUserPage", data, function(re) {
-      console.log(re)
+      console.log('推荐商家',re)
       if (re.success == true) {
         if (re.result != null) {
           if(re.result.records==''){
             that.setData({
-              businesslist:that.data.businesslist,
-              businesslist1:that.data.businesslist,
               isLastPage:true
             })
             return
           }
           for(let obj of re.result.records){
             obj.picIurl = that.data.viewUrl + obj.picIurl
+            // 重定义分类
+            var onename = []
+            var twoname = []
             if(obj.oneClassName != null){
               if(obj.oneClassName.indexOf(',') != -1){
-                obj.oneClassName = obj.oneClassName.replace(/,/, "|")
+                onename = obj.oneClassName.split(',')
+              }else{
+                onename[0] = obj.oneClassName
               }
             }
             if(obj.twoClassName != null){
               if(obj.twoClassName.indexOf(',') != -1){
-                obj.twoClassName = obj.twoClassName.replace(/,/, "|")
+                twoname = obj.twoClassName.split(',')
+              }else{
+                twoname[0] = obj.twoClassName
               }
+            }
+            obj.oneClassName = onename[0] + ' | ' + twoname[0]
+            if(onename.length > 1){
+              obj.twoClassName = onename[1] + ' | ' + twoname[1]
+            }else{
+              obj.twoClassName = ''
             }
             that.data.businesslist.push(obj)
           }
           that.setData({
             businesslist:that.data.businesslist,
-            businesslist1:that.data.businesslist
           })
         } 
       } 
@@ -834,9 +859,9 @@ Page({
     qingqiu.get("queryTwoArea", data, function(re) {
     if (re.success == true) {
       if (re.result != null) {
-        // var obj = {id:0,oneAreaId:0,areaName:'全部'}
+        var obj = {id:0,oneAreaId:0,areaName:'全部'}
         var area = []
-        // area.push(obj)
+        area.push(obj)
         for(let obj of re.result){
           area.push(obj)
         }

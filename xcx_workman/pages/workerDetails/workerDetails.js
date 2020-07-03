@@ -83,11 +83,22 @@ Page({
   },
   // 晒晒点击事件
   goshowshai:function(e){
-    var obj = e.currentTarget.dataset.id
-    console.log(obj)
-    wx.navigateTo({
-      url: '../showDetails/showDetails?obj='+ obj,
-    })
+    var ssid =e.currentTarget.dataset.id;
+    qingqiu.get("updateWxCase",{id:ssid},function(re){
+      console.log(re)
+      if(re.success == true){
+        app.globalData.showworkRefresh = 0
+        wx.navigateTo({
+          url: '../showDetails/showDetails?obj='+ssid,
+        })
+      }else{
+        wx.showToast({
+          title: re.message,
+          icon:'none',
+          duration:2000
+        })
+      }
+    },'put')
   },
   bindPickerChange: function(e) {
     // console.log('picker发送选择改变，携带值为', e.detail.value)

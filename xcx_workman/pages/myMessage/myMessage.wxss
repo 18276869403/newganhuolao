@@ -176,3 +176,6 @@ page {
   margin-top: 172rpx;
   margin-bottom: 58rpx;
 }
+.message-show{
+  color: red;
+}

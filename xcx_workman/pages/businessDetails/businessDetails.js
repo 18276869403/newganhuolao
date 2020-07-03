@@ -82,11 +82,22 @@ Page({
   },
   // 跳转店家晒晒
   goshowshai:function(e){
-    var id = e.currentTarget.dataset.id
-    console.log(id)
-    wx.navigateTo({
-      url: '../showDetails/showDetails?obj='+id,
-    })
+    var ssid =e.currentTarget.dataset.ssid;
+    qingqiu.get("updateWxCase",{id:ssid},function(re){
+      console.log(re)
+      if(re.success == true){
+        app.globalData.showworkRefresh = 0
+        wx.navigateTo({
+          url: '../showDetails/showDetails?obj='+ssid,
+        })
+      }else{
+        wx.showToast({
+          title: re.message,
+          icon:'none',
+          duration:2000
+        })
+      }
+    },'put')
   },
 
   // 获取店家晒晒

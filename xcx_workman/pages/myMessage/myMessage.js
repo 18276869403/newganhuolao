@@ -87,10 +87,11 @@ givemymessageList() {
   var data={
     wxId:app.globalData.wxid
   }
-  qingqiu.get("messageForMe", data, function(re) {
-  if (re.success == true) {
-    if (re.result != null) {
-      for(let obj of re.result){
+  qingqiu.get("messageForMe", data, function(res) {
+    console.log(res)
+  if (res.success == true) {
+    if (res.result != null) {
+      for(let obj of res.result){
         if(obj.picIurl == null || obj.picIurl == '' || obj.picIurl == 'null' || obj.picIurl == undefined){
           obj.picIurl = ''
         }
@@ -103,7 +104,7 @@ givemymessageList() {
         }
       }
       that.setData ({
-        formymessageList : re.result 
+        formymessageList:res.result 
       })
     } else {
       qingqiu.tk('未查询到任何数据')

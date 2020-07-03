@@ -136,11 +136,6 @@ Page({
         icon:'none',
         duration:2000
       })
-      setTimeout(function(){
-        wx.navigateTo({
-          url: '../myGoods/myGoods?obj='+data.userId,
-       })
-      },1000)
     }
   },'post')
   },

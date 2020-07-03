@@ -34,14 +34,31 @@ Page({
       that.setData({
         imgurl:res.twoCodeUrl
       })
+      
       that.getImg()
     })
   },
-
+  // 分享
+  fenxiang:function(){
+    this.onShareAppMessage()
+  },
+  onShareAppMessage: function (res) {
+    return {
+      title: '',
+      path: '/pages/activity/activity',
+      success: function (res) {
+        // that.shareClick();
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
+  },
   getImg:function(){
     var that = this
     const ctx = wx.createCanvasContext('shareCanvas')
-    var bgImgPath = that.data.viewUrl + '7621590993558_.pic_hd.jpg'
+    var bgImgPath = that.data.viewUrl + 'static/image/tuijieyouli.png'
+    console.log(bgImgPath)
     wx.downloadFile({
       url: bgImgPath, //仅为示例，并非真实的资源
       success (res) {
@@ -61,7 +78,7 @@ Page({
                       src: res.tempFilePath,
                       success:function(res){
                           // 绘制二维码
-                          ctx.drawImage(res.path, 50, that.data.codeh - 320, 230, 230)
+                          ctx.drawImage(res.path, 100, that.data.codeh - 310, 160, 160)
                           ctx.draw()
                       }
                     })

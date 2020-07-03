@@ -113,8 +113,11 @@ Page({
     if(app.globalData.oneCity != undefined){ data.oneAreaId = app.globalData.oneCity.id }
     if(app.globalData.twoCity != undefined){ data.twoAreaId = app.globalData.oneCity.id }
     if(that.data.yijiid != ''){ data.oneClassId =  that.data.yijiid }
-    if(that.data.erjiid != ''){ data.twoClassId =  that.data.erjiid }
-    console.log(data)
+    if(app.globalData.twoCity != undefined && app.globalData.twoCity != "undefined"){
+      if(app.globalData.twoCity.id != 0) {
+        data.twoClassId =  app.globalData.twoCity.id 
+      }
+    }
     qingqiu.get("tjsp", data, function(re) {
       if (re.success == true) {
         if (re.result != null) {
@@ -338,9 +341,9 @@ Page({
     qingqiu.get("queryTwoArea", data, function(re) {
       if (re.success == true) {
         if (re.result != null) {
-          //var obj = {id:0,oneAreaId:0,areaName:'全部'}
+          var obj = {id:0,oneAreaId:0,areaName:'全部'}
           var area = []
-          // area.push(obj)
+          area.push(obj)
           for(let obj of re.result){
             area.push(obj)
           }

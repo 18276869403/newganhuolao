@@ -1,11 +1,7 @@
 <!--pages/addEditGoods/addEditGoods.wxml-->
 <view class="container">
   <view class="hengxian"></view>
- 
   <view class="content zongxiang">
-
-
-
     <view class="content-item hengxiang">
       <view class="content-title">商品名字</view>
       <input type="text" placeholder="请输入商品名字" class="shurukuang" placeholder-class="placeholder" value='{{spxglist.goodName}}' name="goodsname" bindinput='goodsnameinput'>{{spxglist.goodName}}</input>

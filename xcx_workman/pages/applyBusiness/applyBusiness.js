@@ -91,6 +91,7 @@ Page({
     workeraddress: '',
     workerphone: '',
     workerskill: '',
+    typeid:1,
     mianzhe: '欢迎您使用干活佬的服务！本平台仅提供同城信息共享，发布桥梁，信息发布、接单均不收取用户任何费用。\
 为使用干活佬的服务，您应当阅读并遵守《干活佬使用协议》。本协议是用户与干活佬之间的法律协议，是用户注册干活佬平台账号和/或使用干活佬服务时使用的通用\条款。请您务必审慎阅读、充分理解各条款内容，特别是免除或者限制责任的条款、管辖与法律适用条款。限制、免责条款可能以黑体加粗或加下划线的形式提示您重\点注意。您不应当以干活佬未对本协议以合理方式提醒用户注意或未根据用户要求尽到说明义务为理由而声称或要求法院或其它任何第三方确认相关条款非法或无效。\除非您已阅读并接受本协议所有条款，否则您无权使用干活佬提供的服务。您使用干活佬的服务即视为您已阅读并同意上述协议的约束。\
 一、协议的效力\
@@ -419,7 +420,6 @@ Page({
   needsnameblur:function(e){
     var that = this
     qingqiu.messageReg(e.detail.value,0,function(res){
-      console.log('回调函数',res)
       if(res == 87014){
         that.setData({
           needscontent:''
@@ -707,14 +707,13 @@ Page({
     if (that.data.needsTypeid == 1) {
       if (that.data.workerphone.length != 11) {
         wx.showToast({
-          title: '请输入11位手机号',
+          title: '输入11位手机号',
           icon: 'none',
           duration: 2000
         })
         return
       }
-      console.log('详细地址',that.data.workeraddress)
-      var s = qingqiu.yanzheng(that.data.areaId + ",请选择区域|" + that.data.fenleitype1.yjid + ",请选择工种分类|" + that.data.workername + ",请输入工人姓名|" + that.data.date + ",请选择出生年月日|" + that.data.worktime + ",请输入从业时长|"+ that.data.workeraddress + ",请输入详细地址|" + that.data.workerphone + ",请输入联系电话|" + that.data.workerskill + ",请输入技能介绍|" + that.data.picIurl + ",请上传头像照片")
+      var s = qingqiu.yanzheng(that.data.fenleitype1.yjid + ",选择工种分类|" + that.data.workername + ",输入姓名|" + that.data.date + ",选择出生年月日|" + that.data.worktime + ",输入从业年限|" + that.data.areaId + ",选择区域|" + that.data.workerphone + ",输入手机号码")
       if (s != 0) {
         wx.showToast({
           title: s,
@@ -733,7 +732,6 @@ Page({
         sex: that.data.sex,
         dateBirth: that.data.date,
         employ: that.data.worktime,
-        shopAddress: that.data.workeraddress,
         phone: that.data.workerphone,
         content: that.data.workerskill,
         picIurl: that.data.picIurl1,
@@ -744,14 +742,13 @@ Page({
     } else {
       if (that.data.phone.length != 11) {
         wx.showToast({
-          title: '请输入11位手机号',
+          title: '输入11位手机号',
           icon: 'none',
           duration: 2000
         })
         return
       }
-      console.log('详细地址',that.data.workeraddress)
-      var s = qingqiu.yanzheng(that.data.areaId + ",请选择商铺区域|" + that.data.fenleitype1.yjid + ",请现在业务分类|" + that.data.needsname + ",请输入商品名称|" + that.data.linkman + ",请输入联系人|" + that.data.phone + ",请输入联系电话|" + that.data.workeraddress + ",请输入商铺详细地址|" + that.data.needscontent + ",请输入商铺介绍|" + that.data.picIurl1 + ",请上传门头照|" + that.data.picZz + ",请上传营业执照")
+      var s = qingqiu.yanzheng(that.data.areaId + ",选择区域|" + that.data.fenleitype1.yjid + ",选择商家分类|" + that.data.needsname + ",输入商铺名称|" + that.data.linkman + "输入联系人|" + that.data.phone + ",输入联系电话|" + that.data.picIurl1 + ",上传门头照")
       if (s != 0) {
         wx.showToast({
           title: s,
@@ -816,7 +813,7 @@ Page({
         console.log(re)
         if (re.success == true) {
           wx.showToast({
-            title: '入驻成功',
+            title: '申请成功,等待后台审核...',
             icon: 'success',
             duration: 3000
           })
@@ -857,6 +854,7 @@ Page({
       sizeType: ['compressed'], // 指定只能为压缩图，首先进行一次默认压缩
       sourceType: ['album', 'camera'],
       success:function(res) {
+        console.log(res)
        const tempFilePaths = res.tempFilePaths;
        wx.uploadFile({
         url: api.uploadurl,
@@ -940,7 +938,7 @@ Page({
     that.setData({
       show: true,
       typeyj: id,
-      curIndex: index,
+      typeid: index,
       yijiname1: name,
       erjiName: []
     })
@@ -1140,6 +1138,15 @@ Page({
     var index = e.currentTarget.dataset.index;
     var id = e.currentTarget.dataset.id
     var name = e.currentTarget.dataset.name
+    if(that.data.workcityname1==undefined)
+    {
+      wx.showToast({
+        title: '请先选择城市',
+        icon:'none',
+        duration:2000
+      })
+      return
+    }
     that.setData({
       show: false,
       showModalStatus:false,

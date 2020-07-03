@@ -16,7 +16,7 @@ page {
 
 .content {
   width: 100%;
-  margin-top: 94rpx;
+  margin-top: 34rpx;
 }
 
 .content-list {
@@ -76,8 +76,8 @@ line-height: 38rpx;
 }
 
 .content-list-title {
-  font-size: 14px;
-  font-weight: 400;
+  font-size: 16px;
+  font-weight: 600;
   color: rgba(51, 51, 51, 1);
   margin-top: 16rpx;
   margin-bottom: 16rpx;
@@ -348,20 +348,22 @@ line-height: 38rpx;
 }
 
 .zhanshi-item {
-  width: 50%;
+  width: 100%;
+  /* width: 50%; */
   text-align: center;
   margin-bottom: 5rpx;
 }
 
 .zhanshitu {
-  width: 306rpx;
-  height: 336rpx;
+  /* width: 306rpx; */
+  width: 100%;
+  height: 414rpx;
   border-radius: 8rpx;
 }
 
 .zhanshitu1 {
-  width: 306rpx;
-  height: 336rpx;
+  width: 100%;
+  height: 414rpx;
 }
 .content-jiedan{
   width: 100%;

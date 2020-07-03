@@ -94,7 +94,7 @@
       </view>
       <!-- 晒晒样式 CheckItem==1-->
       <view class="content-show" wx:if="{{CheckItem==1}}">
-        <view class="show-item zongxiang" wx:for="{{showList}}" bindtap="goshowshai" wx:key="key" data-id="{{item.id}}">
+        <view class="show-item zongxiang" wx:for="{{showList}}" bindtap="goshowshai" wx:key="key" data-ssid="{{item.id}}">
           <view class="show">
             <view class="show-item-top">
               <image src="{{item.picOne}}" class="show-img"></image>

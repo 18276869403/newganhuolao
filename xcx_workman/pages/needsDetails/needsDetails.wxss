@@ -76,8 +76,8 @@ line-height: 38rpx;
 }
 
 .content-list-title {
-  font-size: 14px;
-  font-weight: 400;
+  font-size: 16px;
+  font-weight: 600;
   color: rgba(51, 51, 51, 1);
   margin-top: 16rpx;
   margin-bottom: 16rpx;

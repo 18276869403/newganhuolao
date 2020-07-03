@@ -3,28 +3,22 @@
   <view class="hengxian"></view>
   <view class="content zongxiang">
 
-    <view class="content-item hengxiang" bindtap="showModallist">
-      <view class="content-title">剩料分类</view>
-      <view class="content-text" wx:if="{{yijiname==''}}">请选择剩料分类</view>
-      <view class='content-text1' wx:if="{{yijiname!=''}}">{{yijiname}} - {{erjiname}}</view>
+    <view class="content-item hengxiang">
+      <view class="content-title">标题<text style="color:red;">*</text></view>
+      <input type="text" placeholder="输入标题" class="shurukuang" placeholder-class="placeholder" value='{{needsname}}' name="needsname" bindinput='needsnameinput' bindblur="needsnameblur"></input>
     </view>
 
     <view class="content-item hengxiang">
-      <view class="content-title">剩料标题</view>
-      <input type="text" placeholder="请输入剩料标题" class="shurukuang" placeholder-class="placeholder" value='{{needsname}}' name="needsname" bindinput='needsnameinput' bindblur="needsnameinputblur"></input>
-    </view>
-
-    <view class="content-item hengxiang">
-      <view class="content-title">定价</view>
-      <input type="digit" placeholder="请输入定价" class="shurukuang" placeholder-class="placeholder" value='{{youhuijia}}' name="youhuijia" bindinput='youhuijiainput'></input>
+      <view class="content-title">售价(元)</view>
+      <input type="digit" placeholder="输入售价" class="shurukuang" placeholder-class="placeholder" value='{{youhuijia}}' name="youhuijia" bindinput='youhuijiainput'></input>
     </view>
 
     <view class="content-item-textarea">
-      <textarea class="textarea" placeholder="输入剩料详情说明" placeholder-class="placeholder1" maxlength='-1' value='{{needscontent}}' name="needscontent" bindinput='needscontentinput' wx:if="{{!showModalStatus6&&!show&&!showModalStatus1&&!showModalStatus}}" bindblur="needscontentinputblur"></textarea>
+      <textarea class="textarea" placeholder="输入详细说明" placeholder-class="placeholder1" maxlength='-1' value='{{needscontent}}' name="needscontent" bindinput='needscontentinput' bindblur="needscontentblur" wx:if="{{!showModalStatus6&&!show&&!showModalStatus1&&!showModalStatus}}"></textarea>
     </view>
     <view class="content-item hengxiang" bindtap="showModal">
-      <view class="content-title">所在区域</view>
-      <view class="content-text" wx:if="{{cityname==''}}">请选择所在区域</view>
+      <view class="content-title">所在区域<text style="color:red;">*</text></view>
+      <view class="content-text" wx:if="{{cityname==''}}">选择区域</view>
       <view class='content-text2' wx:if="{{cityname!=''}}" >{{cityname}} - {{areaname}}</view>
       <view class="enter">
         <image src="{{viewUrl}}static/image/enter.png" class="enter-img"></image>
@@ -36,13 +30,13 @@
     </view> -->
 
     <view class="content-item hengxiang">
-      <view class="content-title">联系人</view>
-      <input type="text" placeholder="请输入联系人" class="shurukuang" placeholder-class="placeholder" value='{{linkman}}' name="linkman" bindinput='linkmaninput' bindblur="linkmaninputblur"></input>
+      <view class="content-title">联系人<text style="color:red;">*</text></view>
+      <input type="text" placeholder="输入联系人" class="shurukuang" placeholder-class="placeholder" value='{{linkman}}' name="linkman" bindinput='linkmaninput' bindblur="linkmanblur"></input>
     </view>
 
     <view class="content-item hengxiang">
-      <view class="content-title">联系电话</view>
-      <input type="number" placeholder="请输入联系电话" class="shurukuang" placeholder-class="placeholder" value='{{phone}}' name="phone" bindinput='phoneinput'></input>
+      <view class="content-title">联系电话<text style="color:red;">*</text></view>
+      <input type="number" placeholder="输入联系电话" class="shurukuang" placeholder-class="placeholder" value='{{phone}}' name="phone" bindinput='phoneinput'></input>
     </view>
   </view>
 

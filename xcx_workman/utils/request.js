@@ -53,8 +53,8 @@ const yanzheng = function(str){
 	}
 	return 0
 }
-// str/敏感词 type/类别(1/文字,2/图片,3/视频)
-const messageReg = function(str,type,huidiao, method = 'GET'){
+// str/敏感词 type/类别(0/文字,1/图片,2/视频)
+const messageReg = function(str,type,huidiao, method = 'POST'){
 	if(type == 0){
 		wx.request({
 			url:'https://api.weixin.qq.com/wxa/msg_sec_check?access_token=' + app.globalData.access_Token,
@@ -66,14 +66,40 @@ const messageReg = function(str,type,huidiao, method = 'GET'){
 			}
 		})
 	}else if(type ==1){
-
+		wx.request({
+			url: 'https://api.weixin.qq.com/wxa/img_sec_check?access_token=' + app.globalData.access_Token,
+			method:method,
+			data:{media:str},
+			
+		})
 	}else{
 
 	}
 }
+// 公众号消息推送
+const messagePush = function(url,data,huidiao,method='GET'){
+	wx.request({
+		url: url,
+		method: method,
+		data: data,
+		success: function(res) {
+			if (res.statusCode == 401) {
+				huidiao("消息模板推送失败")
+			} else {
+				huidiao(res.data)
+			}
+		},
+		fail(e) {
+			console.log(e)
+		}
+	}, 1000)
+}
+
+
 
 module.exports = {
 	get: Get,
-	yanzheng:yanzheng,
-	messageReg:messageReg
+	yanzheng:yanzheng, // 简单数据为空验证
+	messageReg:messageReg, // 敏感词过滤
+	messagePush:messagePush // 消息推送 
 }

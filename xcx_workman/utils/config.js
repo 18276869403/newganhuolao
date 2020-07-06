@@ -8,8 +8,9 @@ const baiduAK = 'CauqHCxjKu4NcebB4UjlUYTbGqtRpEN5'
 // url
 const viewUrl = imgurl+ 'sys/common/view/'
 const Download = imgurl + 'sys/common/download' 
-const Uploadurl2 = imgurl + 'sys/common/upload2'
+const Uploadurl2 = imgurl + 'sys/common/upload2' 
 const Uploadurl = imgurl + 'sys/common/upload'
+const general = imgurl + "pc/hall/imgcheck/general"
 
 module.exports = {
 	imgurl: imgurl,
@@ -20,5 +21,6 @@ module.exports = {
 	download:Download,	// 下载
 	uploadurl2:Uploadurl2, //上传图片
 	uploadurl:Uploadurl,	//上传文件
-	baiduAK:baiduAK
+	baiduAK:baiduAK,
+	general:general // 图片过滤
 };

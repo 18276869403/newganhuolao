@@ -2,8 +2,6 @@ var api = require('./config.js')
 const baseUrl = "http://miss.it-ys.com:91/work-boot/"
 // const baseUrl = "http://192.168.1.242:8080/work-boot/" 
 
-// 需求列表
-// const xqurl = baseUrl + "work/yneed/list"
 // 大厅最新需求
 const zuixinxq = baseUrl + "pc/hall/yneedList" 
 // 推荐商品

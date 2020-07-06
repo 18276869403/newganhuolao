@@ -866,51 +866,66 @@ Page({
         const tempFilePaths = res.tempFilePaths;
         qingqiu.messageReg(tempFilePaths,1,function(res){
           console.log('图片过滤消息',res)
-        },'POST')
-        wx.uploadFile({
-          url: api.uploadurl,
-          filePath: tempFilePaths[0],
-          header: {
-            "Content-Type": "multipart/form-data"
-          },
-          formData: {
-            method: 'POST' //请求方式
-          },
-          name: 'file',
-          success(res) {
-            var r = res.data
-            var jj = JSON.parse(r);
-            var sj = that.data.viewUrl + jj.message
-            console.log(res)
-            // res.data.data = ""
-            if (type == '1') {
-              that.setData({
-                picIurl: sj,
-                picIurl1: jj.message
-              })
-            } else if (type == '2') {
-              that.setData({
-                picZz: sj,
-                picZz1: jj.message
-              })
-            } else if (type == '3') {
-              that.setData({
-                picPerson1: sj,
-                picPerson3: jj.message
-              })
-            } else if (type == '4') {
-              that.setData({
-                picPerson2: sj,
-                picPerson4: jj.message
-              })
-            } else if (type == '5') {
-              that.setData({
-                picIurl: sj,
-                picIurl1: jj.message
-              })
-            }
+          var data = JSON.parse(res.data)
+          if(data.errcode == 87014){
+            wx.showToast({
+              title: data.errMsg,
+              icon:'none'
+            })
+            return
+          }else if(data.errcode != 0){
+            wx.showToast({
+              title: '令牌失效，请重新进入小程序',
+              icon:'none'
+            })
+            return
+          }else{
+            wx.uploadFile({
+              url: api.uploadurl,
+              filePath: tempFilePaths[0],
+              header: {
+                "Content-Type": "multipart/form-data"
+              },
+              formData: {
+                method: 'POST' //请求方式
+              },
+              name: 'file',
+              success(res) {
+                var r = res.data
+                var jj = JSON.parse(r);
+                var sj = that.data.viewUrl + jj.message
+                console.log(res)
+                // res.data.data = ""
+                if (type == '1') {
+                  that.setData({
+                    picIurl: sj,
+                    picIurl1: jj.message
+                  })
+                } else if (type == '2') {
+                  that.setData({
+                    picZz: sj,
+                    picZz1: jj.message
+                  })
+                } else if (type == '3') {
+                  that.setData({
+                    picPerson1: sj,
+                    picPerson3: jj.message
+                  })
+                } else if (type == '4') {
+                  that.setData({
+                    picPerson2: sj,
+                    picPerson4: jj.message
+                  })
+                } else if (type == '5') {
+                  that.setData({
+                    picIurl: sj,
+                    picIurl1: jj.message
+                  })
+                }
+              }
+            })
           }
-        })
+        },'POST')
       },
     })
   },

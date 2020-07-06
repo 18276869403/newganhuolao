@@ -10,7 +10,7 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    // 弹窗标题
+    // 弹窗标题 
     title:{
       type: String,
       value:'微信授权登录' //默认值

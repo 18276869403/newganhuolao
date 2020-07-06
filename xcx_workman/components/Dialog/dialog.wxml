@@ -10,7 +10,7 @@
             <image src="{{viewUrl}}static/image/shouquan.png" class="dialog-img"></image>  
           </view>
           
-          <view class="dialog-content-text">
+          <view class="dialog-content-text"> 
             {{content}}
           </view>
         </view>

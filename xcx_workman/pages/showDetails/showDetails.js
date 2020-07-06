@@ -152,7 +152,7 @@ Page({
     var src = api.viewUrl+event.currentTarget.dataset.src;
     wx.previewImage({
       current: src,
-      urls: [src]
+      urls: that.data.imgList
     })
   },
   onShow: function() {

@@ -66,11 +66,19 @@ const messageReg = function(str,type,huidiao, method = 'POST'){
 			}
 		})
 	}else if(type ==1){
-		wx.request({
-			url: 'https://api.weixin.qq.com/wxa/img_sec_check?access_token=' + app.globalData.access_Token,
+		wx.uploadFile({
+			url:'https://api.weixin.qq.com/wxa/img_sec_check?access_token=' + app.globalData.access_Token,
+			name: 'file',
+			formData:{
+				media:str[0]
+			},
 			method:method,
-			data:{media:str},
-			
+			header:{
+				'Content-Type': 'application/octet-stream'
+			},
+			success:function(res){
+				huidiao(res)
+			}
 		})
 	}else{
 

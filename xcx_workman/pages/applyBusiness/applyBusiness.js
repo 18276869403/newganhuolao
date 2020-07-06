@@ -10,22 +10,30 @@ Page({
    * 页面的初始数据
    */
   data: {
-    viewUrl:api.viewUrl,
-    type:2,
+    viewUrl: api.viewUrl,
+    type: 2,
     // 获取分类
-    fenleitype1:{yjid:'',erjiid:'',typestate:false},
-    fenleitype2:{yjid:'',erjiid:'',typestate:false},
+    fenleitype1: {
+      yjid: '',
+      erjiid: '',
+      typestate: false
+    },
+    fenleitype2: {
+      yjid: '',
+      erjiid: '',
+      typestate: false
+    },
     // 用户信息
-    wxUser:'',
+    wxUser: '',
     id: 0,
     needsTypeid: 1,
     select: 'circle',
     hasMask: false,
-    hasMask1:false,
-    picIurl1:'',
-    picZz1:'',
-    picPerson3:'',
-    picPerson4:'',
+    hasMask1: false,
+    picIurl1: '',
+    picZz1: '',
+    picPerson3: '',
+    picPerson4: '',
     firstId: '',
     secondId: '',
     yijiname: '',
@@ -44,15 +52,15 @@ Page({
     workcityname: '',
     workareaname: '',
     show: false,
-    oneclassid:'',
-    twoclassid:'',
-    fenClass1:'请选择业务分类',
-    fenClass2:'',
-    tempClass:'',
+    oneclassid: '',
+    twoclassid: '',
+    fenClass1: '请选择业务分类',
+    fenClass2: '',
+    tempClass: '',
     gongzhong: [{
       id: 1,
       oneclass: '',
-      twoclasslist:[]
+      twoclasslist: []
     }],
     needsTypeList: [{
         id: 1,
@@ -73,9 +81,9 @@ Page({
         value: '女'
       },
     ],
-    cw:'',    // 图片压缩
-    ch:'',
-    uploadpic:[],  // 图片容器
+    cw: '', // 图片压缩
+    ch: '',
+    uploadpic: [], // 图片容器
     litype: "2",
     navLeftItems: [],
     navRightItems: [],
@@ -91,7 +99,7 @@ Page({
     workeraddress: '',
     workerphone: '',
     workerskill: '',
-    typeid:1,
+    typeid: 1,
     mianzhe: '欢迎您使用干活佬的服务！本平台仅提供同城信息共享，发布桥梁，信息发布、接单均不收取用户任何费用。\
 为使用干活佬的服务，您应当阅读并遵守《干活佬使用协议》。本协议是用户与干活佬之间的法律协议，是用户注册干活佬平台账号和/或使用干活佬服务时使用的通用\条款。请您务必审慎阅读、充分理解各条款内容，特别是免除或者限制责任的条款、管辖与法律适用条款。限制、免责条款可能以黑体加粗或加下划线的形式提示您重\点注意。您不应当以干活佬未对本协议以合理方式提醒用户注意或未根据用户要求尽到说明义务为理由而声称或要求法院或其它任何第三方确认相关条款非法或无效。\除非您已阅读并接受本协议所有条款，否则您无权使用干活佬提供的服务。您使用干活佬的服务即视为您已阅读并同意上述协议的约束。\
 一、协议的效力\
@@ -173,29 +181,29 @@ Page({
   },
 
   // 获取一级区域
-  getcity:function(){
+  getcity: function () {
     var that = this
-    qingqiu.get("queryOneArea",null,function(res){
-      if(res.success==true){
-        for(let i=0;i<res.result.length;i++){
+    qingqiu.get("queryOneArea", null, function (res) {
+      if (res.success == true) {
+        for (let i = 0; i < res.result.length; i++) {
           that.getarea(res.result[i].id)
         }
         that.setData({
-          city:res.result
+          city: res.result
         })
       }
     })
   },
   // 获取二级区域
-  getarea:function(e){
+  getarea: function (e) {
     var that = this
     var data = {
-      oneAreaId:e
+      oneAreaId: e
     }
-    qingqiu.get("queryTwoArea",data,function(res){
-      if(res.success == true){
+    qingqiu.get("queryTwoArea", data, function (res) {
+      if (res.success == true) {
         that.setData({
-          area:res.result
+          area: res.result
         })
       }
     })
@@ -203,21 +211,21 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     wx.showShareMenu({
       withShareTicket: true
     })
     var type = app.globalData.wxState
     console.log(type)
     this.setData({
-      type:type
+      type: type
     })
-    if(type == 0 || type ==1){
+    if (type == 0 || type == 1) {
       this.getshuju()
     }
-    if(app.globalData.type1 == 3){
+    if (app.globalData.type1 == 3) {
       this.setData({
-        type:0
+        type: 0
       })
     }
     this.setData({
@@ -226,21 +234,21 @@ Page({
     if (app.globalData.wxid == null || app.globalData.wxid == '') {
       this.onUser()
     }
-    if(options.typeid != ""){
+    if (options.typeid != "") {
       this.onloadchangeType(options.typeid)
       this.setData({
-        needsTypeid:options.typeid
+        needsTypeid: options.typeid
       })
     }
     this.getcity()
   },
-  onUser: function() {
+  onUser: function () {
     var that = this
     wx.login({
-      success: function(res) {
+      success: function (res) {
         qingqiu.get("getKeyInfo", {
           code: res.code
-        }, function(re) {
+        }, function (re) {
           app.globalData.wxid = re.result.wxUser.id
           if (re.result.wxUser.picUrl != null && re.result.wxUser.picUrl.length > 0) {
             app.globalData.sqgl = 1
@@ -258,142 +266,142 @@ Page({
       id: app.globalData.wxid,
     }
     var that = this
-    qingqiu.get('queryWxUser', data, function(re) {
-    var typeid = "fenleitype1.yjid"
-    var typeerji = "fenleitype1.erjiid"
-    var typestate = "fenleitype1.typestate"
-    var typeid1 = "fenleitype2.yjid"
-    var typeerji1 = "fenleitype2.erjiid"
-    var typestate1 = "fenleitype2.typestate"
-    if (re.result.wxState == 0) {
-      var str = []
-      var str1 = []
-      var index = []
-      var index1 = []
-      var flag = false
-      var flag1 = false
-      if(re.result.oneClassName.indexOf(',') > -1&&re.result.oneClassIds.indexOf(',') > -1){
-        str = re.result.oneClassName.split(',')
-        index = re.result.oneClassIds.split(',')
-      }else{
-        if(re.result.oneClassIds.indexOf(',') < 0 && re.result.twoClassIds.indexOf(',') > -1){
-          index[0] = re.result.oneClassIds
-          index[1] = re.result.oneClassIds
-          str[0] = re.result.oneClassName
-          str[1] = re.result.oneClassName
-        }else{
-          str = re.result.oneClassName
-          index = re.result.oneClassIds
+    qingqiu.get('queryWxUser', data, function (re) {
+      var typeid = "fenleitype1.yjid"
+      var typeerji = "fenleitype1.erjiid"
+      var typestate = "fenleitype1.typestate"
+      var typeid1 = "fenleitype2.yjid"
+      var typeerji1 = "fenleitype2.erjiid"
+      var typestate1 = "fenleitype2.typestate"
+      if (re.result.wxState == 0) {
+        var str = []
+        var str1 = []
+        var index = []
+        var index1 = []
+        var flag = false
+        var flag1 = false
+        if (re.result.oneClassName.indexOf(',') > -1 && re.result.oneClassIds.indexOf(',') > -1) {
+          str = re.result.oneClassName.split(',')
+          index = re.result.oneClassIds.split(',')
+        } else {
+          if (re.result.oneClassIds.indexOf(',') < 0 && re.result.twoClassIds.indexOf(',') > -1) {
+            index[0] = re.result.oneClassIds
+            index[1] = re.result.oneClassIds
+            str[0] = re.result.oneClassName
+            str[1] = re.result.oneClassName
+          } else {
+            str = re.result.oneClassName
+            index = re.result.oneClassIds
+          }
         }
+        if (re.result.twoClassName.indexOf(',') > -1) {
+          str1 = re.result.twoClassName.split(',')
+          index1 = re.result.twoClassIds.split(',')
+        } else {
+          str1 = re.result.twoClassName
+          index1 = re.result.twoClassIds
+        }
+        var temp = ''
+        if (str.length > 0 && str1.length > 0) {
+          temp = str[0] + "|" + str1[0] + "," + str[1] + "|" + str1[1]
+          flag = true
+          flag1 = true
+        } else {
+          temp = str[0] + "," + str1[0]
+          flag = true
+        }
+        that.setData({
+          needsTypeid: 1,
+          tempClass: temp,
+          yijiname: temp,
+          [typeid]: index[0],
+          [typeerji]: index1[0],
+          [typestate]: flag,
+          [typeid1]: index[1],
+          [typeerji1]: index1[1],
+          [typestate1]: flag1,
+          oneClassName: index[0] + "," + index1[0],
+          twoClassName: index[1] + "," + index1[1],
+          workcityname: re.result.oneAreaName,
+          workareaname: re.result.twoAreaName,
+          typeyj: re.result.oneClassId,
+          secondId: re.result.twoClassId,
+          typeid: re.result.oneAreaId,
+          areaId: re.result.twoAreaId,
+          needsname: re.result.shopName,
+          linkman: re.result.name,
+          phone: re.result.phone,
+          workeraddress: re.result.shopAddress,
+          needscontent: re.result.content,
+          picIurl: api.viewUrl + re.result.picIurl,
+          picIurl1: re.result.picIurl,
+          picPerson1: api.viewUrl + re.result.picPerson1,
+          picZz: api.viewUrl + re.result.picZz,
+          picZz1: api.viewUrl + re.result.picZz,
+          picPerson2: api.viewUrl + re.result.picPerson,
+          wxState: re.result.wxState,
+          needsTypeid: 2,
+          select: 'success'
+        })
+      } else {
+        var str = []
+        var index = []
+        var index1 = []
+        if (re.result.oneClassName.indexOf(',') > -1) {
+          str = re.result.oneClassName.split(',')
+          index = re.result.oneClassIds.split(',')
+        } else {
+          str = re.result.oneClassName
+        }
+        var str1 = []
+        if (re.result.twoClassName.indexOf(',') > -1) {
+          str1 = re.result.twoClassName.split(',')
+          index1 = re.result.twoClassIds.split(',')
+        } else {
+          str1 = re.result.twoClassName
+        }
+        var temp = ''
+        if (str.length > 0 && str1.length > 0) {
+          temp = str[0] + "|" + str1[0] + "," + str[1] + "|" + str1[1]
+        } else {
+          temp = str[0] + "," + str1[0]
+        }
+        var data = re.result.dateBirth.split(' ')
+        that.setData({
+          needsTypeid: 2,
+          tempClass: temp,
+          yijiname: temp,
+          [typeid]: index[0],
+          [typeerji]: index[1],
+          [typeid1]: index1[0],
+          [typeerji1]: index1[1],
+          oneClassName: index[0] + "," + index1[0],
+          twoClassName: index[1] + "," + index1[1],
+          workcityname: re.result.oneAreaName,
+          workareaname: re.result.twoAreaName,
+          typeyj: re.result.oneClassId,
+          secondId: re.result.twoClassId,
+          typeid: re.result.oneAreaId,
+          areaId: re.result.twoAreaId,
+          workername: re.result.name,
+          sex: re.result.sex,
+          date: data[0],
+          worktime: re.result.employ,
+          workerphone: re.result.phone,
+          workeraddress: re.result.shopAddress,
+          workerskill: re.result.content,
+          picIurl: api.viewUrl + re.result.picIurl,
+          picZz: api.viewUrl + re.result.picZz,
+          picPerson1: api.viewUrl + re.result.picPerson1,
+          picPerson2: api.viewUrl + re.result.picPerson2,
+          picIurl1: re.result.picIurl,
+          picPerson3: re.result.picPerson1,
+          picPerson4: re.result.picPerson2,
+          wxState: re.result.wxState,
+          needsTypeid: 1,
+          select: 'success'
+        })
       }
-      if(re.result.twoClassName.indexOf(',') > -1){
-        str1 = re.result.twoClassName.split(',')
-        index1 = re.result.twoClassIds.split(',')
-      }else{
-        str1 = re.result.twoClassName
-        index1 = re.result.twoClassIds
-      }
-      var temp = ''
-      if(str.length > 0 && str1.length > 0){
-        temp = str[0] + "|" + str1[0] +","+ str[1] + "|"+ str1[1]
-        flag = true
-        flag1 = true
-      }else{
-        temp = str[0] + "," + str1[0]
-        flag = true
-      }
-      that.setData({
-        needsTypeid:1,
-        tempClass: temp,
-        yijiname:temp,
-        [typeid]:index[0],
-        [typeerji]:index1[0],
-        [typestate]:flag,
-        [typeid1]:index[1],
-        [typeerji1]:index1[1],
-        [typestate1]:flag1,
-        oneClassName:index[0] + "," + index1[0],
-        twoClassName:index[1] + "," + index1[1],
-        workcityname: re.result.oneAreaName,
-        workareaname: re.result.twoAreaName,
-        typeyj: re.result.oneClassId,
-        secondId: re.result.twoClassId,
-        typeid: re.result.oneAreaId,
-        areaId: re.result.twoAreaId,
-        needsname: re.result.shopName,
-        linkman: re.result.name,
-        phone: re.result.phone,
-        workeraddress: re.result.shopAddress,
-        needscontent: re.result.content,
-        picIurl: api.viewUrl +  re.result.picIurl,
-        picIurl1:re.result.picIurl,
-        picPerson1: api.viewUrl +  re.result.picPerson1,
-        picZz: api.viewUrl + re.result.picZz,
-        picZz1: api.viewUrl + re.result.picZz,
-        picPerson2: api.viewUrl +  re.result.picPerson,
-        wxState: re.result.wxState,
-        needsTypeid: 2,
-        select: 'success'
-      })
-    } else {
-      var str = []
-      var index = []
-      var index1 = []
-      if(re.result.oneClassName.indexOf(',') > -1){
-        str = re.result.oneClassName.split(',')
-        index = re.result.oneClassIds.split(',')
-      }else{
-        str = re.result.oneClassName
-      }
-      var str1 = []
-      if(re.result.twoClassName.indexOf(',') > -1){
-        str1 = re.result.twoClassName.split(',')
-        index1 = re.result.twoClassIds.split(',')
-      }else{
-        str1 = re.result.twoClassName
-      }
-      var temp = ''
-      if(str.length > 0 && str1.length > 0){
-        temp = str[0] + "|" + str1[0] +","+ str[1] + "|"+ str1[1]
-      }else{
-        temp = str[0] + "," + str1[0]
-      }
-      var data = re.result.dateBirth.split(' ')
-      that.setData({
-        needsTypeid:2,
-        tempClass: temp,
-        yijiname:temp,
-        [typeid]:index[0],
-        [typeerji]:index[1],
-        [typeid1]:index1[0],
-        [typeerji1]:index1[1],
-        oneClassName: index[0] + "," + index1[0],
-        twoClassName: index[1] + "," + index1[1],
-        workcityname: re.result.oneAreaName,
-        workareaname: re.result.twoAreaName,
-        typeyj: re.result.oneClassId,
-        secondId: re.result.twoClassId,
-        typeid: re.result.oneAreaId,
-        areaId: re.result.twoAreaId,
-        workername: re.result.name,
-        sex: re.result.sex,
-        date: data[0],
-        worktime: re.result.employ,
-        workerphone: re.result.phone,
-        workeraddress: re.result.shopAddress,
-        workerskill: re.result.content,
-        picIurl: api.viewUrl +  re.result.picIurl,
-        picZz: api.viewUrl + re.result.picZz,
-        picPerson1: api.viewUrl + re.result.picPerson1,
-        picPerson2: api.viewUrl + re.result.picPerson2,
-        picIurl1:re.result.picIurl,
-        picPerson3:re.result.picPerson1,
-        picPerson4:re.result.picPerson2,
-        wxState: re.result.wxState,
-        needsTypeid: 1,
-        select: 'success'
-      })
-    }
       // data = {
       //   name: that.data.workername,
       //   sex: that.data.sex,
@@ -412,89 +420,89 @@ Page({
     })
   },
   //获取输入的需求标题
-  needsnameinput: function(e) {
+  needsnameinput: function (e) {
     this.setData({
       needsname: e.detail.value
     })
   },
-  needsnameblur:function(e){
+  needsnameblur: function (e) {
     var that = this
-    qingqiu.messageReg(e.detail.value,0,function(res){
-      if(res == 87014){
+    qingqiu.messageReg(e.detail.value, 0, function (res) {
+      if (res == 87014) {
         that.setData({
-          needscontent:''
+          needscontent: ''
         })
         wx.showToast({
           title: '内容包含敏感词，请重新输入...',
-          icon:'none',
-          duration:2000
+          icon: 'none',
+          duration: 2000
         })
         return
       }
-    },'POST')
+    }, 'POST')
   },
   //获取输入的需求内容
-  needscontentinput: function(e) {
+  needscontentinput: function (e) {
     this.setData({
       needscontent: e.detail.value
     })
   },
-  needscontentblur:function(e){
+  needscontentblur: function (e) {
     var that = this
-    qingqiu.messageReg(e.detail.value,0,function(res){
-      console.log('回调函数',res)
-      if(res == 87014){
+    qingqiu.messageReg(e.detail.value, 0, function (res) {
+      console.log('回调函数', res)
+      if (res == 87014) {
         that.setData({
-          needscontent:''
+          needscontent: ''
         })
         wx.showToast({
           title: '内容包含敏感词，请重新输入...',
-          icon:'none',
-          duration:2000
+          icon: 'none',
+          duration: 2000
         })
         return
       }
-    },'POST')
+    }, 'POST')
   },
-  
+
   //获取输入的联系人
-  linkmaninput: function(e) {
+  linkmaninput: function (e) {
     this.setData({
       linkman: e.detail.value
     })
   },
   //商家联系人敏感词
-  linkmanblur:function(e){
+  linkmanblur: function (e) {
     var that = this
-    qingqiu.messageReg(e.detail.value,0,function(res){
-      console.log('回调函数',res)
-      if(res == 87014){
+    qingqiu.messageReg(e.detail.value, 0, function (res) {
+      console.log('回调函数', res)
+      if (res == 87014) {
         that.setData({
-          linkman:''
+          linkman: ''
         })
         wx.showToast({
           title: '内容包含敏感词，请重新输入...',
-          icon:'none',
-          duration:2000
+          icon: 'none',
+          duration: 2000
         })
         return
       }
-    },'POST')
+    }, 'POST')
   },
   //获取输入的联系电话
-  phoneinput: function(e) {
+  phoneinput: function (e) {
     this.setData({
       phone: e.detail.value
     })
   },
   //获取输入的工作地址
-  workeraddressinput: function(e) {
+  workeraddressinput: function (e) {
     this.setData({
       workeraddress: e.detail.value
     })
   },
   // 日期选择
-  bindDateChange: function(e) {
+  bindDateChange: function (e) {
     // console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       date: e.detail.value
@@ -502,95 +510,95 @@ Page({
   },
   // 工人块
   //获取输入的工人姓名
-  workernameinput: function(e) {
+  workernameinput: function (e) {
     this.setData({
       workername: e.detail.value
     })
   },
   //工人名称敏感词
-  workernameblur:function(e){
+  workernameblur: function (e) {
     var that = this
-    qingqiu.messageReg(e.detail.value,0,function(res){
-      console.log('回调函数',res)
-      if(res == 87014){
+    qingqiu.messageReg(e.detail.value, 0, function (res) {
+      console.log('回调函数', res)
+      if (res == 87014) {
         that.setData({
-          workername:''
+          workername: ''
         })
         wx.showToast({
           title: '内容包含敏感词，请重新输入...',
-          icon:'none',
-          duration:2000
+          icon: 'none',
+          duration: 2000
         })
         return
       }
-    },'POST')
+    }, 'POST')
   },
   //获取输入的从业时长
-  worktimeinput: function(e) {
+  worktimeinput: function (e) {
     this.setData({
       worktime: e.detail.value
     })
   },
   //获取输入的工人年月
-  workerbirthinput: function(e) {
+  workerbirthinput: function (e) {
     this.setData({
       workerbirth: e.detail.value
     })
   },
   //获取输入的详情地址
-  workeraddressinput: function(e) {
+  workeraddressinput: function (e) {
     this.setData({
       workeraddress: e.detail.value
     })
   },
   //工人详细地址敏感词
-  workeraddressblur:function(e){
+  workeraddressblur: function (e) {
     var that = this
-    qingqiu.messageReg(e.detail.value,0,function(res){
-      if(res == 87014){
+    qingqiu.messageReg(e.detail.value, 0, function (res) {
+      if (res == 87014) {
         that.setData({
-          workeraddress:''
+          workeraddress: ''
         })
         wx.showToast({
           title: '内容包含敏感词，请重新输入...',
-          icon:'none',
-          duration:2000
+          icon: 'none',
+          duration: 2000
         })
         return
       }
-    },'POST')
+    }, 'POST')
   },
   //获取输入的工人电话
-  workerphoneinput: function(e) {
+  workerphoneinput: function (e) {
     this.setData({
       workerphone: e.detail.value
     })
   },
   //获取输入的技能介绍
-  workerskillinput: function(e) {
+  workerskillinput: function (e) {
     this.setData({
       workerskill: e.detail.value
     })
   },
   // 工人技能介绍敏感词
-  workerskillblur:function(e){
+  workerskillblur: function (e) {
     var that = this
-    qingqiu.messageReg(e.detail.value,0,function(res){
-      if(res == 87014){
+    qingqiu.messageReg(e.detail.value, 0, function (res) {
+      if (res == 87014) {
         that.setData({
-          workerskill:''
+          workerskill: ''
         })
         wx.showToast({
           title: '内容包含敏感词，请重新输入...',
-          icon:'none',
-          duration:2000
+          icon: 'none',
+          duration: 2000
         })
         return
       }
-    },'POST')
+    }, 'POST')
   },
   // 默认加载获取分类
-  onloadchangeType: function(e) {
+  onloadchangeType: function (e) {
     var that = this;
     var id = e
     var litype = 0
@@ -606,14 +614,14 @@ Page({
     var typeerji1 = "fenleitype2.erjiid"
     var typestate1 = "fenleitype2.typestate"
     that.setData({
-      [typeid]:'',
-      [typeerji]:'',
-      [typestate]:false,
-      [typeid1]:'',
-      [typeerji1]:'',
-      [typestate1]:false,
-      fenClass1:'',
-      fenClass2:'',
+      [typeid]: '',
+      [typeerji]: '',
+      [typestate]: false,
+      [typeid1]: '',
+      [typeerji1]: '',
+      [typestate1]: false,
+      fenClass1: '',
+      fenClass2: '',
       needsTypeid: id,
       litype: litype,
       yijiname: '',
@@ -625,7 +633,7 @@ Page({
   },
 
   // 选项卡点击事件获取分类
-  changeType: function(e) {
+  changeType: function (e) {
     var that = this;
     var id = e.currentTarget.dataset.id
     var litype = 0
@@ -641,14 +649,14 @@ Page({
     var typeerji1 = "fenleitype2.erjiid"
     var typestate1 = "fenleitype2.typestate"
     that.setData({
-      [typeid]:'',
-      [typeerji]:'',
-      [typestate]:false,
-      [typeid1]:'',
-      [typeerji1]:'',
-      [typestate1]:false,
-      fenClass1:'',
-      fenClass2:'',
+      [typeid]: '',
+      [typeerji]: '',
+      [typestate]: false,
+      [typeid1]: '',
+      [typeerji1]: '',
+      [typestate1]: false,
+      fenClass1: '',
+      fenClass2: '',
       needsTypeid: id,
       litype: litype,
       yijiname: '',
@@ -659,14 +667,14 @@ Page({
     this.typefenleiyj()
   },
   // 性别选择
-  radioChange: function(e) {
+  radioChange: function (e) {
     // console.log('radio发生change事件，携带value值为：', e.detail.value)
     this.setData({
       sex: e.detail.value
     })
   },
   //改变选框状态(免责协议)
-  change: function(e) {
+  change: function (e) {
     var that = this
     //得到选中状态
     var select = e.currentTarget.dataset.select
@@ -693,7 +701,7 @@ Page({
   },
 
   // 提交申请
-  tijiaoshenqing: function() {
+  tijiaoshenqing: function () {
     var that = this
     var data = {}
     if (that.data.select != 'success') {
@@ -738,7 +746,7 @@ Page({
         picPerson1: that.data.picPerson3,
         picPerson2: that.data.picPerson4,
         wxState: 1
-      } 
+      }
     } else {
       if (that.data.phone.length != 11) {
         wx.showToast({
@@ -774,8 +782,8 @@ Page({
       }
     }
     console.log(data)
-    if(that.data.type == 1 || that.data.type == 0){
-      qingqiu.get("editWxUser",data,function(re){
+    if (that.data.type == 1 || that.data.type == 0) {
+      qingqiu.get("editWxUser", data, function (re) {
         console.log(re)
         if (re.success == true) {
           wx.showToast({
@@ -783,12 +791,12 @@ Page({
             icon: 'success',
             duration: 3000
           })
-          setTimeout(function(){
+          setTimeout(function () {
             wx.login({
-              success: function(res) {
+              success: function (res) {
                 qingqiu.get("getKeyInfo", {
                   code: res.code
-                }, function(re) {
+                }, function (re) {
                   app.globalData.wxid = re.result.wxUser.id
                   app.globalData.openid = re.result.openId
                   app.globalData.wxState = re.result.wxUser.wxState
@@ -798,7 +806,7 @@ Page({
                 }, "POST")
               }
             })
-          },1000)
+          }, 1000)
         } else {
           wx.showToast({
             title: re.message,
@@ -807,9 +815,9 @@ Page({
           })
           return
         }
-      },'put')
-    }else{
-      qingqiu.get("wxUserAdd", data, function(re) {
+      }, 'put')
+    } else {
+      qingqiu.get("wxUserAdd", data, function (re) {
         console.log(re)
         if (re.success == true) {
           wx.showToast({
@@ -817,12 +825,12 @@ Page({
             icon: 'success',
             duration: 3000
           })
-          setTimeout(function(){
+          setTimeout(function () {
             wx.login({
-              success: function(res) {
+              success: function (res) {
                 qingqiu.get("getKeyInfo", {
                   code: res.code
-                }, function(re) { 
+                }, function (re) {
                   app.globalData.wxid = re.result.wxUser.id
                   app.globalData.openid = re.result.openId
                   app.globalData.wxState = re.result.wxUser.wxState
@@ -832,7 +840,7 @@ Page({
                 }, "POST")
               }
             })
-          },1000)
+          }, 1000)
         } else {
           wx.showToast({
             title: re.message,
@@ -845,67 +853,83 @@ Page({
   },
 
   // 图片上传（对接完成）
-  upimg: function(e) {
+  upimg: function (e) {
     var type = e.currentTarget.dataset.type
     var index = e.currentTarget.dataset.number
     var that = this
     wx.chooseImage({
-      count:1,
+      count: 1,
       sizeType: ['compressed'], // 指定只能为压缩图，首先进行一次默认压缩
       sourceType: ['album', 'camera'],
-      success:function(res) {
+      success: function (res) {
         console.log(res)
-       const tempFilePaths = res.tempFilePaths;
-       wx.uploadFile({
-        url: api.uploadurl,
-        filePath: tempFilePaths[0],
-        header: {
-         "Content-Type": "multipart/form-data"
-         },
-         formData: {
-           method: 'POST' //请求方式
-         },
-         name: 'file',
-         success(res) {
-           var r = res.data
-           var jj = JSON.parse(r);
-           var sj = that.data.viewUrl + jj.message
-           console.log(res)
-           // res.data.data = ""
-           if (type == '1') {
-             that.setData({
-               picIurl: sj,
-               picIurl1:jj.message
-             })
-           } else if (type == '2') {
-             that.setData({
-               picZz: sj,
-               picZz1:jj.message
-             })
-           } else if (type == '3') {
-             that.setData({
-               picPerson1: sj,
-               picPerson3:jj.message
-             })
-           } else if (type == '4') {
-             that.setData({
-               picPerson2: sj,
-               picPerson4:jj.message
-             })
-           }else if (type == '5'){
-             that.setData({
-               picIurl: sj,
-               picIurl1:jj.message
-             })
-           }
-         }
-      })
+        const tempFilePaths = res.tempFilePaths;
+        wx.uploadFile({
+          url: api.uploadurl,
+          filePath: tempFilePaths[0],
+          header: {
+            "Content-Type": "multipart/form-data"
+          },
+          formData: {
+            method: 'POST' //请求方式
+          },
+          name: 'file',
+          success(res) {
+            var r = res.data
+            var jj = JSON.parse(r);
+            var sj = that.data.viewUrl + jj.message
+            console.log(res)
+            // res.data.data = ""
+            if (type == '1') {
+              that.setData({
+                picIurl: sj,
+                picIurl1: jj.message
+              })
+            } else if (type == '2') {
+              that.setData({
+                picZz: sj,
+                picZz1: jj.message
+              })
+            } else if (type == '3') {
+              that.setData({
+                picPerson1: sj,
+                picPerson3: jj.message
+              })
+            } else if (type == '4') {
+              that.setData({
+                picPerson2: sj,
+                picPerson4: jj.message
+              })
+            } else if (type == '5') {
+              that.setData({
+                picIurl: sj,
+                picIurl1: jj.message
+              })
+            }
+          }
+        })
+        console.log(api.general)
+        wx.uploadFile({
+          url: api.general,
+          filePath: tempFilePaths[0],
+          name: 'name',
+          header: {
+            "Content-Type": "multipart/form-data"
+          },
+          formData: {
+            // method: 'POST', //请求方式
+            file:tempFilePaths[0]
+          },
+          success: function (res) {
+            console.log('图片校验返回参数', res)
+          }
+        })
       },
     })
   },
-  cityyiji: function() {
+  cityyiji: function () {
     var that = this
-    qingqiu.get("queryOneArea", {}, function(re) {
+    qingqiu.get("queryOneArea", {}, function (re) {
       if (re.data.result.length > 0) {
         that.setData({
           typeid: re.result[0].id,
@@ -918,19 +942,19 @@ Page({
       that.cityerji()
     })
   },
-  cityerji: function() {
+  cityerji: function () {
     var that = this
     var data = {
       oneAreaId: that.data.typeid
     }
-    qingqiu.get("queryTwoArea", data, function(re) {
+    qingqiu.get("queryTwoArea", data, function (re) {
       that.setData({
         area: re.result
       })
     })
   },
   // 左侧按钮
-  left: function(e) {
+  left: function (e) {
     var that = this;
     var index = e.currentTarget.dataset.index
     var id = e.currentTarget.dataset.id
@@ -945,7 +969,7 @@ Page({
     this.typefenleiej()
   },
   // 右侧单选点击
-  right: function(e) {
+  right: function (e) {
     var that = this;
     var index = e.currentTarget.dataset.index;
     var id = e.currentTarget.dataset.id
@@ -960,51 +984,53 @@ Page({
   },
 
   // 获取分类
-  typefenleiyj: function() {
-    var that = this 
+  typefenleiyj: function () {
+    var that = this
     var type = that.data.needsTypeid
     var data = {
-      type:type
+      type: type
     }
-    qingqiu.get("oneClassList", data, function(re) {
+    qingqiu.get("oneClassList", data, function (re) {
       if (re.success == true) {
         if (re.result != null) {
-          for(let i=0;i<re.result.length;i++){
-            var gongzhongclass = 'gongzhong[' + i +'].oneclass'
+          for (let i = 0; i < re.result.length; i++) {
+            var gongzhongclass = 'gongzhong[' + i + '].oneclass'
             var gongzhongid = 'gongzhong[' + i + '].id'
             that.setData({
-              [gongzhongid]:re.result[i].id,
-              [gongzhongclass]:re.result[i].className
+              [gongzhongid]: re.result[i].id,
+              [gongzhongclass]: re.result[i].className
             })
-            var onedata = { oneClassId:re.result[i].id }
-            qingqiu.get("twoClassList",onedata,function(re){
-              if (re.success == true){
+            var onedata = {
+              oneClassId: re.result[i].id
+            }
+            qingqiu.get("twoClassList", onedata, function (re) {
+              if (re.success == true) {
                 if (re.result != null) {
-                  var gongzhongclass2 = 'gongzhong[' + i +'].twoclasslist'
+                  var gongzhongclass2 = 'gongzhong[' + i + '].twoclasslist'
                   that.setData({
-                    [gongzhongclass2]:re.result
+                    [gongzhongclass2]: re.result
                   })
                 }
               }
             })
           }
-        } 
-      } 
+        }
+      }
     })
   },
-  typefenleiej: function() {
+  typefenleiej: function () {
     var data = {
       oneClassId: this.data.typeyj
     }
     var that = this
-    qingqiu.get("twoClassService", data, function(re) {
+    qingqiu.get("twoClassService", data, function (re) {
       that.setData({
         typeejlist: re.data.result
       })
     })
   },
   //显示弹窗样式
-  showModal6: function(e) {
+  showModal6: function (e) {
     this.setData({
       hasMask: true
     })
@@ -1019,7 +1045,7 @@ Page({
       animationData: animation.export(),
       showModalStatus6: true
     })
-    setTimeout(function() {
+    setTimeout(function () {
       animation.opacity(1).rotateX(0).step();
       this.setData({
         animationData: animation.export()
@@ -1028,7 +1054,7 @@ Page({
 
   },
   //隐藏弹窗样式
-  hideModal6: function() {
+  hideModal6: function () {
     var that = this;
     var animation = wx.createAnimation({
       duration: 200,
@@ -1041,7 +1067,7 @@ Page({
       animationData: animation.export(),
       hasMask: false
     })
-    setTimeout(function() {
+    setTimeout(function () {
       animation.translateY(0).step()
       this.setData({
         animationData: animation.export(),
@@ -1072,7 +1098,7 @@ Page({
   },
 
   //地址 显示弹窗样式
-  showModal: function(e) {
+  showModal: function (e) {
     this.setData({
       hasMask: true
     })
@@ -1087,7 +1113,7 @@ Page({
       animationData: animation.export(),
       showModalStatus: true
     })
-    setTimeout(function() {
+    setTimeout(function () {
       animation.opacity(1).rotateX(0).step();
       this.setData({
         animationData: animation.export()
@@ -1097,7 +1123,7 @@ Page({
 
   },
   //隐藏弹窗样式 地址
-  hideModal: function() {
+  hideModal: function () {
     var that = this;
     var animation = wx.createAnimation({
       duration: 200,
@@ -1110,7 +1136,7 @@ Page({
       animationData: animation.export(),
       hasMask: false
     })
-    setTimeout(function() {
+    setTimeout(function () {
       animation.translateY(0).step()
       this.setData({
         animationData: animation.export(),
@@ -1119,7 +1145,7 @@ Page({
     }.bind(this), 200)
   },
   // 左侧按钮
-  cityleft: function(e) {
+  cityleft: function (e) {
     var that = this;
     var index = e.currentTarget.dataset.index;
     var id = e.currentTarget.dataset.id
@@ -1133,23 +1159,22 @@ Page({
     this.cityerji()
   },
   // 右侧单选点击
-  arearight: function(e) {
+  arearight: function (e) {
     var that = this;
     var index = e.currentTarget.dataset.index;
     var id = e.currentTarget.dataset.id
     var name = e.currentTarget.dataset.name
-    if(that.data.workcityname1==undefined)
-    {
+    if (that.data.workcityname1 == undefined) {
       wx.showToast({
         title: '请先选择城市',
-        icon:'none',
-        duration:2000
+        icon: 'none',
+        duration: 2000
       })
       return
     }
     that.setData({
       show: false,
-      showModalStatus:false,
+      showModalStatus: false,
       areaId: id,
       curIndex: index,
       workareaname: name,
@@ -1157,7 +1182,7 @@ Page({
     })
   },
   // 服务规则页面显示
-  showModal1: function() {
+  showModal1: function () {
     this.setData({
       hasMask: true
     })
@@ -1173,7 +1198,7 @@ Page({
       animationData: animation.export(),
       showModalStatus1: true
     })
-    setTimeout(function() {
+    setTimeout(function () {
       animation.opacity(1).rotateX(0).step();
       this.setData({
         animationData: animation.export()
@@ -1181,7 +1206,7 @@ Page({
     }.bind(this), 200)
   },
   //服务规则页面关闭
-  hideModal1: function() {
+  hideModal1: function () {
     var animation = wx.createAnimation({
       duration: 200,
       timingFunction: "linear",
@@ -1194,7 +1219,7 @@ Page({
       animationData: animation.export(),
       hasMask: false
     })
-    setTimeout(function() {
+    setTimeout(function () {
       animation.translateY(0).step()
       this.setData({
         animationData: animation.export(),
@@ -1259,7 +1284,7 @@ Page({
   // },
 
   // 选择工种弹出
-  showModal2: function() {
+  showModal2: function () {
     this.setData({
       hasMask: true
     })
@@ -1273,9 +1298,9 @@ Page({
     this.setData({
       animationData3: animation.export(),
       showModalStatus2: true,
-      showModalStatus6:true
+      showModalStatus6: true
     })
-    setTimeout(function() {
+    setTimeout(function () {
       animation.opacity(1).rotateX(0).step();
       this.setData({
         animationData3: animation.export()
@@ -1283,7 +1308,7 @@ Page({
     }.bind(this), 200)
   },
   //选择工种页面关闭
-  hideModal2: function(e) {
+  hideModal2: function (e) {
     var flag = e.currentTarget.dataset.return
     this.writeclass(flag)
     var animation = wx.createAnimation({
@@ -1298,7 +1323,7 @@ Page({
       animationData: animation.export(),
       hasMask: false
     })
-    setTimeout(function() {
+    setTimeout(function () {
       animation.translateY(0).step()
       this.setData({
         animationData: animation.export(),
@@ -1309,7 +1334,7 @@ Page({
   },
 
   // 业务分类
-  showModallist: function() {
+  showModallist: function () {
     this.setData({
       hasMask: true
     })
@@ -1323,9 +1348,9 @@ Page({
     this.setData({
       animationData: animation.export(),
       showModalStatuslist: true,
-      showModalStatus6:true
+      showModalStatus6: true
     })
-    setTimeout(function() {
+    setTimeout(function () {
       animation.opacity(1).rotateX(0).step();
       this.setData({
         animationData: animation.export()
@@ -1333,7 +1358,7 @@ Page({
     }.bind(this), 200)
   },
   //选择业务页面关闭
-  hideModallist: function(e) {
+  hideModallist: function (e) {
     var flag = e.currentTarget.dataset.return
     this.writeclass(flag)
     var animation = wx.createAnimation({
@@ -1348,12 +1373,12 @@ Page({
       animationData2: animation.export(),
       hasMask: false
     })
-    setTimeout(function() {
+    setTimeout(function () {
       animation.translateY(0).step()
       this.setData({
         animationData2: animation.export(),
         showModalStatuslist: false,
-        showModalStatus6:false
+        showModalStatus6: false
       })
     }.bind(this), 200)
   },
@@ -1366,45 +1391,45 @@ Page({
     var typeid1 = "fenleitype2.yjid"
     var typeerji1 = "fenleitype2.erjiid"
     var typestate1 = "fenleitype2.typestate"
-    if(that.data.needsTypeid == 1){
+    if (that.data.needsTypeid == 1) {
       var id = e.currentTarget.dataset.id
       var yjid = e.currentTarget.dataset.yjid
       var yijiname = e.currentTarget.dataset.yijiname
       var erjiname = e.currentTarget.dataset.erjiname
-      if(that.data.fenleitype1.typestate == true && that.data.fenleitype1.erjiid == id && that.data.fenleitype1.yjid == yjid){
+      if (that.data.fenleitype1.typestate == true && that.data.fenleitype1.erjiid == id && that.data.fenleitype1.yjid == yjid) {
         that.setData({
-          [typeid]:'',
-          [typeerji]:'',
-          [typestate]:false,
-          fenClass1:''
+          [typeid]: '',
+          [typeerji]: '',
+          [typestate]: false,
+          fenClass1: ''
         })
         return
-      }else if(that.data.fenleitype2.typestate == true && that.data.fenleitype2.erjiid == id && that.data.fenleitype2.yjid == yjid){
+      } else if (that.data.fenleitype2.typestate == true && that.data.fenleitype2.erjiid == id && that.data.fenleitype2.yjid == yjid) {
         that.setData({
-          [typeid1]:'',
-          [typeerji1]:'',
-          [typestate1]:false,
-          fenClass2:''
+          [typeid1]: '',
+          [typeerji1]: '',
+          [typestate1]: false,
+          fenClass2: ''
         })
         return
       }
-      if(that.data.fenleitype1.typestate == false){
+      if (that.data.fenleitype1.typestate == false) {
         that.setData({
-          [typeid]:yjid,
-          [typeerji]:id,
-          [typestate]:true,
-          yijiname:yijiname,
-          fenClass1: yijiname + ' | '+ erjiname
+          [typeid]: yjid,
+          [typeerji]: id,
+          [typestate]: true,
+          yijiname: yijiname,
+          fenClass1: yijiname + ' | ' + erjiname
         })
-      }else if(that.data.fenleitype2.typestate == false){
+      } else if (that.data.fenleitype2.typestate == false) {
         that.setData({
-          [typeid1]:yjid,
-          [typeerji1]:id,
-          [typestate1]:true,
-          yijiname:yijiname,
-          fenClass2: yijiname + ' | '+ erjiname
+          [typeid1]: yjid,
+          [typeerji1]: id,
+          [typestate1]: true,
+          yijiname: yijiname,
+          fenClass2: yijiname + ' | ' + erjiname
         })
-      }else{
+      } else {
         wx.showToast({
           title: '只能同时选择两种',
           icon: 'none',
@@ -1412,45 +1437,45 @@ Page({
         })
         return
       }
-    }else{
+    } else {
       var id = e.currentTarget.dataset.id
       var yjid = e.currentTarget.dataset.yjid
       var yijiname = e.currentTarget.dataset.yijiname
       var erjiname = e.currentTarget.dataset.erjiname
-      if(that.data.fenleitype1.typestate == true && that.data.fenleitype1.erjiid == id && that.data.fenleitype1.yjid == yjid){
+      if (that.data.fenleitype1.typestate == true && that.data.fenleitype1.erjiid == id && that.data.fenleitype1.yjid == yjid) {
         that.setData({
-          [typeid]:'',
-          [typeerji]:'',
-          [typestate]:false,
-          fenClass1:''
+          [typeid]: '',
+          [typeerji]: '',
+          [typestate]: false,
+          fenClass1: ''
         })
         return
-      }else if(that.data.fenleitype2.typestate == true && that.data.fenleitype2.erjiid == id && that.data.fenleitype2.yjid == yjid){
+      } else if (that.data.fenleitype2.typestate == true && that.data.fenleitype2.erjiid == id && that.data.fenleitype2.yjid == yjid) {
         that.setData({
-          [typeid1]:'',
-          [typeerji1]:'',
-          [typestate1]:false,
-          fenClass2:''
+          [typeid1]: '',
+          [typeerji1]: '',
+          [typestate1]: false,
+          fenClass2: ''
         })
         return
       }
-      if(that.data.fenleitype1.typestate == false){
+      if (that.data.fenleitype1.typestate == false) {
         that.setData({
-          [typeid]:yjid,
-          [typeerji]:id,
-          [typestate]:true,
-          yijiname:yijiname,
-          fenClass1: yijiname + ' | '+ erjiname
+          [typeid]: yjid,
+          [typeerji]: id,
+          [typestate]: true,
+          yijiname: yijiname,
+          fenClass1: yijiname + ' | ' + erjiname
         })
-      }else if(that.data.fenleitype2.typestate == false){
+      } else if (that.data.fenleitype2.typestate == false) {
         that.setData({
-          [typeid1]:yjid,
-          [typeerji1]:id,
-          [typestate1]:true,
-          yijiname:yijiname,
-          fenClass2:yijiname + ' | '+ erjiname
+          [typeid1]: yjid,
+          [typeerji1]: id,
+          [typestate1]: true,
+          yijiname: yijiname,
+          fenClass2: yijiname + ' | ' + erjiname
         })
-      }else{
+      } else {
         wx.showToast({
           title: '只能同时选择两种',
           icon: 'none',
@@ -1460,19 +1485,19 @@ Page({
       }
     }
   },
-  writeclass:function(type){
-    if(type == "false"){
+  writeclass: function (type) {
+    if (type == "false") {
       this.setData({
-        yijiname:''
+        yijiname: ''
       })
-    }else{
-      if(this.data.fenClass2 !=  ''){
+    } else {
+      if (this.data.fenClass2 != '') {
         this.setData({
-          tempClass:this.data.fenClass1 + "," + this.data.fenClass2
+          tempClass: this.data.fenClass1 + "," + this.data.fenClass2
         })
-      }else{
+      } else {
         this.setData({
-          tempClass:this.data.fenClass1
+          tempClass: this.data.fenClass1
         })
       }
     }

@@ -50,7 +50,7 @@
     </view>
     <view class="content-item hengxiang" bindtap="showModal">
       <view class="content-title">商铺区域<text style="color:red;">*</text></view>
-      <view class="content-text" wx:if="{{workcityname==''}}" style="color:#999999;">请选择区域</view>
+      <view class="content-text" wx:if="{{workcityname==''}}" style="color:#999999;">选择区域</view>
       <view class='content-text2' wx:if="{{workcityname!=''}}" style="color:#999999">{{workcityname}} - {{workareaname}}</view>
       <view class="enter">
         <image src="{{viewUrl}}static/image/enter.png" class="enter-img"></image>
@@ -67,13 +67,13 @@
       <view class="fabu" bindtap='upimg' data-number="0" data-type='5'>
         <image src="{{viewUrl}}static/image/sctouxiang.png" class="fabu-item" wx:if="{{picIurl==''}}"></image>
         <image src="{{picIurl}}" class="fabu1-img" wx:if="{{picIurl!=''}}"></image>
-        <text wx:if="{{picIurl!=''}}">店铺照片</text>
+        <text wx:if="{{picIurl==''}}">店铺照片</text>
       </view>
       <view class="fabu zongxiang" bindtap='upimg' data-number="0" data-type='2'>
         <view>
           <image src="{{viewUrl}}static/image/yingyezhizhao.jpg" class="fabu-item" wx:if="{{picZz==''}}"></image>
           <image src="{{picZz}}" class="fabu1-img" wx:if="{{picZz!=''}}"></image>
-          <text wx:if="{{picZz!=''}}">营业执照</text>
+          <text wx:if="{{picZz==''}}">营业执照</text>
         </view>
       </view>
     </view>
@@ -170,8 +170,8 @@
           </view>
         </view>
       </view>
-      <view class="fabu2" wx:if="{{picIurl != ''}}"><view class="fabu-item2">工作照</view></view>
-      <view class="fabu2" wx:if="{{picPerson1 != ''}}"><view class="fabu-item2">身份证正面照</view></view>
+      <view class="fabu2" wx:if="{{picIurl == ''}}"><view class="fabu-item2">工作照</view></view>
+      <view class="fabu2" wx:if="{{picPerson1 == ''}}"><view class="fabu-item2">身份证正面照</view></view>
       <view class="fabu1">
         <view class="fabu-item1 zongxiang" bindtap='upimg' data-number="0" data-type='4'>
           <view wx:if="{{picPerson2==''||picPerson2==null}}">
@@ -183,7 +183,7 @@
         </view>
       </view>
       <view class="fabu1"></view>
-      <view class="fabu2" wx:if="{{picIurl != ''}}"><view class="fabu-item2">身份证反面照</view></view>
+      <view class="fabu2" wx:if="{{picIurl == ''}}"><view class="fabu-item2">身份证反面照</view></view>
     </view>
   </view>
   <view class='content-icon hengxiang'>

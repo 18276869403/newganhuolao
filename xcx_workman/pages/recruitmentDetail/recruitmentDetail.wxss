@@ -84,9 +84,16 @@ line-height: 38rpx;
 }
 .content-list-type-henxian{
   width: 100%;
+  background-color: #999999;
   height: 2rpx;
 }
-
+.content-list-title-price{
+  font-size: 16px;
+  font-weight: 600;
+  color: #ee471f;
+  margin-top: 16rpx;
+  margin-bottom: 16rpx;
+}
 .content-list-type {
   font-size: 12px;
   font-weight: 400;

@@ -20,6 +20,9 @@
 				<view class="top-title-right-sousuo">
 					<view class="sousuo-button" bindtap="btnsearch">搜索</view>
 				</view>
+				<view class="top-search-fabu">
+					<image src="{{viewUrl}}static/image/fabuMaterial.png" class="fabu-img" bindtap="submitNeeds"></image>
+				</view>
 			</view>
 		</view>
 	</view>
@@ -27,7 +30,7 @@
 		<!-- 最新需求模块 -->
 		<view class="recruitment-need">
 			<view class="list zongxiang" wx:for="{{needsList}}" wx:for-index="index" wx:key="index">
-				<view class="recruitment-list">
+				<view class="recruitment-list" bindtap="recruitmentDetail">
 					<view class="list-top hangxiang">
 						<view class="list-top-right list-top-right-text">商品扮熊员商品扮熊员商品扮熊员商品扮熊员</view>
 						<view class="list-top-left">

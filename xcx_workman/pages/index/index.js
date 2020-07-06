@@ -55,6 +55,7 @@ Page({
   },
   // 获取token值
   getTokenValue() {
+    var that = this
     // 小程序
     wx.request({
       url: 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx14e076d27e942480&secret=fb16e928e1a41fa0e8f21b2f50aa89d5',
@@ -72,7 +73,8 @@ Page({
         if (res.data.expires_in == 7200) {
           app.globalData.access_TokenOff = res.data.access_token
         }
-        console.log('公众号token', app.globalData.access_TokenOff)
+        console.log('公众号token',app.globalData.access_TokenOff)
+        that.getUserInfo()
       }
     })
   },
@@ -206,9 +208,31 @@ Page({
       }
     })
   },
-
+  // 获取公众号下的微信openid
+  getUserInfo:function(){
+    var NEXT_OPENID = ''
+    var total = 0
+    var count = 0
+    do {
+      wx.request({
+        url: 'https://api.weixin.qq.com/cgi-bin/user/get?access_token='+app.globalData.access_TokenOff+'&next_openid=' +NEXT_OPENID,
+        success:function(res){
+          console.log('公众号用户',res)
+          if(res.data.next_openid != ''){
+            NEXT_OPENID = res.data.next_openid
+            total = res.data.total
+            count = res.data.count + count
+            app.globalData.nextOpenid = res.data.data.openid
+            console.log('openid公众号',app.globalData.nextOpenid)
+          }
+        }
+      })
+    } while (count < total);
+    
+  },
   onShow: function (options) {
     this.getTokenValue()
+
     wx.showShareMenu({
       withShareTicket: true
     })

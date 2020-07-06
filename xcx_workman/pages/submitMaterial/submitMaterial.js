@@ -257,7 +257,7 @@ Page({
       that.data.picIurl1 += obj + ","
     }
     that.data.picIurl1 = that.data.picIurl1.substring(0, that.data.picIurl1.length - 1)
-    var s = qingqiu.yanzheng(that.data.needsname + ",输入标题|" + that.data.phone + ",输入联系电话|" + that.data.linkman + ",输入联系人|" +that.data.cityId + ",请选择一级区域|" + that.data.areaId + ",请选择二级区域")
+    var s = qingqiu.yanzheng(that.data.needsname + ",输入标题|" + that.data.phone + ",输入联系电话|" + that.data.linkman + ",输入联系人|" + that.data.cityId + ",请选择一级区域|" + that.data.areaId + ",请选择二级区域")
     if (s != 0) {
       wx.showToast({
         title: s,
@@ -323,25 +323,25 @@ Page({
       var data = {
         wxUserId: app.globalData.wxid,
         needContent: that.data.needscontent,
-        backup3: that.data.youhuijia == undefined?'':that.data.youhuijia ,
+        backup3: that.data.youhuijia == undefined ? '' : that.data.youhuijia,
         needTitle: that.data.needsname,
         publishMan: that.data.linkman,
         publishPhone: that.data.phone,
         backup1: that.data.picIurl1,
         oneAreaId: that.data.cityId,
         twoAreaId: that.data.areaId,
-        needType:2,
+        needType: 2,
         needState: 0,
         backup5: 1
       }
-      
+
       console.log(data)
       qingqiu.get("insertYneed", data, function (re) {
         console.log(re)
         if (re.success == true) {
           wx.showToast({
             title: '提交成功,等待后台审核...',
-            icon:'none',
+            icon: 'none',
             duration: 2000
           })
           setTimeout(function () {
@@ -906,30 +906,46 @@ Page({
       success: function (res) {
         const tempFilePaths = res.tempFilePaths;
         console.log(tempFilePaths)
-        wx.uploadFile({
-          url: api.uploadurl, //仅为示例，非真实的接口地址
-          filePath: tempFilePaths[0],
-          header: {
-            "Content-Type": "multipart/form-data"
-          },
-          formData: {
-            method: 'POST' //请求方式
-          },
-          name: 'file',
-          success(res) {
-            var r = res.data
-            var jj = JSON.parse(r);
-            var sj = api.viewUrl + jj.message
-            that.data.tupianlists.push(jj.message)
-            that.setData({
-              tupianlists: that.data.tupianlists,
-              picimg1: sj,
-              picimgs1: jj.message
+        qingqiu.messageReg(tempFilePaths, 1, function (res) {
+          var data = JSON.parse(res.data)
+          if (data.errcode == 87014) {
+            wx.showToast({
+              title: '内容含有违法违规内容',
+              icon: 'none'
+            })
+            return
+          } else if (data.errcode != 0) {
+            wx.showToast({
+              title: '令牌失效，请重新进入小程序',
+              icon: 'none'
+            })
+            return
+          } else {
+            wx.uploadFile({
+              url: api.uploadurl, //仅为示例，非真实的接口地址
+              filePath: tempFilePaths[0],
+              header: {
+                "Content-Type": "multipart/form-data"
+              },
+              formData: {
+                method: 'POST' //请求方式
+              },
+              name: 'file',
+              success(res) {
+                var r = res.data
+                var jj = JSON.parse(r);
+                var sj = api.viewUrl + jj.message
+                that.data.tupianlists.push(jj.message)
+                that.setData({
+                  tupianlists: that.data.tupianlists,
+                  picimg1: sj,
+                  picimgs1: jj.message
+                })
+              }
             })
           }
         })
-      },
-      fail: (err) => {}
+      }
     }, this)
   },
   // 删除图片

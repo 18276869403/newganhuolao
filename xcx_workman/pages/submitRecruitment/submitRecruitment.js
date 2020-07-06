@@ -19,7 +19,7 @@ Page({
     workareaname: '',
     phone: '',
     needscontent: '',
-    salary:'',
+    salary: '',
     // 用户信息
     wxUser: '',
     id: 0,
@@ -69,7 +69,7 @@ Page({
     wx.showShareMenu({
       withShareTicket: true
     })
-    
+
     this.getcity()
   },
 
@@ -96,9 +96,9 @@ Page({
     }, 'POST')
   },
   // 获取薪资的输入内容
-  salaryinput:function(e){
+  salaryinput: function (e) {
     this.setData({
-      salary:e.detail.value
+      salary: e.detail.value
     })
   },
   //获取输入的需求内容
@@ -250,64 +250,65 @@ Page({
       success: function (res) {
         console.log(res)
         const tempFilePaths = res.tempFilePaths;
-        wx.uploadFile({
-          url: api.uploadurl,
-          filePath: tempFilePaths[0],
-          header: {
-            "Content-Type": "multipart/form-data"
-          },
-          formData: {
-            method: 'POST' //请求方式
-          },
-          name: 'file',
-          success(res) {
-            var r = res.data
-            var jj = JSON.parse(r);
-            var sj = that.data.viewUrl + jj.message
-            console.log(res)
-            // res.data.data = ""
-            if (type == '1') {
-              that.setData({
-                picIurl: sj,
-                picIurl1: jj.message
-              })
-            } else if (type == '2') {
-              that.setData({
-                picZz: sj,
-                picZz1: jj.message
-              })
-            } else if (type == '3') {
-              that.setData({
-                picPerson1: sj,
-                picPerson3: jj.message
-              })
-            } else if (type == '4') {
-              that.setData({
-                picPerson2: sj,
-                picPerson4: jj.message
-              })
-            } else if (type == '5') {
-              that.setData({
-                picIurl: sj,
-                picIurl1: jj.message
-              })
-            }
-          }
-        })
-        console.log(api.general)
-        wx.uploadFile({
-          url: api.general,
-          filePath: tempFilePaths[0],
-          name: 'name',
-          header: {
-            "Content-Type": "multipart/form-data"
-          },
-          formData: {
-            // method: 'POST', //请求方式
-            file: tempFilePaths[0]
-          },
-          success: function (res) {
-            console.log('图片校验返回参数', res)
+        qingqiu.messageReg(tempFilePaths, 1, function (res) {
+          var data = JSON.parse(res.data)
+          if (data.errcode == 87014) {
+            wx.showToast({
+              title: '内容含有违法违规内容',
+              icon: 'none'
+            })
+            return
+          } else if (data.errcode != 0) {
+            wx.showToast({
+              title: '令牌失效，请重新进入小程序',
+              icon: 'none'
+            })
+            return
+          } else {
+            wx.uploadFile({
+              url: api.uploadurl,
+              filePath: tempFilePaths[0],
+              header: {
+                "Content-Type": "multipart/form-data"
+              },
+              formData: {
+                method: 'POST' //请求方式
+              },
+              name: 'file',
+              success(res) {
+                var r = res.data
+                var jj = JSON.parse(r);
+                var sj = that.data.viewUrl + jj.message
+                console.log(res)
+                // res.data.data = ""
+                if (type == '1') {
+                  that.setData({
+                    picIurl: sj,
+                    picIurl1: jj.message
+                  })
+                } else if (type == '2') {
+                  that.setData({
+                    picZz: sj,
+                    picZz1: jj.message
+                  })
+                } else if (type == '3') {
+                  that.setData({
+                    picPerson1: sj,
+                    picPerson3: jj.message
+                  })
+                } else if (type == '4') {
+                  that.setData({
+                    picPerson2: sj,
+                    picPerson4: jj.message
+                  })
+                } else if (type == '5') {
+                  that.setData({
+                    picIurl: sj,
+                    picIurl1: jj.message
+                  })
+                }
+              }
+            })
           }
         })
       },

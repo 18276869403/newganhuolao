@@ -10,8 +10,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    viewUrl:api.viewUrl,
-    id:'',
+    viewUrl: api.viewUrl,
+    id: '',
     needsTypeid: 0,
     select: 'circle',
     hasMask: false,
@@ -31,19 +31,19 @@ Page({
     phone: '',
     show: false,
     needsTypeList: [{
-      id: 0,
-      name: '普通需求'
-    },
-    {
-      id: 1,
-      name: '加急需求'
-    }
+        id: 0,
+        name: '普通需求'
+      },
+      {
+        id: 1,
+        name: '加急需求'
+      }
     ],
     navLeftItems: [],
     navRightItems: [],
     city: [],
     tupianlist: [],
-    tupianlists:[],
+    tupianlists: [],
     area: [],
     mianzhe: '欢迎您使用干活佬的服务！本平台仅提供同城信息共享，发布桥梁，信息发布、接单均不收取用户任何费用。\
       为使用干活佬的服务，您应当阅读并遵守《干活佬使用协议》。本协议是用户与干活佬之间的法律协议，是用户注册干活佬平台账号和/或使用干活佬服务时使用的通用\条款。请您务必审慎阅读、充分理解各条款内容，特别是免除或者限制责任的条款、管辖与法律适用条款。限制、免责条款可能以黑体加粗或加下划线的形式提示您重\点注意。您不应当以干活佬未对本协议以合理方式提醒用户注意或未根据用户要求尽到说明义务为理由而声称或要求法院或其它任何第三方确认相关条款非法或无效。\除非您已阅读并接受本协议所有条款，否则您无权使用干活佬提供的服务。您使用干活佬的服务即视为您已阅读并同意上述协议的约束。\
@@ -123,340 +123,339 @@ Page({
       1) 继续保存您未及时删除的注册信息及您使用干活佬平台服务期间发布的所有信息至法律规定的记录保存期满。\
       2）您在使用干活佬平台服务期间存在违法行为或违反本协议和/或规则的行为的，干活佬仍可依据本协议向您主张权利、追究责任。\
       ',
-      needTitle:'',
-      oneclass:[],
-      twoclass:[],
-      picIurl:'',
-      picIurl1:'',
-      needstate:'',
-      city:'',
-      area:'',
-      curIndex:'',
-      picIurl1:'',
-    picIurl:'',
-    picimg:'',
-    num:1,
-    yijiname1:''
+    needTitle: '',
+    oneclass: [],
+    twoclass: [],
+    picIurl: '',
+    picIurl1: '',
+    needstate: '',
+    city: '',
+    area: '',
+    curIndex: '',
+    picIurl1: '',
+    picIurl: '',
+    picimg: '',
+    num: 1,
+    yijiname1: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-    onLoad: function (options) {
-      wx.showShareMenu({
-        withShareTicket: true
+  onLoad: function (options) {
+    wx.showShareMenu({
+      withShareTicket: true
+    })
+    if (options.type == 1) {
+      this.setData({
+        type: 1,
+        id: options.id,
+        wxuserid: app.globalData.wxid
       })
-      if(options.type == 1){
-        this.setData({
-          type:1,
-          id:options.id,
-          wxuserid: app.globalData.wxid
+      // this.oneClass()
+      // this.twoClass()
+      this.QueryoneArea()
+      // this.QuerytwoArea()
+      this.needSignPage()
+    } else {
+      this.setData({
+        type: 0,
+        wxuserid: app.globalData.wxid
+      })
+      // this.oneClass()
+      // this.twoClass()
+      this.QueryoneArea()
+      this.QuerytwoArea()
+    }
+  },
+  needsnameblur: function (e) {
+    var that = this
+    qingqiu.messageReg(e.detail.value, 0, function (res) {
+      if (res == 87014) {
+        that.setData({
+          needsname: ''
         })
-        // this.oneClass()
-        // this.twoClass()
-        this.QueryoneArea()
-        // this.QuerytwoArea()
-        this.needSignPage()
-      }else{
-        this.setData({
-          type:0,
-          wxuserid: app.globalData.wxid
-        })
-        // this.oneClass()
-        // this.twoClass()
-        this.QueryoneArea()
-        this.QuerytwoArea()
-      }
-    },
-    needsnameblur:function(e){
-      var that = this
-      qingqiu.messageReg(e.detail.value,0,function(res){
-        if(res == 87014){
-          that.setData({
-            needsname:''
-          })
-          wx.showToast({
-            title: '内容包含敏感词，请重新输入...',
-            icon:'none',
-            duration:2000
-          })
-          return
-        }
-      },'POST')
-    },
-    needscontentblur:function(e){
-      var that = this
-      qingqiu.messageReg(e.detail.value,0,function(res){
-        if(res == 87014){
-          that.setData({
-            needscontent:''
-          })
-          wx.showToast({
-            title: '内容包含敏感词，请重新输入...',
-            icon:'none',
-            duration:2000
-          })
-          return
-        }
-      },'POST')
-    },
-    linkmanblur:function(e){
-      var that = this
-      qingqiu.messageReg(e.detail.value,0,function(res){
-        if(res == 87014){
-          that.setData({
-            needscontent:''
-          })
-          wx.showToast({
-            title: '内容包含敏感词，请重新输入...',
-            icon:'none',
-            duration:2000
-          })
-          return
-        }
-      },'POST')
-    },
-    // 获取需求
-    needSignPage(){
-      var that = this
-      if(that.data.id == "" || that.data.id == undefined || that.data.id == null || that.data.id == 0){
         wx.showToast({
-          title: '需求错误',
-          icon:'none',
-          duration:2000
+          title: '内容包含敏感词，请重新输入...',
+          icon: 'none',
+          duration: 2000
         })
         return
       }
+    }, 'POST')
+  },
+  needscontentblur: function (e) {
+    var that = this
+    qingqiu.messageReg(e.detail.value, 0, function (res) {
+      if (res == 87014) {
+        that.setData({
+          needscontent: ''
+        })
+        wx.showToast({
+          title: '内容包含敏感词，请重新输入...',
+          icon: 'none',
+          duration: 2000
+        })
+        return
+      }
+    }, 'POST')
+  },
+  linkmanblur: function (e) {
+    var that = this
+    qingqiu.messageReg(e.detail.value, 0, function (res) {
+      if (res == 87014) {
+        that.setData({
+          needscontent: ''
+        })
+        wx.showToast({
+          title: '内容包含敏感词，请重新输入...',
+          icon: 'none',
+          duration: 2000
+        })
+        return
+      }
+    }, 'POST')
+  },
+  // 获取需求
+  needSignPage() {
+    var that = this
+    if (that.data.id == "" || that.data.id == undefined || that.data.id == null || that.data.id == 0) {
+      wx.showToast({
+        title: '需求错误',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
+    var data = {
+      id: that.data.id
+    }
+    console.log(data)
+    qingqiu.get("yneedBy", data, function (res) {
+      if (res.success == true) {
+        console.log(res)
+        that.setData({
+          wxuserid: res.result.wxUserId,
+          needsTypeid: res.result.needType,
+          needscontent: res.result.needContent,
+          needsname: res.result.needTitle,
+          youhuijia: res.result.backup3,
+          linkman: res.result.publishMan,
+          phone: res.result.publishPhone,
+          picIurl: that.data.viewUrl + res.result.backup1,
+          needstate: res.result.needState,
+          cityId: res.result.oneAreaId,
+          areaId: res.result.twoAreaId,
+          cityname: res.result.oneAreaName,
+          areaname: res.result.twoAreaName,
+        })
+      }
+    })
+  },
+  // 发布需求
+  lijifabu() {
+    var that = this
+    for (let obj of that.data.tupianlists) {
+      that.data.picIurl1 += obj + ","
+    }
+    that.data.picIurl1 = that.data.picIurl1.substring(0, that.data.picIurl1.length - 1)
+    var s = qingqiu.yanzheng(that.data.needsname + ",输入需求标题|" + that.data.cityId + ",选择所在区域|" + that.data.areaId + ",选择所在区域|" + that.data.phone + ",输入联系电话|" + that.data.linkman + ",输入联系人|" + that.data.youhuijia + ",输入出价")
+    if (s != 0) {
+      wx.showToast({
+        title: s,
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
+    var shuzi = util.numberReg(that.data.phone)
+    if (shuzi != 0) {
+      wx.showToast({
+        title: shuzi,
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
+    // if(that.data.firstId==""||that.data.secondId==""||that.data.cityId==""||that.data.areaId==""||that.data.picIurl1==""||that.data.phone==""||that.data.linkman==""||that.data.youhuijia==""||that.data.needscontent==""){
+    //   wx.showToast({
+    //     title: '有选项未填写！',
+    //     icon:'none',
+    //     duration:2000
+    //   })
+    //   return
+    // }
+    if (that.data.select == "circle") {
+      wx.showToast({
+        title: '请勾选同意协议！',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
+    if (that.data.type == 1) {
       var data = {
-        id:that.data.id
+        id: that.data.id,
+        wxUserId: that.data.wxuserid,
+        needType: that.data.needsTypeid,
+        needContent: that.data.needscontent,
+        needTitle: that.data.needsname,
+        publishMan: that.data.linkman,
+        publishPhone: that.data.phone,
+        backup1: that.data.picIurl1,
+        needState: that.data.needstate,
+        oneAreaId: that.data.cityId,
+        twoAreaId: that.data.areaId,
+        backup5: 0
       }
       console.log(data)
-      qingqiu.get("yneedBy",data,function(res){
-        if(res.success == true){
-          console.log(res)
-          that.setData({
-            wxuserid:res.result.wxUserId,
-            needsTypeid:res.result.needType,
-            needscontent:res.result.needContent,
-            needsname:res.result.needTitle,
-            youhuijia:res.result.backup3,
-            linkman:res.result.publishMan,
-            phone:res.result.publishPhone,
-            picIurl:that.data.viewUrl + res.result.backup1,
-            needstate:res.result.needState,
-            cityId:res.result.oneAreaId,
-            areaId:res.result.twoAreaId,
-            cityname:res.result.oneAreaName,
-            areaname:res.result.twoAreaName,
+      qingqiu.get("needUpdateStateById", data, function (re) {
+        if (re.success == true) {
+          wx.showToast({
+            title: '修改成功',
+            icon: 'success',
+            duration: 2000
+          })
+          setTimeout(function () {
+            wx.switchTab({
+              url: '../need/need',
+            })
+          }, 1000)
+        } else {
+          wx.showToast({
+            title: re.message,
+            icon: 'none',
+            duration: 2000
           })
         }
-      })
-    },
-    // 发布需求
-    lijifabu(){
-      var that =this
-      for(let obj of that.data.tupianlists){
-        that.data.picIurl1 += obj+","
+      }, "put")
+    } else {
+      var data = {
+        wxUserId: that.data.wxuserid,
+        needType: that.data.needsTypeid,
+        needContent: that.data.needscontent,
+        needTitle: that.data.needsname,
+        publishMan: that.data.linkman,
+        publishPhone: that.data.phone,
+        backup1: that.data.picIurl1,
+        needState: 0,
+        oneAreaId: that.data.cityId,
+        twoAreaId: that.data.areaId,
+        backup5: 0
       }
-      that.data.picIurl1=that.data.picIurl1.substring(0,that.data.picIurl1.length-1)
-      var s = qingqiu.yanzheng(that.data.needsname + ",输入需求标题|" + that.data.cityId + ",选择所在区域|" + that.data.areaId + ",选择所在区域|" + that.data.phone + ",输入联系电话|" + that.data.linkman + ",输入联系人|" + that.data.youhuijia + ",输入出价")
-      if (s != 0) {
-        wx.showToast({
-          title: s,
-          icon:'none',
-          duration:2000
-        })
-        return
-      }
-      var shuzi =util.numberReg(that.data.phone)
-      if (shuzi != 0) {
-        wx.showToast({
-          title: shuzi,
-          icon:'none',
-          duration:2000
-        })
-        return
-      }
-      // if(that.data.firstId==""||that.data.secondId==""||that.data.cityId==""||that.data.areaId==""||that.data.picIurl1==""||that.data.phone==""||that.data.linkman==""||that.data.youhuijia==""||that.data.needscontent==""){
-      //   wx.showToast({
-      //     title: '有选项未填写！',
-      //     icon:'none',
-      //     duration:2000
-      //   })
-      //   return
-      // }
-      if(that.data.select=="circle")
-      {
-        wx.showToast({
-          title: '请勾选同意协议！',
-          icon:'none',
-          duration:2000
-        })
-        return
-      }
-      if(that.data.type == 1){
-        var data={
-          id:that.data.id,
-          wxUserId : that.data.wxuserid,
-          needType:that.data.needsTypeid,
-          needContent:that.data.needscontent,
-          needTitle:that.data.needsname,
-          publishMan:that.data.linkman,
-          publishPhone:that.data.phone,
-          backup1:that.data.picIurl1,
-          needState:that.data.needstate,
-          oneAreaId:that.data.cityId,
-          twoAreaId:that.data.areaId,
-          backup5:0
+      console.log(data)
+      qingqiu.get("insertYneed", data, function (re) {
+        console.log(re)
+        if (re.success == true) {
+          wx.showToast({
+            title: '提交成功,等待后台审核...',
+            icon: 'none',
+            duration: 2000
+          })
+          setTimeout(function () {
+            wx.switchTab({
+              url: '../need/need',
+            })
+          }, 1000)
+        } else {
+          wx.showToast({
+            title: re.message,
+            icon: 'none',
+            duration: 2000
+          })
         }
-        console.log(data)
-        qingqiu.get("needUpdateStateById", data, function(re) {
-          if (re.success == true) {
-            wx.showToast({
-              title: '修改成功',
-              icon: 'success',
-              duration: 2000
-            })
-            setTimeout(function(){
-              wx.switchTab({
-                url: '../need/need',
-              })
-            },1000)
-          } else{
-            wx.showToast({
-              title: re.message,
-              icon: 'none',
-              duration: 2000
-            })
-          }
-        },"put")
-      }else{
-        var data={
-          wxUserId : that.data.wxuserid,
-          needType:that.data.needsTypeid,
-          needContent:that.data.needscontent,
-          needTitle:that.data.needsname,
-          publishMan:that.data.linkman,
-          publishPhone:that.data.phone,
-          backup1:that.data.picIurl1,
-          needState:0,
-          oneAreaId:that.data.cityId,
-          twoAreaId:that.data.areaId,
-          backup5:0
-        }
-        console.log(data)
-        qingqiu.get("insertYneed", data, function(re) {
-          console.log(re)
-          if (re.success == true) {
-            wx.showToast({
-              title: '提交成功,等待后台审核...',
-              icon:'none',
-              duration:2000
-            })
-            setTimeout(function(){
-              wx.switchTab({
-                url: '../need/need',
-              })
-            },1000)
-          } else {
-            wx.showToast({
-              title: re.message,
-              icon: 'none',
-              duration: 2000
-            })
-          }
-        },'post')
-      }
-    },
-    // 一级分类
-    oneClass(){
-      var that =this
-      var data={
-        type:3
-      }
-      qingqiu.get("oneClassList", data, function(re) {
+      }, 'post')
+    }
+  },
+  // 一级分类
+  oneClass() {
+    var that = this
+    var data = {
+      type: 3
+    }
+    qingqiu.get("oneClassList", data, function (re) {
       if (re.success == true) {
         if (re.result != null) {
-          that.setData ({
-            oneclass : re.result
+          that.setData({
+            oneclass: re.result
           })
         } else {
           wx.showToast({
             title: '一级分类：' + re.message,
-            icon:'none',
-            duration:2000
+            icon: 'none',
+            duration: 2000
           })
         }
-      } 
-    })
-    },
-    // 二级分类
-    twoClass(){
-      var that =this
-      var data={
-        oneClassId:that.data.firstId
       }
-      qingqiu.get("oneClassList", data, function(re) {
+    })
+  },
+  // 二级分类
+  twoClass() {
+    var that = this
+    var data = {
+      oneClassId: that.data.firstId
+    }
+    qingqiu.get("oneClassList", data, function (re) {
       if (re.success == true) {
         if (re.result != null) {
-          that.setData ({
-            twoclass : re.result
+          that.setData({
+            twoclass: re.result
           })
         } else {
           wx.showToast({
             title: '二级分类：' + re.message,
-            icon:'none',
-            duration:2000
+            icon: 'none',
+            duration: 2000
           })
         }
-      } 
-    })
-    },
-    // 一级区域
-  QueryoneArea(){
-    var that=this
-    qingqiu.get("queryOneArea", null, function(re) {
-    if (re.success == true) {
-      if (re.result != null) {
-        that.city=re.result
-        that.setData({
-          city:that.city
-        })
-      }else {
-        wx.showToast({
-          title: '一级区域：' + re.message,
-          icon:'none',
-          duration:2000
-        })
       }
-    } 
-  })
+    })
+  },
+  // 一级区域
+  QueryoneArea() {
+    var that = this
+    qingqiu.get("queryOneArea", null, function (re) {
+      if (re.success == true) {
+        if (re.result != null) {
+          that.city = re.result
+          that.setData({
+            city: that.city
+          })
+        } else {
+          wx.showToast({
+            title: '一级区域：' + re.message,
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      }
+    })
   },
   // 二级区域
-  QuerytwoArea(){
+  QuerytwoArea() {
     var that = this
-    var data ={
-      oneAreaId:that.data.cityId
+    var data = {
+      oneAreaId: that.data.cityId
     }
-    qingqiu.get("queryTwoArea", data, function(re) {
-    if (re.success == true) {
-      if (re.result != null) {
-        that.area=re.result
-        that.setData({
-          area:that.area
-        })
-      }else {
-        wx.showToast({
-          title: '二级区域：' + re.message,
-          icon:'none',
-          duration:2000
-        })
+    qingqiu.get("queryTwoArea", data, function (re) {
+      if (re.success == true) {
+        if (re.result != null) {
+          that.area = re.result
+          that.setData({
+            area: that.area
+          })
+        } else {
+          wx.showToast({
+            title: '二级区域：' + re.message,
+            icon: 'none',
+            duration: 2000
+          })
+        }
       }
-    } 
-  })
+    })
   },
   //隐藏弹窗样式 地址
-  hideModal: function() {
+  hideModal: function () {
     var that = this;
     var animation = wx.createAnimation({
       duration: 200,
@@ -469,7 +468,7 @@ Page({
       animationData: animation.export(),
       hasMask: false
     })
-    setTimeout(function() {
+    setTimeout(function () {
       animation.translateY(0).step()
       this.setData({
         animationData: animation.export(),
@@ -621,21 +620,21 @@ Page({
       firstId: id,
       yijiname1: name
     })
-    var data={
-      oneClassId:that.data.firstId
+    var data = {
+      oneClassId: that.data.firstId
     }
-    qingqiu.get("twoClassList", data, function(re) {
-    if (re.success == true) {
-      if (re.result != null) {
-        that.twoclass = re.result
-        that.setData ({
-          twoclass : that.twoclass
-        })
-      } else {
-        qingqiu.tk('未查询到任何数据')
+    qingqiu.get("twoClassList", data, function (re) {
+      if (re.success == true) {
+        if (re.result != null) {
+          that.twoclass = re.result
+          that.setData({
+            twoclass: that.twoclass
+          })
+        } else {
+          qingqiu.tk('未查询到任何数据')
+        }
       }
-    } 
-  })
+    })
   },
   // 右侧单选点击
   right: function (e) {
@@ -805,31 +804,30 @@ Page({
       cityname1: name,
       show: true
     })
-    var data ={
-      oneAreaId:that.data.cityId
+    var data = {
+      oneAreaId: that.data.cityId
     }
-    qingqiu.get("queryTwoArea", data, function(re) {
-    if (re.success == true) {
-      if (re.result != null) {
-        that.area=re.result
-        that.setData({
-          area:that.area
-        })
-      }else {
-        qingqiu.tk('未查询到任何数据')
+    qingqiu.get("queryTwoArea", data, function (re) {
+      if (re.success == true) {
+        if (re.result != null) {
+          that.area = re.result
+          that.setData({
+            area: that.area
+          })
+        } else {
+          qingqiu.tk('未查询到任何数据')
+        }
       }
-    } 
-  })
+    })
   },
   // 右侧单选点击
   arearight: function (e) {
     var that = this;
-    if(that.data.cityname1==undefined)
-    {
+    if (that.data.cityname1 == undefined) {
       wx.showToast({
         title: '请先选择城市',
-        icon:'none',
-        duration:2000
+        icon: 'none',
+        duration: 2000
       })
       return
     }
@@ -903,57 +901,73 @@ Page({
     })
   },
   // 图片上传（对接完成）
-  upimg: function(e) {
+  upimg: function (e) {
     var type = e.currentTarget.dataset.type
     var index = e.currentTarget.dataset.number
     var that = this
     wx.chooseImage({
-      count:1,
+      count: 1,
       sizeType: ['compressed'], // 指定只能为压缩图，首先进行一次默认压缩
       sourceType: ['album', 'camera'],
-      success:function(res) {
-       const tempFilePaths = res.tempFilePaths;
-       console.log(tempFilePaths)
-       wx.uploadFile({
-        url: api.uploadurl, //仅为示例，非真实的接口地址
-        filePath: tempFilePaths[0],
-        header: {
-         "Content-Type": "multipart/form-data"
-         },
-         formData: {
-           method: 'POST' //请求方式
-         },
-         name: 'file',
-         success(res) {
-           var r = res.data
-           var jj = JSON.parse(r);
-           var sj = api.viewUrl + jj.message
-           that.data.tupianlists.push(jj.message)
-           that.setData({
-             tupianlists:that.data.tupianlists,
-             picimg1: sj,
-             picimgs1:jj.message
-           })
-         }
-      })
-    },
-    fail: (err) => {
-    }
-  }, this)
+      success: function (res) {
+        const tempFilePaths = res.tempFilePaths;
+        console.log(tempFilePaths)
+        qingqiu.messageReg(tempFilePaths, 1, function (res) {
+          var data = JSON.parse(res.data)
+          if (data.errcode == 87014) {
+            wx.showToast({
+              title: '内容含有违法违规内容',
+              icon: 'none'
+            })
+            return
+          } else if (data.errcode != 0) {
+            wx.showToast({
+              title: '令牌失效，请重新进入小程序',
+              icon: 'none'
+            })
+            return
+          } else {
+            wx.uploadFile({
+              url: api.uploadurl, // 仅为示例，非真实的接口地址
+              filePath: tempFilePaths[0],
+              header: {
+                "Content-Type": "multipart/form-data"
+              },
+              formData: {
+                method: 'POST' //请求方式
+              },
+              name: 'file',
+              success(res) {
+                var r = res.data
+                var jj = JSON.parse(r);
+                var sj = api.viewUrl + jj.message
+                that.data.tupianlists.push(jj.message)
+                that.setData({
+                  tupianlists: that.data.tupianlists,
+                  picimg1: sj,
+                  picimgs1: jj.message
+                })
+              }
+            })
+          }
+        })
+      },
+      fail: (err) => {}
+    }, this)
   },
   // 删除图片
-  shanchu: function(e){
-    var that=this
-    var tplj=e.currentTarget.dataset.tplj
-    that.data.tupianlists.splice(tplj,1)
+  shanchu: function (e) {
+    var that = this
+    var tplj = e.currentTarget.dataset.tplj
+    that.data.tupianlists.splice(tplj, 1)
     console.log(that.data.tupianlists)
     that.setData({
-      tupianlists:that.data.tupianlists
+      tupianlists: that.data.tupianlists
     })
-    that.data.num -=1;
+    that.data.num -= 1;
     that.setData({
-      num: that.data.num 
-     });
+      num: that.data.num
+    });
   },
   //显示弹窗样式
   showModal: function (e) {
@@ -963,7 +977,7 @@ Page({
     var animation = wx.createAnimation({
       duration: 300,
       timingFunction: "linear",
-      delay: 0 
+      delay: 0
     })
     this.animation = animation
     animation.opacity(0).rotateX(-100).step();
@@ -1022,7 +1036,7 @@ Page({
     }.bind(this), 200)
   },
   // 业务分类
-  showModallist: function() {
+  showModallist: function () {
     this.typefenleiyj()
     this.setData({
       hasMask: true
@@ -1037,9 +1051,9 @@ Page({
     this.setData({
       animationData: animation.export(),
       showModalStatuslist: true,
-      showModalStatus6:true
+      showModalStatus6: true
     })
-    setTimeout(function() {
+    setTimeout(function () {
       animation.opacity(1).rotateX(0).step();
       this.setData({
         animationData: animation.export()
@@ -1047,18 +1061,18 @@ Page({
     }.bind(this), 200)
   },
   //选择业务页面关闭
-  hideModallist: function(e) {
-    var that=this
+  hideModallist: function (e) {
+    var that = this
     var flag = e.currentTarget.dataset.return
-    if(flag=="ture"){
+    if (flag == "ture") {
       that.setData({
-        yijiname : that.data.yijiname,
-        erjiname : that.data.erjiname,
+        yijiname: that.data.yijiname,
+        erjiname: that.data.erjiname,
       })
-    }else{
+    } else {
       that.setData({
-        yijiname : '',
-        erjiname : '',
+        yijiname: '',
+        erjiname: '',
       })
     }
     //this.writeclass(flag)
@@ -1074,61 +1088,63 @@ Page({
       animationData2: animation.export(),
       hasMask: false
     })
-    setTimeout(function() {
+    setTimeout(function () {
       animation.translateY(0).step()
       this.setData({
         animationData2: animation.export(),
         showModalStatuslist: false,
-        showModalStatus6:false
+        showModalStatus6: false
       })
     }.bind(this), 200)
   },
   // 获取分类
-  typefenleiyj: function() {
+  typefenleiyj: function () {
     var that = this
     var data = {
-      type:3
+      type: 3
     }
-    qingqiu.get("oneClassList", data, function(re) {
+    qingqiu.get("oneClassList", data, function (re) {
       if (re.success == true) {
         if (re.result != null) {
-          for(let i=0;i<re.result.length;i++){
-            var gongzhongclass = 'gongzhong[' + i +'].oneclass'
+          for (let i = 0; i < re.result.length; i++) {
+            var gongzhongclass = 'gongzhong[' + i + '].oneclass'
             var gongzhongid = 'gongzhong[' + i + '].id'
             that.setData({
-              [gongzhongid]:re.result[i].id,
-              [gongzhongclass]:re.result[i].className
+              [gongzhongid]: re.result[i].id,
+              [gongzhongclass]: re.result[i].className
             })
             console.log(re.result[i].className)
-            var onedata = { oneClassId:re.result[i].id }
-            qingqiu.get("twoClassList",onedata,function(re){
-              if (re.success == true){
+            var onedata = {
+              oneClassId: re.result[i].id
+            }
+            qingqiu.get("twoClassList", onedata, function (re) {
+              if (re.success == true) {
                 if (re.result != null) {
-                  var gongzhongclass2 = 'gongzhong[' + i +'].twoclasslist'
+                  var gongzhongclass2 = 'gongzhong[' + i + '].twoclasslist'
                   that.setData({
-                    [gongzhongclass2]:re.result
+                    [gongzhongclass2]: re.result
                   })
                 }
               }
             })
           }
-        } 
-      } 
+        }
+      }
     })
   },
-  typefenleiej: function() {
+  typefenleiej: function () {
     var data = {
       oneClassId: this.data.typeyj
     }
     var that = this
-    qingqiu.get("twoClassService", data, function(re) {
+    qingqiu.get("twoClassService", data, function (re) {
       that.setData({
         typeejlist: re.data.result
       })
     })
   },
   // 选项卡点击事件获取分类
-  fenlei: function(e) {
+  fenlei: function (e) {
     var that = this;
     var id = 1
     var litype = 0
@@ -1144,14 +1160,14 @@ Page({
     var typeerji1 = "fenleitype2.erjiid"
     var typestate1 = "fenleitype2.typestate"
     that.setData({
-      [typeid]:'',
-      [typeerji]:'',
-      [typestate]:false,
-      [typeid1]:'',
-      [typeerji1]:'',
-      [typestate1]:false,
-      fenClass1:'',
-      fenClass2:'',
+      [typeid]: '',
+      [typeerji]: '',
+      [typestate]: false,
+      [typeid1]: '',
+      [typeerji1]: '',
+      [typestate1]: false,
+      fenClass1: '',
+      fenClass2: '',
       // needsTypeid: id,
       litype: litype,
       yijiname: '',
@@ -1163,13 +1179,13 @@ Page({
   },
   // 改变二级分类
   changetwoclass: function (e) {
-    var that=this
+    var that = this
     that.data.flerjiid = e.currentTarget.dataset.id
     that.data.yijiid = e.currentTarget.dataset.yjid
     that.data.yijiname = e.currentTarget.dataset.yijiname
     that.data.erjiname = e.currentTarget.dataset.erjiname
     that.setData({
-      flerjiid : that.data.flerjiid
+      flerjiid: that.data.flerjiid
     })
   },
 })

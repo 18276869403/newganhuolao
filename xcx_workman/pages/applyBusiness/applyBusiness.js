@@ -865,11 +865,12 @@ Page({
         console.log(res)
         const tempFilePaths = res.tempFilePaths;
         qingqiu.messageReg(tempFilePaths,1,function(res){
-          console.log('图片过滤消息',res)
+          console.log(res)
           var data = JSON.parse(res.data)
+          console.log(data)
           if(data.errcode == 87014){
             wx.showToast({
-              title: data.errMsg,
+              title: '内容含有违法违规内容',
               icon:'none'
             })
             return

@@ -21,7 +21,7 @@ const needUpdateStateById = baseUrl + "pc/hall/needUpdateStateById"
 // 我的留言
 const pcQueryMessagePageByUserID = baseUrl + "pc/user/pcQueryMessagePageByUserId"
 // 删除留言
-const deleteMessage = baseUrl + "pc/user/deleteMessage"
+const deleteUserIm = baseUrl + "pc/user/deleteUserIm"
 // 删除我的商品
 const deleteUserGood = baseUrl + "pc/user/deleteUserGood"
 // 添加商品
@@ -68,7 +68,7 @@ module.exports = {
   addUserGood:addUserGood,
   pcQueryUserPointPage:pcQueryUserPointPage,
   deleteUserGood:deleteUserGood,
-  deleteMessage:deleteMessage,
+  deleteUserIm:deleteUserIm,
   pcQueryMessagePageByUserID:pcQueryMessagePageByUserID,
   insertCase:insertCase,
   pcQueryWxCaseById:pcQueryWxCaseById,

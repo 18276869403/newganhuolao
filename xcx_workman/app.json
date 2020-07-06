@@ -1,8 +1,9 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/recruitment/recruitment",
     "pages/recruitmentDetail/recruitmentDetail",
-    "pages/index/index",
+    "pages/submitRecruitment/submitRecruitment",
     "pages/MaterialDetails/MaterialDetails",
     "pages/applyBusiness/applyBusiness",
     "pages/submitMaterial/submitMaterial",

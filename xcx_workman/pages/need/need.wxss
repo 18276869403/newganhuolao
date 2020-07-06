@@ -4,9 +4,8 @@ page {
   background: #f5f7fb;
   padding-bottom: 50rpx
 }
-content-status-text
 .top {
-  height: 180rpx;
+  height: 60rpx;
   width: 94%;
   background: #fff;
   padding: 3%;
@@ -15,14 +14,14 @@ content-status-text
 .top-title {
   width: 100%;
   margin-top: 10rpx;
-  margin-bottom: 40rpx;
-  height: 50rpx;
-  line-height: 50rpx;
+  /* margin-bottom: 40rpx; */
+  height: 60rpx;
+  line-height: 60rpx;
   position: relative
 }
 
 .top-title-left {
-  width: 50%;
+  width: 30%;
   height: 60rpx;
   line-height: 60rpx;
 }

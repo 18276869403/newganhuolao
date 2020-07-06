@@ -413,7 +413,6 @@ Page({
             return
           }
           for(let obj of re.result.records){
-            debugger
             if(obj.starClass == 0){
               obj.shopName = "暂未评级"
             }else if(obj.starClass == 1){

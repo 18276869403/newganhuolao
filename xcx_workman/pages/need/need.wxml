@@ -10,29 +10,12 @@
 					<image src="{{viewUrl}}static/image/xiala.png" class="xiala-img"></image>
 				</view>
 			</view>
-			<view class="top-title-sort hengxiang" bindtap="showModallist">
-				<view class="sort-fenzu">
-					<image class="fenzu-img" src="{{viewUrl}}static/image/fenzu.png"></image>
-				</view>
-				<view class="sort-text" wx-if="{{yijiname==''}}">
-					按分类
-				</view>
-				<view class="sort-text" wx-if="{{yijiname!=''}}">
-					{{yijiname}}-{{erjiname}}
-				</view>
-				<view class="sort-xiamian">
-					<image src="{{viewUrl}}static/image/xiamian.png" class="xiamian-img"></image>
-				</view>
-			</view>
-
-		</view>
-		<view class="hengxiang top-search">
 			<view class="top-title-right hengxiang">
 				<view class="top-title-right-img">
 					<image src="{{viewUrl}}static/image/search.png" class="search-img"></image>
 				</view>
 				<view class="top-title-right-shuru">
-					<input type="text" bindinput="shurukuang" value="{{sousuotext}}" placeholder="输入搜索内容" class="shurukuang"></input>
+					<input type="text" bindinput="shurukuang" value="{{sousuotext}}" placeholder="输入标题搜索" class="shurukuang"></input>
 				</view>
 				<view class="top-title-right-sousuo">
 					<view class="sousuo-button" bindtap="btnsearch">搜索</view>

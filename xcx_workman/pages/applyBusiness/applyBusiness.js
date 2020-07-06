@@ -908,9 +908,9 @@ Page({
             }
           }
         })
-        console.log(api.general)
+        console.log(api.imgCheck)
         wx.uploadFile({
-          url: api.general,
+          url: api.imgCheck,
           filePath: tempFilePaths[0],
           name: 'name',
           header: {

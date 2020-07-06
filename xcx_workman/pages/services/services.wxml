@@ -31,7 +31,7 @@
 					<image src="{{viewUrl}}static/image/search.png" class="search-img"></image>
 				</view>
 				<view class="top-title-right-shuru">
-					<input type="text" bindinput="shurukuang" value="{{sousuotext}}" placeholder="输入搜索内容" class="shurukuang"></input>
+					<input type="text" bindinput="shurukuang" value="{{sousuotext}}" placeholder="输入昵称/店铺名称" class="shurukuang"></input>
 				</view>
 				<view class="top-title-right-sousuo">
 					<view class="sousuo-button" bindtap="btnsearch">搜索</view>
@@ -163,7 +163,7 @@
 								<image src="{{item.picIurl}}" class="business-img"></image>
 							</view>
 							<view class="content-business-bottom hengxiang">
-								<view>{{item.shopName}}</view>
+								<view class="content-business-bottom-text">{{item.shopName}}</view>
 							</view>
 							<view class="content-business-bottom-type hengxiang">
 								■ 

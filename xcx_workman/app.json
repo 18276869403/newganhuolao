@@ -1,6 +1,10 @@
 {
   "pages": [
+    "pages/recruitment/recruitment",
+    "pages/recruitmentDetail/recruitmentDetail",
     "pages/index/index",
+    "pages/MaterialDetails/MaterialDetails",
+    "pages/applyBusiness/applyBusiness",
     "pages/submitMaterial/submitMaterial",
     "pages/jsjg/jsjg",
     "pages/services/services",
@@ -19,7 +23,6 @@
     "pages/calculate/calculate",
     "pages/businessDetails/businessDetails",
     "pages/workerDetails/workerDetails",
-    "pages/applyBusiness/applyBusiness",
     "pages/submitNeeds/submitNeeds",
     "pages/needsDetails/needsDetails",
     "pages/need/need",

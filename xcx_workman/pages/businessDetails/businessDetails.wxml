@@ -104,13 +104,14 @@
                 <view>
                   <image src="{{viewUrl}}static/image/liulan.png" class="liulan-img"></image>
                 </view>
-                <view>{{item.giveGood}}</view>
+                 <view wx:if="{{item.backup5 == ''||item.backup5==null}}">0</view>
+                 <view wx:if="{{item.backup5 != ''&&item.backup5!=null}}">{{item.backup5}}</view>
               </view>
               <view class="hengxiang">
                 <view>
                   <image src="{{viewUrl}}static/image/pinglun.png" class="pinglun-img"></image>
                 </view>
-                <view>{{item.pinglun}}</view>
+                <view>{{item.messageSum}}</view>
               </view>
             </view>
           </view>

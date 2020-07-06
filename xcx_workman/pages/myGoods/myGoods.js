@@ -50,6 +50,8 @@ Page({
     spmyid:'',
     spid:'',
     spxx:'',
+    pageNo:1,
+    isLastPage:false,
     type:0
   },
   /**
@@ -59,27 +61,58 @@ Page({
     wx.showShareMenu({
       withShareTicket: true
     })
+    this.data.goodsLists=[]
+    this.data.pageNo=1
+    this.mygoodsList()
+  },
+  // 下拉刷新
+  onPullDownRefresh: function () {
+    this.data.isLastPage=false
+    this.data.pageNo=1
+    this.data.goodsLists=[]
+    this.onLoad()
+    setTimeout(() => {
+      wx.stopPullDownRefresh()
+    }, 1000);
+  },
+  // 上拉功能
+  onReachBottom: function () {
+    if (this.data.isLastPage) {
+      wx.showToast({
+        title: '没有更多了！',
+        icon:'none',
+        duration:2000
+      })
+        return
+    }
+    this.setData({ pageNo: this.data.pageNo + 1 })
     this.mygoodsList()
   },
   // 我的商品
   mygoodsList() {
     var that = this
     var data={
-      userId:app.globalData.wxid
+      userId:app.globalData.wxid,
+      pageNo:that.data.pageNo,
+      pageSize:10
   }
   qingqiu.get("queryMyGoodPage", data, function(re) {
     console.log(re)
   if (re.success == true) {
+    if(re.result.records==''){
+      that.data.isLastPage=true
+    }
     if (re.result != null) {
-      that.goodsLists = re.result.records
-      for(var i= 0 ; i < that.goodsLists.length; i++){
+      // that.goodsLists = re.result.records
+      for(var i= 0 ; i < re.result.records.length; i++){
         if(re.result.records[i].goodPic1 !=null && re.result.records[i].goodPic1.length>0){
-          that.goodsLists[i].goodPic1 = re.result.records[i].goodPic1.split(',')
-          that.goodsLists[i].goodPic2 = re.result.records[i].goodPic2.split(',')
-        }            
-      } 
+          re.result.records[i].goodPic1 = re.result.records[i].goodPic1.split(',')
+          re.result.records[i].goodPic2 = re.result.records[i].goodPic2.split(',')
+        }
+        that.data.goodsLists.push(re.result.records[i])    
+      }
       that.setData ({
-        goodsLists : re.result.records
+        goodsLists : that.data.goodsLists
       })
     } else {
       qingqiu.tk('未查询到任何数据')
@@ -109,7 +142,7 @@ Page({
       })
     }
   },'put')
-  this.mygoodsList()
+  this.onLoad()
   },
 
   // 编辑商品

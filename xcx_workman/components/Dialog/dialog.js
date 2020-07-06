@@ -1,6 +1,7 @@
 // pages/components/dialog.js
 const app = getApp()
 const qingqiu = require('../../utils/request.js')
+const api = require('../../utils/config.js')
 Component({
   options:{
     multipleSlots:true // 在组件定义时的选项中启用多slot支持
@@ -36,6 +37,7 @@ Component({
   data: {
     // 弹窗显示控制
     isShow:false,
+    viewUrl:api.viewUrl
   },
 
   /**
@@ -85,7 +87,6 @@ Component({
                 // debugger
                 const userInfo = res.userInfo
                 var openid = wx.getStorageSync('openid')
-                console.log(openid)
                 var data = {
                   code:code,
                   picUrl: userInfo.avatarUrl,

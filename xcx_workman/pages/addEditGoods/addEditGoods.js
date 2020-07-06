@@ -91,11 +91,8 @@ Page({
         icon:'success',
         duration:2000
       })
-      // wx.navigateTo({
-      //   url: '../myGoods/myGoods?obj='+data.userId,
-      // })
-      wx.navigateBack({
-        delta: 1
+      wx.redirectTo({
+        url: '../myGoods/myGoods',
       })
     } 
   },'put')
@@ -122,13 +119,8 @@ Page({
         icon:'success',
         duration:2000
       })
-      // setTimeout(function(){
-      //   wx.navigateTo({
-      //     url: '../myGoods/myGoods?obj='+data.userId,
-      //  })
-      // })
-      wx.navigateBack({
-        delta: 1
+      wx.redirectTo({
+        url: '../myGoods/myGoods',
       })
     } else{
       wx.showToast({

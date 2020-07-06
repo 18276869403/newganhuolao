@@ -4,6 +4,12 @@
 	<view class="content zongxiang">
 		<view class="content-list zongxiang">
 			<view class="content-list-title">{{xqxqlist.needTitle}}</view>
+			<view class="content-list-title-price" wx:if="{{xqxqlist.needPrice != null && xqxqlist.needPrice != '' && xqxqlist.needPrice != 0}}">
+				￥{{xqxqlist.needPrice}} 元
+			</view>
+			<view class="content-list-title-price" wx:if="{{xqxqlist.needPrice == null || xqxqlist.needPrice == '' || xqxqlist.needPrice == 0}}">
+				￥ 面议
+			</view>
 			<!-- <view class="hengxiang content-list-type">
         <view>
           <image src="{{viewUrl}}static/image/jiancailei.png" class="leixing-img"></image>

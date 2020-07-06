@@ -24,12 +24,11 @@ page{
 }
 
 .erweima-img {
-  width: 502rpx;
-  z-index: 10;
-  height: 502rpx;
   position: absolute;
-  top: 50%;
-  left: 124rpx;
+  top: 55%;
+  left: 214rpx;
+  width: 300rpx;
+  height: 300rpx;
 }
 
 /* 海报 */
@@ -45,12 +44,12 @@ page{
   width: 100%;
   height: 667px;
 }
-.erweima{
+/* .erweima{
   position: absolute;
   width: 100%;
   height: 60px;
   color: brown;
-}
+} */
 .code-img {
   /* position: absolute; */
   /* bottom: 0rpx; */
@@ -73,9 +72,4 @@ page{
   margin-right: 0;
   overflow: auto;
   background-color: rgba(143,143,143, 0);
-}
-.erweima-img{
-  position: absolute;
-  width: 115;
-  height: 115;
 }

@@ -515,10 +515,8 @@ Page({
   },
   // 本地招工
   bendi: function () {
-    wx.showToast({
-      title: '开发中，敬请期待...',
-      icon: 'none',
-      duration: 1000
+    wx.navigateTo({
+      url: '../recruitment/recruitment',
     })
   },
   // 公益活动

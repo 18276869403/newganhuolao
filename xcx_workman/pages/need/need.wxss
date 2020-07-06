@@ -4,7 +4,7 @@ page {
   background: #f5f7fb;
   padding-bottom: 50rpx
 }
-
+content-status-text
 .top {
   height: 180rpx;
   width: 94%;

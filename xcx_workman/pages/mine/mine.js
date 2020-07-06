@@ -63,6 +63,7 @@ Page({
               Name:re.result.wxNc
             })
           }
+          
           if(re.result.backup4 == "0" || re.result.backup4 == "" || re.result.backup4==null){
             re.result.backup4 = "未实名认证"
           }else{
@@ -74,19 +75,38 @@ Page({
           if(re.result.userPoint == null || re.result.userPoint == ''){
             re.result.userPoint = 0
           }
-          if(re.result.starClass == 0 || re.result.starClass == null){
-            re.result.starClass = "暂未评定"
-          }else if(re.result.starClass == 1){
-            re.result.starClass = "一级工匠"
-          }else if(re.result.starClass == 2){
-            re.result.starClass = "二级工匠"
-          }else if(re.result.starClass == 3){
-            re.result.starClass = "三级工匠"
-          }else if(re.result.starClass == 4){
-            re.result.starClass = "四级工匠"
-          }if(re.result.starClass == 5){
-            re.result.starClass = "五级工匠"
+          if(re.result.wxState == 1){
+            if(re.result.starClass == 0 || re.result.starClass == null){
+              re.result.starClass = "暂未评定"
+            }else if(re.result.starClass == 1){
+              re.result.starClass = "一级工匠"
+            }else if(re.result.starClass == 2){
+              re.result.starClass = "二级工匠"
+            }else if(re.result.starClass == 3){
+              re.result.starClass = "三级工匠"
+            }else if(re.result.starClass == 4){
+              re.result.starClass = "四级工匠"
+            }if(re.result.starClass == 5){
+              re.result.starClass = "五级工匠"
+            }
+          }else if(re.result.wxState == 0){
+            if(re.result.starClass == 0 || re.result.starClass == null){
+              re.result.starClass = "暂未评定"
+            }else if(re.result.starClass == 1){
+              re.result.starClass = "一星商铺"
+            }else if(re.result.starClass == 2){
+              re.result.starClass = "二星商铺"
+            }else if(re.result.starClass == 3){
+              re.result.starClass = "三星商铺"
+            }else if(re.result.starClass == 4){
+              re.result.starClass = "四星商铺"
+            }if(re.result.starClass == 5){
+              re.result.starClass = "五星商铺"
+            }
+          }else{
+            re.result.starClass="普通用户"
           }
+          
           re.result.picIurl = that.data.viewUrl + re.result.picIurl
           if(re.result.oneClassName!= "" && re.result.oneClassName!=null){
             re.result.oneClassName = re.result.oneClassName.replace(/,/, " | ")

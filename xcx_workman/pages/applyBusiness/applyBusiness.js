@@ -864,6 +864,9 @@ Page({
       success: function (res) {
         console.log(res)
         const tempFilePaths = res.tempFilePaths;
+        qingqiu.messageReg(tempFilePaths,1,function(res){
+          console.log('图片过滤消息',res)
+        },'POST')
         wx.uploadFile({
           url: api.uploadurl,
           filePath: tempFilePaths[0],
@@ -906,22 +909,6 @@ Page({
                 picIurl1: jj.message
               })
             }
-          }
-        })
-        console.log(api.imgCheck)
-        wx.uploadFile({
-          url: api.imgCheck,
-          filePath: tempFilePaths[0],
-          name: 'name',
-          header: {
-            "Content-Type": "multipart/form-data"
-          },
-          formData: {
-            // method: 'POST', //请求方式
-            file:tempFilePaths[0]
-          },
-          success: function (res) {
-            console.log('图片校验返回参数', res)
           }
         })
       },

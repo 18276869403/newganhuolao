@@ -146,7 +146,11 @@ Page({
   },
   // 需求在线联系
   zaixianlianxi(e){
-   
+   var wxid = e.currentTarget.dataset.wxid
+   var name = e.currentTarget.dataset.name
+   wx.navigateTo({
+     url: '../HM-chat/HM-chat?id='+wxid+'&name='+name,
+   })
   },
   // 需求报名
   baoming(){

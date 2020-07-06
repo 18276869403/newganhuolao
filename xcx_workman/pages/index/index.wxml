@@ -176,7 +176,7 @@
 										</view>
 									</view>
 								</view>
-                <view class="hengxiang content-status">
+								<view class="hengxiang content-status">
 									<view class="content-status-img">
 										<image src="{{viewUrl}}static/image/shalou.png" class="shalou-img"></image>
 									</view>
@@ -219,7 +219,7 @@
 									{{item.oneClassName}}
 								</view>
 							</view>
-							<view class="worker-item-bottom hengxiang">
+							<view class="worker-item-bottom hengxiang" wx:if="{{item.twoClassName != ''}}">
 								<view class="dot"></view>
 								<view class="worker-sort shenglue">
 									{{item.twoClassName}}
@@ -249,13 +249,13 @@
 								{{item.shopName}}
 							</view>
 							<view class="worker-item-bottom hengxiang">
-								<view class="dot"></view>
+								<view style="height:30rpx;line-height:30rpx;color:rgba(244, 130, 13, 1);margin-right:10rpx;">■</view>
 								<view class="worker-sort shenglue">
 									{{item.oneClassName}}
 								</view>
 							</view>
-							<view class="worker-item-bottom hengxiang">
-								<view class="dot"></view>
+							<view class="worker-item-bottom hengxiang" wx:if="{{item.twoClassName != ''}}">
+								<view style="height:30rpx;line-height:30rpx;color:rgba(244, 130, 13, 1);margin-right:10rpx;">■</view>
 								<view class="worker-sort shenglue">
 									{{item.twoClassName}}
 								</view>

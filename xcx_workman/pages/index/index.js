@@ -439,15 +439,28 @@ Page({
         if (re.result != null) {
           for (let obj of re.result.records) {
             obj.picIurl = that.data.viewUrl + obj.picIurl
-            if (obj.oneClassName != null) {
-              if (obj.oneClassName.indexOf(',') != -1) {
-                obj.oneClassName = obj.oneClassName.replace(/,/, "|")
+            // 重定义分类
+            var onename = []
+            var twoname = []
+            if(obj.oneClassName != null){
+              if(obj.oneClassName.indexOf(',') != -1){
+                onename = obj.oneClassName.split(',')
+              }else{
+                onename[0] = obj.oneClassName
               }
             }
-            if (obj.twoClassName != null) {
-              if (obj.twoClassName.indexOf(',') != -1) {
-                obj.twoClassName = obj.twoClassName.replace(/,/, "|")
+            if(obj.twoClassName != null){
+              if(obj.twoClassName.indexOf(',') != -1){
+                twoname = obj.twoClassName.split(',')
+              }else{
+                twoname[0] = obj.twoClassName
               }
+            }
+            obj.oneClassName = onename[0] + ' | ' + twoname[0]
+            if(onename.length > 1){
+              obj.twoClassName = onename[1] + ' | ' + twoname[1]
+            }else{
+              obj.twoClassName = ''
             }
           }
           that.setData({

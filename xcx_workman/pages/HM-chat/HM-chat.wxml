@@ -111,7 +111,7 @@
 						wx:for-item="em"  
 						data-em="{{em}}"
 						bindtap="addEmoji">
-						<image class="emoji-image"   src="{{'/static/img/emoji/'+em.url}}"></image>
+						<image class="emoji-image"   src="http://miss.it-ys.com:9123/work-boot/sys/common/view/static{{'/img/emoji/'+em.url}}"></image>
 					</view>
 				</swiper-item>
 			</swiper>

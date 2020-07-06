@@ -47,7 +47,7 @@
           <view class="delete-button" bindtap="baoming" wx:if="{{xqxqlist.wxUserId!=wxUserid}}">
             报名
           </view>
-          <view class="complete-button" style="width:155rpx;" bindtap="zaixianlianxi" wx:if="{{xqxqlist.wxUserId!=wxUserid}}">
+          <view class="complete-button" style="width:155rpx;" bindtap="zaixianlianxi" data-wxid="{{xqxqlist.wxUserId}}" data-name="{{xqxqlist.name}}" wx:if="{{xqxqlist.wxUserId!=wxUserid}}">
             在线联系
           </view>
           <view class="update-button" bindtap="xiugaigunali" wx:if="{{xqxqlist.wxUserId===wxUserid}}">
@@ -90,7 +90,7 @@
             <view class="jiedan-top-content-date">{{item.signTime}}</view>
           </view>
           <view class="jiedan-top-right" wx-if="{{xqxqlist.wxUserId==wxUserid}}">
-            <image src="{{viewUrl}}static/image/liuyan.png" class="img"></image>
+            <image src="{{viewUrl}}static/image/liuyan.png" class="img" bindtap=""></image>
           </view>
           <view class="jiedan-top-right1" wx-if="{{xqxqlist.wxUserId==wxUserid}}">
             <image src="{{viewUrl}}static/image/dianhua.png" bindtap="phonecell" class="img"></image>

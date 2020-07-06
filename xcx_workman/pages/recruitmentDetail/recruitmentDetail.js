@@ -275,7 +275,7 @@ Page({
   phonecell:function(e){
     var phone = e.currentTarget.dataset.phone
     wx.makePhoneCall({
-      phoneNumber: phone,
+      phoneNumber: phone, 
     })
   }
 })

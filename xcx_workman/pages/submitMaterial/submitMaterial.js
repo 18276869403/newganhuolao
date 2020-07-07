@@ -139,10 +139,15 @@ Page({
     yijiname1: ''
   },
 
+  // 获取Token
+  getAccessToken: function () {
+    qingqiu.getAccessTokenApplets(function () {})
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.getAccessToken()
     wx.showShareMenu({
       withShareTicket: true
     })

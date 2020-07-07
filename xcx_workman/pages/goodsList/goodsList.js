@@ -280,7 +280,7 @@ Page({
     if(that.data.weizhi == undefined || that.data.weizhi == ""){
       wx.showToast({
         title: '请选择城市',
-        icon:'none',
+        icon:'none', 
         duration:1000
       })
       return

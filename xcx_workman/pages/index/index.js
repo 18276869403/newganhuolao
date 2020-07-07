@@ -406,21 +406,9 @@ Page({
             }else{
               obj.twoClassName = ''
             }
-            that.data.workerList.push(obj)
-            // if (obj.oneClassName != null) {
-            //   if (obj.oneClassName.indexOf(',') != -1) {
-            //     obj.oneClassName = obj.oneClassName.replace(/,/, "|")
-            //   }
-            // }
-            // if (obj.twoClassName != null) {
-            //   if (obj.twoClassName.indexOf(',') != -1) {
-            //     obj.twoClassName = obj.twoClassName.replace(/,/, "|")
-            //   }
-            // }
           }
-          console.log(that.data.workerList)
           that.setData({
-            workerList: that.data.workerList
+            workerList: re.result.records
           })
         }
       }

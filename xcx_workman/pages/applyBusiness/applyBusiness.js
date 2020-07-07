@@ -1490,9 +1490,7 @@ Page({
   },
   writeclass: function (type) {
     if (type == "false") {
-      this.setData({
-        yijiname: ''
-      })
+      return
     } else {
       if (this.data.fenClass2 != '') {
         this.setData({

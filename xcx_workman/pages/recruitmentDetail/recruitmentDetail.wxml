@@ -11,7 +11,7 @@
           <view class="list-time-text" wx:if="{{xqxqlist.needState==1}}">已完成</view>
         </view>
       </view>
-      <view class="content-list-title">商品扮熊员</view>
+      <view class="content-list-title">{{zhaogong.hireTitle}}</view>
       <view class="content-list-type-henxian"></view>
       <!-- <view class="hengxiang content-list-type">
         <view>
@@ -22,14 +22,14 @@
         </view>
       </view> -->
       <view class="content-list-title-price">
-				￥2000 月薪
+				￥{{zhaogong.backup3}} 月薪
 			</view>
       <view class="hengxiang content-list-type">
         <view>
           <image src="../image/zhaogongname.png" class="leixing-img"></image>
         </view>
         <view>
-          联系人：张三丰
+          联系人：{{zhaogong.publishMan}}
         </view>
       </view>
       <view class="hengxiang content-list-type">
@@ -37,12 +37,12 @@
           <image src="../image/zhaogongdizhi.png" class="leixing-img"></image>
         </view>
         <view>
-          万载县|双桥镇 
+         {{zhaogong.oneAreaName}}|{{zhaogong.twoAreaName}}
         </view>
       </view>
       <view class="hengxiang content-list-type">
         <view>
-         发布时间：2020-07-06 19:20
+         发布时间：{{zhaogong.createTime}}
         </view>
 
         <!-- 修改，删除，确认完成，用户为创建者 -->
@@ -56,19 +56,17 @@
     </view>
     <view class="content-content zongxiang">
       <view class="content-content-title">招工详情</view>
-      <view class="content-content-list"><text>1、协助总经理起草制订符合公司发展目标的营销战略、销售模式，对销售工作具有战略指导工作 \n
-      2、方案并组织实施，力保销售计划完成，负责制订、完善市场部各项管理制度，并以此知道市场部日常工作 \n
-      3、负责编制本部</text></view>
+      <view class="content-content-list"><text>{{zhaogong.hireContent}}</text></view>
     </view>
     <!-- 图片 -->
     <view class="content-content zongxiang">
       <view class="content-content-title">图片介绍</view>
-      <view class="zhanshi" wx:if="{{xqxqlist.backup1.length>0}}">
-        <view class="zhanshi-item" wx:for='{{xqxqlist.backup1}}' data-id="{{item.id}}">
-          <image src="{{viewUrl}}{{item}}" bindtap="fangda" class="zhanshitu" data-src="{{viewUrl}}{{item}}"></image>
+      <view class="zhanshi">
+        <view class="zhanshi-item" data-id="{{item.id}}" wx:if="{{zhaogong.backup4 != null}}">
+          <image src="{{viewUrl}}{{zhaogong.backup4}}" bindtap="fangda" class="zhanshitu" data-src="{{viewUrl}}{{item}}"></image>
         </view>
       </view>
-      <view class="zhanshi" wx:if="{{xqxqlist.backup1 == null}}">
+      <view class="zhanshi" wx:if="{{zhaogong.backup4 == null}}">
         <image src="{{viewUrl}}static/image/zawu1.png" class="zhanshitu1"></image>
       </view>
     </view>

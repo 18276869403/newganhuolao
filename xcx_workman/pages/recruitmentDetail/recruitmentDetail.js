@@ -12,40 +12,6 @@ Page({
    */
   data: {
     viewUrl:api.viewUrl,
-    // tupianlist: [{
-    //   id: 1,
-    //   tupian: '../image/top.png'
-    // },
-    // {
-    //   id: 2,
-    //   tupian: '../image/top.png'
-    // },
-    // {
-    //   id: 3,
-    //   tupian: '../image/top.png'
-    // }
-    // ],
-    // jiedanList:[{
-    //   id:1,
-    //   name:'东鹏瓷砖万载总代',
-    //   date:'05:00',
-    //   details:'我可以做的，找我吧，我在哪哪哪哪',
-    //   avator:'../image/top.png'
-    // },
-    //   {
-    //     id: 2,
-    //     name: '东鹏瓷砖万载总代',
-    //     date: '05:00',
-    //     details: '我可以做的，找我吧，我在哪哪哪哪',
-    //     avator: '../image/top.png'
-    //   },
-    //   {
-    //     id: 3,
-    //     name: '东鹏瓷砖万载总代',
-    //     date: '05:00',
-    //     details: '我可以做的，找我吧，我在哪哪哪哪',
-    //     avator: '../image/top.png'
-    //   }],
     xqxqlist:[],
     jiedanList:[],
     tupianlist:[],
@@ -58,17 +24,11 @@ Page({
     wx.showShareMenu({
       withShareTicket: true
     })
-    var xqxqlist = JSON.parse(options.obj1)
-    xqxqlist.publishMan = utils.formatName(xqxqlist.publishMan)
+    var zhaogong = JSON.parse(options.obj)
     this.setData({
-      xqxqlist: xqxqlist,
-      id:xqxqlist.id,
-      wxUserid: app.globalData.wxid
+      zhaogong: zhaogong
     })
-    console.log(this.data.wxUserid)
-    console.log(xqxqlist)
-    this.SelectjiedanList()
-    // this.SelecttupianList()
+    console.log(zhaogong)
   }, 
   // 接单人员
   SelectjiedanList() {

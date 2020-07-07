@@ -669,6 +669,9 @@ page {
   line-height: 80rpx;
   background: #F5F6F9;
 }
+.content-icon{
+  font-size: 20rpx;
+}
 
 .tankuang-top2-left {
   width: 25%;

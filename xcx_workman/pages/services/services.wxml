@@ -145,11 +145,11 @@
 							<view class="content-business-bottom-text">{{item.shopName}}</view>
 						</view>
 						<view class="content-business-bottom-type hengxiang">
-							■
+							<view class="content-icon">■</view>
 							<view class="content-business-bottom-text-type">{{item.oneClassName}}</view>
 						</view>
-						<view class="content-business-bottom-type hengxiang">
-							<text wx:if="{{item.twoClassName}}">■</text>
+						<view class="content-business-bottom-type hengxiang" wx:if="{{item.twoClassName!=''}}">
+							<view class="content-icon">■</view>
 							<view class="content-business-bottom-text-type">{{item.twoClassName}}</view>
 						</view>
 					</view>

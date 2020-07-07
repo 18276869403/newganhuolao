@@ -58,10 +58,25 @@ Page({
     var that = this
     // 公众号Token
     qingqiu.getAccessTokenAccount(function () {
-      that.getUserInfo()
+      that.getUserOpenId()
     })
-    // 小程序Token
-    qingqiu.getAccessTokenApplets(function () {})
+    setTimeout(function () {
+      // 小程序Token
+      qingqiu.getAccessTokenApplets(function () {
+        that.getUserInfo()
+      })
+    }, 5000)
+  },
+  getUserInfo:function(){
+    var that = this
+    for(let obj of app.globalData.nextOpenid){
+      wx.request({
+        url: 'https://api.weixin.qq.com/cgi-bin/user/info?access_token=' + app.globalData.access_TokenOff + '&openid=' + obj + '&lang=zh_CN',
+        success:function(res){
+          console.log('获取用户信息',res)
+        }
+      })
+    }
   },
   // 授权
   chushishouquan() {
@@ -74,9 +89,16 @@ Page({
           wx.login({
             success: function (res) {
               var code = res.code
+              // wx.request({
+              //   url: 'https://api.weixin.qq.com/sns/jscode2session?appid=wx14e076d27e942480&secret=fb16e928e1a41fa0e8f21b2f50aa89d5&js_code='+code+'&grant_type=authorization_code',
+              //   success:function(res){
+              //     console.log('获取用户的unionid',res)
+              //   }
+              // })
               wx.getUserInfo({
                 lang: 'zh_CN',
                 success(res) {
+                  console.log('微信用户信息', res)
                   if (res.userInfo == undefined) {
                     that.dialog.showDialog()
                   }
@@ -90,6 +112,7 @@ Page({
                     backup1: openid
                   }
                   qingqiu.get("getKeyInfo", data, function (re) {
+                    console.log(re)
                     app.globalData.wxid = re.result.wxUser.id
                     if (re.result.wxUser.picUrl != null && re.result.wxUser.picUrl.length > 0) {
                       app.globalData.sqgl = 1
@@ -194,7 +217,7 @@ Page({
     })
   },
   // 获取公众号下的微信openid
-  getUserInfo: function () {
+  getUserOpenId: function () {
     var NEXT_OPENID = ''
     var total = 0
     var count = 0
@@ -208,16 +231,13 @@ Page({
             total = res.data.total
             count = res.data.count + count
             app.globalData.nextOpenid = res.data.data.openid
-            console.log('openid公众号', app.globalData.nextOpenid)
           }
         }
       })
     } while (count < total);
-
   },
   onShow: function (options) {
     this.getTokenValue()
-
     wx.showShareMenu({
       withShareTicket: true
     })

@@ -84,8 +84,8 @@ Page({
       if (re.result != null) {
         if(re.result.name != "null" && re.result.name != null && re.result.name != ''){
           re.result.name = re.result.name
-        }else if(re.result.name != "null" && re.result.name != null && re.result.name != ''){
-          re.result.name = re.result.name
+        }else if(re.result.shopName != "null" && re.result.shopName != null && re.result.shopName != ''){
+          re.result.name = re.result.shopName
         }else{
           re.result.name = re.result.wxnc
         }

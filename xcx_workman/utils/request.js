@@ -69,12 +69,13 @@ const messageReg = function(str,type,huidiao, method = 'POST'){
 		wx.uploadFile({
 			url:'https://api.weixin.qq.com/wxa/img_sec_check?access_token=' + app.globalData.access_Token,
 			name: 'file',
+			filePath: str[0],
 			formData:{
 				media:str[0]
 			},
 			method:method,
 			header:{
-				'Content-Type': 'application/octet-stream'
+				"Content-Type": "multipart/form-data"
 			},
 			success:function(res){
 				huidiao(res)

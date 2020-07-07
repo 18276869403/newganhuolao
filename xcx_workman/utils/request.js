@@ -75,7 +75,7 @@ const messageReg = function(str,type,huidiao, method = 'POST'){
 			},
 			method:method,
 			header:{
-				"Content-Type": "multipart/form-data"
+				"Content-Type": "multipart/form-data" 
 			},
 			success:function(res){
 				huidiao(res)

@@ -28,6 +28,7 @@ Page({
       withShareTicket: true
     })
     var workerDetail = JSON.parse(options.obj)
+  console.log(workerDetail)
     var id = workerDetail.id
     var phone = workerDetail.phone
     phone = util.formatPhone(phone)
@@ -123,6 +124,13 @@ Page({
   },
   bintapDetails: function() {
     // console.log(1)
+    if(this.data.workerDetail.id == app.globalData.wxid){
+      wx.showToast({
+        title: '不能雇佣自己',
+        icon:'none'
+      })
+      return
+    }
     this.setData({
       flag: false
     })
@@ -147,7 +155,7 @@ Page({
     var data = {
       wxCaseId:app.globalData.wxid,
       wxCaseId2:this.data.workerDetail.id,
-      estimatedCost:this.data.price + this.data.array[this.data.index],
+      estimatedCost:this.data.price,
       employmentMatters:this.data.workerskill,
       hiringTime:util.formatDate(new Date()),
       predict:this.data.predict,

@@ -116,8 +116,9 @@ Page({
     var data={
       wxCaseId : that.data.ssid,
       pages: 1,
-      size: 10
+      size: 100
     }
+    console.log(data)
     qingqiu.get("caseMessageVoList", data, function(re) {
       console.log(re)
     if (re.success == true) {

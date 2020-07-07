@@ -38,10 +38,16 @@ Page({
     wxuserid: ''
   },
 
+  // 获取Token
+  getAccessToken: function () {
+    qingqiu.getAccessTokenApplets(function () {})
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.getAccessToken()
     wx.showShareMenu({
       withShareTicket: true
     })
@@ -159,7 +165,6 @@ Page({
     var type = e.currentTarget.dataset.type
     var index = e.currentTarget.dataset.number
     var that = this
-    let uploadFile = ''; //最后处理完，图片上传的图片地址
     wx.chooseImage({
       sizeType: ['compressed'], // 指定只能为压缩图，首先进行一次默认压缩
       sourceType: ['album', 'camera'],
@@ -181,8 +186,8 @@ Page({
             return
           } else {
             wx.uploadFile({
-              url: api.uploadurl2 + "/" + targetWidth + "/" + targetHeight, //仅为示例，非真实的接口地址
-              filePath: uploadFile,
+              url: api.uploadurl, //仅为示例，非真实的接口地址
+              filePath: tempFilePaths[0],
               header: {
                 "Content-Type": "multipart/form-data"
               },
@@ -190,11 +195,11 @@ Page({
                 method: 'POST' //请求方式
               },
               name: 'file',
-              success(res) {
-                var r = res.data
+              success(re) {
+                var r = re.data
                 var jj = JSON.parse(r);
                 var sj = api.viewUrl + jj.message
-                console.log(res)
+                console.log(re)
                 if (type == '1') {
                   that.setData({
                     picIurl: sj,

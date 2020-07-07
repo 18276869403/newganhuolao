@@ -70,6 +70,11 @@ Page({
           icon:'success',
           duration:2000
         })
+        setTimeout(function(){
+          wx.redirectTo({
+            url: '../myEmploy/myEmploy',
+          })
+        },1000)
       }
     },'delete')
   },
@@ -153,11 +158,12 @@ Page({
     var data = {
       id:this.data.xqlist.id,
       estimatedCost:this.data.price + this.data.array[this.data.index],
-      employmentMatters:this.data.workerskill,
+      employmentMatters:this.data.workerskill==undefined?this.data.xqlist.employmentMatters:this.data.workerskill,
       hiringTime:util.formatDate(new Date()),
       predict:this.data.predict,
       backup1:this.data.tian[this.data.day]
     }
+    console.log(data)
     qingqiu.get("userWorkUpdateById",data,function(res){
       console.log(res)
       if(res.success == true){
@@ -167,7 +173,7 @@ Page({
           duration:2000 
         })
         setTimeout(function(){
-          wx.navigateTo({
+          wx.redirectTo({
             url: '../myEmploy/myEmploy',
           })
         },1000)

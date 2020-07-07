@@ -85,5 +85,3 @@
     <view class="bottom-right" bindtap="lijifabu" wx:if="{{spxglist.goodName == null}}">保存</view>
   </view>
 </view>
-
-<canvas canvas-id="firstCanvas" style="width: {{cw}}px; height: {{ch}}px;position:fixed;left:100%;"></canvas>

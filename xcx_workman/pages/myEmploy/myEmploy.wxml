@@ -38,11 +38,11 @@
         </view>
         <view class="list-content-item hengxiang">
           <view class="item-title">费用预计：</view>
-          <view class="item-type">{{item.estimatedCost}}</view>
+          <view class="item-type">{{item.predict}}</view>
         </view>
         <view class="list-content-item hengxiang">
           <view class="item-title">预计工期：</view>
-          <view class="item-type">{{item.predict}}天</view>
+          <view class="item-type">{{item.estimatedCost}}天</view>
         </view>
         <view class="list-content-item hengxiang">
           <view class="item-title">雇佣事项：</view>

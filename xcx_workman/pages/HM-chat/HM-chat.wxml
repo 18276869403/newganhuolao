@@ -113,7 +113,7 @@
 						bindtap="addEmoji">
 						<image class="emoji-image"   src="http://miss.it-ys.com:9123/work-boot/sys/common/view/static{{'/img/emoji/'+em.url}}"></image>
 					</view>
-				</swiper-item>
+				</swiper-item> 
 			</swiper>
 			<!-- 更多功能 相册-拍照-红包 -->
 			<view class="more-layer {{hideMore? 'hidden' : ''}}">

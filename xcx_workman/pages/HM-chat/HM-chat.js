@@ -101,7 +101,7 @@ Page({
 				this.recordEnd(e);
 			})
 			RECORDER.onError((res) => {
-				wx.showToast({
+				wx.showToast({ 
 					title: '录音时发生错误,请检查是否给麦克风授权',
 					icon:'none'
 				})

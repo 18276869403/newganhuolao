@@ -56,27 +56,12 @@ Page({
   // 获取token值
   getTokenValue() {
     var that = this
-    // 小程序
-    wx.request({
-      url: 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx14e076d27e942480&secret=fb16e928e1a41fa0e8f21b2f50aa89d5',
-      success: function (res) {
-        if (res.data.expires_in == 7200) {
-          app.globalData.access_Token = res.data.access_token
-        }
-        console.log('全局变量', app.globalData.access_Token)
-      }
+    // 公众号Token
+    qingqiu.getAccessTokenAccount(function () {
+      that.getUserInfo()
     })
-    // 公众号
-    wx.request({
-      url: 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx51f85979e24ae75b&secret=84a07fa8501abc705c79f48667eabb35',
-      success: function (res) {
-        if (res.data.expires_in == 7200) {
-          app.globalData.access_TokenOff = res.data.access_token
-        }
-        console.log('公众号token',app.globalData.access_TokenOff)
-        that.getUserInfo()
-      }
-    })
+    // 小程序Token
+    qingqiu.getAccessTokenApplets(function () {})
   },
   // 授权
   chushishouquan() {
@@ -209,26 +194,26 @@ Page({
     })
   },
   // 获取公众号下的微信openid
-  getUserInfo:function(){
+  getUserInfo: function () {
     var NEXT_OPENID = ''
     var total = 0
     var count = 0
     do {
       wx.request({
-        url: 'https://api.weixin.qq.com/cgi-bin/user/get?access_token='+app.globalData.access_TokenOff+'&next_openid=' +NEXT_OPENID,
-        success:function(res){
-          console.log('公众号用户',res)
-          if(res.data.next_openid != ''){
+        url: 'https://api.weixin.qq.com/cgi-bin/user/get?access_token=' + app.globalData.access_TokenOff + '&next_openid=' + NEXT_OPENID,
+        success: function (res) {
+          console.log('公众号用户', res)
+          if (res.data.next_openid != '') {
             NEXT_OPENID = res.data.next_openid
             total = res.data.total
             count = res.data.count + count
             app.globalData.nextOpenid = res.data.data.openid
-            console.log('openid公众号',app.globalData.nextOpenid)
+            console.log('openid公众号', app.globalData.nextOpenid)
           }
         }
       })
     } while (count < total);
-    
+
   },
   onShow: function (options) {
     this.getTokenValue()
@@ -386,24 +371,24 @@ Page({
             // 重定义分类
             var onename = []
             var twoname = []
-            if(obj.oneClassName != null){
-              if(obj.oneClassName.indexOf(',') != -1){
+            if (obj.oneClassName != null) {
+              if (obj.oneClassName.indexOf(',') != -1) {
                 onename = obj.oneClassName.split(',')
-              }else{
+              } else {
                 onename[0] = obj.oneClassName
               }
             }
-            if(obj.twoClassName != null){
-              if(obj.twoClassName.indexOf(',') != -1){
+            if (obj.twoClassName != null) {
+              if (obj.twoClassName.indexOf(',') != -1) {
                 twoname = obj.twoClassName.split(',')
-              }else{
+              } else {
                 twoname[0] = obj.twoClassName
               }
             }
             obj.oneClassName = onename[0] + ' | ' + twoname[0]
-            if(onename.length > 1){
+            if (onename.length > 1) {
               obj.twoClassName = onename[1] + ' | ' + twoname[1]
-            }else{
+            } else {
               obj.twoClassName = ''
             }
           }
@@ -430,24 +415,24 @@ Page({
             // 重定义分类
             var onename = []
             var twoname = []
-            if(obj.oneClassName != null){
-              if(obj.oneClassName.indexOf(',') != -1){
+            if (obj.oneClassName != null) {
+              if (obj.oneClassName.indexOf(',') != -1) {
                 onename = obj.oneClassName.split(',')
-              }else{
+              } else {
                 onename[0] = obj.oneClassName
               }
             }
-            if(obj.twoClassName != null){
-              if(obj.twoClassName.indexOf(',') != -1){
+            if (obj.twoClassName != null) {
+              if (obj.twoClassName.indexOf(',') != -1) {
                 twoname = obj.twoClassName.split(',')
-              }else{
+              } else {
                 twoname[0] = obj.twoClassName
               }
             }
             obj.oneClassName = onename[0] + ' | ' + twoname[0]
-            if(onename.length > 1){
+            if (onename.length > 1) {
               obj.twoClassName = onename[1] + ' | ' + twoname[1]
-            }else{
+            } else {
               obj.twoClassName = ''
             }
           }

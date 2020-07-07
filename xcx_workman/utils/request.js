@@ -103,33 +103,38 @@ const messagePush = function(url,data,huidiao,method='GET'){
 		}
 	}, 1000)
 }
-
-// const getAccessToken = function(res){
-// 	// 小程序
-// 	wx.request({
-// 		url: 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx14e076d27e942480&secret=fb16e928e1a41fa0e8f21b2f50aa89d5',
-// 		success: function (res) {
-// 			if (res.data.expires_in == 7200) {
-// 				app.globalData.access_Token = res.data.access_token
-// 			}
-// 			console.log('全局变量', app.globalData.access_Token)
-// 		}
-// 	})
-// 	// 公众号
-// 	wx.request({
-// 		url: 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx51f85979e24ae75b&secret=84a07fa8501abc705c79f48667eabb35',
-// 		success: function (res) {
-// 			if (res.data.expires_in == 7200) {
-// 				app.globalData.access_TokenOff = res.data.access_token
-// 			}
-// 			console.log('公众号token',app.globalData.access_TokenOff)
-// 		}
-// 	})
-// }
+// 小程序Token
+const getAccessTokenApplets = function(huidiao){
+	wx.request({
+		url: 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx14e076d27e942480&secret=fb16e928e1a41fa0e8f21b2f50aa89d5',
+		success: function (res) {
+			if (res.data.expires_in == 7200) {
+				app.globalData.access_Token = res.data.access_token
+			}
+			console.log('全局变量', app.globalData.access_Token)
+			huidiao()
+		}
+	})
+}
+// 公众号Token
+const getAccessTokenAccount = function(huidiao){
+	wx.request({
+		url: 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx51f85979e24ae75b&secret=84a07fa8501abc705c79f48667eabb35',
+		success: function (res) {
+			if (res.data.expires_in == 7200) {
+				app.globalData.access_TokenOff = res.data.access_token
+			}
+			console.log('公众号token',app.globalData.access_TokenOff)
+			huidiao()
+		}
+	})
+}
 
 module.exports = {
 	get: Get,
 	yanzheng:yanzheng, // 简单数据为空验证
 	messageReg:messageReg, // 敏感词过滤
-	messagePush:messagePush, // 消息推送 
+	messagePush:messagePush, // 消息推送
+	getAccessTokenApplets:getAccessTokenApplets, // 小程序Token
+	getAccessTokenAccount:getAccessTokenAccount // 公众号Token
 }

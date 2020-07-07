@@ -278,8 +278,16 @@ Page({
   // 打电话
   phonecell:function(e){
     var phone = e.currentTarget.dataset.phone
-    wx.makePhoneCall({
-      phoneNumber: phone,
-    })
+    if(phone == null||phone==''||phone=='null'){
+      wx.showToast({
+        title: '联系电话为空...',
+        icon:'none'
+      })
+      return
+    }else{
+      wx.makePhoneCall({
+        phoneNumber: phone,
+      })
+    }
   }
 })

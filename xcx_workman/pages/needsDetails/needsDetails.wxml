@@ -90,7 +90,7 @@
             <view class="jiedan-top-content-date">{{item.signTime}}</view>
           </view>
           <view class="jiedan-top-right" wx-if="{{xqxqlist.wxUserId==wxUserid}}">
-            <image src="{{viewUrl}}static/image/liuyan.png" class="img" bindtap=""></image>
+            <image src="{{viewUrl}}static/image/liuyan.png" class="img" bindtap="liuyan" data-wxid="{{item.wxUserId}}" data-name="{{item.name}}" data-shopName="{{item.shopName}}" data-wxNc="{{item.wxNc}}"></image>
           </view>
           <view class="jiedan-top-right1" wx-if="{{xqxqlist.wxUserId==wxUserid}}">
             <image src="{{viewUrl}}static/image/dianhua.png" bindtap="phonecell" class="img"></image>

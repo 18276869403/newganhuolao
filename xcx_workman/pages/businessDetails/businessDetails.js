@@ -12,6 +12,7 @@ Page({
     viewUrl:api.viewUrl,
     score: 3,
     CheckItem: 0,
+    goodsList:[],
     showList: [{
         id: 1,
         pinglun: '12',
@@ -161,10 +162,9 @@ Page({
       qingqiu.get("tjsp", data, function(re) {
         if (re.success == true) {
           if (re.result.records != null) {
-            that.goodsList = re.result.records
             for(let obj of re.result.records){
-              obj.goodPic1 = that.data.viewUrl + obj.goodPic1.split(',')[0]
-              obj.goodPic2  = that.data.viewUrl + obj.goodPic2.split(',')[0]
+              obj.goodPic1=obj.goodPic1.split(',')
+              obj.goodPic2=obj.goodPic2.split(',')
             }
             that.setData ({
               goodslists: re.result.records

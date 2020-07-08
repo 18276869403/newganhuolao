@@ -97,21 +97,95 @@ Page({
   //     } 
   //   })
   // },
-  // // 需求修改
-  // xiugaigunali(){
-  //   wx.navigateTo({
-  //     url: '../submitNeeds/submitNeeds?type=1&id=' + this.data.xqxqlist.id,
-  //   })
-  // },
+  // 需求修改
+  xiugaigunali(){
+    wx.navigateTo({
+      url: '../submitMaterial/submitMaterial?id=' + this.data.xqxqlist.id,
+    })
+  },
   // 需求在线联系
   zaixianlianxi(e){
     var id = e.currentTarget.dataset.wxid
     var name = e.currentTarget.dataset.name
+    var shopName = e.currentTarget.dataset.shopName
+    var wxNc = e.currentTarget.dataset.wxNc
+    var nameV = ''
+    if(name != '' && name != null && name != 'null'){
+      nameV = name
+    }else if(shopName != '' && shopName != null && shopName != 'null'){
+      nameV = shopName
+    }else{
+      nameV = wxNc
+    }
     wx.navigateTo({
-      url: '../HM-chat/HM-chat?id=' +id+'&name=' + name,
+      url: '../HM-chat/HM-chat?id=' +id+'&name=' + nameV,
     })
   },
-  
+  // 需求完成
+  lianxita() {
+    var that = this
+    var data={
+      id: that.id,
+      needState: 1
+    }
+    qingqiu.get("needUpdateStateById", data, function(re) {
+      if (re.success == true) {
+        wx.showToast({
+          title: '剩料已完成',
+          icon: 'success',
+          duration: 3000
+        })
+        setTimeout(function(){
+          wx.redirectTo({
+            url: '../myMaterial/myMaterial',
+          })
+        },1000)
+      } else{
+        wx.showToast({
+          title: re.message,
+          icon: 'none',
+          duration: 2000
+        })
+      }
+    },"put")
+  },
+  // 需求删除
+  shancuoxuqiu() {
+    var that = this
+    var data={
+      id: that.data.id
+    }
+    wx.showModal({
+      title:'提示',
+      content:'您确定删除吗？',
+      success:function(res){
+        if(res.confirm){
+          qingqiu.get("delYneedAndNeedSign", data, function(re) {
+            if (re.success == true) {
+               wx.showToast({
+                 title: '删除成功',
+                 icon:'success',
+                 duration:2000
+               })
+               setTimeout(function(){
+                wx.redirectTo({
+                  url: '../myMaterial/myMaterial',
+                })
+               },1000)
+              } else {
+                wx.showToast({
+                  title: re.message,
+                  icon: 'none',
+                  duration: 2000
+                })
+              } 
+          },'delete')
+        }else{
+          return
+        }
+      }
+    })
+  },
   // 图片放大
   fangda:function(e){
     var currentUrl = e.currentTarget.dataset.src

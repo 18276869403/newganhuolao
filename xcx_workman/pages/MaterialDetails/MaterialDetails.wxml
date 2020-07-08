@@ -44,9 +44,18 @@
 				</view>
 
 				<view class="content-chuangjian hengxiang">
-					<view class="complete-button" style="width:155rpx;" bindtap="zaixianlianxi" data-wxid="{{xqxqlist.wxUserId}}" data-name="{{xqxqlist.name}}">
+					<view class="complete-button" style="width:155rpx;" wx:if="{{xqxqlist.wxUserId != wxUserid}}" bindtap="zaixianlianxi" data-wxid="{{xqxqlist.wxUserId}}" data-name="{{xqxqlist.name}}" data-shopName="{{xqxqlist.shopName}}" data-wxNc="{{xqxqlist.wxNc}}">
 						在线联系
 					</view>
+					<view class="update-button" bindtap="xiugaigunali" wx:if="{{xqxqlist.wxUserId===wxUserid}}">
+            修改
+          </view>
+          <view class="delete-button" bindtap="shancuoxuqiu" wx:if="{{xqxqlist.wxUserId===wxUserid}}">
+            删除
+          </view>
+          <view class="complete-button" bindtap="lianxita" wx:if="{{xqxqlist.wxUserId===wxUserid}}">
+            完成
+          </view>
 				</view>
 			</view>
 

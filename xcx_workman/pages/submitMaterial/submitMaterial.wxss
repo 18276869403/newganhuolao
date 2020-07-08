@@ -1,7 +1,7 @@
 /* pages/submitNeeds/submitNeeds.wxss */
 
 .top {
-  width: 100%;
+  width: 100%; 
   border-bottom: 16rpx solid #f5f7fb;
 }
 

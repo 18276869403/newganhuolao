@@ -148,7 +148,7 @@ Page({
    */
   onLoad: function (options) {
     this.getAccessToken()
-    wx.showShareMenu({
+    wx.showShareMenu({ 
       withShareTicket: true
     })
     if (options.type == 1) {

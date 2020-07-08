@@ -102,7 +102,7 @@
       <view>{{mianzhe}}</view>
     </scroll-view>
     <view class='close-button' bindtap='hideModal1'>关闭</view>
-  </view>
+  </view> 
 </view>
 <!-- 遮罩 -->
 <view class="commodity_screen2" wx:if="{{showModalStatuslist}}"></view>

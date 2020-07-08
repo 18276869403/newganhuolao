@@ -80,7 +80,7 @@ Page({
         })
       }else{
         wx.showToast({
-          title: res.message,
+          title: res.message, 
           icon:'none',
           duration:2000
         })

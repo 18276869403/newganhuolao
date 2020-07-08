@@ -2,7 +2,7 @@
 <view class="container">
 	<view class="hengxian"></view>
 	<view class="content zongxiang">
-		<!-- 最新需求模块 -->
+		<!-- 最新需求模块 --> 
 		<view class="content-need">
 			<view class="list zongxiang" wx:for="{{needsList}}" wx:for-index="index" wx:key="index">
 				<view class="need-list hengxiang" bindtap="needsDetails" data-vall="{{item}}">

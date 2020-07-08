@@ -22,7 +22,7 @@
 	<view class="zt">
 		<view class="tp" bindtap="yl04">
 			<image class="tpp02" src="{{viewUrl}}static/image/qiangzhuan.png"></image>
-			<view class="wenz">墙砖用量</view>
+			<view class="wenz">墙砖用量</view> 
 		</view>
 	</view>
 	<view class="zt">

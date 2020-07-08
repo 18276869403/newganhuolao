@@ -7,7 +7,7 @@ Page({
    */
   data: {
     viewUrl:api.viewUrl
-  },
+  }, 
    // 跳转到涂料用量
   yyyy: function () {
     wx.navigateTo({

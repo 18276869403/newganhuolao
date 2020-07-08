@@ -136,11 +136,18 @@ Page({
 
   liuyan:function(e){
     var id = e.currentTarget.dataset.wxid
-    var name = e.currentTarget.dataset.name
-    wx.redirectTo({
+    var shopName = e.currentTarget.dataset.name
+    var wxNc = e.currentTarget.dataset.wxNc
+    var name = ''
+    if(shopName == '' || shopName == null || shopName == 'null'){
+      name = wxNc
+    }else{
+      name = shopName
+    }
+    wx.navigateTo({
       url: '../HM-chat/HM-chat?id='+id+'&name='+name,
     })
-  }, 
+  },
 
   // 获取店家商品
   getGoodsList:function(goodsid) {

@@ -211,10 +211,14 @@ Page({
     // wx.makePhoneCall({
     //   phoneNumber: phone,
     // }) 
-    var wkId  = e.currentTarget.dataset.id;
+    var wxId  = e.currentTarget.dataset.id;
     var name  = e.currentTarget.dataset.name;
+    var wxNc = e.currentTarget.dataset.wxNc;
+    if(name == '' || name == null || name == 'null'){
+      name = wxNc
+    }
     wx.navigateTo({ 
-      url: '../HM-chat/HM-chat?id=' + wkId + "&name=" + name 
+      url: '../HM-chat/HM-chat?id=' + wxId + "&name=" + name 
     });  
   }
 })

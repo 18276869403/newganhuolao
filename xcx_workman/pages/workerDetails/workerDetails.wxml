@@ -49,7 +49,7 @@
             </view>
             <view class="right-bottom-right"> 
               <view class="contact-button" bindtap="phonecall" 
-                data-phone="{{workerDetail.phone}}" 
+                data-wxNc="{{workerDetail.wxNc}}" 
                 data-id="{{workerDetail.id}}"
                 data-name="{{workerDetail.name}}">在线联系</view>
             </view>

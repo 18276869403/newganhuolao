@@ -67,13 +67,13 @@ Page({
       })
     }, 5000)
   },
-  getUserInfo:function(){
+  getUserInfo: function () {
     var that = this
-    for(let obj of app.globalData.nextOpenid){
+    for (let obj of app.globalData.nextOpenid) {
       wx.request({
         url: 'https://api.weixin.qq.com/cgi-bin/user/info?access_token=' + app.globalData.access_TokenOff + '&openid=' + obj + '&lang=zh_CN',
-        success:function(res){
-          console.log('获取用户信息',res)
+        success: function (res) {
+          console.log('获取用户信息', res)
         }
       })
     }
@@ -89,11 +89,11 @@ Page({
           wx.login({
             success: function (res) {
               var code = res.code
-              // wx.request({
-              //   url: 'https://api.weixin.qq.com/sns/jscode2session?appid=wx14e076d27e942480&secret=fb16e928e1a41fa0e8f21b2f50aa89d5&js_code='+code+'&grant_type=authorization_code',
-              //   success:function(res){
-              //     console.log('获取用户的unionid',res)
-              //   }
+              console.log(code)
+              // qingqiu.get("getOpenIdbyjscode", {
+              //   js_code: code
+              // }, function (res) {
+              //   console.log('公众号接口测试', res)
               // })
               wx.getUserInfo({
                 lang: 'zh_CN',

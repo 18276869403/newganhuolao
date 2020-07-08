@@ -38,7 +38,7 @@
 								<image src="../image/zhaogongstate.png" class="shalou-img"></image>
 							</view>
 							<view class="list-top-status">进行中</view> -->
-							<view class="list-top-price" style="color:red;">薪资：{{item.backup3}}元</view>
+							<view class="list-top-price">薪资：{{item.backup3}}元</view>
 						</view>
 					</view>
 					<view class="list-top-henxian"></view>
@@ -58,7 +58,7 @@
 								<image src="../image/zhaogongname.png" class="content-shalou-img"></image>
 							</view>
 						</view>
-						<view class="content-text1">
+						<view class="content-text1 text-jiequ">
 							<text>{{item.publishMan}}</text>
 						</view>
 						<view class="content-left-img zongxiang">
@@ -66,7 +66,7 @@
 								<image src="../image/zhaogongdizhi.png" class="content-shalou-img"></image>
 							</view>
 						</view>
-						<view class="content-text1" style="width:43%;">
+						<view class="content-text1 text-jiequ" style="width:38%;">
 							<text>{{item.oneAreaName}}{{item.twoAreaName}}</text>
 						</view>
 						<view class="complete-button" style="width:135rpx;" bindtap="zaixianlianxi" data-wxid="{{xqxqlist.wxUserId}}" data-name="{{xqxqlist.name}}">

@@ -249,13 +249,13 @@
 								{{item.shopName}}
 							</view>
 							<view class="worker-item-bottom hengxiang">
-								<view class="worker-icon">■</view>
+								<view class="dot"></view>
 								<view class="worker-sort shenglue">
 									{{item.oneClassName}}
 								</view>
 							</view>
 							<view class="worker-item-bottom hengxiang" wx:if="{{item.twoClassName != ''}}">
-								<view class="worker-icon">■</view>
+								<view class="dot"></view>
 								<view class="worker-sort shenglue">
 									{{item.twoClassName}}
 								</view>

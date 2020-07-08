@@ -156,6 +156,9 @@ Page({
             if (re.result.records[i].backup1 != null && re.result.records[i].backup1.length > 0) {
               re.result.records[i].backup1 = re.result.records[i].backup1.split(',')
             }
+            if(re.result.records[i].backup3 == null){
+              re.result.records[i].backup3 = 0
+            }
             that.data.workList.push(re.result.records[i])
           }
           that.setData({

@@ -232,6 +232,24 @@ Page({
       url: '../myGoods/myGoods',
     })
   },
+  // 跳转到我的剩料页面
+  myMaterial:function(e){
+    wx.navigateTo({
+      url: '../myMaterial/myMaterial',
+    })
+  },
+  // 跳转到我的招工页面
+  myRecruitment:function(e){
+    wx.navigateTo({
+      url: '../myRecruitment/myRecruitment',
+    })
+  },
+  // 跳转到我的公益页面
+  myWelfare:function(e){
+    wx.navigateTo({
+      url: '../myWelfare/myWelfare',
+    })
+  },
   // 跳转到我的推荐页面
   myRecommend: function (e) {
     var myid = JSON.stringify(this.data.wxUser.id)

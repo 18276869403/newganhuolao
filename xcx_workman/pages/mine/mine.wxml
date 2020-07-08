@@ -94,6 +94,39 @@
         <image src="{{viewUrl}}static/image/enter.png" class="enter-img"></image>
       </view>
     </view>
+     <view class="bottom-list hengxiang" bindtap="myMaterial" data-spid="{{wxUser}}">
+      <view class="bottom-list-left">
+        <image src="{{viewUrl}}static/image/wodetuijian.png" class="ziliao-img"></image>
+      </view>
+      <view class="bottom-list-content">
+        我的剩料
+      </view>
+      <view class="bottom-list-right">
+        <image src="{{viewUrl}}static/image/enter.png" class="enter-img"></image>
+      </view>
+    </view>
+    <view class="bottom-list hengxiang" bindtap="myRecruitment" data-spid="{{wxUser}}">
+      <view class="bottom-list-left">
+        <image src="{{viewUrl}}static/image/wodetuijian.png" class="ziliao-img"></image>
+      </view>
+      <view class="bottom-list-content">
+        我的招工
+      </view>
+      <view class="bottom-list-right">
+        <image src="{{viewUrl}}static/image/enter.png" class="enter-img"></image>
+      </view>
+    </view>
+    <view class="bottom-list hengxiang" bindtap="myWelfare" data-spid="{{wxUser}}">
+      <view class="bottom-list-left">
+        <image src="{{viewUrl}}static/image/wodetuijian.png" class="ziliao-img"></image>
+      </view>
+      <view class="bottom-list-content">
+        我的公益
+      </view>
+      <view class="bottom-list-right">
+        <image src="{{viewUrl}}static/image/enter.png" class="enter-img"></image>
+      </view>
+    </view>
     <view class="bottom-list hengxiang" bindtap="myGoods" data-spid="{{wxUser}}">
       <view class="bottom-list-left">
         <image src="{{viewUrl}}static/image/wodeshangpin.png" class="ziliao-img"></image>

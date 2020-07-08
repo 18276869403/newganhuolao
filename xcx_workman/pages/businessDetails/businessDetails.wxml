@@ -20,7 +20,7 @@
           </view>
           <view>实名认证</view>
         </view>
-        <view class="content-online" bindtap="liuyan" data-wxid="{{goodsList.id}}" data-name="{{goodsList.shopName}}">在线联系</view>
+        <view class="content-online" bindtap="liuyan" data-wxid="{{goodsList.id}}" data-name="{{goodsList.shopName}}" data-wxNc="{{goodsList.wxNc}}">在线联系</view>
         <view class="content-phone" bindtap="phonecall" data-phone="{{goodsList.phone}}">电话联系</view>
       </view>
       <view class="content-gongzhong zongxiang">

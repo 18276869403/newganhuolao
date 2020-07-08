@@ -11,50 +11,8 @@ Page({
     imgUrl: '',
     bannerImg:[],
     pinglunList:[], 
-    // bannerImg: [{
-    //     id: 1,
-    //     bannerimg: '../image/top.png'
-    //   },
-    //   {
-    //     id: 2,
-    //     bannerimg: '../image/top.png'
-    //   },
-    //   {
-    //     id: 3,
-    //     bannerimg: '../image/top.png'
-    //   }
-    // ],
-    // pinglunList: [{
-    //     id: 1,
-    //     img: '../image/tu.png',
-    //     nickname: '干活佬220用户',
-    //     time: '2019.11.15 12:00',
-    //     details: '很好，很漂亮'
-    //   },
-    //   {
-    //     id: 1,
-    //     img: '../image/tu.png',
-    //     nickname: '干活佬220用户',
-    //     time: '2019.11.15 12:00',
-    //     details: '很好，很漂亮'
-    //   },
-    //   {
-    //     id: 1,
-    //     img: '../image/tu.png',
-    //     nickname: '干活佬220用户',
-    //     time: '2019.11.15 12:00',
-    //     details: '很好，很漂亮'
-    //   }
-    // ],
     id: 0,
     wxCaseVo: null,
-    // caseMsgList: [{
-    //   id: 1,
-    //   picUrl: '../image/top.png',
-    //   wxNc: 'ssss',
-    //   createTime: '2019.11.15 12:00',
-    //   content: '室内F-10木门（含五金件）室内F-10木门（含五金件）室内F-10木门（含五金件）'
-    // }]
     caseMsgList:[],
     imgList:[],
     ssid:''

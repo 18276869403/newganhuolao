@@ -31,8 +31,10 @@
   width: 70%;
   padding-top: 2%;
   padding-right: 3%;
+  line-height: 72;
   font-size: 14px;
-  text-align: right;
+  margin-left: 26rpx;
+  color: #999;
 }
 
 .content-item-value{

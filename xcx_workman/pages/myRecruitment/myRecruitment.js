@@ -1,20 +1,82 @@
-// pages/myRecruitment/myRecruitment.js
+// pages/myneeds/myneeds.js
+
+const app = getApp()
+//调用接口js
+const qingqiu = require('../../utils/request.js')
+const api = require('../../utils/config.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    viewUrl:api.viewUrl,
+    workList:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad: function () {
+    wx.showShareMenu({
+      withShareTicket: true
+    })
+    this.FindWorklist()
   },
-
+  // 获取招工信息列表
+  FindWorklist() {
+    var that = this
+    var data = {
+      pageNo: that.data.pageNo,
+      pageSize: 10,
+      needTitle:that.data.needTitle
+    }
+    if (app.globalData.oneCity != undefined && app.globalData.oneCity != "undefined") {
+      data.oneAreaId = app.globalData.oneCity.id
+    }
+    if (app.globalData.twoCity != undefined && app.globalData.twoCity != "undefined") {
+      data.twoAreaId = app.globalData.twoCity.id
+    }
+    console.log(data)
+    qingqiu.get("list", data, function (re) {
+      console.log(re)
+      if (re.success == true) {
+        if (re.result != null) {
+          if(re.result.records==''){
+            that.data.isLastPage=true
+            return
+          }
+          for (var i = 0; i < re.result.records.length; i++) {
+            re.result.records[i].createTime = re.result.records[i].createTime.substring(0,16)
+            if (re.result.records[i].backup1 != null && re.result.records[i].backup1.length > 0) {
+              re.result.records[i].backup1 = re.result.records[i].backup1.split(',')
+            }
+            if(re.result.records[i].backup3 == null){
+              re.result.records[i].backup3 = 0
+            }
+            that.data.workList.push(re.result.records[i])
+          }
+          that.setData({
+            workList: that.data.workList
+          })
+        } else {
+          wx.showToast({
+            title: '暂无数据',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      }
+    })
+  },
+   // 跳转到需求详情页面
+   recruitmentDetail: function (e) {
+    var list=e.currentTarget.dataset.list
+    var list1 = JSON.stringify(list)
+    wx.navigateTo({
+      url: '../recruitmentDetail/recruitmentDetail?obj='+list1,
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -36,12 +98,6 @@ Page({
 
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作

@@ -24,29 +24,7 @@ Page({
       }
     ],
     city: [],
-    // area: [{
-    //     id: 1,
-    //     areaName: '双桥镇'
-    //   },
-    //   {
-    //     id: 2,
-    //     areaName: '双桥镇11'
-    //   }
-    // ],
     area: [],
-    // showImg: [{
-    //     id: 1,
-    //     showimg: '../image/tu.png'
-    //   },
-    //   {
-    //     id: 2,
-    //     showimg: '../image/tu.png'
-    //   },
-    //   {
-    //     id: 3,
-    //     showimg: '../image/tu.png'
-    //   }
-    // ],
     tupian: '',
     id: '',
     name: '',

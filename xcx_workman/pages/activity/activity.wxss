@@ -51,12 +51,6 @@ page{
   color: brown;
 } */
 .code-img {
-  /* position: absolute; */
-  /* bottom: 0rpx; */
-  /* bottom: 165rpx; */
-  /* right: 0rpx; */
-  /* right: 265rpx; */
-  /* right: 158rpx; */
   width: 439rpx;
   height: 90rpx;
 }
@@ -70,6 +64,6 @@ page{
   padding: 0 0;
   margin-left: 0;
   margin-right: 0;
-  overflow: auto;
+  overflow: visible;
   background-color: rgba(143,143,143, 0);
 }

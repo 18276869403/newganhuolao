@@ -108,17 +108,28 @@ Page({
           }
           
           re.result.picIurl = that.data.viewUrl + re.result.picIurl
-          if(re.result.oneClassName!= "" && re.result.oneClassName!=null){
-            re.result.oneClassName = re.result.oneClassName.replace(/,/, " | ")
+          // 重定义分类
+          var onename = []
+          var twoname = []
+          if(re.result.oneClassName != null){
+            if(re.result.oneClassName.indexOf(',') != -1){
+              onename = re.result.oneClassName.split(',')
+            }else{
+              onename[0] = re.result.oneClassName
+            }
           }
-          if(re.result.twoClassName != "" && re.result.twoClassName != null){
-            re.result.twoClassName = re.result.twoClassName.replace(/,/, " | ")
+          if(re.result.twoClassName != null){
+            if(re.result.twoClassName.indexOf(',') != -1){
+              twoname = re.result.twoClassName.split(',')
+            }else{
+              twoname[0] = re.result.twoClassName
+            }
           }
-          if(re.result.oneClassName == null){
-            re.result.oneClassName = ""
-          }
-          if(re.result.twoClassName == null){
-            re.result.twoClassName = ""
+          re.result.oneClassName = onename[0] + ' | ' + twoname[0]
+          if(onename.length > 1){
+            re.result.twoClassName = onename[1] + ' | ' + twoname[1]
+          }else{
+            re.result.twoClassName = ''
           }
           that.setData({
             wxUser:re.result,

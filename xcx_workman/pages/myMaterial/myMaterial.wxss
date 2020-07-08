@@ -196,10 +196,10 @@ page {
 }
 
 .content-list-title {
-  width: 78%;
+  width: 68%;
   /* text-indent: 100rpx; */
   font-size: 32rpx;
-  font-weight: bold;
+  font-weight: 500;
   /* color: rgba(224, 35, 35, 1); */
 }
 

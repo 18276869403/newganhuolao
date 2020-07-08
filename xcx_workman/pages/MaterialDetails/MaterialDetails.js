@@ -100,7 +100,7 @@ Page({
   // 需求修改
   xiugaigunali(){
     wx.navigateTo({
-      url: '../submitMaterial/submitMaterial?id=' + this.data.xqxqlist.id,
+      url: '../submitMaterial/submitMaterial?type=1&id=' + this.data.xqxqlist.id,
     })
   },
   // 需求在线联系
@@ -125,7 +125,7 @@ Page({
   lianxita() {
     var that = this
     var data={
-      id: that.id,
+      id: that.data.xqxqlist.id,
       needState: 1
     }
     qingqiu.get("needUpdateStateById", data, function(re) {

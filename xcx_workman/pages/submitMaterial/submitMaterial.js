@@ -157,7 +157,10 @@ Page({
         id: options.id,
         wxuserid: app.globalData.wxid
       })
+      // this.oneClass()
+      // this.twoClass()
       this.QueryoneArea()
+      this.QuerytwoArea()
       // this.QuerytwoArea()
       this.needSignPage()
     } else {
@@ -165,6 +168,8 @@ Page({
         type: 0,
         wxuserid: app.globalData.wxid
       })
+      // this.oneClass()
+      // this.twoClass()
       this.QueryoneArea()
       this.QuerytwoArea()
     }

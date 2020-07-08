@@ -96,7 +96,7 @@
     </view>
      <view class="bottom-list hengxiang" bindtap="myMaterial" data-spid="{{wxUser}}">
       <view class="bottom-list-left">
-        <image src="{{viewUrl}}static/image/wodetuijian.png" class="ziliao-img"></image>
+        <image src="{{viewUrl}}static/image/myshengliao.png" class="ziliao-img"></image>
       </view>
       <view class="bottom-list-content">
         我的剩料
@@ -107,7 +107,7 @@
     </view>
     <view class="bottom-list hengxiang" bindtap="myRecruitment" data-spid="{{wxUser}}">
       <view class="bottom-list-left">
-        <image src="{{viewUrl}}static/image/wodetuijian.png" class="ziliao-img"></image>
+        <image src="{{viewUrl}}static/image/myzhaogong.png" class="ziliao-img"></image>
       </view>
       <view class="bottom-list-content">
         我的招工
@@ -118,7 +118,7 @@
     </view>
     <view class="bottom-list hengxiang" bindtap="myWelfare" data-spid="{{wxUser}}">
       <view class="bottom-list-left">
-        <image src="{{viewUrl}}static/image/wodetuijian.png" class="ziliao-img"></image>
+        <image src="{{viewUrl}}static/image/mygongyi.png" class="ziliao-img"></image>
       </view>
       <view class="bottom-list-content">
         我的公益

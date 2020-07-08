@@ -20,7 +20,7 @@
   font-size: 14px;
 }
 .content-item-title{
-  margin-left: 30rpx;
+  margin-left: 30rpx; 
   margin-right: 30rpx;
   margin-top: 26rpx;
   line-height: 72rpx;

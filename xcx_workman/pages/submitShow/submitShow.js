@@ -33,7 +33,7 @@ Page({
     cityname1: '',
     picIurl1: [],
     picIurl: '',
-    picimg: '',
+    picimg: '', 
     num: 1,
     tupianlists: [],
     addresslist: []

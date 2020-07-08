@@ -2,7 +2,7 @@
 <view class="container">
   <view class="content zongxiang">
     <view class="content-item-title hengxiang">
-      <input class="content-item-text" placeholder="输入晒晒标题" placeholder-class="placeholder" maxlength='-1' value='{{needscontent}}' name="comment" bindinput='commentinput' bindblur="commentinputblur"></input>
+      <input class="content-item-text" placeholder="输入晒晒标题" placeholder-class="placeholder" maxlength='-1' value='{{needscontent}}' name="comment" bindinput='commentinput' bindblur="commentinputblur"></input> 
     </view> 
     <view class="content-item hengxiang" bindtap="showModal">
       <view class="content-text" wx:if="{{cityname==''}}">选择晒晒区域</view>

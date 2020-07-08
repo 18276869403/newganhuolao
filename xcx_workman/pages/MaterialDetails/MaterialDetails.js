@@ -98,7 +98,7 @@ Page({
   //   })
   // },
   // 需求修改
-  xiugaigunali(){
+  xiugaigunali(){ 
     wx.navigateTo({
       url: '../submitMaterial/submitMaterial?type=1&id=' + this.data.xqxqlist.id,
     })

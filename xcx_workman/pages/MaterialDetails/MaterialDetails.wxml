@@ -42,7 +42,7 @@
 				<view>
 					{{xqxqlist.backup2}}人浏览
 				</view>
-
+ 
 				<view class="content-chuangjian hengxiang">
 					<view class="complete-button" style="width:155rpx;" wx:if="{{xqxqlist.wxUserId != wxUserid}}" bindtap="zaixianlianxi" data-wxid="{{xqxqlist.wxUserId}}" data-name="{{xqxqlist.name}}" data-shopName="{{xqxqlist.shopName}}" data-wxNc="{{xqxqlist.wxNc}}">
 						在线联系

@@ -69,7 +69,7 @@ Page({
       }
     })
   },
-   // 跳转到需求详情页面
+   // 跳转到需求详情页面 
    recruitmentDetail: function (e) {
     var list=e.currentTarget.dataset.list
     var list1 = JSON.stringify(list)

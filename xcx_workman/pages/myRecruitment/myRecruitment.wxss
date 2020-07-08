@@ -360,7 +360,7 @@ page {
 
 .shuju {
   width: 100%;
-  text-align: center;
+  text-align: center; 
   font-size: 42rpx;
   font-weight: 500;
   color: rgba(117, 115, 115, 1);

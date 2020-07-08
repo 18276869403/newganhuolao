@@ -130,7 +130,7 @@ Page({
             re.result.twoClassName = onename[1] + ' | ' + twoname[1]
           }else{
             re.result.twoClassName = ''
-          }
+          } 
           that.setData({
             wxUser:re.result,
             userType:re.result.wxState

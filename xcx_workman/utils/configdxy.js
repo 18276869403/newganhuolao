@@ -1,6 +1,8 @@
 var api = require('./config.js')
 const baseUrl = "http://miss.it-ys.com:91/work-boot/"  
 // const baseUrl = "http://192.168.1.242:8080/work-boot/"  
+// const baseUrl = "http://192.168.1.233:8080/work-boot/"  
+// const baseUrl = "http://192.168.1.235:8080/work-boot/"  
 
 // 2.0需要工人，商家分类表：可选2个分类-编辑
 const WxUserAdd = baseUrl + "pc/hall/wxUserAdd"
@@ -50,7 +52,8 @@ const updateYeedById = baseUrl + "pc/hall/updateYeedById"
 const messageForMe = baseUrl + "pc/user/messageForMe"
 // 我发起的留言
 const myMessage = baseUrl + "pc/user/myMessage"
-
+// 微信小程序公众号
+const getOpenIdbyjscode = baseUrl + "pc/wx_small_app/get_openid_by_js_code"
 
 module.exports = {
   wxUserAdd: WxUserAdd,
@@ -76,5 +79,6 @@ module.exports = {
   queryAreaByName:queryAreaByName,
   updateYeedById:updateYeedById,
   messageForMe:messageForMe,
-  myMessage:myMessage
+  myMessage:myMessage,
+  getOpenIdbyjscode:getOpenIdbyjscode
 };

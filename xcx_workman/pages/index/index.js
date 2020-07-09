@@ -575,10 +575,8 @@ Page({
   },
   // 公益活动
   gongyi: function () {
-    wx.showToast({
-      title: '开发中，敬请期待...',
-      icon: 'none',
-      duration: 1000
+    wx.navigateTo({
+      url: '../Welfare/Welfare',
     })
   },
   // 跳转到推荐有礼页面

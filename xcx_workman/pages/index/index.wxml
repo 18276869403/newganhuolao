@@ -86,7 +86,7 @@
 		</view>
 		<view class="sort zongxiang">
 			<view class="sort-top hengxiang">
-				<view class="sortImg">
+				<view class="sortImg" bindtap="gongyi">
 					<image src="{{viewUrl}}static/image/gonyihuodong.png" class="sort-img"></image>
 				</view>
 				<view class="sortImg" bindtap="ershou">

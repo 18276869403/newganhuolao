@@ -58,6 +58,23 @@ Page({
     type:''
   },
 
+  aixinzhuanfa:function(e){
+    this.onShareAppMessage()
+  },
+
+  onShareAppMessage: function (res) {
+    return {
+      title: '',
+      path: '/pages/WelfareDetail/WelfareDetail',
+      success: function (res) {
+        // that.shareClick();
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
+  },
+
   onLoad: function (options) {
     wx.showShareMenu({
       withShareTicket: true

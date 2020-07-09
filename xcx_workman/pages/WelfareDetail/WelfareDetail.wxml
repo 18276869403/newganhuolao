@@ -49,27 +49,29 @@
 			</view>
 		</view>
 		<!-- 图片 -->
-				<view class="content-sign hengxiang">
-					<view class="sign-view" wx:if="{{1==1}}">
-						<image src="{{viewUrl}}static/image/shanchuhuodong.png" class="sign-img"></image>
-					</view>
-					<view class="sign-view" wx:if="{{1!=1}}">
-						<image src="{{viewUrl}}static/image/woyaosign.png" class="sign-img"></image>
-					</view>
-					<view class="sign-view">
-						<image src="{{viewUrl}}static/image/aixinzhuanfa.png" class="sign-img"></image>
-					</view>
-				</view>
+		<view class="content-sign hengxiang">
+			<view class="sign-view" wx:if="{{1==1}}">
+				<image src="{{viewUrl}}static/image/shanchuhuodong.png" class="sign-img"></image>
+			</view>
+			<view class="sign-view" wx:if="{{1!=1}}">
+				<image src="{{viewUrl}}static/image/woyaosign.png" class="sign-img"></image>
+			</view>
+			<view class="sign-view">
+				<button open-type="share" class="sharebutton">
+					<image src="{{viewUrl}}static/image/aixinzhuanfa.png" bindtap="aixinzhuanfa" class="sign-img"></image>
+				</button>
+			</view>
+		</view>
 		<!-- 接单报名人员 -->
 		<view class="content-content zongxiang" wx-if="{{1==1}}">
 			<view class="content-content-title">报名人员</view>
-			 <!-- wx:for="{{jiedanList}}" wx:for-index="index" wx:key="{{item.id}}" -->
+			<!-- wx:for="{{jiedanList}}" wx:for-index="index" wx:key="{{item.id}}" -->
 			<view class="content-jiedan zongxiang">
 				<view class="jiedan-top hengxiang">
 					<view class="jiedan-top-left">
 						<!-- <image src="{{item.picIurl}}" class="avator-img" wx-if="{{item.picIurl!=''|| item.picIurl!=null}}"></image>
 						<image src="{{item.picUrl}}" class="avator-img" wx-if="{{item.picIurl==''|| item.picIurl==null}}"></image> -->
-						<image src="{{viewUrl}}static/image/headericon.png" class="avator-img"></image> 
+						<image src="{{viewUrl}}static/image/headericon.png" class="avator-img"></image>
 					</view>
 					<view class="jiedan-top-content zongxiang">
 						<view class="jiedan-top-content-name">邓星玉</view>

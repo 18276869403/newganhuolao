@@ -18,6 +18,14 @@ page {
   margin-top: 30rpx;
 }
 
+.delete-img {
+  position: relative;
+  width: 44rpx;
+  height: 44rpx;
+  left: 145rpx;
+  top:-234rpx;
+}
+
 .xuanzhong {
   width: 50%;
   text-align: center;
@@ -543,10 +551,10 @@ page {
   left: 0;
 }
 
-.delete-img {
+/* .delete-img {
   width: 44rpx;
   height: 44rpx;
-}
+} */
 
 /* 
 工人上传图 */

@@ -13,6 +13,7 @@ Page({
     enddate: '选择截止时间',
     picIurl:'',
     picIurl1:'',
+    piclist:[],
     workcityname:'',
     workareaname:''
   },
@@ -131,15 +132,27 @@ Page({
                 var jj = JSON.parse(r);
                 var sj = that.data.viewUrl + jj.message
                 console.log(res)
+                that.data.piclist.push(jj.message)
                 that.setData({
                   picIurl: sj,
-                  picIurl1: jj.message
+                  picIurl1: jj.message,
+                  piclist:that.data.piclist
                 })
               }
             })
           }
         })
       },
+    })
+  },
+  // 删除图片
+  shanchu: function (e) {
+    var that = this
+    var tplj = e.currentTarget.dataset.tplj
+    that.data.piclist.splice(tplj, 1)
+    console.log(that.data.piclist)
+    that.setData({
+      piclist: that.data.piclist
     })
   },
   // 获取一级区域

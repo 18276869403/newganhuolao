@@ -45,9 +45,12 @@
 		</view>
     <view class="shangchuan-font">上传图片</view>
 		<view class="hengxiang fabu-list1">
-			<view class="fabu" bindtap='upimg' data-number="0">
-			  <image src="{{picIurl}}" class="fabu-item" wx:if="{{picIurl!=''}}"></image>
-				<image src="{{viewUrl}}static/image/shangchuan.png" class="fabu-item" wx:if="{{picIurl==''}}"></image>
+      <view class="fabu" wx:for="{{piclist}}" wx:for-index="index" wx:key="{{item.id}}">
+        <image src="{{viewUrl}}{{item}}" class="fabu-item"></image>
+        <image src="{{viewUrl}}static/image/shanchu.png" class="delete-img" bindtap="shanchu" data-tplj="{{index}}"></image>
+      </view>
+      <view class="fabu" bindtap='upimg' data-number="0" wx:if="{{piclist.length<4}}">
+				<image src="{{viewUrl}}static/image/shangchuan.png" class="fabu-item"></image>
 			</view>
 		</view>
 	</view>

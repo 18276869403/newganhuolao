@@ -16,11 +16,11 @@
         </view>
       </view>
       <view class="top-search-fabu">
-        <image src="../image/fabuhuodong.png" bindtap="submitWelfare" data-type="2" class="fabu-img"></image>
+        <image src="{{viewUrl}}state/image/fabuhuodong.png" bindtap="submitWelfare" data-type="2" class="fabu-img"></image>
       </view>
 		</view>
     <view class="top-img">
-      <image src="../image/gongyi.png" class="bg-img"></image>
+      <image src="{{viewUrl}}state/image/gongyi.png" class="bg-img"></image>
     </view>
 	</view>
 	<view class="content zongxiang">
@@ -35,7 +35,7 @@
 					<view class="list-top list-top-margin hangxiang">
 						<view class="content-left-img zongxiang">
 							<view>
-								<image src="../image/zhaogongjs.png" class="content-shalou-img"></image>
+								<image src="{{viewUrl}}state/image/zhaogongjs.png" class="content-shalou-img"></image>
 							</view>
 						</view>
 						<view class="content-text">
@@ -45,7 +45,7 @@
 					<view class="list-top list-top-margin hangxiang">
 						<view class="content-left-img zongxiang">
 							<view>
-								<image src="../image/shijian.png" class="content-shalou-img"></image>
+								<image src="{{viewUrl}}state/image/shijian.png" class="content-shalou-img"></image>
 							</view>
 						</view>
 						<view class="content-text1 text-jiequ" style="width:68%;">

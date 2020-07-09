@@ -8,8 +8,7 @@
 		</view>
 		<view class="content-item hengxiang" bindtap="showModal">
 			<view class="content-title">主办单位<text style="color:red;">*</text></view>
-			<view class="content-text" style="color:#999999;" wx:if="{{workcityname==''}}">选择工作地</view>
-			<view class='content-text2' wx:if="{{workcityname!=''}}" style="color:#999999">{{workcityname}} - {{workareaname}}</view>
+			<input type="text" placeholder="输入主办单位" class="shurukuang" style="color:#999999;" placeholder-class="placeholder" value='{{activityname}}' name="activityname" bindinput='activitynameinput' bindblur="activitynameblur"></input>
 			<view class="enter">
 				<image src="{{viewUrl}}static/image/enter.png" class="enter-img"></image>
 			</view>

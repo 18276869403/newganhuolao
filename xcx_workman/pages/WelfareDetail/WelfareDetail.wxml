@@ -8,7 +8,7 @@
 					</view>
 					<view class="title-time hengxiang">
 						<view>
-							<image src="../image/huodongtime.png" class="time-icon"></image>
+							<image src="{{viewUrl}}state/image/huodongtime.png" class="time-icon"></image>
 						</view>
 						<view class="title-time-text">2020-7-09</view>
 					</view>
@@ -17,7 +17,7 @@
 			<view class="uhengxiang"></view>
 			<view class="hengxiang content-list-type">
 				<view class="header-image">
-					<image src="../image/headericon.png" class="header-icon"></image>
+					<image src="{{viewUrl}}state/image/headericon.png" class="header-icon"></image>
 				</view>
 				<view class="header-text">
 					<view class="header-text-class">大爱无疆</view>
@@ -28,7 +28,7 @@
 		<view class="content-content zongxiang">
 			<view class="content-content-title hengxiang">
 				<view>
-					<image src="../image/huodongcontext.png" class="activity-icon"></image>
+					<image src="{{viewUrl}}state/image/huodongcontext.png" class="activity-icon"></image>
 				</view>
 				<view>活动描述</view>
 			</view>
@@ -51,13 +51,13 @@
 		<!-- 图片 -->
 				<view class="content-sign hengxiang">
 					<view class="sign-view" wx:if="{{1==1}}">
-						<image src="../image/shanchuhuodong.png" class="sign-img"></image>
+						<image src="{{viewUrl}}state/image/shanchuhuodong.png" class="sign-img"></image>
 					</view>
 					<view class="sign-view" wx:if="{{1!=1}}">
-						<image src="../image/woyaosign.png" class="sign-img"></image>
+						<image src="{{viewUrl}}state/image/woyaosign.png" class="sign-img"></image>
 					</view>
 					<view class="sign-view">
-						<image src="../image/aixinzhuanfa.png" class="sign-img"></image>
+						<image src="{{viewUrl}}state/image/aixinzhuanfa.png" class="sign-img"></image>
 					</view>
 				</view>
 		<!-- 接单报名人员 -->
@@ -69,7 +69,7 @@
 					<view class="jiedan-top-left">
 						<!-- <image src="{{item.picIurl}}" class="avator-img" wx-if="{{item.picIurl!=''|| item.picIurl!=null}}"></image>
 						<image src="{{item.picUrl}}" class="avator-img" wx-if="{{item.picIurl==''|| item.picIurl==null}}"></image> -->
-						<image src="../image/headericon.png" class="avator-img"></image> 
+						<image src="{{viewUrl}}state/image/headericon.png" class="avator-img"></image> 
 					</view>
 					<view class="jiedan-top-content zongxiang">
 						<view class="jiedan-top-content-name">邓星玉</view>

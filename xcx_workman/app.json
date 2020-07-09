@@ -34,7 +34,9 @@
     "pages/myShowwork/myShowwork",
     "pages/Material/Material",
     "pages/HM-chat/HM-chat",
-    "pages/thePublic/thePublic"
+    "pages/thePublic/thePublic",
+    "pages/Welfare/Welfare",
+    "pages/submitWelfare/submitWelfare"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",

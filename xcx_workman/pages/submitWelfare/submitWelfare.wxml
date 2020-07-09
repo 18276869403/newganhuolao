@@ -6,12 +6,12 @@
 			<view class="content-title">活动名称<text style="color:red;">*</text></view>
 			<input type="text" placeholder="输入活动名称" class="shurukuang" style="color:#999999;" placeholder-class="placeholder" value='{{activityname}}' name="activityname" bindinput='activitynameinput' bindblur="activitynameblur"></input>
 		</view>
-		<view class="content-item hengxiang" bindtap="showModal">
+		<view class="content-item hengxiang">
 			<view class="content-title">主办单位<text style="color:red;">*</text></view>
-			<input type="text" placeholder="输入主办单位" class="shurukuang" style="color:#999999;" placeholder-class="placeholder" value='{{activityname}}' name="activityname" bindinput='activitynameinput' bindblur="activitynameblur"></input>
-			<view class="enter">
+			<input type="text" placeholder="输入主办单位" class="shurukuang" style="color:#999999;" placeholder-class="placeholder" value='{{activityCompany}}' name="activityCompany" bindinput='activitynameinput' bindblur="activitynameblur"></input>
+			<!-- <view class="enter">
 				<image src="{{viewUrl}}static/image/enter.png" class="enter-img"></image>
-			</view>
+			</view> -->
 		</view>
 		<view class="content-item hengxiang">
 			<view class="content-title">招募人数<text style="color:red;">*</text></view>

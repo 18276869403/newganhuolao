@@ -32,7 +32,7 @@ Page({
     var data = {
       id: app.globalData.wxid,
       hireTitle:that.data.activityname,
-      hireTitle:that.data.needsname,
+      hireTitle:that.data.activityCompany,
       hireTitle:that.data.activityrenshu,
       hireTitle:that.data.activitycontent,
       hireTitle:that.data.startdate,
@@ -64,6 +64,12 @@ Page({
   activityname: function (e) {
     this.setData({
       activityname: e.detail.value
+    })
+  },
+  //获取主办单位
+  activityCompany: function (e) {
+    this.setData({
+      activityCompany: e.detail.value
     })
   },
   //获取招募人数

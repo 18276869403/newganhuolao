@@ -1,6 +1,8 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/WelfareDetail/WelfareDetail",
+    "pages/submitShow/submitShow",
     "pages/recruitmentDetail/recruitmentDetail",
     "pages/recruitment/recruitment",
     "pages/submitRecruitment/submitRecruitment",
@@ -28,15 +30,16 @@
     "pages/needsDetails/needsDetails",
     "pages/need/need",
     "pages/outurl/outurl",
-    "pages/submitShow/submitShow",
     "pages/showDetails/showDetails",
     "pages/myneeds/myneeds",
     "pages/myShowwork/myShowwork",
     "pages/Material/Material",
     "pages/HM-chat/HM-chat",
     "pages/thePublic/thePublic",
-    "pages/Welfare/Welfare",
-    "pages/submitWelfare/submitWelfare"
+    "pages/myMaterial/myMaterial",
+    "pages/myRecruitment/myRecruitment",
+    "pages/myWelfare/myWelfare",
+    "pages/Welfare/Welfare"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",

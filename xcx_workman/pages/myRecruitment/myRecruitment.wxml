@@ -6,11 +6,11 @@
 		<view class="content-need">
 			<view class="list zongxiang" wx:for="{{workList}}" wx:for-index="index" wx:key="index">
 				<view class="need-list hengxiang" bindtap="recruitmentDetail" data-vall="{{item}}">
-					<view class="need-list-left" wx:if="{{item.backup1[0]==null}}">
+					<view class="need-list-left" wx:if="{{item.backup4[0]==null}}">
 						<image src="{{viewUrl}}static/image/zawu1.png" class="need-content-img"></image>
 					</view>
-					<view class="need-list-left" wx:if="{{item.backup1[0]!=null}}">
-						<image src="{{viewUrl}}{{item.backup1[0]}}" class="need-content-img"></image>
+					<view class="need-list-left" wx:if="{{item.backup4[0]!=null}}">
+						<image src="{{viewUrl}}{{item.backup4[0]}}" class="need-content-img"></image>
 					</view>
 					<view class="need-list-right zongxiang">
 						<view class="content-list zongxiang">
@@ -22,17 +22,17 @@
 									<view class="content-status-img">
 										<image src="{{viewUrl}}static/image/shalou.png" class="shalou-img"></image>
 									</view>
-									<view class="content-status-text" wx:if="{{item.needState==0}}">进行中</view>
-									<view class="content-status-text" wx:if="{{item.needState==1}}">已完成</view>
+									<view class="content-status-text" wx:if="{{item.backup1=='0'}}">进行中</view>
+									<view class="content-status-text" wx:if="{{item.backup1=='1'}}">已完成</view>
 								</view>
 							</view>
 							<view class="content-list-bottom hengxiang">
 								<view class="list-bottom-item hengxiang">
 									<view class="bottom-item hengxiang">
 										<view>
-											<image src="{{viewUrl}}static/image/zhaogongjs.png" class="dingwei-img"></image>
+											<image src="../image/zhaogongjs.png" class="dingwei-img"></image>
 										</view>
-										<view class="bottom-dingwei text-jiequ">
+										<view class="bottom-dingwei content-text-page">
 											介绍：{{item.hireContent}}
 										</view>
 									</view>
@@ -42,7 +42,7 @@
 								<view class="list-bottom-item-time hengxiang">
 									<view class="bottom-item hengxiang">
 										<view>
-											<image src="{{viewUrl}}static/image/shijian.png" class="shijian-img"></image>
+											<image src="../image/zhaogongname.png" class="shijian-img"></image>
 										</view>
 										<view> 
 											{{item.publishMan}}
@@ -52,10 +52,10 @@
 								<view class="list-bottom-item1 hengxiang">
 									<view class="bottom-item hengxiang">
 										<view>
-											<image src="{{viewUrl}}static/image/renyuan.png" class="baoming-img"></image>
+											<image src="../image/zhaogongdizhi.png" class="baoming-img"></image>
 										</view>
 										<view>
-											<text style="color:#333333">{{item.backup2}}</text>人
+											<text>{{item.oneAreaName}}{{item.twoAreaName}}</text>
 										</view>
 									</view>
 								</view>

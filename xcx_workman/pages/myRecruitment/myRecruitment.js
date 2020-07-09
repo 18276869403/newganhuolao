@@ -49,8 +49,8 @@ Page({
           }
           for (var i = 0; i < re.result.records.length; i++) {
             re.result.records[i].createTime = re.result.records[i].createTime.substring(0,16)
-            if (re.result.records[i].backup1 != null && re.result.records[i].backup1.length > 0) {
-              re.result.records[i].backup1 = re.result.records[i].backup1.split(',')
+            if (re.result.records[i].backup4 != null && re.result.records[i].backup4.length > 0) {
+              re.result.records[i].backup4 = re.result.records[i].backup4.split(',')
             }
             if(re.result.records[i].backup3 == null){
               re.result.records[i].backup3 = 0
@@ -72,8 +72,7 @@ Page({
   },
    // 跳转到需求详情页面 
    recruitmentDetail: function (e) {
-    var list=e.currentTarget.dataset.list
-    var list1 = JSON.stringify(list)
+    var list1 = JSON.stringify(e.currentTarget.dataset.vall)
     wx.navigateTo({
       url: '../recruitmentDetail/recruitmentDetail?obj='+list1,
     })

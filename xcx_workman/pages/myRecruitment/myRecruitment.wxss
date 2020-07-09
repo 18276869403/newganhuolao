@@ -251,7 +251,8 @@ page {
 .list-bottom-item {
   /* position: absolute;
   left: 0; */
-  width: 33.3%;
+  width: 100%;
+  padding-right: 10rpx;
 }
 
 .list-bottom-item-time {
@@ -261,14 +262,19 @@ page {
 }
 
 .bottom-dingwei {
+  width: 100%;
+}
+.content-text-page {
+  text-overflow: -o-ellipsis-lastline;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
-  width: 210rpx;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
-
 .list-bottom-item1 {
-  margin: auto;
+  /* margin: auto; */
   width: 45%;
 }
 

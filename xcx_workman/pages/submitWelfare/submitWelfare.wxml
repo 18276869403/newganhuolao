@@ -8,8 +8,8 @@
 		</view>
 		<view class="content-item hengxiang" bindtap="showModal">
 			<view class="content-title">主办单位<text style="color:red;">*</text></view>
-			<view class="content-text" wx:if="{{workcityname==''}}" style="color:#999999;">选择工作地</view>
-			<view class='content-text2' wx:if="{{workcityname!=''}}" style="color:#999999">{{workcityname}} - {{workareaname}}</view>
+			<view class="content-text" style="color:#999999;">选择工作地</view>
+			<!-- <view class='content-text2' wx:if="{{workcityname!=''}}" style="color:#999999">{{workcityname}} - {{workareaname}}</view> -->
 			<view class="enter">
 				<image src="{{viewUrl}}static/image/enter.png" class="enter-img"></image>
 			</view>
@@ -22,7 +22,28 @@
 		<view class="content-item-textarea">
 			<textarea class="textarea" placeholder="输入活动内容" style="color:#999999;" placeholder-class="placeholder" maxlength='-1' value='{{needscontent}}' name="needscontent" bindinput='needscontentinput' bindblur="needscontentblur" wx:if="{{!showModalStatus6&&!show&&!showModalStatus1&&!showModalStatus}}"></textarea>
 		</view>
-
+    <view class="content-item hengxiang">
+			<view class="content-title">活动时间</view>
+				<picker mode="date" value="{{date}}" bindchange="bindDateChange" start="{{nowdate}}" class="shurukuang">
+					<view class="picker" style="color:#999999;">
+						{{date}}
+					</view>
+				</picker>
+			<view class="enter">
+				<image src="{{viewUrl}}static/image/enter.png" class="enter-img"></image>
+			</view>
+		</view>
+    <view class="content-item hengxiang">
+			<view class="content-title">报名截止</view>
+				<picker mode="date" value="{{date}}" bindchange="bindDateChange" start="{{nowdate}}" class="shurukuang">
+					<view class="picker" style="color:#999999;">
+						{{date}}
+					</view>
+				</picker>
+			<view class="enter">
+				<image src="{{viewUrl}}static/image/enter.png" class="enter-img"></image>
+			</view>
+		</view>
     <view class="shangchuan-font">上传图片</view>
 		<view class="hengxiang fabu-list1">
 			<view class="fabu" bindtap='upimg' data-number="0">

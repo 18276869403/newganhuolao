@@ -15,6 +15,7 @@ page {
 
 .shangchuan-font{
   margin-left: 35rpx;
+  margin-top: 30rpx;
 }
 
 .xuanzhong {

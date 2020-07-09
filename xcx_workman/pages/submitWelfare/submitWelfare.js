@@ -9,6 +9,7 @@ Page({
    */
   data: {
     viewUrl: api.viewUrl,
+    date: '请选择日期',
   },
 
   /**

@@ -8,6 +8,7 @@ Page({
    */
   data: {
     viewUrl: api.viewUrl,
+    isShowConfirm:false,
     gongyilist:[{
       id:1,
       title:'七月敬老活动',
@@ -18,7 +19,35 @@ Page({
       title:'七月敬老活动',
       content:'关爱老人，关爱留守儿童',
       time:'2020-7-20'
-    }]
+    }],
+    signName:'',
+    signPhone:''
+  },
+
+  // 弹窗
+  signName: function (e) {
+    console.log('报名人员姓名：',e.detail.value)
+    this.setData({
+      signName: e.detail.value
+    })
+  },
+  signPhone:function(e){
+    console.log('报名人员电话：',e.detail.value)
+    this.setData({
+      signPhone:e.detail.value
+    })
+  },
+  cancel: function () {
+    var that = this
+    that.setData({
+      isShowConfirm: false,
+    })
+  },
+  confirmAcceptance:function(){
+    var that = this
+    that.setData({
+      isShowConfirm: false,
+    })
   },
 
   /**
@@ -34,16 +63,8 @@ Page({
     })
   },
   zaixianlianxi:function(){
-    wx.showModal({
-      title:'报名',
-      content:'你确定要报名吗？',
-      success (res){
-        if(res.confirm){
-          console.log("用户点了确定")
-        }else{
-          console.log("用户点了取消")
-        }
-      }
+    this.setData({
+      isShowConfirm:true
     })
   },
   // 发布工艺活动

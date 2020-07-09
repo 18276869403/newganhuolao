@@ -21,6 +21,7 @@ Page({
   },
 
   onLoad: function (options) {
+    console.log(options)
     wx.showShareMenu({
       withShareTicket: true
     })

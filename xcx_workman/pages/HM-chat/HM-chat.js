@@ -571,6 +571,7 @@ Page({
 							if(EM.alt==item){
 								//在线表情路径，图文混排必须使用网络路径，请上传一份表情到你的服务器后再替换此路径 
 								//比如你上传服务器后，你的100.gif路径为https://www.xxx.com/emoji/100.gif 则替换onlinePath填写为https://www.xxx.com/emoji/
+								// let onlinePath = 'http://192.168.1.235:8080/work-boot/sys/common/view/static/img/emoji/'
 								let onlinePath = 'http://miss.it-ys.com:9123/work-boot/sys/common/view/static/img/emoji/'
 								// let imgstr = '<img src="'+onlinePath+this.data.onlineEmoji[EM.url]+'">';
 								let imgstr = '<img src="'+onlinePath+EM.url+'">';
@@ -726,6 +727,7 @@ Page({
 			// 播放语音
 			playVoice(e){ 
 				var msg = e.currentTarget.dataset.msg;
+				console.log(msg)
 				this.setData({
 					playMsgid : msg.id,
 					AUDIO : msg.content.url
@@ -736,6 +738,8 @@ Page({
 				}
 				AUDIO.src = msg.content.url;
 				wx.nextTick(()=>{ 
+					wx.downloadFile({ url: AUDIO.src })
+					// AUDIO.autoplay = true;
 					AUDIO.play();
 				});
 			},
@@ -752,6 +756,7 @@ Page({
 					initPoint : this.data.initPoint
 				}); 
 				RECORDER.start({  
+						// format: 'aac' 
 						format: 'mp3' 
 				});//录音开始, 
 			},
@@ -843,8 +848,6 @@ Page({
 							}
 						}
 					})
-
-					
 				}else{
 					console.log('取消发送录音');
 				} 

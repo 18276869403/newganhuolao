@@ -16,7 +16,7 @@
         </view>
       </view>
       <view class="top-search-fabu">
-        <image src="../image/fabuhuodong.png" bindtap="kaidian" data-type="2" class="fabu-img"></image>
+        <image src="../image/fabuhuodong.png" bindtap="submitWelfare" data-type="2" class="fabu-img"></image>
       </view>
 		</view>
     <view class="top-img">
@@ -27,7 +27,7 @@
 		<!-- 公益活动模块 -->
 		<view class="recruitment-need">
 			<view class="list zongxiang" wx:for="{{gongyilist}}" wx:for-index="index" wx:key="index">
-				<view class="recruitment-list" bindtap="recruitmentDetail" data-list="{{item}}">
+				<view class="recruitment-list" bindtap="WelfareDetail" data-list="{{item}}">
 					<view class="list-top hangxiang">
 						<view class="list-top-right list-top-right-text">{{item.title}}</view>
 					</view>
@@ -58,11 +58,4 @@
 		</view>
 
 	</view>
-
-	<!-- <view class="bottom zongxiang">
-		<image src="{{viewUrl}}static/image/backtop.png" bindtap="goTop" class="backtop-img"></image>
-		<button class='kefubtn' style="width:100%" open-type="contact" bindcontact="handleContact">
-			<image src="{{viewUrl}}static/image/kefu.png" class="kefu-img"></image>
-		</button>
-	</view> -->
 </view>

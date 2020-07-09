@@ -27,7 +27,18 @@ Page({
   onLoad: function (options) {
 
   },
-
+  // 公益详情
+  WelfareDetail:function(){
+    wx.navigateTo({
+      url: '../WelfareDetail/WelfareDetail',
+    })
+  },
+  // 发布工艺活动
+  submitWelfare:function(){
+    wx.navigateTo({
+      url: '../submitWelfare/submitWelfare',
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

@@ -1,2 +1,68 @@
 <!--pages/Welfare/Welfare.wxml-->
-<text>pages/Welfare/Welfare.wxml</text>
+<!-- <text>pages/Welfare/Welfare.wxml</text> -->
+<view class="container">
+	<view class="hengxian"></view>
+	<view class="top zongxiang">
+		<view class="top-title hengxiang">
+			<view class="top-title-right hengxiang">
+        <view class="top-title-right-img">
+          <image src="{{viewUrl}}static/image/search.png" class="search-img"></image>
+        </view>
+        <view class="top-title-right-shuru">
+          <input type="text" placeholder="输入商品名称搜索" bindinput="getText" class="shurukuang"></input>
+        </view>
+        <view class="top-title-right-sousuo">
+          <view class="sousuo-button" bindtap="getGoods">搜索</view>
+        </view>
+      </view>
+      <view class="top-search-fabu">
+        <image src="../image/fabuhuodong.png" bindtap="kaidian" data-type="2" class="fabu-img"></image>
+      </view>
+		</view>
+    <view class="top-img">
+      <image src="../image/gongyi.png" class="bg-img"></image>
+    </view>
+	</view>
+	<view class="content zongxiang">
+		<!-- 公益活动模块 -->
+		<view class="recruitment-need">
+			<view class="list zongxiang" wx:for="{{gongyilist}}" wx:for-index="index" wx:key="index">
+				<view class="recruitment-list" bindtap="recruitmentDetail" data-list="{{item}}">
+					<view class="list-top hangxiang">
+						<view class="list-top-right list-top-right-text">{{item.title}}</view>
+					</view>
+					<view class="list-top-henxian"></view>
+					<view class="list-top list-top-margin hangxiang">
+						<view class="content-left-img zongxiang">
+							<view>
+								<image src="../image/zhaogongjs.png" class="content-shalou-img"></image>
+							</view>
+						</view>
+						<view class="content-text">
+							<text class="content-text-page">描述：{{item.content}}</text>
+						</view>
+					</view>
+					<view class="list-top list-top-margin hangxiang">
+						<view class="content-left-img zongxiang">
+							<view>
+								<image src="../image/shijian.png" class="content-shalou-img"></image>
+							</view>
+						</view>
+						<view class="content-text1 text-jiequ" style="width:68%;">
+							<text>{{item.time}}</text>
+						</view>
+						  <view class="complete-button" style="width:135rpx;" bindtap="zaixianlianxi" data-wxid="{{xqxqlist.wxUserId}}" data-name="{{xqxqlist.name}}">我要报名</view>
+					</view>
+				</view>
+			</view>
+		</view>
+
+	</view>
+
+	<!-- <view class="bottom zongxiang">
+		<image src="{{viewUrl}}static/image/backtop.png" bindtap="goTop" class="backtop-img"></image>
+		<button class='kefubtn' style="width:100%" open-type="contact" bindcontact="handleContact">
+			<image src="{{viewUrl}}static/image/kefu.png" class="kefu-img"></image>
+		</button>
+	</view> -->
+</view>

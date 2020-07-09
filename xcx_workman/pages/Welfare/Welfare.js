@@ -1,11 +1,24 @@
 // pages/Welfare/Welfare.js
+const app = getApp()
+const qingqiu = require('../../utils/request.js')
+const api = require('../../utils/config.js')
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-
+    viewUrl: api.viewUrl,
+    gongyilist:[{
+      id:1,
+      title:'七月敬老活动',
+      content:'关爱老人，关爱留守儿童',
+      time:'2020-7-20'
+    },{
+      id:2,
+      title:'七月敬老活动',
+      content:'关爱老人，关爱留守儿童',
+      time:'2020-7-20'
+    }]
   },
 
   /**

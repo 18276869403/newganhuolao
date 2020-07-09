@@ -75,6 +75,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {  
+		wx.showShareMenu({
+      withShareTicket: true
+    })
+			console.log(options)
 			this.setData({
 				toUserId : options.id,
 				toUserName : options.name
@@ -99,8 +103,9 @@ Page({
 				this.recordEnd(e);
 			})
 			RECORDER.onError((res) => {
-				wx.showToast({
-					title: '录音时发生错误',
+				wx.showToast({ 
+					title: '录音时发生错误,请检查是否给麦克风授权',
+					icon:'none'
 				})
 			})
 			
@@ -239,7 +244,7 @@ Page({
 					lastId   : this.data.lastMsgId
 				},res =>{
 					// console.log("消息列表", res);
-					var list       = res.result.pageList;
+					var list = res.result.pageList;
 					if(list.length > 0){
 
 						list = list.reverse();
@@ -333,7 +338,7 @@ Page({
 					userId : app.globalData.wxid 
 				},res =>{
 					// console.log("消息列表", res);
-					var list       = res.result.pageList;
+					var list = res.result.pageList;
 					list = list.reverse();
 
 					var userInfo   = res.result.userInfo;
@@ -555,18 +560,57 @@ Page({
 					textMsg : e.detail.value
 				})
 			},
+			textMsgInputblur:function(e){
+				var that = this
+				qingqiu.messageReg(e.detail.value,0,function(res){
+					console.log('回调函数',res)
+					if(res == 87014){
+						that.setData({
+							textMsg:''
+						})
+						wx.showToast({
+							title: '内容包含敏感词，请重新输入...',
+							icon:'none',
+							duration:2000
+						})
+						return
+					}
+				},'POST')
+			},
 			// 发送文字消息
 			sendText(){
-				this.hideDrawer();//隐藏抽屉
-				if(!this.data.textMsg){
+				var that=this
+				that.hideDrawer();//隐藏抽屉
+				if(!that.data.textMsg){
 					return;
 				}
-				let content = this.replaceEmoji(this.data.textMsg);
-				let msg = {text:content}
-				this.sendMsg(msg,'text'); 
-				this.setData({
-					textMsg : ""
-				});  
+				qingqiu.messageReg(that.data.textMsg,0,function(res){
+					console.log('回调函数',res)
+					if(res == 87014){
+						that.setData({
+							textMsg:''
+						})
+						wx.showToast({
+							title: '内容包含敏感词，请重新输入...',
+							icon:'none',
+							duration:2000
+						})
+						return
+					}else{
+						let content = that.replaceEmoji(that.data.textMsg);
+						let msg = {text:content}
+						that.sendMsg(msg,'text'); 
+						that.setData({
+							textMsg : ""
+						}); 
+					}
+				},'POST')
+				// let content = this.replaceEmoji(this.data.textMsg);
+				// let msg = {text:content}
+				// this.sendMsg(msg,'text'); 
+				// this.setData({
+				// 	textMsg : ""
+				// });  
 			},
 			//替换表情符号为图片
 			replaceEmoji(str){
@@ -579,8 +623,10 @@ Page({
 							if(EM.alt==item){
 								//在线表情路径，图文混排必须使用网络路径，请上传一份表情到你的服务器后再替换此路径 
 								//比如你上传服务器后，你的100.gif路径为https://www.xxx.com/emoji/100.gif 则替换onlinePath填写为https://www.xxx.com/emoji/
-								let onlinePath = 'https://s2.ax1x.com/2019/04/12/'
-								let imgstr = '<img src="'+onlinePath+this.data.onlineEmoji[EM.url]+'">';
+								// let onlinePath = 'http://192.168.1.235:8080/work-boot/sys/common/view/static/img/emoji/'
+								let onlinePath = 'http://miss.it-ys.com:9123/work-boot/sys/common/view/static/img/emoji/'
+								// let imgstr = '<img src="'+onlinePath+this.data.onlineEmoji[EM.url]+'">';
+								let imgstr = '<img src="'+onlinePath+EM.url+'">';
 								console.log("imgstr: " + imgstr);
 								return imgstr;
 							}
@@ -626,7 +672,8 @@ Page({
 				});  
 			},
 			// 添加图片消息到列表
-			addImgMsg(msg){
+			addImgMsg(msg){ 
+				console.log(msg) 
 				msg.content = this.setPicSize(msg.content);
 				this.data.msgImgList.push(msg.content.url);
 				this.data.msgList.push(msg);
@@ -732,6 +779,7 @@ Page({
 			// 播放语音
 			playVoice(e){ 
 				var msg = e.currentTarget.dataset.msg;
+				console.log(msg)
 				this.setData({
 					playMsgid : msg.id,
 					AUDIO : msg.content.url
@@ -760,9 +808,9 @@ Page({
 				am.src   =  msg.content.url;
 				am.onError = function(ex){
 					console.log(ex);
-				}
+				} 
 				am.title =  "语音留言";
-				am.play(); 
+				am.play();  
 			},
 			// 录音开始
 			voiceBegin(e){
@@ -777,6 +825,7 @@ Page({
 					initPoint : this.data.initPoint
 				}); 
 				RECORDER.start({  
+						// format: 'aac' 
 						format: 'mp3' 
 				});//录音开始, 
 			},
@@ -868,8 +917,6 @@ Page({
 							}
 						}
 					})
-
-					
 				}else{
 					console.log('取消发送录音');
 				} 

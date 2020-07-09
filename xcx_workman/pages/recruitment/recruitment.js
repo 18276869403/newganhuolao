@@ -134,7 +134,9 @@ Page({
     var data = {
       pageNo: that.data.pageNo,
       pageSize: 10,
-      needTitle:that.data.needTitle
+    }
+    if(that.data.needTitle != '' || that.data.needTitle!= null || that.data.needTitle != undefined){
+     data.hireTitle = that.data.needTitle
     }
     if (app.globalData.oneCity != undefined && app.globalData.oneCity != "undefined") {
       data.oneAreaId = app.globalData.oneCity.id
@@ -142,7 +144,6 @@ Page({
     if (app.globalData.twoCity != undefined && app.globalData.twoCity != "undefined") {
       data.twoAreaId = app.globalData.twoCity.id
     }
-    console.log(data)
     qingqiu.get("list", data, function (re) {
       console.log(re)
       if (re.success == true) {

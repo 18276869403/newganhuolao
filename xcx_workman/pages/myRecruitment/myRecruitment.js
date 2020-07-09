@@ -11,7 +11,8 @@ Page({
    */
   data: {
     viewUrl:api.viewUrl,
-    workList:[]
+    workList:[],
+    pageNo:1
   },
 
   /**
@@ -29,7 +30,7 @@ Page({
     var data = {
       pageNo: that.data.pageNo,
       pageSize: 10,
-      needTitle:that.data.needTitle
+      // needTitle:that.data.needTitle
     }
     if (app.globalData.oneCity != undefined && app.globalData.oneCity != "undefined") {
       data.oneAreaId = app.globalData.oneCity.id
@@ -39,7 +40,7 @@ Page({
     }
     console.log(data)
     qingqiu.get("list", data, function (re) {
-      console.log(re)
+      console.log('请求数据',re)
       if (re.success == true) {
         if (re.result != null) {
           if(re.result.records==''){

@@ -13,8 +13,8 @@ Page({
   data: {
     viewUrl:api.viewUrl,
     bannerImg:[
-      {id:1,bannerUrl:"../image/huodong1.png"},
-      {id:2,bannerUrl:"../image/huodong2.png"}
+      {id:1,bannerUrl:"http://miss.it-ys.com:91/work-boot/sys/common/view/static/image/huodong1.png"},
+      {id:2,bannerUrl:"http://miss.it-ys.com:91/work-boot/sys/common/view/static/image/huodong2.png"}
     ],
     // tupianlist: [{
     //   id: 1,

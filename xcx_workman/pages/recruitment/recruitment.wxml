@@ -35,7 +35,7 @@
 						<view class="list-top-right list-top-right-text">{{item.hireTitle}}</view>
 						<view class="list-top-left">
 							<!-- <view>
-								<image src="{{viewUrl}}state/image/zhaogongstate.png" class="shalou-img"></image>
+								<image src="{{viewUrl}}static/image/zhaogongstate.png" class="shalou-img"></image>
 							</view>
 							<view class="list-top-status">进行中</view> -->
 							<view class="list-top-price">薪资：{{item.backup3}}元</view>
@@ -45,7 +45,7 @@
 					<view class="list-top list-top-margin hangxiang">
 						<view class="content-left-img zongxiang">
 							<view>
-								<image src="{{viewUrl}}state/image/zhaogongjs.png" class="content-shalou-img"></image>
+								<image src="{{viewUrl}}static/image/zhaogongjs.png" class="content-shalou-img"></image>
 							</view>
 						</view>
 						<view class="content-text">
@@ -55,7 +55,7 @@
 					<view class="list-top list-top-margin hangxiang">
 						<view class="content-left-img zongxiang">
 							<view>
-								<image src="{{viewUrl}}state/image/zhaogongname.png" class="content-shalou-img"></image>
+								<image src="{{viewUrl}}static/image/zhaogongname.png" class="content-shalou-img"></image>
 							</view>
 						</view>
 						<view class="content-text1 text-jiequ">
@@ -63,7 +63,7 @@
 						</view>
 						<view class="content-left-img zongxiang">
 							<view>
-								<image src="{{viewUrl}}state/image/zhaogongdizhi.png" class="content-shalou-img"></image>
+								<image src="{{viewUrl}}static/image/zhaogongdizhi.png" class="content-shalou-img"></image>
 							</view>
 						</view>
 						<view class="content-text1 text-jiequ" style="width:38%;">

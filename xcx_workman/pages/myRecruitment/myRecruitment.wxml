@@ -30,7 +30,7 @@
 								<view class="list-bottom-item hengxiang">
 									<view class="bottom-item hengxiang">
 										<view>
-											<image src="../image/zhaogongjs.png" class="dingwei-img"></image>
+											<image src="{{viewUrl}}static/image/zhaogongjs.png" class="dingwei-img"></image>
 										</view>
 										<view class="bottom-dingwei content-text-page">
 											介绍：{{item.hireContent}}
@@ -42,7 +42,7 @@
 								<view class="list-bottom-item-time hengxiang">
 									<view class="bottom-item hengxiang">
 										<view>
-											<image src="../image/zhaogongname.png" class="shijian-img"></image>
+											<image src="{{viewUrl}}static/image/zhaogongname.png" class="shijian-img"></image>
 										</view>
 										<view> 
 											{{item.publishMan}}
@@ -52,7 +52,7 @@
 								<view class="list-bottom-item1 hengxiang">
 									<view class="bottom-item hengxiang">
 										<view>
-											<image src="../image/zhaogongdizhi.png" class="baoming-img"></image>
+											<image src="{{viewUrl}}static/image/zhaogongdizhi.png" class="baoming-img"></image>
 										</view>
 										<view>
 											<text>{{item.oneAreaName}}{{item.twoAreaName}}</text>

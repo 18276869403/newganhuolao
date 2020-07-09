@@ -33,6 +33,19 @@ Page({
       url: '../WelfareDetail/WelfareDetail',
     })
   },
+  zaixianlianxi:function(){
+    wx.showModal({
+      title:'报名',
+      content:'你确定要报名吗？',
+      success (res){
+        if(res.confirm){
+          console.log("用户点了确定")
+        }else{
+          console.log("用户点了取消")
+        }
+      }
+    })
+  },
   // 发布工艺活动
   submitWelfare:function(){
     wx.navigateTo({

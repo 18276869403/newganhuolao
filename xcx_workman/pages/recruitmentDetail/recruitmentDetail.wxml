@@ -26,7 +26,7 @@
 			</view>
 			<view class="hengxiang content-list-type">
 				<view>
-					<image src="{{viewUrl}}state/image/zhaogongname.png" class="leixing-img"></image>
+					<image src="{{viewUrl}}static/image/zhaogongname.png" class="leixing-img"></image>
 				</view>
 				<view>
 					联系人：{{zhaogong.publishMan}}
@@ -34,7 +34,7 @@
 			</view>
 			<view class="hengxiang content-list-type">
 				<view>
-					<image src="{{viewUrl}}state/image/zhaogongdizhi.png" class="leixing-img"></image>
+					<image src="{{viewUrl}}static/image/zhaogongdizhi.png" class="leixing-img"></image>
 				</view>
 				<view>
 					{{zhaogong.oneAreaName}}|{{zhaogong.twoAreaName}}
@@ -42,7 +42,7 @@
 			</view>
 			<view class="hengxiang content-list-type">
 				<view>
-					<image src="{{viewUrl}}state/image/huodongshijian.png" class="leixing-img"></image>
+					<image src="{{viewUrl}}static/image/huodongshijian.png" class="leixing-img"></image>
 				</view>
 				<view>
 					{{zhaogong.createTime}}
